@@ -155,7 +155,7 @@
                            <h2>"우리"의</h2>
                            <h2>바다를</h2>
                            <h2>지켜주세요</h2>
-                           <div>
+                           <div> 
                               <p>더보기<i class="xi-share-alt-o"></i></p>
                            </div>
                         </div>
