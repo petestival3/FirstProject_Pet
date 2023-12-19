@@ -131,12 +131,42 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="img/banner/banner-1.jpg" alt="">
+                        <img src="../img/banner/cat_hospital.jpg">
+                        <div class="banner__pic__text b_t_1">
+                           <p>text area</p>
+                           <p>text area</p>
+                           <p>text area</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="img/banner/banner-2.jpg" alt="">
+                        <img src="../img/banner/dog_missing.jpg">
+                        <div class="banner__pic__text b_t_2">
+                           <p>text area</p>
+                           <p>text area</p>
+                           <p>text area</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="banner__pic">
+                        <img src="../img/banner/seaturtle.jpg">
+                        <div class="banner__pic__text b_t_3">
+                           <h2>"우리"의</h2>
+                           <h2>바다를</h2>
+                           <h2>지켜주세요</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="banner__pic">
+                        <img src="../img/banner/dog_funeral.jpg">
+                        <div class="banner__pic__text b_t_4">
+                           <p>text area</p>
+                           <p>text area</p>
+                           <p>text area</p>
+                        </div>
                     </div>
                 </div>
             </div>

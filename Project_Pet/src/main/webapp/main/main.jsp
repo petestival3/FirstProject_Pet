@@ -5,6 +5,34 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+
+/*메인페이지 하단 베너 설정*/
+
+.banner__pic{
+	position: relative;
+	margin-bottom: 50px; 
+}
+.banner__pic:hover{
+    transition: all 0.4s ease-in-out;
+	transform: translateY(-10px);
+}
+.banner__pic__text{
+	position: absolute !important;
+}
+.b_t_3{
+    top: 0px;
+    left: 30px;
+}
+.b_t_3 h2{
+   color: #fff !important;
+    font-size: 80px !important;
+    font-weight: 600;
+}
+.b_t_3 h2:hover {
+	text-shadow: 
+}
+</style>
 <title>Insert title here</title>
     <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
