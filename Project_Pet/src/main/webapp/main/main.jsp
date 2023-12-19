@@ -16,9 +16,34 @@
 .banner__pic:hover{
     transition: all 0.4s ease-in-out;
 	transform: translateY(-10px);
+	text-shadow: 0 0 5px gray;
 }
 .banner__pic__text{
 	position: absolute !important;
+}
+.b_t_1{
+    bottom: 10px;
+    left: 10px;
+}
+.b_t_1 span{
+    font-size: 70px;
+    color: #7ED3F3 !important;
+    font-weight: 600;
+}
+.b_t_1 h2{
+   color: #7ED3F3 !important;
+    font-size: 50px !important;
+    font-weight: 600;
+}
+.b_t_2{
+    top: 45px;
+    left: 40px;
+}
+.b_t_2 h2{
+   color: #F6EBD3 !important;
+    font-size: 75px !important;
+    font-weight: 600;
+    opacity: 50%
 }
 .b_t_3{
     top: 0px;
@@ -26,11 +51,24 @@
 }
 .b_t_3 h2{
    color: #fff !important;
-    font-size: 80px !important;
+    font-size: 75px !important;
     font-weight: 600;
 }
-.b_t_3 h2:hover {
-	text-shadow: 
+.b_t_4{
+    text-align : center;
+    top: 100px;
+    left: 20px;
+}
+.b_t_4 h2{
+   color: #fff !important;
+    font-size: 55px !important;
+    font-weight: 600;
+    opacity: 80%;
+}
+.b_t_4 p{
+    color: #D8D0CD !important;
+    font-size: 20px !important;
+    font-weight: 600;
 }
 </style>
 <title>Insert title here</title>

@@ -9,6 +9,7 @@
        jsp/html만 다르게 나오고 있는거임
        예전에 frame과 panel 기법과 비슷한듯
        ------------------------------
+       ~project index 파일~
        [코딩하는 순서]
        0. site.jsp를 하나 만듬
        1. header.jsp <a>에 site.do 링크를 검

@@ -133,9 +133,8 @@
                     <div class="banner__pic">
                         <img src="../img/banner/cat_hospital.jpg">
                         <div class="banner__pic__text b_t_1">
-                           <p>text area</p>
-                           <p>text area</p>
-                           <p>text area</p>
+                           <span>아!</span>
+                           <h2>건강검진 언제였지?</h2>
                         </div>
                     </div>
                 </div>
@@ -143,9 +142,8 @@
                     <div class="banner__pic">
                         <img src="../img/banner/dog_missing.jpg">
                         <div class="banner__pic__text b_t_2">
-                           <p>text area</p>
-                           <p>text area</p>
-                           <p>text area</p>
+                           <h2>따뜻한 온기를</h2>
+                           <h2>전해주세요</h2>
                         </div>
                     </div>
                 </div>
@@ -163,9 +161,8 @@
                     <div class="banner__pic">
                         <img src="../img/banner/dog_funeral.jpg">
                         <div class="banner__pic__text b_t_4">
-                           <p>text area</p>
-                           <p>text area</p>
-                           <p>text area</p>
+                           <h2>언제까지나&nbsp;&nbsp;기억할께</h2>
+                           <p>찰나의 순간에도 항상 소중한 가족이니까</p>
                         </div>
                     </div>
                 </div>
