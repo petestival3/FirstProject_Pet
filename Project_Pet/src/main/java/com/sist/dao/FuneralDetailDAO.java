@@ -2,30 +2,16 @@ package com.sist.dao;
 import java.util.*;
 import java.sql.*;
 import com.sist.vo.*;
+import com.sist.dbcp.*;
 
 public class FuneralDetailDAO {
 	private Connection conn;
 	private PreparedStatement ps;
+	private CreateDBCPconnection dbconn=new CreateDBCPconnection();
 	private final String URL="jdbc:oracle:thin:@211.238.142.102:1521:XE";
 	private static FuneralDetailDAO dao;
 	
-	public FuneralDetailDAO() {
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		}catch(Exception ex) {}
-	}
-	public void getConnection() {
-		try {
-			conn=DriverManager.getConnection(URL,"hr","happy");
-		}catch(Exception ex) {}
-	}
-	// 오라클 닫기
-	public void disConnection() {
-		try {
-			if(ps!=null) ps.close();
-			if(conn!=null) conn.close();
-		}catch(Exception ex) {}
-	}
+	//싱글턴
 	public static FuneralDetailDAO newInstance() {
 		// 라이브러리 => newInstance, getInstance() => 싱글턴
 		if(dao==null) 
@@ -37,7 +23,7 @@ public class FuneralDetailDAO {
 	{
 		List<FuneralDetailVO> list=new ArrayList<FuneralDetailVO>();
 		try{
-			getConnection();
+			conn=dbconn.getConnection();
 			String sql="SELECT mno, infoimage, infoh3, infop "
 					+ "FROM FUNERALINFO";
 			ps=conn.prepareStatement(sql);
@@ -57,7 +43,7 @@ public class FuneralDetailDAO {
 			ex.printStackTrace();
 		}finally
 		{
-			disConnection();
+			dbconn.disConnection(conn, ps);
 		}
 		return list;
 	}
@@ -67,7 +53,7 @@ public class FuneralDetailDAO {
 	{
 		FuneralDetailVO fdvo=new FuneralDetailVO();
 		try {
-			getConnection();
+			conn=dbconn.getConnection();
 			String sql="SELECT mno, infoimage, infoh3, infop "
 					+ "FROM FUNERALINFO";
 			ps=conn.prepareStatement(sql);
@@ -83,7 +69,7 @@ public class FuneralDetailDAO {
 			ex.printStackTrace();
 		}finally
 		{
-			disConnection();
+			dbconn.disConnection(conn, ps);
 		}
 		return fdvo;
 	}
