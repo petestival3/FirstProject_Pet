@@ -63,9 +63,10 @@
                                     <li><a href="#">의류/악세서리</a></li>
                                 </ul>
                             </li>
-                            <li><a href="./shop-grid.html">HOSPITAL</a>
+                            <li><a href="./shop-grid.html">HEALTH</a>
                                <ul class="header__menu__dropdown">
                                     <li><a href="#">병원 검색하기</a></li>
+                                    <li><a href="#">펫케어 콘텐츠</a></li>
                                 </ul>
                             </li>
                             <li><a href="#">HOTEL</a></li>
