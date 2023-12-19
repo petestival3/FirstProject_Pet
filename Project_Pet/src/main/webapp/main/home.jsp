@@ -155,9 +155,6 @@
                            <h2>"우리"의</h2>
                            <h2>바다를</h2>
                            <h2>지켜주세요</h2>
-                           <div> 
-                              <p>더보기<i class="xi-share-alt-o"></i></p>
-                           </div>
                         </div>
                     </div>
                 </div>
@@ -166,7 +163,7 @@
                         <img src="../img/banner/dog_funeral.jpg">
                         <div class="banner__pic__text b_t_4">
                            <h2>언제까지나&nbsp;&nbsp;기억할께</h2>
-                           <p>찰나의 순간에도 항상 소중한 가족이니까</p>
+                           <p>어느 순간에도 항상 소중한 가족이니까</p>
                         </div>
                     </div>
                 </div>

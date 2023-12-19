@@ -8,7 +8,6 @@
 <style type="text/css">
 
 /*메인페이지 하단 베너 설정*/
-
 .banner__pic{
 	position: relative;
 	margin-bottom: 50px; 
@@ -25,6 +24,7 @@
     bottom: 10px;
     left: 10px;
 }
+
 .b_t_1 span{
     font-size: 70px;
     color: #7ED3F3 !important;
@@ -75,7 +75,7 @@
     opacity: 80%;
 }
 .b_t_4 p{
-    color: #D8D0CD !important;
+    color: #fff !important;
     font-size: 20px !important;
     font-weight: 600;
 }
