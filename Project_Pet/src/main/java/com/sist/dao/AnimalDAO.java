@@ -32,7 +32,7 @@ public class AnimalDAO {
 			String sql="SELECT kano,keepimage,keepfoundloc,keepregdate,keeptitle,keepcontent,num "
 					+ "FROM (SELECT kano,keepimage,keepfoundloc,keepregdate,keeptitle,keepcontent,rownum as num "
 					+ "FROM (SELECT kano,keepimage,keepfoundloc,keepregdate,keeptitle,keepcontent "
-					+ "FROM keepanimal2 ORDER BY hit DESC)) "
+					+ "FROM keepanimal2 ORDER BY kano ASC)) "
 					+ "WHERE num BETWEEN 1 AND 3";
 			ps=conn.prepareStatement(sql);
 			
