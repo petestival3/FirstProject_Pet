@@ -45,6 +45,15 @@
     font-weight: 600;
     opacity: 50%
 }
+.b_t_2 i{
+   position: absolute;
+   font-size: 70px;
+   color: #fff;
+   right: 10px;
+   bottom: 10px;
+   font-weight: 700;
+   opacity: 50%;
+}
 .b_t_3{
     top: 0px;
     left: 30px;

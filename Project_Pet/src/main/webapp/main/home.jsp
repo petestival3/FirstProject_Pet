@@ -144,6 +144,7 @@
                         <div class="banner__pic__text b_t_2">
                            <h2>따뜻한 온기를</h2>
                            <h2>전해주세요</h2>
+                           <i class="xi-angle-right-thin"></i>
                         </div>
                     </div>
                 </div>
@@ -154,6 +155,9 @@
                            <h2>"우리"의</h2>
                            <h2>바다를</h2>
                            <h2>지켜주세요</h2>
+                           <div>
+                              <p>더보기<i class="xi-share-alt-o"></i></p>
+                           </div>
                         </div>
                     </div>
                 </div>
