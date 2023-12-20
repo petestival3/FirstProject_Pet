@@ -28,6 +28,11 @@
 /*----------------------------------------*/
 /* ㅈㅇㄴ 수정한 CSS
 /*----------------------------------------*/
+/*최상단 메뉴 서브메뉴 수정*/
+.header__menu ul li .header__menu__dropdown li{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 /*상단베너 위치 수정*/
 .hero__item{
   position: relative;
