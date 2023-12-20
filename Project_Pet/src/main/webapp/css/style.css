@@ -78,6 +78,80 @@
 .featured__controls ul li:hover{
 	text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
+
+/*메인페이지 하단 베너 설정*/
+.banner__pic{
+	position: relative;
+	margin-bottom: 50px; 
+}
+.banner__pic:hover{
+    transition: all 0.4s ease-in-out;
+	transform: translateY(-10px);
+	text-shadow: 0 0 5px gray;
+}
+.banner__pic__text{
+	position: absolute !important;
+}
+.b_t_1{
+    bottom: 10px;
+    left: 10px;
+}
+
+.b_t_1 span{
+    font-size: 70px;
+    color: #7ED3F3 !important;
+    font-weight: 600;
+}
+.b_t_1 h2{
+   color: #7ED3F3 !important;
+    font-size: 50px !important;
+    font-weight: 600;
+}
+.b_t_2{
+    top: 45px;
+    left: 40px;
+}
+.b_t_2 h2{
+   color: #F6EBD3 !important;
+    font-size: 75px !important;
+    font-weight: 600;
+    opacity: 50%
+}
+.b_t_2 i{
+   position: absolute;
+   font-size: 70px;
+   color: #fff;
+   right: 10px;
+   bottom: 10px;
+   font-weight: 700;
+   opacity: 50%;
+}
+.b_t_3{
+    top: 0px;
+    left: 30px;
+}
+.b_t_3 h2{
+   color: #fff !important;
+    font-size: 75px !important;
+    font-weight: 600;
+}
+.b_t_4{
+    text-align : center;
+    top: 100px;
+    left: 20px;
+}
+.b_t_4 h2{
+   color: #fff !important;
+    font-size: 55px !important;
+    font-weight: 600;
+    opacity: 80%;
+}
+.b_t_4 p{
+    color: #fff !important;
+    font-size: 20px !important;
+    font-weight: 600;
+}
+
 /*장례절차 페이지*/
 .funeral_produce_all{
 	 padding: 0 0 80px;

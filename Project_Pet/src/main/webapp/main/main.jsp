@@ -7,78 +7,7 @@
 <meta charset="UTF-8">
 <style type="text/css">
 
-/*메인페이지 하단 베너 설정*/
-.banner__pic{
-	position: relative;
-	margin-bottom: 50px; 
-}
-.banner__pic:hover{
-    transition: all 0.4s ease-in-out;
-	transform: translateY(-10px);
-	text-shadow: 0 0 5px gray;
-}
-.banner__pic__text{
-	position: absolute !important;
-}
-.b_t_1{
-    bottom: 10px;
-    left: 10px;
-}
 
-.b_t_1 span{
-    font-size: 70px;
-    color: #7ED3F3 !important;
-    font-weight: 600;
-}
-.b_t_1 h2{
-   color: #7ED3F3 !important;
-    font-size: 50px !important;
-    font-weight: 600;
-}
-.b_t_2{
-    top: 45px;
-    left: 40px;
-}
-.b_t_2 h2{
-   color: #F6EBD3 !important;
-    font-size: 75px !important;
-    font-weight: 600;
-    opacity: 50%
-}
-.b_t_2 i{
-   position: absolute;
-   font-size: 70px;
-   color: #fff;
-   right: 10px;
-   bottom: 10px;
-   font-weight: 700;
-   opacity: 50%;
-}
-.b_t_3{
-    top: 0px;
-    left: 30px;
-}
-.b_t_3 h2{
-   color: #fff !important;
-    font-size: 75px !important;
-    font-weight: 600;
-}
-.b_t_4{
-    text-align : center;
-    top: 100px;
-    left: 20px;
-}
-.b_t_4 h2{
-   color: #fff !important;
-    font-size: 55px !important;
-    font-weight: 600;
-    opacity: 80%;
-}
-.b_t_4 p{
-    color: #fff !important;
-    font-size: 20px !important;
-    font-weight: 600;
-}
 </style>
 <title>Insert title here</title>
     <meta charset="UTF-8">
@@ -87,6 +16,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ogani | Template</title>
+    
+    <!-- 나눔고딕 웹폰트 -->
+    <link href='http://www.openhiun.com/hangul/nanumbarungothic.css' rel='stylesheet' type='text/css'>
     
     <!-- xeicon -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
