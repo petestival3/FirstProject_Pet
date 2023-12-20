@@ -69,7 +69,7 @@
                                     <li><a href="#">펫케어 콘텐츠</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">HOTEL</a></li>
+                            <li><a href="../stay/list.do">HOTEL</a></li>
                             <li><a href="#">FUNERAL</a>
                                <ul class="header__menu__dropdown">
                                     <li><a href="../FuneralDetail/produce.do">장례 절차 안내</a></li>
