@@ -6,7 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-
+/*----------*/
+/*예약하기 페이지*/
+/*----------*/
+.res_wrap{
+    display: flex;
+    justify-content : space-between;
+    width: 1500px;
+    height: 500px;
+    margin-bottom: 100px;
+}
+.res_t{
+    width:300px;
+    height: 500px;
+    background-color: #f9f9f9;
+}
 </style>
 <title>Insert title here</title>
     <meta charset="UTF-8">
