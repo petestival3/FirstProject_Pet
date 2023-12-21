@@ -4,7 +4,14 @@ public class StayVO {
 	private int stayno,price,revcount,hit,like,jjim;
 	private String type,name,address,detailaddr,image,sub1,sub2,sub3,sub4;
 	private double score;
-	private String around,basic,petinfo,other;
+	private String around,basic,petinfo,other,msg;
+	
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 	public int getStayno() {
 		return stayno;
 	}

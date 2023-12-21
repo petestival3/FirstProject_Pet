@@ -9,13 +9,13 @@
 <title>Insert title here</title>
 <style>
 .stayname{
-	white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 함 */ 
-	overflow: hidden; /* 초과된 텍스트를 감추기위해 오버플로우를 숨김 */
-	text-overflow: ellipsis; /* 말줄임표 만드는 속성 */
+   white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 함 */ 
+   overflow: hidden; /* 초과된 텍스트를 감추기위해 오버플로우를 숨김 */
+   text-overflow: ellipsis; /* 말줄임표 만드는 속성 */
 }
 .stayfont{
-	font-size: 14px;
-	font-weight: bold;
+   font-size: 14px;
+   font-weight: bold;
 }
 </style>
 </head>
@@ -47,16 +47,10 @@
                         <div class="sidebar__item">
                             <h4>Department</h4>
                             <ul>
-                                <li><a href="#">Fresh Meat</a></li>
-                                <li><a href="#">Vegetables</a></li>
-                                <li><a href="#">Fruit & Nut Gifts</a></li>
-                                <li><a href="#">Fresh Berries</a></li>
-                                <li><a href="#">Ocean Foods</a></li>
-                                <li><a href="#">Butter & Eggs</a></li>
-                                <li><a href="#">Fastfood</a></li>
-                                <li><a href="#">Fresh Onion</a></li>
-                                <li><a href="#">Papayaya & Crisps</a></li>
-                                <li><a href="#">Oatmeal</a></li>
+                                <li><a href="#">Hotel</a></li>
+                                <li><a href="#">Camping</a></li>
+                                <li><a href="#">Pension</a></li>
+                                <li><a href="#">Motel</a></li>
                             </ul>
                         </div>
                         <div class="sidebar__item">
@@ -290,7 +284,7 @@
                     <c:if test="${startPage>1 }">
                         <a href="../stay/list.do?page=${startPage-1 }"><i class="fa fa-long-arrow-left"></i></a>
                     </c:if>
-                    	<c:forEach var="i" begin="${startPage }" end="${endPage }">
+                       <c:forEach var="i" begin="${startPage }" end="${endPage }">
                         <a href="list.do?page=${i}">${i}</a>
                         </c:forEach>
                     <c:if test="${endPage<totalpage }">

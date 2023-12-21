@@ -90,7 +90,7 @@ public class StayDAO {
 				ps=conn.prepareStatement(sql);
 				ps.executeUpdate();
 				
-				sql="SELECT stype,sname,score,address,detail_address,price,review_count,around,basic,petinfo,other,mainimage,sub1,sub2,sub3,sub4 FROM stayinfo,STAYDETAIL,stayimage "
+				sql="SELECT stype,sname,score,address,detail_address,price,review_count,around,basic,petinfo,other,mainimage,sub1,sub2,sub3,sub4,staymsg FROM stayinfo,STAYDETAIL,stayimage "
 						+ "WHERE stay_no=sdno AND stay_no=sino AND stay_no=?";
 				// 실무에서는 위처럼 order by를 쓰지 않고 index_asc를 쓴다
 				ps=conn.prepareStatement(sql);
@@ -115,6 +115,7 @@ public class StayDAO {
 					vo.setSub2(rs.getString(14));
 					vo.setSub3(rs.getString(15));
 					vo.setSub4(rs.getString(16));
+					vo.setMsg(rs.getString(17));
 				rs.close();
 			}catch(Exception ex) {
 				ex.printStackTrace();
@@ -190,5 +191,31 @@ public class StayDAO {
 			return list;
 		}
 		
+		public List<RoomVO> RoomListData(int stno){
+			List<RoomVO> list=new ArrayList<RoomVO>();
+			try {
+				conn=dbconn.getConnection();
+				String sql="SELECT rno,roomno,room_image,room_name,room_price,stayno FROM roominfo "
+						+ "WHERE stayno="+stno+" ORDER BY rno";
+				ps=conn.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					RoomVO vo=new RoomVO();
+					vo.setRno(rs.getInt(1));
+					vo.setRoomno(rs.getInt(2));
+					vo.setImage(rs.getString(3));
+					vo.setName(rs.getString(4));
+					vo.setPrice(rs.getInt(5));
+					vo.setStayno(rs.getInt(6));
+					list.add(vo);
+				}
+				rs.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				dbconn.disConnection(conn, ps);
+			}
+			return list;
+		}
 		
 }

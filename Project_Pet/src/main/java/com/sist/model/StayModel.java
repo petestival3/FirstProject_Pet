@@ -56,12 +56,14 @@ public class StayModel {
 	
 	@RequestMapping("stay/detail.do")
 	public String stay_detail(HttpServletRequest request, HttpServletResponse response) {
-		String stayno=request.getParameter("stayno");
+String stayno=request.getParameter("stayno");
 		
 		StayDAO dao=StayDAO.newInstance();
 		StayVO vo=dao.stayDetail(Integer.parseInt(stayno));
+		List<RoomVO> rlist=dao.RoomListData(Integer.parseInt(stayno));
 
 		request.setAttribute("vo", vo);
+		request.setAttribute("rlist", rlist);
 		request.setAttribute("main_jsp", "../stay/detail.jsp");
 		return "../main/main.jsp";
 	}
