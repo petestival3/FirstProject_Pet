@@ -163,7 +163,7 @@
                                     <div class="latest-prdouct__slider__item hotel_item">
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="${vo.image }" alt="">
+                                                <img src="${vo.image }" alt="" style="border-radius: 10px;overflow: hidden;">
                                             </div>
                                             <div class="latest-product__item__text hotel_text">
                                                 <h6 class="stayname">${vo.name }</h6>
@@ -176,7 +176,7 @@
                                      <div class="latest-prdouct__slider__item hotel_item">
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="${vo.image }" alt="">
+                                                <img src="${vo.image }" alt="" style="border-radius: 10px;overflow: hidden;">
                                             </div>
                                             <div class="latest-product__item__text hotel_text">
                                                 <h6 class="stayname">${vo.name }</h6>
@@ -187,7 +187,7 @@
                                    <c:otherwise>
                                      <a href="#" class="latest-product__item hotel_item">
                                             <div class="latest-product__item__pic">
-                                                <img src="${vo.image }" alt="">
+                                                <img src="${vo.image }" alt="" style="border-radius: 10px;overflow: hidden;">
                                             </div>
                                             <div class="latest-product__item__text hotel_text">
                                                 <h6 class="stayname">${vo.name }</h6>
@@ -217,7 +217,7 @@
                                 <div class="col-lg-4">
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
-                                            data-setbg="${tvo.image }">
+                                            data-setbg="${tvo.image }" style="border-radius: 10px;overflow: hidden;">
                                             <div class="product__discount__percent">HOT</div>
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -264,7 +264,7 @@
                       <c:forEach var="vo" items="${list }">
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="${vo.image }">
+                                <div class="product__item__pic set-bg" data-setbg="${vo.image }" style="border-radius: 10px;overflow: hidden;">
                                     <ul class="product__item__pic__hover">
                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="#"><i class="fa fa-retweet"></i></a></li>
