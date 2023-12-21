@@ -218,4 +218,42 @@ public class StayDAO {
 			return list;
 		}
 		
+		public int hotelcount(String type) {
+			int count=0;
+			try {
+				conn=dbconn.getConnection();
+				String sql="SELECT COUNT(*) FROM stayinfo "
+						+ "WHERE stype LIKE '%'||?||'%'";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, type);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				count=rs.getInt(1);
+				rs.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				dbconn.disConnection(conn, ps);
+			}
+			return count;
+		}
+		
+		public int totalcount() {
+			int count=0;
+			try {
+				conn=dbconn.getConnection();
+				String sql="SELECT COUNT(*) FROM stayinfo";
+				ps=conn.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				count=rs.getInt(1);
+				rs.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				dbconn.disConnection(conn, ps);
+			}
+			return count;
+		}
+		
 }

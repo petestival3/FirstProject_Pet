@@ -23,7 +23,7 @@ public class StayModel {
 		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		List<StayVO> list=dao.StayListData(curpage);
 		List<StayVO> toplist=dao.stayLikeTop();
-		
+		int staytotal=dao.totalcount();
 		if(endPage>totalpage)
 			endPage=totalpage;
 		
@@ -34,6 +34,7 @@ public class StayModel {
 		request.setAttribute("toplist", toplist);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("staytotal", staytotal);
 		
 		// 쿠키 데이터 전송
 		Cookie[] cookies=request.getCookies();
