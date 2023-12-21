@@ -147,7 +147,7 @@
                                 <h4>Latest Products</h4>
                                 <div class="latest-product__slider owl-carousel staymain">
                                 <c:if test="${count==0 }">
-                                  <div class="latest-prdouct__slider__item">
+                                  <div class="latest-prdouct__slider__item hotel_item">
                                     <a href="#" class="latest-product__item">
                                      <div class="latest-product__item__pic">
                                      </div>
@@ -166,12 +166,12 @@
                                 <c:forEach var="vo" items="${stcList }" varStatus="status">
                                  <c:choose>
                                   <c:when test="${status.first}">
-                                    <div class="latest-prdouct__slider__item">
+                                    <div class="latest-prdouct__slider__item hotel_item">
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
                                                 <img src="${vo.image }" alt="">
                                             </div>
-                                            <div class="latest-product__item__text">
+                                            <div class="latest-product__item__text hotel_text">
                                                 <h6 class="stayname">${vo.name }</h6>
                                                 <h6 class="stayname stayfont">&#8361;${vo.price }~</h6>
                                             </div>
@@ -179,23 +179,23 @@
                                    </c:when>
                                    <c:when test="${status.index%3 eq 0}">
                                      </div>
-                                     <div class="latest-prdouct__slider__item">
+                                     <div class="latest-prdouct__slider__item hotel_item">
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
                                                 <img src="${vo.image }" alt="">
                                             </div>
-                                            <div class="latest-product__item__text">
+                                            <div class="latest-product__item__text hotel_text">
                                                 <h6 class="stayname">${vo.name }</h6>
                                                 <h6 class="stayname stayfont">&#8361;${vo.price }~</h6>
                                             </div>
                                         </a>
                                    </c:when>
                                    <c:otherwise>
-                                     <a href="#" class="latest-product__item">
+                                     <a href="#" class="latest-product__item hotel_item">
                                             <div class="latest-product__item__pic">
                                                 <img src="${vo.image }" alt="">
                                             </div>
-                                            <div class="latest-product__item__text">
+                                            <div class="latest-product__item__text hotel_text">
                                                 <h6 class="stayname">${vo.name }</h6>
                                                 <h6 class="stayname stayfont">&#8361;${vo.price }~</h6>
                                             </div>

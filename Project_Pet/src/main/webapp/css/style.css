@@ -1140,7 +1140,7 @@ ol {
 .latest-product__slider.owl-carousel .owl-nav {
 	position: absolute;
 	right: 20px;
-	top: -75px;
+	top: 380px;
 }
 
 .latest-product__slider.owl-carousel .owl-nav button {

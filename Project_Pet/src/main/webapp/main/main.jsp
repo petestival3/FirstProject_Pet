@@ -6,6 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
+
+.hotel_item{
+    position: relative;
+}
+.hotel_text{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top:0;
+    right: 0;
+}
+
 /*----------*/
 /*예약하기 페이지*/
 /*----------*/
