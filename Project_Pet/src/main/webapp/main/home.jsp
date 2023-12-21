@@ -106,7 +106,7 @@
               <c:forEach var="vo" items="${sList }">
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${vo.image }">
+                        <div class="featured__item__pic set-bg" data-setbg="${vo.image }" style="border-radius: 10px;overflow: hidden;">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -131,7 +131,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="../img/banner/cat_hospital.jpg">
+                        <img src="../img/banner/cat_hospital.jpg" style="border-radius: 10px;overflow: hidden;">
                         <div class="banner__pic__text b_t_1">
                            <span>아!</span>
                            <h2>건강검진 언제였지?</h2>
@@ -140,7 +140,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="../img/banner/dog_missing.jpg">
+                        <img src="../img/banner/dog_missing.jpg" style="border-radius: 10px;overflow: hidden;">
                         <div class="banner__pic__text b_t_2">
                            <h2>따뜻한 온기를</h2>
                            <h2>전해주세요</h2>
@@ -150,7 +150,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="../img/banner/seaturtle.jpg">
+                        <img src="../img/banner/seaturtle.jpg" style="border-radius: 10px;overflow: hidden;">
                         <div class="banner__pic__text b_t_3">
                            <h2>"우리"의</h2>
                            <h2>바다를</h2>
@@ -160,7 +160,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="../img/banner/dog_funeral.jpg">
+                        <img src="../img/banner/dog_funeral.jpg" style="border-radius: 10px;overflow: hidden;">
                         <div class="banner__pic__text b_t_4">
                            <h2>언제까지나&nbsp;&nbsp;기억할께</h2>
                            <p>어느 순간에도 항상 소중한 가족이니까</p>
@@ -187,7 +187,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic">
-<a href="../animal/animaldetail.do?kano=${vo.kano }"><img src="${avo.keepimage }" alt=""></a>
+<a href="../animal/animaldetail.do?kano=${vo.kano }"><img src="${avo.keepimage }" alt="" style="border-radius: 10px;overflow: hidden;"></a>
                         </div>
                         <div class="blog__item__text">
                             <h5><a href="../animal/animaldetail.do?kano=${vo.kano }">${avo.keeptitle }</a></h5>
