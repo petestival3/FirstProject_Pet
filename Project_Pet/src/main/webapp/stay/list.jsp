@@ -163,7 +163,7 @@
                                     <div class="latest-prdouct__slider__item hotel_item">
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="${vo.image }" alt="" style="border-radius: 10px;overflow: hidden;">
+                                                <img src="${vo.image }" alt="" style="border-radius: 10px;overflow: hidden;border: 1px solid #D9D9D9">
                                             </div>
                                             <div class="latest-product__item__text hotel_text">
                                                 <h6 class="stayname">${vo.name }</h6>
@@ -176,7 +176,7 @@
                                      <div class="latest-prdouct__slider__item hotel_item">
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="${vo.image }" alt="" style="border-radius: 10px;overflow: hidden;">
+                                                <img src="${vo.image }" alt="" style="border-radius: 10px;overflow: hidden;border: 1px solid #D9D9D9">
                                             </div>
                                             <div class="latest-product__item__text hotel_text">
                                                 <h6 class="stayname">${vo.name }</h6>
@@ -187,7 +187,7 @@
                                    <c:otherwise>
                                      <a href="#" class="latest-product__item hotel_item">
                                             <div class="latest-product__item__pic">
-                                                <img src="${vo.image }" alt="" style="border-radius: 10px;overflow: hidden;">
+                                                <img src="${vo.image }" alt="" style="border-radius: 10px;overflow: hidden;border: 1px solid #D9D9D9">
                                             </div>
                                             <div class="latest-product__item__text hotel_text">
                                                 <h6 class="stayname">${vo.name }</h6>
