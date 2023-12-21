@@ -26,7 +26,7 @@
                     <!-- 중간슬라이드예시 -->
     <div class="container">
                     <div class="latest-product__text">
-                        <div class="latest-product__slider owl-carousel">
+                        <div class="latest-product__slider owl-carousel" >
                             <div class="latest-prdouct__slider__item">
                                 <a href="#" class="latest-product__item hero__item set-bg" data-setbg="../img/latest-product/hotelbanner.webp">
                                     <div class="latest-product__item__text ht_banner">
