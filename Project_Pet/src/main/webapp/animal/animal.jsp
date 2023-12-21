@@ -131,9 +131,13 @@
                       <c:forEach var="vo" items="${anilist }">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="blog__item">
-                                <div class="blog__item__pic">
+                                <div class="blog__item__pic missing_pic" style="background-image: url('${vo.keepimage }');">
 									
-                              <a href="../animal/animaldetail.do?kano=${vo.kano }"><img src="${vo.keepimage }" class="keepimg" alt=""></a>
+                              <a href="../animal/animaldetail.do?kano=${vo.kano }">
+                              <!-- 
+                              <img src="${vo.keepimage }" class="keepimg" alt="">
+                               -->
+                              </a>
                                 </div>
                                 <div class="blog__item__text">
                                     <ul>

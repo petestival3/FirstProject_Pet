@@ -33,6 +33,18 @@
     height: 500px;
     background-color: #f9f9f9;
 }
+/*---------------*/
+/*유기동물 리스트 페이지*/
+/*---------------*/
+.missing_pic{
+    width: 100%;
+    height: 400px; 
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 </style>
 <title>Insert title here</title>
     <meta charset="UTF-8">
