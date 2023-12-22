@@ -16,7 +16,7 @@
        2. applicaion.xml에 추가한 SeoulModel 클래스를 새로 만듬 
        3. applicaion.xml에 경로(=SeoulModel 클래스)를 추가함
        3-1. 먼저 만들고 추가해야 오류가 안남!! 근데 그다지 중요하지 않은듯...
-       4. SeoulModel 클래스에서 @RequestMapping을 만듬
+       4. SeoulModel 클래스에서 @RequestMapping을 만듬 
  --%>
 
 <!DOCTYPE html>
