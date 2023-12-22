@@ -44,6 +44,28 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+.scroll-to-top {
+      position: fixed;
+      bottom: 50px;
+      right: 50px;
+      background-color: #5a70e9;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 15px 15px;
+      cursor: pointer;
+      text-decoration: none;
+		text-align: center;
+		border-radius: 50%;
+		width: 50px;
+		height: 50px;
+		font-size: 15px;
+    }
+.scroll-to-top:hover{
+	 box-shadow: 0 10px 10px 10px rgba(90,112,233, 0.2);
+	 transition: all 0.4s ease-in-out;
+	 transform: translateY(-10px);
+}
 
 </style>
 <title>Insert title here</title>
@@ -72,10 +94,35 @@
     <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
+    
+    <!-- xeicon -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 </head>
 <body>
 	<!-- header -->
 	<jsp:include page="header.jsp"></jsp:include>
+	<!-- 고정버튼 -->
+	<div class="home_submenu">
+	  <a href="#" class="scroll-to-top" onclick="scrollToTop()"><i class="xi-angle-up"></i></a>
+	</div>
+	<script>
+	  // 스크롤 최상단으로 이동하는 함수
+	  function scrollToTop() {
+	    document.body.scrollTop = 0;
+	    document.documentElement.scrollTop = 0;
+	  }
+	
+	  // 스크롤 위치에 따라 링크 보이기/숨기기
+	  window.onscroll = function() {
+	    var scrollLink = document.querySelector('.scroll-to-top');
+	    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+	      scrollLink.style.display = 'block';
+	    } else {
+	      scrollLink.style.display = 'none';
+	    }
+	  };
+	</script>
+	
 	<!-- home -->
 	<jsp:include page="${main_jsp }"></jsp:include>
 	<!-- footer -->
