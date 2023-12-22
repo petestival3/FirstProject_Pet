@@ -190,7 +190,59 @@ public class StayDAO {
 			}
 			return list;
 		}
+		// 주소별 모든리스트 출력
+		public List<StayVO> stayAddressListAllData(String fd){
+			List<StayVO> list=new ArrayList<StayVO>();
+			try {
+				conn=dbconn.getConnection();
+				String sql="SELECT stay_no,sname,score,address,detail_address,price,mainimage,rownum "
+						+ "FROM (SELECT stay_no,sname,score,address,detail_address,price,mainimage "
+						+ "FROM stayinfo,stayimage WHERE stayinfo.STAY_NO=stayimage.SINO) "
+						+ "WHERE detail_address LIKE '%'||?||'%'";
+				
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, fd);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					StayVO vo=new StayVO();
+					vo.setStayno(rs.getInt(1));
+					vo.setName(rs.getString(2));
+					vo.setScore(rs.getDouble(3));
+					vo.setAddress(rs.getString(4));
+					vo.setDetailaddr(rs.getString(5));
+					vo.setPrice(rs.getInt(6));
+					vo.setImage(rs.getString(7));
+					list.add(vo);
+				}
+				rs.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				dbconn.disConnection(conn, ps);
+			}
+			return list;
+		}
+		// 주소별 모든리스트 페이지
+		public int StayAddressTotalPage(String fd) {
+			int total=0;
+			try {
+				conn=dbconn.getConnection();
+				String sql="SELECT CEIL(COUNT(*)/"+ROW_SIZE+") FROM stayinfo WHERE detail_address LIKE '%'||?||'%'";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, fd);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				total=rs.getInt(1);
+				rs.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				dbconn.disConnection(conn, ps);
+			}
+			return total;
+		}
 		
+		// 
 		public List<RoomVO> RoomListData(int stno){
 			List<RoomVO> list=new ArrayList<RoomVO>();
 			try {
@@ -217,7 +269,7 @@ public class StayDAO {
 			}
 			return list;
 		}
-		
+		// 타입별 카운트
 		public int hotelcount(String type) {
 			int count=0;
 			try {
@@ -236,6 +288,59 @@ public class StayDAO {
 				dbconn.disConnection(conn, ps);
 			}
 			return count;
+		}
+		
+		// 타입별 모든 리스트 출력
+		public List<StayVO> stayTypeListAllData(String fd){
+			List<StayVO> list=new ArrayList<StayVO>();
+			try {
+				conn=dbconn.getConnection();
+				String sql="SELECT stay_no,sname,score,address,detail_address,price,mainimage,rownum "
+						+ "FROM (SELECT stay_no,sname,score,address,detail_address,price,mainimage "
+						+ "FROM stayinfo,stayimage WHERE stayinfo.STAY_NO=stayimage.SINO) "
+						+ "WHERE stype LIKE '%'||?||'%'";
+				
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, fd);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					StayVO vo=new StayVO();
+					vo.setStayno(rs.getInt(1));
+					vo.setName(rs.getString(2));
+					vo.setScore(rs.getDouble(3));
+					vo.setAddress(rs.getString(4));
+					vo.setDetailaddr(rs.getString(5));
+					vo.setPrice(rs.getInt(6));
+					vo.setImage(rs.getString(7));
+					list.add(vo);
+				}
+				rs.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				dbconn.disConnection(conn, ps);
+			}
+			return list;
+		}
+		
+		// 타입별 페이지
+		public int StayTypeTotalPage(String fd) {
+			int total=0;
+			try {
+				conn=dbconn.getConnection();
+				String sql="SELECT CEIL(COUNT(*)/"+ROW_SIZE+") FROM stayinfo WHERE stype LIKE '%'||?||'%'";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, fd);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				total=rs.getInt(1);
+				rs.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				dbconn.disConnection(conn, ps);
+			}
+			return total;
 		}
 		
 		public int totalcount() {
