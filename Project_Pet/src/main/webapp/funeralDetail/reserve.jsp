@@ -25,11 +25,11 @@
 	<!-- 예약하기 내용 시작 -->
 	<div class="res_wrap container">
 		<!-- 테이블 날짜시간 1분할 -->
-		<div class="res_time_table res_t"></div>
+		<div class="res_t"></div>
 		<!-- 테이블 상세내용 2분할 -->
-		<div class="res_detail_table res_t"></div>
+		<div class="res_t"></div>
 		<!-- 테이블 결정사항 3분할 -->
-		<div class="res_check_table res_t"></div>
+		<div class="res_t"></div>
 	</div>
 	<!-- 예약하기 내용 종료 -->
 </body>

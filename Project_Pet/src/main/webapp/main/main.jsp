@@ -7,6 +7,15 @@
 <meta charset="UTF-8">
 <style type="text/css">
 
+/*주요한 내용*/
+.text-center{
+   text-align: center;
+}
+.table{
+   margin: auto;
+}
+
+/*호텔쿠키 위치변경*/
 .hotel_item{
     position: relative;
 }
@@ -31,6 +40,24 @@
 .res_t{
     width:300px;
     height: 500px;
+    background-color: #f9f9f9;
+}
+/*--------------*/
+/*장례식장 검색 페이지*/
+/*--------------*/
+.search_wrap{
+    display: flex;
+    justify-content : space-between;
+    width: 1500px;
+    height: 500px;
+}
+.search_t_r{
+    text-align: center;
+}
+.search_t_r,
+.search_t_l{
+    width:500px;
+    height: 600px;
     background-color: #f9f9f9;
 }
 /*---------------*/
@@ -62,7 +89,7 @@
 		font-size: 15px;
     }
 .scroll-to-top:hover{
-	 box-shadow: 0 10px 10px 10px rgba(90,112,233, 0.2);
+	 box-shadow: 0 5px 5px 5px rgba(90,112,233, 0.2);
 	 transition: all 0.4s ease-in-out;
 	 transform: translateY(-10px);
 }
