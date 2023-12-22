@@ -21,7 +21,18 @@ public class LoseDogModel {
 		List<LoseDogVO> list=dao.loseDogListData(curpage);
 		int totalpage=dao.loseDogTotalPage();
 		
+		final int BLOCK=10;
+		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		if(endPage>totalpage)
+			endPage=totalpage;
+		
+		
 		request.setAttribute("ldList", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
 		request.setAttribute("main_jsp", "../losedog/losedog.jsp");
 		return "../main/main.jsp";
 	}
