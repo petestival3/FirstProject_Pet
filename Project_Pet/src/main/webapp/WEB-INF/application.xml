@@ -6,4 +6,5 @@
    <bean id="stay" class="com.sist.model.StayModel"/>
    <bean id="losedog" class="com.sist.model.LoseDogModel"></bean>
    <bean id="losecat" class="com.sist.model.LoseCatModel"></bean>
+   <bean id="adminpage" class="com.sist.model.AdminPageModel"></bean>
 </beans>
