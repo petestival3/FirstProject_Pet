@@ -121,4 +121,37 @@ public class LoseDogDAO {
 		}
 		return vo;
 	}
+	public List<LoseDogVO> losedogTopList()
+	{
+		List<LoseDogVO> list=new ArrayList<LoseDogVO>();
+		try
+		{
+			conn=dbconn.getConnection();
+			String sql="SELECT ldno,image,loseinfo,title,losedate,rownum "
+					+ "FROM (SELECT ldno,image,loseinfo,title,losedate "
+					+ "FROM loseani ORDER BY substr(losedate,1,4) ASC,ldno ASC) "
+					+ "WHERE rownum BETWEEN 1 AND 6";
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				LoseDogVO vo=new LoseDogVO();
+				vo.setLdno(rs.getInt(1));
+				vo.setImage(rs.getString(2));
+				vo.setLoseinfo(rs.getString(3));
+				vo.setTitle(rs.getString(4));
+				vo.setLosedate(rs.getNString(5));
+				list.add(vo);
+			}
+			rs.close();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbconn.disConnection(conn, ps);
+		}
+		return list;
+	}
 }
