@@ -23,7 +23,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
                            <div class="header__top__right__auth">
-                            <a href="ad_reserve.do"><i class="fa fa-user"></i> Adminpage</a>
+                            <a href="../adminPage/ad_reserve.do"><i class="fa fa-user"></i> Adminpage</a>
                             </div>
                             &nbsp;&nbsp;
                             <div class="header__top__right__auth">
@@ -77,7 +77,7 @@
                             <li><a href="#">FUNERAL</a>
                                <ul class="header__menu__dropdown">
                                     <li><a href="../FuneralDetail/produce.do">장례 절차 안내</a></li>
-                                    <li><a href="#">장례식장 검색하기</a></li>
+                                    <li><a href="../FuneralDetail/search_f.do">장례식장 검색하기</a></li>
                                     <li><a href="../FuneralDetail/reserve.do">장례 예약하기</a></li>
                                 </ul>
                             </li>

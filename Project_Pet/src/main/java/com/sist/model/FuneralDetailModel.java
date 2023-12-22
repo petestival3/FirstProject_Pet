@@ -33,4 +33,12 @@ public class FuneralDetailModel {
 		  request.setAttribute("main_jsp", "../funeralDetail/reserve.jsp");
 		  return "../main/main.jsp";
 	}
+	
+	@RequestMapping("FuneralDetail/search_f.do")
+	public String funeral_search_f(HttpServletRequest request, HttpServletResponse response)
+	{
+	      // 3. 결과값 모아서 request에 저장
+		  request.setAttribute("main_jsp", "../funeralDetail/search_f.jsp");
+		  return "../main/main.jsp";
+	}
 }
