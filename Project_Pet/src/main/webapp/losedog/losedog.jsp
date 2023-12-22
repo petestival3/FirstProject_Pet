@@ -263,7 +263,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
                               <a href="../losedog/losedogdetail.do?ldno=${ldvo.ldno }">
-                              <div class="product__item__pic set-bg" data-setbg="${ldvo.image }"></a>
+                              <div class="product__item__pic set-bg" data-setbg="${ldvo.image }" style="border-radius: 10px;overflow: hidden;"></a>
                                     <ul class="product__item__pic__hover">
                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="#"><i class="fa fa-retweet"></i></a></li>

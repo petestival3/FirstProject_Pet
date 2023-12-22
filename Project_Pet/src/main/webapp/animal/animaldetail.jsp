@@ -111,7 +111,7 @@
                         
                         <h3>${avo.keepregdate }</h3>
                         <hr><br>
-                        <img src="${avo.keepimage }" alt="">
+                        <img src="${avo.keepimage }" alt="" style="border-radius: 10px;overflow: hidden;">
                         
                         <p>${avo.keepcontent }</p>
                     </div>
