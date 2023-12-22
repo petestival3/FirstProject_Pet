@@ -50,15 +50,56 @@
     justify-content : space-between;
     width: 1500px;
     height: 500px;
+    margin-bottom: 200px;
 }
+.search_t_l{
+    position: relative;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+}
+.search_t_l #f_search_text{
+    width: 100%;
+    height: 60px;
+    border: 1px solid #d9d9d9;
+    border-radius: 30px;
+    box-shadow: 0 0 10px #e2e2e2;
+    text-align: center;
+}
+#f_search_btn_div{
+    position:absolute;
+    top: 5px;
+    right: 10px;
+}
+.xi-search{
+    position:absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 99;
+    font-size: 20px;
+    font-weight: 700;
+}
+.search_t_l #f_search_btn{
+    width: 50px;
+    height: 50px;
+    background-color:#999;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 0 5px #e2e2e2;
+}
+.search_t_l_result{
+    border: 1px solid #d9d9d9;
+    border-radius: 20px; 
+}
+
 .search_t_r{
     text-align: center;
+    background-color: #f9f9f9;
 }
 .search_t_r,
 .search_t_l{
     width:500px;
     height: 600px;
-    background-color: #f9f9f9;
 }
 /*---------------*/
 /*유기동물 리스트 페이지*/
