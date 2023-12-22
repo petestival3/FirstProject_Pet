@@ -54,7 +54,7 @@
                             </ul>
                         </div>
                         <div class="sidebar__item">
-                            <h4>Price</h4>
+                            <h4>가격별</h4>
                             <div class="price-range-wrap">
                                 <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
                                     data-min="10" data-max="540">
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         <div class="sidebar__item sidebar__item__color--option">
-                            <h4>Colors</h4>
+                            <h4>지역별</h4>
                             <div class="sidebar__item__color sidebar__item__color--white">
                                 <label for="white">
                                     White
@@ -110,7 +110,7 @@
                             </div>
                         </div>
                         <div class="sidebar__item">
-                            <h4>Popular Size</h4>
+                            <h4>.......</h4>
                             <div class="sidebar__item__size">
                                 <label for="large">
                                     Large
