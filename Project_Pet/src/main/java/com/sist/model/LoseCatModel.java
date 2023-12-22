@@ -21,7 +21,18 @@ public class LoseCatModel {
 		List<LoseCatVO> list=dao.losecatListData(curpage);
 		int totalpage=dao.loseCatTotalPage();
 		
+		final int BLOCK=10;
+		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		if(endPage>totalpage)
+			endPage=totalpage;
+		
+		
 		request.setAttribute("lcList", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
 		request.setAttribute("main_jsp", "../losecat/losecat.jsp");
 		return "../main/main.jsp";
 	}

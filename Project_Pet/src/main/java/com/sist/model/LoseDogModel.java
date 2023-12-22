@@ -1,6 +1,7 @@
 package com.sist.model;
 import java.util.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -35,6 +36,20 @@ public class LoseDogModel {
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("main_jsp", "../losedog/losedog.jsp");
 		return "../main/main.jsp";
+	}
+	@RequestMapping("losedog/losedogdetail_before.do")
+	public String losedog_detail_before(HttpServletRequest request,HttpServletResponse response)
+	{
+		// Cookie 생성 
+		String ldno=request.getParameter("ldno");
+		Cookie cookie=new Cookie("losedog_"+ldno, ldno);
+		// 저장의 위치 결정 
+		cookie.setPath("/");
+		// 저장 기간 설정 
+		cookie.setMaxAge(60*60*24); // 초단위 (하루 저장)
+		// 전송 
+		response.addCookie(cookie);
+		return "redirect:../losedog/losedogdetail.do?ldno="+ldno;
 	}
 	@RequestMapping("losedog/losedogdetail.do")
 	public String losedog_detail(HttpServletRequest request,HttpServletResponse response)

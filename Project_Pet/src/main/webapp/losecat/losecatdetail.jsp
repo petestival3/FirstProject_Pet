@@ -80,7 +80,7 @@
                         </div>  -->
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
-                            <li><b>작성자</b> <span>뒤 짜르면 쓴다..${lcvo.cinfo }</span></li>
+                           <!--   <li><b>작성자</b> <span>뒤 짜르면 쓴다..${lcvo.cinfo }</span></li> -->
                             <li><b>실종 장소</b> <span>${lcvo.closeloc } <samp>Free pickup today</samp></span></li>
                             <li><b>실종 날짜</b> <span>${lcvo.closedate }</span></li>
                             <li><b>공유하기</b>
@@ -100,7 +100,7 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                                    aria-selected="true">Description</a>
+                                    aria-selected="true">특징</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
@@ -114,8 +114,8 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                    <h6>Products Infomation</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+                                    <h6>${lcvo.cfeature }</h6>
+                                 <!-- <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
                                         Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus
                                         suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam
                                         vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada.
@@ -132,7 +132,7 @@
                                         nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
                                         Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed
                                         porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum
-                                        sed sit amet dui. Proin eget tortor risus.</p>
+                                        sed sit amet dui. Proin eget tortor risus.</p>  -->
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">

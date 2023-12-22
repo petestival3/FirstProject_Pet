@@ -6,21 +6,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+nav.pagination ul{
+	list-style: none;
+}
+nav.pagination li{
+	display: inline-block;
+}
+.dogtitle{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+</style>
 </head>
 
 <body>
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="../img/bread.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>실종 강아지</h2>
-                        <!-- <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <span>Shop</span>
-                        </div> -->
+                        <h2>강아지를 찾아주세요</h2>
+                        <div class="breadcrumb__option">
+                            <a href="./index.html">유기동물 보호센터&nbsp;&nbsp;</a>
+                            <span>Dogs</span>
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -35,10 +48,11 @@
                 <div class="col-lg-3 col-md-5">
                     <div class="sidebar">
                         <div class="sidebar__item">
-                            <h4>실종 동물</h4>
+                            <h4>유기동물 보호센터</h4>
                             <ul>
-                                <li><a href="#">실종 강아지</a></li>
-                                <li><a href="#">실종 고양이</a></li>
+                                <li><a href="../losedog/losedog.do">강아지를 찾아주세요</a></li>
+                                <li><a href="../losecat/losecat.do">고양이를 찾아주세요</a></li>
+                                <li><a href="../animal/animal.do">보호중인 유기동물</a></li>
                             </ul>
                         </div>
                         
@@ -271,7 +285,7 @@
                                 </div>
                                 <div class="product__item__text">
                                     <a href="../losedog/losedogdetail.do?ldno=${ldvo.ldno }">
-                                    <h5>${ldvo.title }</h5></a><br>
+                                    <h5 class="dogtitle">${ldvo.title }</h5></a><br>
                                     <h6><a href="../losedog/losedogdetail.do?ldno=${ldvo.ldno }">${ldvo.loseinfo }</a></h6>
                                 </div>
                             </div>
@@ -282,12 +296,13 @@
                         
                     </div>
                     
+                  <%-- 페이지 --%>
                   <nav class="pagination">
-                  <div class="product__pagination">
+                  <div class="product__pagination" style="margin: 0px auto;">
 			        <ul>
 			         <%-- startPage : 1 , 11 , 21 , 31... --%>
 			         <c:if test="${startPage>1 }">
-			          <li><a href="../losedog/losedog.do?page=${startPage-1 }">&laquo; 이전</a></li>
+			          <li><a href="../losedog/losedog.do?page=${startPage-1 }">&laquo;</a></li>
 			         </c:if>
 			         
 			         <c:forEach var="i" begin="${startPage }" end="${endPage }">
@@ -296,7 +311,7 @@
 			         
 			          
 			         <c:if test="${endPage<totalpage }">
-			          <li><a href="../losedog/losedog.do?page=${endPage+1 }"><i class="fa fa-long-arrow-right"></i></a></li>
+			          <li><a href="../losedog/losedog.do?page=${endPage+1 }">&raquo;</i></a></li>
 			         </c:if>
 			        </ul>
 			      </div>
@@ -304,7 +319,7 @@
 			      
                 </div>
             </div>
-        </div>
+
     </section>
     <!-- Product Section End -->
 

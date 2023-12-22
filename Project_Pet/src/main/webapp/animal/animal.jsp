@@ -6,30 +6,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-.keepimg{
-	width: 100px;
+<style>
+nav.pagination ul{
+	list-style: none;
+}
+nav.pagination li{
+	display: inline-block;
 }
 </style>
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
 
     <!-- Breadcrumb Section Begin (배너) -->
-    <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="../img/bread.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
                         <h2>보호중인 유기 동물</h2>
-                        <!-- <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <span>Blog</span>
-                        </div> -->
+                        <div class="breadcrumb__option">
+                            <a href="./index.html">유기동물 보호센터</a>
+                            <!-- <span>Blog</span> -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -49,14 +48,25 @@
                                 <button type="submit"><span class="icon_search"></span></button>
                             </form>
                         </div>
-                        <div class="blog__sidebar__item">
+                        
+                        <div class="sidebar__item">
+                            <h4>유기동물 보호센터</h4>
+                            <ul>
+                                <li><a href="../losedog/losedog.do">강아지를 찾아주세요</a></li>
+                                <li><a href="../losecat/losecat.do">고양이를 찾아주세요</a></li>
+                                <li><a href="../animal/animal.do">보호중인 유기동물</a></li>
+                            </ul>
+                        </div>
+                        
+                        <%-- <div class="blog__sidebar__item">
                             <h4>Categories</h4>
                             <ul>
                                 <li><a href="#">All</a></li>
                                 <li><a href="#">Beauty (20)</a></li>
                                 <li><a href="#">Food (5)</a></li>
                             </ul>
-                        </div>
+                        </div> --%>
+                        
                         <div class="blog__sidebar__item">
                             <h4>Recent News</h4>
                             <div class="blog__sidebar__recent">
@@ -114,9 +124,6 @@
                                 <div class="blog__item__pic missing_pic" style="background-image: url('${vo.keepimage }'); border-radius: 10px;overflow: hidden;">
 									
                               <a href="../animal/animaldetail.do?kano=${vo.kano }">
-                              <!-- 
-                              <img src="${vo.keepimage }" class="keepimg" alt="">
-                               -->
                               </a>
                                 </div>
                                 <div class="blog__item__text">
@@ -133,14 +140,27 @@
                         </div>
                         </c:forEach>
                         
-                        <div class="col-lg-12">
-                            <div class="product__pagination blog__pagination">
-                                <a href="#">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                            </div>
-                        </div>
+                  <%-- 페이지 --%>
+                  <nav class="pagination">
+                  <div class="product__pagination" style="margin: 0px auto;">
+			        <ul>
+			         <%-- startPage : 1 , 11 , 21 , 31... --%>
+			         <c:if test="${startPage>1 }">
+			          <li><a href="../animal/animal.do?page=${startPage-1 }">&laquo;</a></li>
+			         </c:if>
+			         
+			         <c:forEach var="i" begin="${startPage }" end="${endPage }">
+			            <li ${curpage==i?"class=current":"" }><a href="../animal/animal.do?page=${i }">${i }</a></li>
+			         </c:forEach>
+			         
+			          
+			         <c:if test="${endPage<totalpage }">
+			          <li><a href="../animal/animal.do?page=${endPage+1 }">&raquo;</i></a></li>
+			         </c:if>
+			        </ul>
+			      </div>
+			      </nav>
+                        
                     </div>
                 </div>
             </div>
