@@ -33,7 +33,7 @@
     <!-- 장례절차 반복 시작 -->
     <!-- 장례절차 1번만 사진때문에 빼둠 -->
     <div class="text-center funeral_produce_all container">
-        <img src="../img/pro1.jpg" />
+        <img src="../img/pro1.jpg" style="border-radius: 50px;overflow: hidden;"/>
         <div class="funeral_produce_text">
           <span>1</span>
           <h3>장례예약</h3>
@@ -42,7 +42,7 @@
       </div>
   <c:forEach var="fdvo" items="${list }">
     <div class="text-center funeral_produce_all container">
-        <img src="${fdvo.infoimage }" />
+        <img src="${fdvo.infoimage }" style="border-radius: 50px;overflow: hidden;"/>
         <div class="funeral_produce_text">
           <span>${fdvo.mno }</span>
           <h3>${fdvo.infoh3 }</h3>
