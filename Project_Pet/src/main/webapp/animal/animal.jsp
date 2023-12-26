@@ -13,6 +13,19 @@ nav.pagination ul{
 nav.pagination li{
 	display: inline-block;
 }
+.product__pagination li.active,
+.blog__pagination li.active {
+	background: #5a70e9;
+	border-color: #a6a6a6;
+	color: #ffffff;
+}
+.fa fa-comment-o{
+	margin: 0px auto;
+	width: 100px;
+	white-space:nowrap; /* 자동 줄바꿈 해제해서 한줄로 만들어 준다*/
+	overflow:hidden; /*글자가 초과되는 경우*/
+	text-overflow: ellipsis; /* 초과된 글자를 감춘다 ...*/
+}
 </style>
 </head>
 

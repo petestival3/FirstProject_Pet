@@ -13,6 +13,12 @@ nav.pagination ul{
 nav.pagination li{
 	display: inline-block;
 }
+.product__pagination li.active,
+.blog__pagination li.active {
+	background: #5a70e9;
+	border-color: #a6a6a6;
+	color: #ffffff;
+}
 </style>
 </head>
 

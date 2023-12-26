@@ -18,6 +18,12 @@ nav.pagination li{
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+.product__pagination li.active,
+.blog__pagination li.active {
+	background: #5a70e9;
+	border-color: #a6a6a6;
+	color: #ffffff;
+}
 
 
 </style>
@@ -131,7 +137,7 @@ nav.pagination li{
                 <!-- Sale Off 상단 3개 -->
                     <div class="product__discount">
                         <div class="section-title product__discount__title">
-                            <h2>Sale Off</h2>
+                            <h2>Help</h2>
                         </div>
                         <div class="row">
                          
