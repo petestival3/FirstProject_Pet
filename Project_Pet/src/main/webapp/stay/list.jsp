@@ -17,6 +17,12 @@
    font-size: 14px;
    font-weight: bold;
 }
+.product__pagination a.active,
+.blog__pagination a.active {
+	background: #5a70e9;
+	border-color: #a6a6a6;
+	color: #ffffff;
+}
 </style>
 </head>
 <body>
