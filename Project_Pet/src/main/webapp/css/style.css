@@ -1825,6 +1825,18 @@ ol {
 	border-color: #5a70e9;
 	color: #ffffff;
 }
+.product__pagination a.active,
+.blog__pagination a.active {
+	background: #5a70e9;
+	border-color: #a6a6a6;
+	color: #ffffff;
+}
+.product__pagination li.active,
+.blog__pagination li.active {
+	background: #5a70e9;
+	border-color: #a6a6a6;
+	color: #ffffff;
+}
 
 .product__pagination a:last-child,
 .blog__pagination a:last-child {

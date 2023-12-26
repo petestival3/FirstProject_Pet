@@ -285,7 +285,7 @@
                         <a href="../stay/list.do?page=${startPage-1 }"><i class="fa fa-long-arrow-left"></i></a>
                     </c:if>
                        <c:forEach var="i" begin="${startPage }" end="${endPage }">
-                        <a href="list.do?page=${i}">${i}</a>
+                       <a href="list.do?page=${i}" ${i==curpage?"class=active":"" }>${i}</a>
                         </c:forEach>
                     <c:if test="${endPage<totalpage }">
                         <a href="../stay/list.do?page=${endPage+1 }"><i class="fa fa-long-arrow-right"></i></a>
