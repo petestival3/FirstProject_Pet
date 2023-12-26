@@ -49,13 +49,11 @@
                             </form>
                         </div>
                         <div class="blog__sidebar__item">
-                            <h4>Categories</h4>
+                            <h4>유기동물 보호센터</h4>
                             <ul>
-                                <li><a href="#">All</a></li>
-                                <li><a href="#">Beauty (20)</a></li>
-                                <li><a href="#">Food (5)</a></li>
-                                <li><a href="#">Life Style (9)</a></li>
-                                <li><a href="#">Travel (10)</a></li>
+                                <li><a href="../losedog/losedog.do">강아지를 찾아주세요</a></li>
+                                <li><a href="../losecat/losecat.do">고양이를 찾아주세요</a></li>
+                                <li><a href="../animal/animal.do">보호중인 유기동물</a></li>
                             </ul>
                         </div>
                         <div class="blog__sidebar__item">

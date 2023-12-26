@@ -20,11 +20,11 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Vegetable’s Package</h2>
+                        <h2>${lcvo.ctitle }</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <a href="./index.html">Vegetables</a>
-                            <span>Vegetable’s Package</span>
+                           <%--  <a href="./index.html">Home</a>
+                            <a href="./index.html">Vegetables</a>--%>
+                            <span>${lcvo.closedate }</span>
                         </div>
                     </div>
                 </div>
@@ -60,14 +60,14 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
                         <h3>${lcvo.ctitle }</h3>
-                        <div class="product__details__rating">
+                        <%-- <div class="product__details__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
-                        </div>
+                        </div> --%>
                         <div class="product__details__price">${lcvo.closeinfo }</div>
                         <p>${lcvo.cfeature }</p>
                         
@@ -81,7 +81,7 @@
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                            <!--   <li><b>작성자</b> <span>뒤 짜르면 쓴다..${lcvo.cinfo }</span></li> -->
-                            <li><b>실종 장소</b> <span>${lcvo.closeloc } <samp>Free pickup today</samp></span></li>
+                            <li><b>실종 장소</b> <span>${lcvo.closeloc } <samp>!</samp></span></li>
                             <li><b>실종 날짜</b> <span>${lcvo.closedate }</span></li>
                             <li><b>공유하기</b>
                                 <div class="share">

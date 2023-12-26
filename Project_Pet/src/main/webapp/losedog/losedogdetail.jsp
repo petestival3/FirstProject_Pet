@@ -6,6 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.dog_banner_title{
+	margin: 0px auto;
+	width: 850px;
+	white-space:nowrap; /* 자동 줄바꿈 해제해서 한줄로 만들어 준다*/
+	overflow:hidden; /*글자가 초과되는 경우*/
+	text-overflow: ellipsis; /* 초과된 글자를 감춘다 ...*/
+}
+</style>
 </head>
 
 <body>
@@ -16,11 +25,11 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Vegetable’s Package</h2>
+                        <h2 class="dog_banner_title">${ldvo.title }</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <a href="./index.html">Vegetables</a>
-                            <span>Vegetable’s Package</span>
+                            <%-- <a href="./index.html">Home</a>
+                            <a href="./index.html">Vegetables</a>--%>
+                            <span>${ldvo.losedate }</span>
                         </div>
                     </div>
                 </div>
@@ -56,14 +65,14 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
                         <h3>${ldvo.title }</h3>
-                        <div class="product__details__rating">
+                        <%-- <div class="product__details__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
-                        </div>
+                        </div>--%>
                         <div class="product__details__price">${ldvo.loseinfo }</div>
                         <p>${ldvo.feature }</p>
                         

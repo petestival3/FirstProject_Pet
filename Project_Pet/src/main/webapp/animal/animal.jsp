@@ -150,7 +150,7 @@ nav.pagination li{
 			         </c:if>
 			         
 			         <c:forEach var="i" begin="${startPage }" end="${endPage }">
-			            <li ${curpage==i?"class=current":"" }><a href="../animal/animal.do?page=${i }">${i }</a></li>
+			            <li ${curpage==i?"class=active":"" }><a href="../animal/animal.do?page=${i }">${i }</a></li>
 			         </c:forEach>
 			         
 			          
