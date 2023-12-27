@@ -33,7 +33,6 @@
  
 </head>
 <body>
-<h1>관리자페이지</h1>
     <div class="container">
         <div class="row">
 
@@ -50,7 +49,7 @@
 					</div>
 				</div>
 			</div>
-			<jsp:include page="${mypage_jsp }"></jsp:include>
+			<jsp:include page="${ad_page_jsp }"></jsp:include>
 		</div>
     </div>
 </body>
