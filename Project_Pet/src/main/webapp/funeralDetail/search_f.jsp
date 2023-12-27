@@ -215,7 +215,7 @@ $(function(){
 				<!-- 검색결과 ajax로 출력할부분 시작 -->
 			<div class="container search_t_l_result">
 				<div class="row">
-				   <p>전체 목록</p>
+				   <p style="text-align: center;">장례업체 전체 목록</p>
 					<table class="table" id="user-table-right">
 						<thead>
 							<tr>
