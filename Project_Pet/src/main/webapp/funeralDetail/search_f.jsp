@@ -49,6 +49,28 @@ const funerals=[
 		  "cr_com_loc": "부산광역시 기장군 장안읍 기룡길 11-33",
 		  "cr_com_homepage": "http:\/\/www.aistar.co.kr"
 		 }]
+//출력부 (좌측)
+$(function(){
+	funerals.map((funeral)=>{
+		$('#user-table tbody').append(
+		   '<tr class="result">'
+		  +'<td class="text-center">'+funeral.cr_com_loc+'</td>'
+		  +'<td>'+funeral.cr_com_name+'</td>'
+		  +'<td>'+funeral.cr_com_sector+'</td>'
+		  +'<td>'+funeral.cr_com_homepage+'</td>'
+		  +'</tr>'  
+		)
+	})
+	//이벤트 처리 (좌측)
+	$('#keyword').keyup(function(){
+		let k=$('#keyword').val();
+		$('#user-table > tbody > tr').hide()
+		let temp=$('#user-table > tbody > tr > td:nth-child(5n+2):contains("'+k+'")')
+		                                                   //이부분선택하게해서 카테고리검색도 만들수 있을거같음
+		$(temp).parent().show()
+	})
+	
+//출력부 (우측)
 $(function(){
 	funerals.map((funeral)=>{
 		$('#user-table tbody').append(
@@ -60,14 +82,6 @@ $(function(){
 		  +'<td>'+funeral.cr_com_homepage+'</td>'
 		  +'</tr>'  
 		)
-	})
-	//이벤트 처리 
-	$('#keyword').keyup(function(){
-		let k=$('#keyword').val();
-		$('#user-table > tbody > tr').hide()
-		let temp=$('#user-table > tbody > tr > td:nth-child(5n+2):contains("'+k+'")')
-		                                                   //이부분선택하게해서 카테고리검색도 만들수 있을거같음
-		$(temp).parent().show()
 	})
 })
 </script>
@@ -164,7 +178,7 @@ $(function(){
 	<div class="search_wrap">
 		<!-- 검색결과 실시간변동 1분할 -->
 		<div class="search_t_l">
-			<div>
+			<div style="margin-bottom: 40px;">
 			     <input type=text id="keyword" placeholder="검색어 입력" class="f_search_text">
 				<div id="f_search_btn_div">
 					<input type="button" id="f_search_btn"> <i
@@ -175,10 +189,9 @@ $(function(){
 			<!-- 검색결과 ajax로 출력할부분 시작 -->
 			<div class="container search_t_l_result">
 				<div class="row">
-					<table class="table" id="user-table">
+					<table class="table" id="user-table-left">
 						<thead>
 							<tr>
-								<th class="text-center">번호</th>
 								<th class="text-center">위치</th>
 								<th class="text-center">업체명</th>
 								<th class="text-center">분야</th>
@@ -198,18 +211,29 @@ $(function(){
 		<!-- 검색결과 출력 2분할 -->
 		<div class="search_t_r">
 			<div class="container">
+			
+				<!-- 검색결과 ajax로 출력할부분 시작 -->
+			<div class="container search_t_l_result">
 				<div class="row">
-
-					<table class="table">
-						<c:forEach var="i" begin="1" end="10">
+				   <p>전체 목록</p>
+					<table class="table" id="user-table-right">
+						<thead>
 							<tr>
-								<th width="10%" class="text-center">번호</th>
-								<td width="20%" class="loc_title"><a href="#">업체명</a></td>
-								<td width="55%">주소</td>
+								<th class="text-center" width="60">번호</th>
+								<th class="text-center">위치</th>
+								<th class="text-center">업체명</th>
+								<th class="text-center">분야</th>
+								<th class="text-center">홈페이지</th>
 							</tr>
-						</c:forEach>
+						</thead>
+						<tbody>
+
+						</tbody>
 					</table>
 				</div>
+			</div>
+			<!-- 검색결과 ajax로 출력할부분 종료 -->
+			
 				<!-- 페이지 이동부분
 				<div style="height: 20px"></div>
 				<div class="row">
