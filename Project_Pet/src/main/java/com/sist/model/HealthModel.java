@@ -109,7 +109,7 @@ public class HealthModel {
 	request.setAttribute("endPage", endPage);
 	request.setAttribute("list", list);
 	request.setAttribute("statelist", statelist);
-	request.setAttribute("hspt_jsp", "../health/hsptsearch.jsp");
+	request.setAttribute("hspt_jsp", "../health/find.jsp");
 	request.setAttribute("main_jsp", "../health/hsptmain.jsp");
 
 		return "../main/main.jsp";
