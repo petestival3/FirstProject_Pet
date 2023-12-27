@@ -18,6 +18,15 @@ nav.pagination li{
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+.tListTitle{
+	display: block;
+	margin: 0px auto;
+	width: 280px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 15px;
+}
 .product__pagination li.active,
 .blog__pagination li.active {
 	background: #5a70e9;
@@ -150,12 +159,11 @@ nav.pagination li{
                                             <div class="product__discount__percent">help!</div>
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
                                             <span>${tList.losedate }</span>
+                                            
                                             <h5><a href="#" class="tListTitle">${tList.title }</a></h5>
                                             <div class="product__item__price">${tList.loseinfo }</div>
                                         </div>

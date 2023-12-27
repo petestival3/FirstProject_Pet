@@ -187,10 +187,10 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic">
-<a href="../animal/animaldetail.do?kano=${vo.kano }"><img src="${avo.keepimage }" alt="" style="border-radius: 10px;overflow: hidden;"></a>
+<a href="../animal/animaldetail.do?kano=${avo.kano }"><img src="${avo.keepimage }" alt="" style="border-radius: 10px;overflow: hidden;"></a>
                         </div>
                         <div class="blog__item__text">
-                            <h5><a href="../animal/animaldetail.do?kano=${vo.kano }">${avo.keeptitle }</a></h5>
+                            <h5><a href="../animal/animaldetail.do?kano=${avo.kano }">${avo.keeptitle }</a></h5>
                             <p>${avo.keepcontent }</p>
                         </div>
                     </div>

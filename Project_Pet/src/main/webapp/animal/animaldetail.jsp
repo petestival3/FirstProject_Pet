@@ -16,7 +16,7 @@
 
 
     <!-- Blog Details Hero Begin -->
-    <section class="blog-details-hero set-bg" data-setbg="../img/blog/details/details-hero.jpg">
+    <section class="blog-details-hero set-bg" data-setbg="../img/bread.jpg">
         <div class="container">
             <div class="row">
 

@@ -19,6 +19,15 @@ nav.pagination li{
 	border-color: #a6a6a6;
 	color: #ffffff;
 }
+.tListTitle{
+	display: block;
+	margin: 0px auto;
+	width: 280px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 15px;
+}
 </style>
 </head>
 
@@ -143,13 +152,11 @@ nav.pagination li{
                                             <div class="product__discount__percent">help!</div>
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
                                             <span>${cList.closedate }</span>
-                                            <h5><a href="#">${cList.ctitle }</a></h5>
+                                            <h5><a href="#" class="tListTitle">${cList.ctitle }</a></h5>
                                             <div class="product__item__price">${cList.closeinfo }</div>
                                         </div>
                                     </div>
