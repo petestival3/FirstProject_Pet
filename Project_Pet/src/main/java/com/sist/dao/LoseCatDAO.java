@@ -120,4 +120,37 @@ public class LoseCatDAO {
 		}
 		return vo;
 	}
+	public List<LoseCatVO> losecatTopList()
+	{
+		List<LoseCatVO> list=new ArrayList<LoseCatVO>();
+		try
+		{
+			conn=dbconn.getConnection();
+			String sql="SELECT lcno,cimage,closeinfo,ctitle,closedate,rownum "
+					+ "FROM (SELECT lcno,cimage,closeinfo,ctitle,closedate "
+					+ "FROM losecat ORDER BY substr(closedate,1,4) ASC,lcno ASC) "
+					+ "WHERE rownum BETWEEN 1 AND 6";
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				LoseCatVO vo=new LoseCatVO();
+				vo.setLcno(rs.getInt(1));
+				vo.setCimage(rs.getString(2));
+				vo.setCloseinfo(rs.getString(3));
+				vo.setCtitle(rs.getString(4));
+				vo.setClosedate(rs.getNString(5));
+				list.add(vo);
+			}
+			rs.close();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbconn.disConnection(conn, ps);
+		}
+		return list;
+	}
 }

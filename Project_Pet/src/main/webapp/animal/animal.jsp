@@ -19,9 +19,8 @@ nav.pagination li{
 	border-color: #a6a6a6;
 	color: #ffffff;
 }
-.fa fa-comment-o{
+.blog__item__text{
 	margin: 0px auto;
-	width: 100px;
 	white-space:nowrap; /* 자동 줄바꿈 해제해서 한줄로 만들어 준다*/
 	overflow:hidden; /*글자가 초과되는 경우*/
 	text-overflow: ellipsis; /* 초과된 글자를 감춘다 ...*/
@@ -141,8 +140,8 @@ nav.pagination li{
                                 </div>
                                 <div class="blog__item__text">
                                     <ul>
-                                        <li><i class="fa fa-calendar-o"></i>${vo.keepwriter }</li>
-                                        <li><i class="fa fa-comment-o"></i>${vo.keepregdate }</li>
+                                        <li><i class="fa fa-calendar-o"></i>&nbsp;&nbsp;${vo.keepwriter }</li>
+                                        <li><i class="fa fa-map-marker"></i>&nbsp;&nbsp;${vo.keepregdate }</li>
                                     </ul>
                                    
                                     <h5><a href="../animal/animaldetail.do?kano=${vo.kano }">${vo.keeptitle }</a></h5>

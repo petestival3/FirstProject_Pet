@@ -20,6 +20,7 @@ public class LoseCatModel {
 		LoseCatDAO dao=LoseCatDAO.newInstance();
 		List<LoseCatVO> list=dao.losecatListData(curpage);
 		int totalpage=dao.loseCatTotalPage();
+		List<LoseCatVO> cTopList=dao.losecatTopList();
 		
 		final int BLOCK=10;
 		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
@@ -28,6 +29,7 @@ public class LoseCatModel {
 			endPage=totalpage;
 		
 		
+		request.setAttribute("cTopList", cTopList);
 		request.setAttribute("lcList", list);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
