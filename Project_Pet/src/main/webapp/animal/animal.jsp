@@ -25,6 +25,19 @@ nav.pagination li{
 	overflow:hidden; /*글자가 초과되는 경우*/
 	text-overflow: ellipsis; /* 초과된 글자를 감춘다 ...*/
 }
+.sidebar__item ul li a {
+	font-size: 16px;
+	color: #666666;
+	line-height: 48px;
+	-webkit-transition: all, 0.3s;
+	-moz-transition: all, 0.3s;
+	-ms-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+}
+.sidebar__item ul li a:hover {
+	color: #5a70e9;
+}
 </style>
 </head>
 
@@ -38,7 +51,7 @@ nav.pagination li{
                     <div class="breadcrumb__text">
                         <h2>보호중인 유기 동물</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">유기동물 보호센터</a>
+                            <a href="#">유기동물 보호센터</a>
                             <!-- <span>Blog</span> -->
                         </div>
                     </div>
@@ -64,9 +77,9 @@ nav.pagination li{
                         <div class="sidebar__item">
                             <h4>유기동물 보호센터</h4>
                             <ul>
-                                <li><a href="../losedog/losedog.do">강아지를 찾아주세요</a></li>
-                                <li><a href="../losecat/losecat.do">고양이를 찾아주세요</a></li>
-                                <li><a href="../animal/animal.do">보호중인 유기동물</a></li>
+                                <li><a href="../losedog/losedog.do"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;강아지를 찾아주세요</a></li>
+                                <li><a href="../losecat/losecat.do"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;고양이를 찾아주세요</a></li>
+                                <li><a href="../animal/animal.do"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;보호중인 유기동물</a></li>
                             </ul>
                         </div>
                         
