@@ -23,7 +23,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
                            <div class="header__top__right__auth">
-                            <a href="../adminPage/ad_reserve.do"><i class="fa fa-user"></i> Adminpage</a>
+                            <a href="../adminPage/ad_page.do"><i class="fa fa-user"></i> Adminpage</a>
                             </div>
                             &nbsp;&nbsp;
                             <div class="header__top__right__auth">
