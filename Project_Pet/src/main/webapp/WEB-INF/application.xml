@@ -7,4 +7,5 @@
    <bean id="losedog" class="com.sist.model.LoseDogModel"></bean>
    <bean id="losecat" class="com.sist.model.LoseCatModel"></bean>
    <bean id="adminpage" class="com.sist.model.AdminPageModel"></bean>
+   <bean id="mypage" class="com.sist.model.MypageModel"></bean>
 </beans>

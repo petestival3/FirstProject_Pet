@@ -27,7 +27,7 @@
                             </div>
                             &nbsp;&nbsp;
                             <div class="header__top__right__auth">
-                            <a href="#"><i class="fa fa-user"></i> Mypage</a>
+                            <a href="../mypage/mypage.do"><i class="fa fa-user"></i> Mypage</a>
                             </div>
                             &nbsp;&nbsp;
                             <div class="header__top__right__auth">
