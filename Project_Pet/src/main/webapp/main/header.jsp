@@ -69,8 +69,8 @@
                             </li>
                             <li><a href="./shop-grid.html">HEALTH</a>
                                <ul class="header__menu__dropdown">
-                                    <li><a href="#">병원 검색하기</a></li>
-                                    <li><a href="#">펫케어 콘텐츠</a></li>
+                                    <li><a href="../health/hsptmain.do">병원 검색하기</a></li>
+                                    <li><a href="../health/newsmain.do">펫케어 콘텐츠</a></li>
                                 </ul>
                             </li>
                             <li><a href="../stay/list.do">HOTEL</a></li>
@@ -126,7 +126,7 @@
                             <li style="font-weight: 700;"><a href="#"><i class="xi-walk"></i>&nbsp;반려동물 산책로</a></li>
                             <li style="text-indent: 20px"><a href="#">가까운 산책로 찾기</a></li>
                             <li style="font-weight: 700;"><a href="#"><i class="xi-heart"></i>&nbsp;마이펫 관리</a></li>
-                            <li style="text-indent: 20px"><a href="#">마이펫 등록</a></li>
+                            <li style="text-indent: 20px"><a href="../mypage/my_petreg.do">마이펫 등록</a></li>
                             <li style="text-indent: 20px"><a href="#">마이펫 관리</a></li>
                         </ul>
                     </div>
