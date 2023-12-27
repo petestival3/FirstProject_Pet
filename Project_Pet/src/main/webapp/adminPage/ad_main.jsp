@@ -48,7 +48,7 @@ td:last-child {
 </style>
 </head>
 <body>
-<div class="col-md-9">
+<div class="col-md-9" style="margin-top: 20px;">
 			<table class="table">
 					<tr>
 						<th colspan="2">Admin Page</th>
