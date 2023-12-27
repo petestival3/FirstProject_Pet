@@ -18,6 +18,12 @@
 .contact-form{
 padding: 0px;
 }
+.blog__details__text img{
+	border-radius: 10px;
+	width: 800px;
+	height: 500px;
+	
+}
 </style>
   
 </head>
@@ -84,9 +90,9 @@ padding: 0px;
                 <div class="col-lg-8 col-md-7 order-md-1 order-1">
                     <div class="blog__details__text">
                         <img src=${vo.news_img }>
-                         <p>
+                         <h4>
                         ${vo.news_subject }
-                        </p>
+                        </h4><br>
                         <p>
                         ${vo.news_content }
                         </p>
