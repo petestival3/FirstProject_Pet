@@ -1,10 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+$(function(){
+	$('#logoutBtn').on('click',function(){
+		location.href="../member/logout.do"
+	})
+});
+</script>
 </head>
 <body>
 <!-- Header Section Begin -->
@@ -22,14 +30,24 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
-                          <c:if test="${sessionScope.id==null }">
+                          <c:if test="${sessionScope.admin=='y' }">
                            <div class="header__top__right__auth">
                             <a href="../adminPage/ad_reserve.do"><i class="fa fa-user"></i> Adminpage</a>
                             </div>
+                          </c:if>
+                          <c:if test="${sessionScope.id!=null }">
+                            &nbsp;&nbsp;
+                            <div class="header__top__right__auth">
+                                <a href="../member/logout.do"><i class="fa fa-user"></i> Logout</a>
+                            </div>
+                           </c:if>
+                           <c:if test="${sessionScope.admin=='n' }">
                             &nbsp;&nbsp;
                             <div class="header__top__right__auth">
                             <a href="../mypage/mypage.do"><i class="fa fa-user"></i> Mypage</a>
                             </div>
+                          </c:if>
+                          <c:if test="${sessionScope.id==null }">
                             &nbsp;&nbsp;
                             <div class="header__top__right__auth">
                                 <a href="../member/login.jsp"><i class="fa fa-user"></i> Login</a>
@@ -39,12 +57,7 @@
                                 <a href="../member/join.jsp"><i class="fa fa-user"></i> Join</a>
                             </div>
                            </c:if>
-                           <c:if test="${sessionScope.id!=null }">
-                            &nbsp;&nbsp;
-                            <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Logout</a>
-                            </div>
-                           </c:if>
+                           
                            
                         </div>
                     </div>
@@ -158,11 +171,17 @@
                         </div>
                         <div class="hero__search__phone">
                             <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
+                                <i class="fa fa-user"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>02-3333-3333</h5>
-                                <span>support 24/7 time</span>
+                              <c:if test="${sessionScope.id!=null }">
+                                <h5>${sessionScope.name }님</h5>
+                                <span>환영합니다</span>
+                              </c:if>
+                              <c:if test="${sessionScope.id==null }">
+                                <h5>회원가입을 통해</h5>
+                                <span>더 많은 기능을!!</span>
+                              </c:if>
                             </div>
                         </div>
                     </div>
