@@ -45,6 +45,28 @@ public class FuneralDetailModel {
 	@RequestMapping("FuneralDetail/list_f.do")
 	public String funeral_list_f(HttpServletRequest request, HttpServletResponse response)
 	{
+		String page=request.getParameter("page");
+		  if(page==null)
+			  page="1";
+		  int curpage=Integer.parseInt(page);
+		  
+		  FuneralListDAO dao=FuneralListDAO.newInstance();
+		  List<FuneralListVO> list=dao.funeralListData(curpage);
+		  int totalpage=dao.funeralListTotalPage();
+		  
+		  final int BLOCK=10;
+		  int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		  int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		  if(endPage>totalpage)
+			  endPage=totalpage;
+		  
+		  // 출력할 데이터 전송 
+		  request.setAttribute("curpage", curpage);
+		  request.setAttribute("totalpage", totalpage);
+		  request.setAttribute("startPage", startPage);
+		  request.setAttribute("endPage", endPage);
+		  request.setAttribute("list", list);
+		
 	      // 3. 결과값 모아서 request에 저장
 		  request.setAttribute("main_jsp", "../funeralDetail/list_f.jsp");
 		  return "../main/main.jsp";

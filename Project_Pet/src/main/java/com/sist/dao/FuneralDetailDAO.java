@@ -18,7 +18,7 @@ public class FuneralDetailDAO {
 			dao=new FuneralDetailDAO();
 		return dao;
 	}
-	//데이터 리스트
+	//장례절차 리스트
 	public List<FuneralDetailVO> FuneralListData()
 	{
 		List<FuneralDetailVO> list=new ArrayList<FuneralDetailVO>();
@@ -48,7 +48,7 @@ public class FuneralDetailDAO {
 		return list;
 	}
 	
-	//상세보기......
+	//장례절차 상세보기......
 	public FuneralDetailVO FuneralDetailData(int mno)
 	{
 		FuneralDetailVO fdvo=new FuneralDetailVO();
