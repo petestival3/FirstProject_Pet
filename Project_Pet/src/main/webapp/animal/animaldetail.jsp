@@ -6,13 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.blog__details__text a {
+	font-size: 16px;
+	color: #6f6f6f;
+	background: #f5f5f5;
+	display: inline-block;
+	padding: 7px 26px 5px;
+	margin-right: 6px;
+	margin-bottom: 10px;
+}
+</style>
 </head>
 
 <body>
     <!-- Page Preloder -->
-    <div id="preloder">
+   <!--   <div id="preloder">
         <div class="loader"></div>
-    </div>
+    </div> -->
 
 
     <!-- Blog Details Hero Begin -->
@@ -51,9 +62,9 @@
                         <div class="blog__sidebar__item">
                             <h4>유기동물 보호센터</h4>
                             <ul>
-                                <li><a href="../losedog/losedog.do"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;강아지를 찾아주세요</a></li>
-                                <li><a href="../losecat/losecat.do"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;고양이를 찾아주세요</a></li>
-                                <li><a href="../animal/animal.do"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;보호중인 유기동물</a></li>
+                                <li style="font-weight: bold;"><a href="../losedog/losedog.do"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;강아지를 찾아주세요</a></li>
+                                <li style="font-weight: bold;"><a href="../losecat/losecat.do"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;고양이를 찾아주세요</a></li>
+                                <li style="font-weight: bold;"><a href="../animal/animal.do"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;보호중인 유기동물</a></li>
                             </ul>
                         </div>
                         <div class="blog__sidebar__item">
@@ -107,11 +118,17 @@
                     <div class="blog__details__text">
                         
                         
-                        <h3>${avo.keepregdate }</h3>
-                        <hr><br>
+                        <!--  <h3>${avo.keepregdate }</h3> -->
+                        <h3>${avo.keeptitle }</h3>
+                        <hr>
+                        <div class="text-center">
+                         <p>${avo.keepregdate } | ${avo.keepfoundloc } | ${avo.keepwriter }</p>
+                        </div><br>
                         <img src="${avo.keepimage }" alt="" style="border-radius: 10px;overflow: hidden;">
                         
                         <p>${avo.keepcontent }</p>
+                        <br><br>
+                        <a href="javascript:history.back()" class="text-right">목록</a>
                     </div>
                     
                 </div>

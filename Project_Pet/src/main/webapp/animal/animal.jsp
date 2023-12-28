@@ -77,9 +77,9 @@ nav.pagination li{
                         <div class="sidebar__item">
                             <h4>유기동물 보호센터</h4>
                             <ul>
-                                <li><a href="../losedog/losedog.do"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;강아지를 찾아주세요</a></li>
-                                <li><a href="../losecat/losecat.do"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;고양이를 찾아주세요</a></li>
-                                <li><a href="../animal/animal.do"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;보호중인 유기동물</a></li>
+                                <li style="font-weight: bold;"><a href="../losedog/losedog.do"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;강아지를 찾아주세요</a></li>
+                                <li style="font-weight: bold;"><a href="../losecat/losecat.do"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;고양이를 찾아주세요</a></li>
+                                <li style="font-weight: bold;"><a href="../animal/animal.do"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;보호중인 유기동물</a></li>
                             </ul>
                         </div>
                         

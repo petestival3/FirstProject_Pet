@@ -6,13 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+</style>
 </head>
 
 <body>
     <!-- Page Preloder -->
-    <div id="preloder">
+    <!-- <div id="preloder">
         <div class="loader"></div>
-    </div>
+    </div> -->
   
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="../img/bread.jpg">
@@ -79,6 +82,8 @@
                             </div>
                         </div>  -->
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        &nbsp;
+                        <a href="javascript:history.back()" class="primary-btn" style="font-weight: bold;">목록</a>
                         <ul>
                            <!--   <li><b>작성자</b> <span>뒤 짜르면 쓴다..${lcvo.cinfo }</span></li> -->
                             <li><b>실종 장소</b> <span>${lcvo.closeloc } <samp>!</samp></span></li>

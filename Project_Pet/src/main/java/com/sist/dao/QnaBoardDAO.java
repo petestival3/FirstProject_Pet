@@ -192,10 +192,10 @@ public class QnaBoardDAO {
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			rs.next();
-			String db_pwd=rs.getString(1);
+			String db_qpwd=rs.getString(1);
 			rs.close();
 			
-			if(db_pwd.equals(vo.getQpwd()))
+			if(db_qpwd.equals(vo.getQpwd()))
 			{
 				bCheck=true;
 				sql="UPDATE qnaBoard SET "
@@ -249,6 +249,37 @@ public class QnaBoardDAO {
 			int group_step=rs.getInt(2);
 			int group_tab=rs.getInt(3);
 			rs.close();
+			
+			// 위치 조정 (새로 달린 답변이 다답변 그룹보다 위로 올라와서 번호가 안꼬이게)
+			sql="UPDATE qnaBoard SET "
+			  + "group_step=group_step+1 "
+			  + "WHERE group_id=? AND group_step>?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, group_id);
+			ps.setInt(2, group_step);
+			ps.executeUpdate();
+			
+			// 실제 답변 저장
+			sql="INSERT INTO qnaBoard(qno,qwriter,qtitle,qcontent,qpwd,"
+			  + "group_id,group_step,group_tab,root) "
+			  + "VALUES(qna_qno_seq.nextval,?,?,?,?,?,?,?,?)";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getQwriter());
+			ps.setString(2, vo.getQtitle());
+			ps.setString(3, vo.getQcontent());
+			ps.setString(4, vo.getQpwd());
+			ps.setInt(5, group_id);
+			ps.setInt(6, group_step+1);
+			ps.setInt(7, group_tab+1);
+			ps.setInt(8, pno); // root 가 pno => 상위번호
+			ps.executeUpdate();
+			
+			// depth 증가
+			sql="UPDATE qnaBoard SET "
+			  + "depth=depth+1 "
+			  + "WHERE qno="+pno;
+			ps=conn.prepareStatement(sql);
+			ps.executeUpdate();
 		}catch(Exception ex)
 		{
 			ex.printStackTrace();
@@ -258,6 +289,96 @@ public class QnaBoardDAO {
 			dbconn.disConnection(conn, ps);
 		}
 	}
+	
+	// 삭제 처리 => 90%
+	public boolean qnaBoardDelete(int qno,String qpwd)
+	{
+		boolean bCheck=false;
+		try
+		{
+			conn=dbconn.getConnection();
+			String sql="SELECT qpwd,root,depth "
+					 + "FROM qnaBoard "
+					 + "WHERE qno="+qno;
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			String db_qpwd=rs.getString(1);
+			int root=rs.getInt(2);
+			int depth=rs.getInt(3);
+			rs.close();
+			if(db_qpwd.equals(qpwd)) // 삭제조건 (비밀번호가 맞다면)
+			{
+				bCheck=true;
+				if(depth==0) // 답변이 없다면
+				{
+					sql="DELETE FROM qnaBoard "
+					  + "WHERE qno="+qno;
+				    ps=conn.prepareStatement(sql);
+					ps.executeUpdate();
+				}
+				else // 답변이 있는 경우
+				{
+					String msg="관리자가 삭제한 게시물입니다.";
+					sql="UPDATE qnaBoard SET "
+					  + "qtitle=?,qcontent=? "
+					  + "WHERE qno=?";
+					ps=conn.prepareStatement(sql);
+					ps.setString(1, msg);
+					ps.setString(2, msg);
+					ps.setInt(3, qno);
+					ps.executeUpdate();
+				}
+				
+				sql="UPDATE qnaBoard SET "
+				  + "depth=depth-1 "
+				  + "WHERE qno="+root;
+				ps=conn.prepareStatement(sql);
+				ps.executeUpdate();
+			}
+			/*
+			   2. 비밀번호 맞는 경우
+			      2-1. root,depth
+			           => depth==0 => DELETE
+			              depth!=0 => UPDATE ("관리자가 삭제한 게시물")
+			      2-2. depth를 감소
+			      비밀번호 틀린 경우 => 종료
+			 */
+			
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbconn.disConnection(conn, ps);
+		}
+		return bCheck;
+	}
+	// 총페이지
+		public int qnaBoardTotalPage()
+		{
+			int total=0;
+			try
+			{
+				conn=dbconn.getConnection();
+				String sql="SELECT CEIL(COUNT(*)/12.0) FROM qnaBoard";
+				ps=conn.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				total=rs.getInt(1);
+				rs.close();
+				
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			finally
+			{
+				dbconn.disConnection(conn, ps);
+			}
+			return total;
+		}
 }
 
 

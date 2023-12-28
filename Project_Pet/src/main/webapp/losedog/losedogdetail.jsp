@@ -14,6 +14,7 @@
 	overflow:hidden; /*글자가 초과되는 경우*/
 	text-overflow: ellipsis; /* 초과된 글자를 감춘다 ...*/
 }
+
 </style>
 </head>
 
@@ -83,7 +84,9 @@
                                 </div>
                             </div>
                         </div>  -->
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        <a href="#" class="heart-icon" style="display: inline-block;"><span class="icon_heart_alt"></span></a>
+                        &nbsp;
+                        <a href="javascript:history.back()" class="primary-btn" style="font-weight: bold;">목록</a>
                         <ul>
                             <li><b>작성자</b> <span>뒤 짜르면 쓴다..${ldvo.info }</span></li>
                             <li><b>실종 장소</b> <span>${ldvo.loseloc } <samp>Free pickup today</samp></span></li>

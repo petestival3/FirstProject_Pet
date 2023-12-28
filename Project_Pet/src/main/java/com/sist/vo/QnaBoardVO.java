@@ -4,8 +4,21 @@ import java.util.Date;
 
 public class QnaBoardVO {
 	private int qno,qhit,qtype,pno,group_id,group_step,group_tab,root,depth;
-	private String qtitle,qwriter,qpwd,qcontent,dbday;
+	private String qtitle,qwriter,qpwd,qcontent,dbday,id,name;
 	private Date qregdate;
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getQno() {
 		return qno;
 	}
