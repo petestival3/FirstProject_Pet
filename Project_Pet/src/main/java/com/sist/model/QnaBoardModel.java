@@ -13,6 +13,8 @@ public class QnaBoardModel {
 	@RequestMapping("qnaBoard/list.do")
 	public String qnaBoard_list(HttpServletRequest request,HttpServletResponse response)
 	{
+		// Model 안에 문제 있따 !
+		// System.out.println("qna");
 		// (사용자 요청을 받아서 요청처리 결과를 받는다...)
 		// 사용자 요청 => 페이지 => Object page=this (page는 이미 내장객체 이름으로 쓰였다)
 		String page=request.getParameter("page");
@@ -24,22 +26,22 @@ public class QnaBoardModel {
 		QnaBoardDAO dao=QnaBoardDAO.newInstance();
 		List<QnaBoardVO> list=dao.qnaBoardListData(curpage);
 		// 총페이지
-		int count=dao.qnaBoardRowCount();
+//		int count=dao.qnaBoardRowCount();
 		int totalpage=dao.qnaBoardTotalPage();
 		//int totalpage=(int)(Math.ceil(count/10.0));
-		
+//		
 		final int BLOCK=10;
 		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		if(endPage>totalpage)
 			endPage=totalpage;
-		
-		// count 변경 => 2page 넘어가서도 글번호 올바르게 출력하는 코딩 (페이지)
-		count=count-((curpage*10)-10);
+//		
+//		// count 변경 => 2page 넘어가서도 글번호 올바르게 출력하는 코딩 (페이지)
+//		count=count-((curpage*10)-10);
 		request.setAttribute("page", page);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("list", list);
-		request.setAttribute("count", count);
+//		request.setAttribute("count", count);
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
