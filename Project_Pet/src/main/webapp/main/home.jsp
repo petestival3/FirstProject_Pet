@@ -1,11 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	let fds='가평';
+	
+	$('.homeStayBtn').click(function(){
+		fds=$(this).attr('value');
+		$.ajax({
+			type:'post',
+			url:'../stay/location_list.do',
+			data:{"fds":fds},
+			success:function(json){
+				let res=JSON.parse(json);
+				let html='';
+				for(let vo of res){
+					html+='<div class="col-lg-3 col-md-4 col-sm-6">'
+	                    +'<div class="featured__item">'
+	                    +'<img src="'+vo.image+'" style="border-radius: 10px;overflow: hidden;">'
+                    	+'<div class="featured__item__text">'
+                        +'<h6 id="ssss"><a href="#">'+vo.name+'</a></h6>'
+                        +'<h5>&#8361;'+vo.price+'~</h5>'
+                    	+'</div>'
+                		+'</div>'
+            			+'</div>'
+				}
+				console.log(html)
+				$('#print').html(html)
+			}
+		})
+	})
+});
+</script>
+<style type="text/css">
+#ssss{
+   white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 함 */ 
+   overflow: hidden; /* 초과된 텍스트를 감추기위해 오버플로우를 숨김 */
+   text-overflow: ellipsis; /* 말줄임표 만드는 속성 */
+}
+</style>
 </head>
 <body>
 	<!-- Hero Section Begin -->
@@ -92,34 +131,16 @@
                         <h2>지역별 추천 숙소</h2>
                     </div>
                     <div class="featured__controls">
-                        <ul>
-                            <li><a href="../main/main.do?fd=가평">가평</a></li>
-                            <li><a href="../main/main.do?fd=인천">인천</li>
-                            <li><a href="../main/main.do?fd=강원">강원</li>
-                            <li><a href="../main/main.do?fd=충남">충남</li>
-                            <li><a href="../main/main.do?fd=제주">제주</li>
-                        </ul>
+                        <input type="button" value="가평" class="btn btn-sm btn-primary homeStayBtn">
+				        <input type="button" value="인천" class="btn btn-sm btn-primary homeStayBtn">
+				        <input type="button" value="강원" class="btn btn-sm btn-primary homeStayBtn">
+				        <input type="button" value="충남" class="btn btn-sm btn-primary homeStayBtn">
+				        <input type="button" value="제주" class="btn btn-sm btn-primary homeStayBtn">
                     </div>
                 </div>
             </div>
-            <div class="row featured__filter">
-              <c:forEach var="vo" items="${sList }">
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${vo.image }" style="border-radius: 10px;overflow: hidden;">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">${vo.name }</a></h6>
-                            <h5>&#8361;${vo.price }~</h5>
-                        </div>
-                    </div>
-                </div>
-              </c:forEach>
+            <div class="row featured__filter" id="print">
+
             </div>
         </div>
     </section>

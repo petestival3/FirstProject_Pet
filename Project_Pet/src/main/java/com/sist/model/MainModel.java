@@ -13,12 +13,7 @@ public class MainModel {
 	public String main_main(HttpServletRequest request, HttpServletResponse response)
 	{
 		
-		String fd=request.getParameter("fd");
-		if(fd==null) {
-			fd="가평";
-		}
-		StayDAO dao=StayDAO.newInstance();
-		List<StayVO> sList=dao.stayAddressListData(fd);
+		
 		ProductDAO pdao=ProductDAO.newInstance();
 		List<ProductVO>plist =pdao.homeProduct();
 		AnimalDAO adao=AnimalDAO.newInstance();
@@ -26,8 +21,6 @@ public class MainModel {
 		
 		request.setAttribute("plist", plist);
 		request.setAttribute("alist", alist);
-		request.setAttribute("fd", fd);
-		request.setAttribute("sList", sList);
 		request.setAttribute("main_jsp", "../main/home.jsp");
 		return "../main/main.jsp";
 	}

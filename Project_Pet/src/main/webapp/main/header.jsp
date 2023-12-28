@@ -6,13 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-$(function(){
-	$('#logoutBtn').on('click',function(){
-		location.href="../member/logout.do"
-	})
-});
-</script>
 </head>
 <body>
 <!-- Header Section Begin -->
@@ -112,7 +105,7 @@ $(function(){
                                <ul class="header__menu__dropdown">
                                     <li><a href="#">자유게시판</a></li>
                                     <li><a href="#">반려동물 자랑게시판</a></li>
-                                    <li><a href="#">문의게시판</a></li>
+                                    <li><a href="../qnaBoard/list.do">문의게시판</a></li>
                                     <li><a href="#">공지사항</a></li>
                                 </ul>
                             </li>

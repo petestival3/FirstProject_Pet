@@ -2,11 +2,16 @@ package com.sist.model;
 import com.sist.controller.*;
 import com.sist.dao.*;
 import com.sist.vo.*;
+
+import java.io.PrintWriter;
 import java.util.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class StayModel {
 	@RequestMapping("stay/list.do")
@@ -78,5 +83,38 @@ String stayno=request.getParameter("stayno");
 		response.addCookie(cookie);
 		
 		return "redirect:../stay/detail.do?stayno="+stayno;
+	}
+	
+	@RequestMapping("stay/location_list.do")
+	public void stay_location_list(HttpServletRequest request, HttpServletResponse response) {
+		try
+		  {
+			  request.setCharacterEncoding("UTF-8");
+		  }catch(Exception ex) {}
+		  String fds=request.getParameter("fds");
+		  if(fds==null)
+			  fds="가평";
+		  StayDAO dao=StayDAO.newInstance();
+		  // JSON변경 
+		  // VO => {} ==> JSONObject
+		  // List => [{},{}...] ==> JSONArray
+		  JSONArray arr=new JSONArray();//[]
+		  //[{count:0},]
+			  List<StayVO> list=dao.stayAddressListData(fds);
+			  for(StayVO vo:list)
+			  {
+				  JSONObject obj=new JSONObject();
+				  // {zipcode:111,address:'...',count:2},{}
+				  obj.put("name", vo.getName());
+				  obj.put("image", vo.getImage());
+				  obj.put("price", vo.getPrice());
+				  arr.add(obj);
+			  }
+		  try
+		  {
+			  response.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
+			  PrintWriter out=response.getWriter();
+			  out.write(arr.toJSONString());
+		  }catch(Exception ex) {}
 	}
 }
