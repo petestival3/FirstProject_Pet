@@ -7,6 +7,55 @@
 <title>Insert title here</title>
 </head>  
 <link rel="stylesheet" href="../css/login.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#logBtn').click(function(){
+		let id=$('#log_id').val();
+		if(id.trim()==="")
+		{
+			$('#log_id').focus();
+			return;
+		}
+		let pwd=$('#log_pwd').val()
+		if(pwd.trim()==="")
+		{
+			$('#log_pwd').focus()
+			return;
+		}
+		
+		$.ajax({
+			type:'post',
+			url:'../member/login.do',
+			data:{"id":id,"pwd":pwd},
+			success:function(result)
+			{
+				// NOID , NOPWD , OK
+				if(result==='NOID')
+				{
+					alert("아이디 존재하지 않습니다")
+					$('#log_id').val("");
+					$('#log_pwd').val("");
+					$('#log_id').focus()
+				}
+				else if(result==='NOPWD')
+				{
+					alert("비밀번호가 틀립니다")
+					$('#log_pwd').val("");
+					$('#log_pwd').focus()
+				}
+				else
+				{
+					location.href="../main/main.do"
+				}
+			}
+		})
+	})
+	$('#logoutBtn').on('click',function(){
+		location.href="../member/logout.do"
+	})
+});
+</script>
 <style>
 body {
   background: #9EB8F8; /* fallback for old browsers */
@@ -59,8 +108,8 @@ body {
   </div>
   <div class="form">
     <form class="login-form">
-      <input type="text" placeholder="ID를 입력하세요" name="id"/>
-      <input type="password" placeholder="비밀번호를 입력하세요" name="pwd"/>
+      <input type="text" placeholder="ID를 입력하세요" name="log_id"/>
+      <input type="password" placeholder="비밀번호를 입력하세요" name="log_pwd"/>
       <button>로그인</button>
       <p class="message"><a href="#">회원가입</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">ID찾기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">비밀번호찾기</a></p>
     </form>
