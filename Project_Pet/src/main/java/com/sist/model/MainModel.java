@@ -13,12 +13,13 @@ public class MainModel {
 	public String main_main(HttpServletRequest request, HttpServletResponse response)
 	{
 		
-		
+		String ssss="가평";
 		ProductDAO pdao=ProductDAO.newInstance();
 		List<ProductVO>plist =pdao.homeProduct();
 		AnimalDAO adao=AnimalDAO.newInstance();
 		List<AnimalVO> alist=adao.animalBlogList();
 		
+		request.setAttribute("fds", ssss);
 		request.setAttribute("plist", plist);
 		request.setAttribute("alist", alist);
 		request.setAttribute("main_jsp", "../main/home.jsp");

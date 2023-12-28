@@ -9,34 +9,39 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	let fds='가평';
-	
+	let ss='가평'
+	stayhome(ss)
 	$('.homeStayBtn').click(function(){
-		fds=$(this).attr('value');
-		$.ajax({
-			type:'post',
-			url:'../stay/location_list.do',
-			data:{"fds":fds},
-			success:function(json){
-				let res=JSON.parse(json);
-				let html='';
-				for(let vo of res){
-					html+='<div class="col-lg-3 col-md-4 col-sm-6">'
-	                    +'<div class="featured__item">'
-	                    +'<img src="'+vo.image+'" style="border-radius: 10px;overflow: hidden;">'
-                    	+'<div class="featured__item__text">'
-                        +'<h6 id="ssss"><a href="#">'+vo.name+'</a></h6>'
-                        +'<h5>&#8361;'+vo.price+'~</h5>'
-                    	+'</div>'
-                		+'</div>'
-            			+'</div>'
-				}
-				console.log(html)
-				$('#print').html(html)
-			}
-		})
+		let fds=$(this).attr('value');
+		stayhome(fds)
 	})
+	
 });
+function stayhome(fds){
+	$.ajax({
+		type:'post',
+		url:'../stay/location_list.do',
+		data:{"fds":fds},
+		success:function(json){
+			let res=JSON.parse(json);
+			let html='';
+			for(let vo of res){
+				html+='<div class="col-lg-3 col-md-4 col-sm-6">'
+                    +'<div class="featured__item">'
+                    +'<img src="'+vo.image+'" style="border-radius: 10px;overflow: hidden;">'
+                	+'<div class="featured__item__text">'
+                    +'<h6 id="ssss"><a href="#">'+vo.name+'</a></h6>'
+                    +'<h5>&#8361;'+vo.price+'~</h5>'
+                	+'</div>'
+            		+'</div>'
+        			+'</div>'
+			}
+			console.log(html)
+			$('#print').html(html)
+		}
+	})
+}
+
 </script>
 <style type="text/css">
 #ssss{
