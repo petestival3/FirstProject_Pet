@@ -22,8 +22,9 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
+                          <c:if test="${sessionScope.id==null }">
                            <div class="header__top__right__auth">
-                            <a href="../adminPage/ad_page.do"><i class="fa fa-user"></i> Adminpage</a>
+                            <a href="../adminPage/ad_reserve.do"><i class="fa fa-user"></i> Adminpage</a>
                             </div>
                             &nbsp;&nbsp;
                             <div class="header__top__right__auth">
@@ -31,8 +32,20 @@
                             </div>
                             &nbsp;&nbsp;
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                                <a href="../member/login.jsp"><i class="fa fa-user"></i> Login</a>
                             </div>
+                            &nbsp;&nbsp;
+                            <div class="header__top__right__auth">
+                                <a href="../member/join.jsp"><i class="fa fa-user"></i> Join</a>
+                            </div>
+                           </c:if>
+                           <c:if test="${sessionScope.id!=null }">
+                            &nbsp;&nbsp;
+                            <div class="header__top__right__auth">
+                                <a href="#"><i class="fa fa-user"></i> Logout</a>
+                            </div>
+                           </c:if>
+                           
                         </div>
                     </div>
 
