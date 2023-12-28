@@ -33,7 +33,7 @@ public class QnaBoardDAO {
 					 + "TO_CHAR(qregdate,'YYYY-MM-DD'),qhit,group_tab,num "
 					 + "FROM (SELECT qno,qtitle,qwriter,qregdate,qhit,group_tab,rownum as num "
 					 + "FROM (SELECT qno,qtitle,qwriter,qregdate,qhit,group_tab "
-					 + "FROM QnaBoard ORDER BY group_id DESC,group_step ASC)) "
+					 + "FROM qnaBoard ORDER BY group_id DESC,group_step ASC)) "
 					 + "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
 			int rowSize=10;
