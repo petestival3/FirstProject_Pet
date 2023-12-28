@@ -9,6 +9,7 @@
 <meta name="keywords" content="Ogani, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 <title>Ogani | Template</title>
 <style type="text/css">
 .blog-details{
@@ -24,16 +25,7 @@
 	margin-right: 140px;
 }
 </style>
-<script type="text/javascript">
-window.onload=function(){
 
-	let post=document.querySelector("#post")
-	
-	post.addEventListener("click",()=>{
-		window.open('detail.jsp','post','width=480px,height=350px,scrollbars=yes,location=no')
-	})
-}
-</script>
 
 </head>
 
@@ -60,7 +52,7 @@ window.onload=function(){
 				<tr>
 					<td width=10% class="text-center">${vo.no }</td>
 					<td width=35% class="text-center" id="post"><a
-						href="../health/detail.do?no=${vo.no }">${vo.hospital_name }</a></td>
+						href="#">${vo.hospital_name }</a></td>
 					<td width=40% class="text-center">${vo.hospital_address }</td>
 					<td width=15% class="text-center">${vo.hospital_phone }</td>
 				</tr>
