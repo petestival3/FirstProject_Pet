@@ -175,7 +175,7 @@ $(function(){
                             </div>
                             <div class="hero__search__phone__text">
                               <c:if test="${sessionScope.id!=null }">
-                                <h5>${sessionScope.name }님</h5>
+                                <h5>${sessionScope.name }(${sessionScope.admin=='y'?"관리자":"일반사용자" })님</h5>
                                 <span>환영합니다</span>
                               </c:if>
                               <c:if test="${sessionScope.id==null }">

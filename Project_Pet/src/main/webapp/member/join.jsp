@@ -42,28 +42,28 @@ $(function(){
     <h3>회원가입</h3>
     <h4>아래 양식을 작성해주세요</h4>
     <fieldset>
-      <input name="id" id="id" class="writeid" placeholder="ID 입력" type="text" tabindex="1" style="float:left;" autofocus readonly>
+      <input name="id" id="id" class="writeid" placeholder="ID 입력" type="text" tabindex="1" style="float:left;" autofocus readonly required>
       <button class="idch" name="idcheck" type="button" id="contact-check" style="float: left">중복체크</button>
     </fieldset>
     <fieldset>
-      <input name="pwd" id="pwd" placeholder="비밀번호 입력" type="password" tabindex="2">
+      <input name="pwd" id="pwd" placeholder="비밀번호 입력" type="password" tabindex="2" required>
     </fieldset>
     <fieldset>
-      <input name="pwd1" id="pwd1" placeholder="비밀번호 재입력" type="password" tabindex="3">
+      <input name="pwd1" id="pwd1" placeholder="비밀번호 재입력" type="password" tabindex="3" required>
     </fieldset>
     <fieldset>
-      <input name="name" id="name" placeholder="이름 입력" type="text" tabindex="4">
+      <input name="name" id="name" placeholder="이름 입력" type="text" tabindex="4" required>
     </fieldset>
     <fieldset>
       <input type="radio" tabindex="5" name="sex" value="남자">남자
       <input type="radio" tabindex="6" name="sex" value="여자">여자
     </fieldset>
     <fieldset>
-      <input name="birthday" placeholder="생년월일 입력" type="date" tabindex="7">
+      <input name="birthday" placeholder="생년월일 입력" type="date" tabindex="7" required>
       
     </fieldset>
     <fieldset>
-      <input name="email" id="email" placeholder="이메일" type="text" tabindex="8">
+      <input name="email" id="email" placeholder="이메일" type="text" tabindex="8" required>
     </fieldset>
     <fieldset>
       <input name="post" id="post" class="writepost" placeholder="우편번호" type="text" tabindex="9" style="float:left;" readonly>
@@ -76,10 +76,10 @@ $(function(){
       <input name="addr2" id="addr2" placeholder="상세주소" type="text" tabindex="11">
     </fieldset>
     <fieldset>
-      <input name="phone" id="phone" placeholder="전화번호" type="text" tabindex="12">
+      <input name="phone" id="phone" placeholder="전화번호" type="text" tabindex="12" required>
     </fieldset>
     <fieldset>
-      <textarea name="content" placeholder="당신의 반려동물을 소개해주세요." tabindex="13"></textarea>
+      <textarea name="content" placeholder="당신의 반려동물을 소개해주세요." tabindex="13" required></textarea>
     </fieldset>
     <fieldset>
       <button name="submit" type="submit" id="contact-submit" style="float: left">회원가입</button>
