@@ -80,7 +80,7 @@
                                     <li><a href="#">의류/악세서리</a></li>
                                 </ul>
                             </li>
-                            <li><a href="./shop-grid.html">HEALTH</a>
+                            <li><a href="../main/main.do">HEALTH</a>
                                <ul class="header__menu__dropdown">
                                     <li><a href="../health/hsptmain.do">병원 검색하기</a></li>
                                     <li><a href="../health/newsmain.do">펫케어 콘텐츠</a></li>
