@@ -41,4 +41,21 @@ public class FuneralDetailModel {
 		  request.setAttribute("main_jsp", "../funeralDetail/search_f.jsp");
 		  return "../main/main.jsp";
 	}
+	
+	@RequestMapping("FuneralDetail/list_f.do")
+	public String funeral_list_f(HttpServletRequest request, HttpServletResponse response)
+	{
+	      // 3. 결과값 모아서 request에 저장
+		  request.setAttribute("main_jsp", "../funeralDetail/list_f.jsp");
+		  return "../main/main.jsp";
+	}
+	
+
+	@RequestMapping("FuneralDetail/detail_f.do")
+	public String funeral_detail_f(HttpServletRequest request, HttpServletResponse response)
+	{
+	      // 3. 결과값 모아서 request에 저장
+		  request.setAttribute("main_jsp", "../funeralDetail/detail_f.jsp");
+		  return "../main/main.jsp";
+	}
 }
