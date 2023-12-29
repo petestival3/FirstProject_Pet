@@ -143,8 +143,8 @@ $(function(){
 		  +'</tr>'  
 		)
 	})
-	//이벤트 처리 (기존)
 	/*
+	//이벤트 처리 (기존)
 	$('#keyword').keyup(function(){
 		let k=$('#keyword').val();
 		$('#user-table > tbody > tr').hide()
