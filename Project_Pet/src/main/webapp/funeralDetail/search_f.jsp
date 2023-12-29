@@ -108,7 +108,7 @@ const funerals=[
 				 {
 				  "cr_com_no": "3",
 				  "cr_com_sector": "장례, 화장, 봉안",
-				  "cr_com_name": "센트럴파크(주)",
+				  "cr_com_name": "test 센트럴파크(주)",
 				  "cr_com_phone": "051-728-5411",
 				  "cr_com_loc": "부산광역시 기장군 일광면 차양길 175",
 				  "cr_com_homepage": "http:\/\/www.startice.co.kr"
@@ -118,19 +118,19 @@ const funerals=[
 				  "cr_com_sector": "장례, 화장, 봉안",
 				  "cr_com_name": "파트라슈",
 				  "cr_com_phone": "051-723-2201",
-				  "cr_com_loc": "부산 기장군 장안읍 좌동리 49-1",
+				  "cr_com_loc": "test 부산 기장군 장안읍 좌동리 49-1",
 				  "cr_com_homepage": "http:\/\/www.mypatrasche.co.kr"
 				 },
 				 {
 				  "cr_com_no": "5",
-				  "cr_com_sector": "장례, 화장, 봉안",
+				  "cr_com_sector": "장례, 화장, 봉안, test",
 				  "cr_com_name": "아이별",
 				  "cr_com_phone": "051-727-4499",
 				  "cr_com_loc": "부산광역시 기장군 장안읍 기룡길 11-33",
 				  "cr_com_homepage": "http:\/\/www.aistar.co.kr"
 				 }
 		 ]
-//출력부 (좌측)
+//출력부
 $(function(){
 	funerals.map((funeral)=>{
 		$('#user-table tbody').append(
@@ -143,14 +143,40 @@ $(function(){
 		  +'</tr>'  
 		)
 	})
-	//이벤트 처리 (좌측)
+	//이벤트 처리 (기존)
+	/*
 	$('#keyword').keyup(function(){
 		let k=$('#keyword').val();
 		$('#user-table > tbody > tr').hide()
 		let temp=$('#user-table > tbody > tr > td:nth-child(5n+2):contains("'+k+'")')
 		                                                   //이부분선택하게해서 카테고리검색도 만들수 있을거같음
 		$(temp).parent().show()
-	})
+	})*/
+	//이벤트 처리 (수정본)
+	$('#keyword').keyup(function () {
+	    let k = $('#keyword').val();
+	    let selectedOption = $('#search-table select').val();
+	    let columnSelector = '';
+
+	    switch (selectedOption) {
+	        case '시/도명':
+	            columnSelector = ':nth-child(5n+2)';
+	            break;
+	        case '업체명':
+	            columnSelector = ':nth-child(5n+3)';
+	            break;
+	        case '분야':
+	            columnSelector = ':nth-child(5n+4)';
+	            break;
+	        default:
+	            // 다른 옵션을 처리하려면 필요한 경우 추가로 작성
+	            break;
+	    }
+
+	    $('#user-table > tbody > tr').hide();
+	    let temp = $('#user-table > tbody > tr > td'+columnSelector+ ':contains("' + k + '")');
+	    $(temp).parent().show();
+	});
 })
 </script>
 <style type="text/css">
@@ -213,7 +239,7 @@ $(function(){
       <tr>
        <td>
         <select>
-          <option>주소</option>
+          <option>시/도명</option>
           <option>업체명</option>
           <option>분야</option>
         </select>
