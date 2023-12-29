@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-/*--------------*/
+/*----------------*/
 /*장례식장 상세 페이지*/
 /*--------------*/
 .breadcrumb-section {
