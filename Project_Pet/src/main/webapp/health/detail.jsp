@@ -30,6 +30,28 @@
     <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        // 서로 전송
+        $.ajax({
+            type: 'post',
+            url: '../health/detail_ok.do',
+            data: { "no": no } 
+        }).done(function (response) {
+            // 서버에서의 응답 처리
+            console.log(response);
+        });
+    });
+
+    $('#returnBtn').click(function () {
+        // parent.frm.id.value=$('#id').val()
+        parent.Shadowbox.close();
+    });
+    
+    </script>
+
+
 </head>
 
 <body>
@@ -53,7 +75,7 @@
 			<div class="row">
 				<table class="table">
 					<tr>
-						<td width="35%" height="45%" align="center" >
+						<td width="35%" height="45%" align="center">
 						<span class="icon_phone"></span>
 							<h4>Phone</h4>
 							<p>${vo.hospital_phone }</p>
@@ -110,7 +132,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td width="35%" height="45%" align="center"><span
+						<td width="35%" height="45%" align="center" id="address"><span
 							class="icon_pin_alt"></span>
 							<h4>Address</h4>
 							<p>${vo.hospital_address }</p></td>
@@ -119,7 +141,7 @@
 						<td width="35%" align="center"><span class="icon_clock_alt"></span>
 							<h4>Reservation</h4> <a href="#">예약하기</a></td>
 				</table>
-				<a href="../health/find.do" class="primary-btn">목 록</a>
+				<a href="#" class="primary-btn" id="returnBtn">목 록</a>
 			</div>
 		</div>
 	</section>

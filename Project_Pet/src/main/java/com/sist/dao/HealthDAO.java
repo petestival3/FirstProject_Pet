@@ -27,7 +27,7 @@ public class HealthDAO {
 		try
 		{
 			conn=dbconn.getConnection();
-				String sql="SELECT no,hospital_name,hospital_address,hospital_phone,num "
+				String sql="SELECT no,hospital_name,hospital_address,hospital_phone "
 						+ "FROM(SELECT no,hospital_name,hospital_address,hospital_phone,ROWNUM AS num "
 						+ "FROM(SELECT no,hospital_name,hospital_address,hospital_phone "
 						+ "FROM hospital_search ORDER BY no ASC)) "
@@ -331,16 +331,17 @@ public class HealthDAO {
 					}
 					return total;
 				}
-
+// 뉴스 상세 페이지
 	public HealthVO NewsDetailList(int no)
 	{
 		HealthVO vo=new HealthVO();
 		try
 		{
 			conn=dbconn.getConnection();
-			String sql="SELECT pn.pno,news_subject,news_img,news_content "
+			String sql="SELECT pn.pno,news_subject,news_img,news_content,newsdate_1,newsdate_2  "
 					+ "FROM petnews pn "
 					+ "INNER JOIN petnews_sub pns ON pn.pno=pns.pno "
+					+ "INNER JOIN newsdate ON pn.pno = newsdate.pno "
 					+ "WHERE pn.pno="+no;
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
@@ -349,6 +350,8 @@ public class HealthDAO {
 			vo.setNews_subject(rs.getString(2));
 			vo.setNews_img(rs.getString(3));
 			vo.setNews_content(rs.getString(4));
+			vo.setNews_date1(rs.getString(5));
+			vo.setNews_date2(rs.getString(6));
 			rs.close();	
 		}
 		catch(Exception ex)

@@ -27,7 +27,28 @@
 	type="text/css">
 <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="../css/style.css" type="text/css">
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script type="text/javascript">
+    function displaySelectedImage() {
+        var input = document.getElementById('petImageInput');
+        var image = document.getElementById('selectedPetImage');
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                image.src = e.target.result;
+                image.style.display = 'block'; // 이미지를 보이게 함
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 <style type="text/css">
+
 .petreg_input p {
 	color: black;
 }
@@ -40,20 +61,35 @@ p span {
 	display: flex;
 	align-items: center; /* 세로 중앙 정렬을 위한 속성 */
 }
+.regul {
+	display: flex;
+	align-items: center;
+}
 
-.flex ul {
-	margin: 30px 0 0 20px;
+.regul ul {
+	margin: 0px 0 0 20px;
 	float: right;
 }
 
-.flex li {
+.regul li {
 	list-style-type: none;
 	color: grey;
 }
 
-.flex li span {
+.regul li span {
 	color: red;
 }
+  #selectedPetImage {
+        width: 200px; /* 원하는 크기로 조절 */
+        height: 200px; /* 원하는 크기로 조절 */
+        margin-top: 10px;
+        margin-left: 60px;
+        display: none;
+        border-radius: 60%; /* 동그랗게 만드는 스타일 */
+        object-fit: cover; /* 이미지 비율 유지 및 부모 요소에 맞춤 */
+        border: 2px solid #ddd; /* 선택적으로 테두리 추가 */
+    }
+
 </style>
 
 
@@ -62,42 +98,32 @@ p span {
 
 	<!-- Checkout Section Begin -->
 	<section class="checkout spad">
-		<div class="container">
-			<div class="checkout__form">
+    <div class="container">
+        <div class="checkout__form">
+            <div class="petreg_title col-lg-2" style="margin-left: 440px; text-align: center;">
+                <h4>마이펫 등록</h4>
+            </div>
+            <form method="post" action="my_petInsert.do" enctype="multipart/form-data">
 
-				<h4>마이펫 등록</h4>
-				<form method="post" action="my_petInsert.do"
-					enctype="multipart/form-data">
-					<div class="row">
-						<div class="col-lg-8 col-md-6">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6" style="margin-left: 360px;">
 
-							<div class="col-lg-6">
-								<div class="petreg_input" style="margin-bottom: 20px;">
-									<p>
-										마이펫 사진<span></span>
-									</p>
-									<input type="file" name="upload" size=25 required>
-								</div>
-							</div>
-							<div class="col-lg-6">
+                        <div class="col-lg-6">
+                            <div class="petreg_input" style="margin-bottom: 20px; width: 500px;">
+                                <p>
+                                    <img id="selectedPetImage" src="../img/mainlogo.png" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
+                                </p>
+                                <input type="file" name="upload" size=25 required id="petImageInput" accept="image/*" onchange="displaySelectedImage()">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
 								<div class="checkout__input">
-									<p>
-										이름<span>*</span>
-									</p>
-									<input type="text" name="pet_name" required>
-								</div>
-							</div>
-
-							<div class="col-lg-6">
-								<div class="checkout__input">
-									<p>
-										생년월일<span>*</span>
-									</p>
+									
 									<input type="text" name="pet_bday"
 										placeholder="반려동물의 생년월일을 입력하세요" required>
 								</div>
 							</div>
-							<div class="row" style="margin: 0 0 20px 15px;">
+							<div class="col-lg-6" >
 								<label for="acc">
 									<p>
 										성별<span>*</span>
@@ -107,32 +133,33 @@ p span {
 									여아 <span class="radio"></span>
 								</label>
 							</div>
-							<div class="row" style="margin: 0 0 20px 15px;">
+							<div class="col-lg-6">
 								<label for="acc"> <input type="checkbox"
 									name="pet_neutralize" id="neutralize" required> 중성화여부 <span
 									class="checkmark"></span>
 								</label>
 							</div>
-							<div class="col-lg-6">
+							<div class="col-lg-6" style="margin-top: 10px;">
 								<div class="checkout__input">
-									<p>
-										몸무게<span>*</span>
-									</p>
-									<input type="text" name="pet_weight">
+									
+									<input type="text" name="pet_weight" placeholder="몸무게(kg)">
 								</div>
 							</div>
-							<div class="flex">
-								<button type="submit" class="site-btn"
-									style="margin: 20px 0 0 15px;">제출하기</button>
-								<ul>
+							<div class="regul">
+							<ul>
 									<li><span>*</span>은 필수 입력 사항입니다.</li>
 								</ul>
 							</div>
+								<div class="flex col-lg-6">
+								<button type="submit" class="site-btn"
+									style="margin: 20px 0 0 50px;">등록</button>
+							    <button type="button" class="site-btn" style="margin: 20px 0 0 20px;"
+							     onclick="javascript:history.back()">취소</button>
+							</div>
 						</div>
-
+						</div>
+						</form>
 					</div>
-				</form>
-			</div>
 		</div>
 	</section>
 	<!-- Checkout Section End -->

@@ -6,9 +6,22 @@ public class HealthVO {
 	
 	private int no2;
 	private String news_subject, news_img, news_content, news_subtitle;
+	private String news_date1,news_date2;
 	
 	
 
+	public String getNews_date1() {
+		return news_date1;
+	}
+	public void setNews_date1(String news_date1) {
+		this.news_date1 = news_date1;
+	}
+	public String getNews_date2() {
+		return news_date2;
+	}
+	public void setNews_date2(String news_date2) {
+		this.news_date2 = news_date2;
+	}
 	public String getNews_content() {
 		return news_content;
 	}

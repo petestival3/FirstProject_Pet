@@ -9,9 +9,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import com.sist.controller.RequestMapping;
 import com.sist.dao.HealthDAO;
 import com.sist.vo.*;
+
 
 public class HealthModel {
 	@RequestMapping("health/hsptmain.do")
@@ -176,17 +179,31 @@ request.setAttribute("main_jsp", "../health/hsptmain.jsp");
 }
 
 @RequestMapping("health/detail.do")
-public String hsptDetailList(HttpServletRequest request,HttpServletResponse response)
+public void hsptDetailList(HttpServletRequest request,HttpServletResponse response)
 {
 	String no=request.getParameter("no");
 	HealthDAO dao=HealthDAO.newInstance();
 	HealthVO vo=dao.hsptDetailList(Integer.parseInt(no));
 	
+	
+	
 	request.setAttribute("no", no);
 	request.setAttribute("vo", vo);
 	
-	request.setAttribute("main_jsp", "../health/detail.jsp");
-	return "../main/main.jsp";
+	JSONObject obj=new JSONObject();
+	obj.put("address", vo.getHospital_address());
+	obj.put("phone", vo.getHospital_phone());
+	
+	try
+	{
+		response.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		out.write(obj.toString());
+	}catch(Exception ex) {}
+	
+	
+	
+	
 }
 
 @RequestMapping("health/newsmain.do")
@@ -237,5 +254,20 @@ public String newsDetailList(HttpServletRequest request,HttpServletResponse resp
 	request.setAttribute("main_jsp", "../health/newsdetail.jsp");
 	return "../main/main.jsp";
 }
+
+//@RequestMapping("health/detail_ok.do")
+//public void health_detail_ok(HttpServletRequest request,HttpServletResponse response)
+//{
+//	String no=request.getParameter("no");
+//	HealthDAO dao=HealthDAO.newInstance();
+//	HealthVO vo=dao.hsptDetailList(Integer.parseInt(no));
+//	
+//	try {
+//		// Ajax로 값을 보냄 
+//		PrintWriter out=response.getWriter();
+//		out.write(String.valueOf(vo));
+//		out.write(String.valueOf(no)); // 문자열로 보내줘야됨
+//	}catch(Exception ex) {}
+//}
 
 }

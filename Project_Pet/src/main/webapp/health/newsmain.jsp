@@ -49,8 +49,9 @@
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
                         <h2>PetNews</h2>
-                        <div class="breadcrumb__text">
-                            <a href="../main/main.do">Home</a>
+                        <div class="breadcrumb__option">
+                            <a href="../main/main.do">HOME</a>
+                            <span>petnews</span>
                         </div>
                     </div>
                 </div>
@@ -127,15 +128,14 @@
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="blog__item">
                                 <div class="blog__item__pic">
-                                    <a href="#">
+                                    <a href="../health/newsdetail.do?no=${vo.no2 }">
                                         <img src="${vo.news_img}" style="max-width: 100%; max-height: 100%; border-radius: 10px; overflow: hidden;" alt="${vo.news_subject}">
                                         <div class="blog__item__text">
                                             <h5>
-                                                <a href="#">${vo.news_subject}</a>
+                                                <a href="../health/newsdetail.do?no=${vo.no2 }">${vo.news_subject}</a>
                                             </h5>
                                         </div>
-                                       
-                                        <a href="../health/newsdetail.do?no=${vo.no2 }" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
+
                                     </a>
                                 </div>
                             </div>

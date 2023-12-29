@@ -37,9 +37,9 @@
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
                         <h2>HospitalSearch</h2>
-                        <div class="breadcrumb__text">
-                            <a href="../main/main.do">Home</a>
-                            <span></span>
+                       <div class="breadcrumb__option">
+                            <a href="../main/main.do">HOME</a>
+                            <span>hospital</span>
                         </div>
                     </div>
                 </div>
@@ -70,6 +70,7 @@
 								</button>
 								</div>
 							</div>
+						</div>
 					
 					</form>
 				</div>

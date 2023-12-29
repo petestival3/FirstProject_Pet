@@ -10,6 +10,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Ogani | Template</title>
+<link rel="stylesheet" href="../shadow/css/shadowbox.css">
+<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+/* Shadowbox.init({
+	players:['iframe']
+})
+$(function(){
+$('#detail-link').click(function(){
+		Shadowbox.open({
+			content:'../health/detail.do',
+			player:'iframe',
+			title:'병원 상세보기',
+			width:350,
+			height:200
+		})
+	});
+}) */
+</script>
 <style type="text/css">
 .blog-details{
 	padding: 0px;
@@ -50,8 +69,8 @@ h2{
 			<c:forEach var="vo" items="${list }">
 				<tr>
 					<td width=10% class="text-center">${vo.no }</td>
-					<td width=35% class="text-center"><a
-						href="../health/detail.do?no=${vo.no }">${vo.hospital_name }</a></td>
+					<td width=35% class="text-center" id="detail-link"><a
+						href="#">${vo.hospital_name }</a></td>
 					<td width=40% class="text-center">${vo.hospital_address }</td>
 					<td width=15% class="text-center">${vo.hospital_phone }</td>
 				</tr>
@@ -86,7 +105,9 @@ h2{
 			</div>
 		</div>
 		</div>
-			
+		</div>
+		</div>
+		
 		</section>
 	<!-- Blog Details Section End -->
 
