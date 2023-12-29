@@ -10,21 +10,95 @@
 /*--------------*/
 /*장례식장 목록 페이지*/
 /*--------------*/
+li{
+    list-style: none;
+}
+
 .breadcrumb-section {
 	margin: 50px 0;
 }
+/*전체 장례식장 목록*/
 .f_list li{
-   list-style: none;
-   background-color: lightblue;
+   background-color: #f8f8ff;
+   border-radius : 30px;
    padding: 10px 0;
-   margin: 5px auto;
+   margin: 10px auto;
+}
+.f_list li a:hover{
+   color: #5a70e9 !important;
+}
+.f_list li:nth-child(1){
+   font-weight : 600;
+   background-color: #e8e8ee !important;
+   color : #333 !important;
+   display: flex;
+   justify-content: space-between;
+}
+.f_list li a{
+   color : #333 !important;
+   display: flex;
+   justify-content: space-between;
+}
+.f_list_num,
+.f_list li a span:nth-child(1){
+   text-align: center;
+   width: 60px;
+}
+.f_list_name,
+.f_list li a span:nth-child(2){
+   text-align: center;
+   width: 500px;
+}
+.f_list_addr{
+   text-align: center;
+   width: 500px;
+}
+.f_list li a span:nth-child(3){
+   width: 500px;
+}
+/*검색하기 사이드 메뉴*/
+.search_submenu{
+	background-color: #5a70e9;
+	text-align: center;
+	border-radius: 50%;
+	position: fixed;
+	right: 150px;
+	top: 600px;
+	width: 100px;
+	height: 100px;
+}
+.search_submenu a{
+	display: block;
+}
+.search_submenu i{
+	margin-top: 20px;
+	font-size: 25px;
+	color: #fff !important;
+}
+.search_submenu p{
+	color: #fff;
+}
+.search_submenu:hover{
+	 box-shadow: 0 10px 10px 10px rgba(90,112,233, 0.2);
+	 transition: all 0.4s ease-in-out;
+	 transform: translateY(-25px);
 }
 
-/*검색하기 사이드 메뉴*/
-
+/*장례 목록 페이지 나누기 번호*/
+.pagination{
+     margin: 30px 0 50px;
+}
+.pagination ul{
+     margin: 0 auto;
+     display: flex;
+     justify-content: space-between;
+     width: 100px;
+}
 </style>
 </head>
 <body>
+	<h2 style="text-align: center;">상세보기 다이얼로그로 처리하기</h2>
+
 	<!-- Breadcrumb Section Begin -->
 	<section class="breadcrumb-section set-bg"
 		data-setbg="../img/bread.jpg">
@@ -53,7 +127,7 @@
 	
 	<!-- 검색 사이드 매뉴 시작 -->
 	<div class="search_submenu">
-		<a href="search_f.do"> <i class="xi-calendar-add"></i>
+		<a href="search_f.do"> <i class="xi-search"></i>
 			<p>검색하기</p>
 		</a>
 	</div>
@@ -62,6 +136,11 @@
 	<!-- 장례 전체 목록 시작 -->
 	<div class="container">
 	<ul class="f_list">
+	        <li>
+	        <span class="f_list_num">번호</span>
+	        <span class="f_list_name">업체명</span>
+	        <span class="f_list_addr">주소</span>
+	        </li>
 		<c:forEach var="vo" items="${list }" varStatus="s">
 			<li><a href="../FuneralDetail/detail_f.do?CR_COM_NO=${vo.CR_COM_NO }">
 			<span>${vo.CR_COM_NO }</span>
@@ -91,9 +170,5 @@
 		</ul>
 	</nav>
 	<!-- 장례 전체 목록 페이지 종료 -->
-
-	<h1>
-		<a href="../FuneralDetail/detail_f.do">상세보기</a>
-	</h1>
 </body>
 </html>
