@@ -7,24 +7,70 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
-  		
-  	
-  	
-   
+/* 검색어 입력창 스타일 */
+#walkSearchBar {
+  height: 40px;
+  width: 300px;
+  padding: 0 10px;
+  border: 1px solid #ddd;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  outline: none;
+}
+.walkSearch{
+margin-top:50px;
+}
+.walkSearchList{
+display:none;
+}
 
 </style>
+
 
 </head>
 <body>
 
+<div class="walkSearch">
+<select id="walkSearchOption" name="walkSearchOption">
+<option value="전체">전체</option>
+<option value="서울">서울</option>
+<option value="경기">경기</option>
+<option value="인천">인천</option>
+<option value="전체">충남</option>
+<option value="충북">충북</option>
+<option value="강원">강원</option>
+<option value="전남">전남</option>
+<option value="울산">울산</option>
+<option value="경북">경북</option>
+<option value="경남">경남</option>
+<option value="부산">부산</option>
+<option value="대구">대구</option>
+<option value="전북">전북</option>
+<option value="광주">광주</option>
+<option value="세종">세종</option>
+<option value="대전">대전</option>
+<option value="제주">제주</option>
+</select>
+
+<input type="text" id="walkSearchBar" placeholder="검색어를 입력하세요" name="walkSearchBar">
+
+</div>
+                
+                
+         
+ <jsp:include page="walkHeader.jsp"></jsp:include>
+ 
   <div class="row ky">
     									
     									          
-	                <div class="col-lg-8 col-md-7">
-                    <div class="row">
+	                <div class="col-lg-8 col-md-7 walkNormalList">
+                    <div class="row ">
+                    	
+                    	
                     	<c:forEach var="vo" items="${list }">
-                        <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="col-lg-4 col-md-4 col-sm-4 ">
                         <a href="../walk/walkDetail.do?wno=${vo.wno }&page=${curpage}&loc=${loc}">
                             <div class="blog__item walk_wrapper">
                                 
@@ -40,11 +86,12 @@
                             </a>
                         </div>
                         </c:forEach>
+                       
                    
                         
                         <div class="col-lg-12">
                             
-                            <div class="product__pagination blog__pagination prod_page">
+                            <div class="product__pagination blog__pagination prod_page ">
                                <center>
                     <c:if test="${start > 1}">
                         <a href="../walk/walkList.do?page=${start-1 }&loc=${loc}"><i class="fa fa-long-arrow-left"></i></a>
@@ -70,6 +117,36 @@
                         </div>
                     </div>
                 </div>
+                
+                
+                
+                
+                
+                
+                 <div class="col-lg-8 col-md-7 walkSearchList">
+                    <div class="row " id="walkSearchWrapper">
+                    	
+                    	
+                    	
+                       
+                   
+                        
+                        <div class="col-lg-12">
+                            
+                            <div class="product__pagination blog__pagination prod_page" id="walkSearchPage">
+                               <center>
+                     		   </center>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                
+                
+                
+                
+                
             </div>
 
 

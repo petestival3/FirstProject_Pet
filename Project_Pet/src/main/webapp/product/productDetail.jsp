@@ -57,7 +57,28 @@ function requestPay() {
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>							 <!--
+<body>	
+
+ <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>산책</h2>
+                        <div class="breadcrumb__option">
+                            <a href="./index.html">산책을 느껴보세요</a>
+                            <span>산책</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+						 <!--
                     현재 코드는 상세보기 하단에 최근본 상품을 출력하고 있는데 
                     클릭시 바로 상세보기로 넘어가게 한다 . 다만 일반 목록에서 출력하는것과 차별성을 둔
                      DetailBefore.do?count=1 => count 값을 1을 줬는데 

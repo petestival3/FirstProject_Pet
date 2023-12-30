@@ -156,5 +156,6 @@
     <script src="../js/product_calculate.js"></script>
     <script src="../js/walk_reply_ajax.js"></script>
     <script src="../js/walkCourse.js"></script>
+    <script src="../js/walkSearchList.js"></script>
 </body>
 </html>
