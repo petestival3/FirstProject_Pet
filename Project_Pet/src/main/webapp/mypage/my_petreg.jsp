@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -13,18 +13,18 @@
 
 <!-- Google Font -->
 <link
-	href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
-	rel="stylesheet">
+   href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
+   rel="stylesheet">
 
 <!-- Css Styles -->
 <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="../css/font-awesome.min.css"
-	type="text/css">
+   type="text/css">
 <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
 <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
 <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css">
 <link rel="stylesheet" href="../css/owl.carousel.min.css"
-	type="text/css">
+   type="text/css">
 <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="../css/style.css" type="text/css">
 
@@ -50,34 +50,34 @@
 <style type="text/css">
 
 .petreg_input p {
-	color: black;
+   color: black;
 }
 
 p span {
-	color: red;
+   color: red;
 }
 
 .flex {
-	display: flex;
-	align-items: center; /* 세로 중앙 정렬을 위한 속성 */
+   display: flex;
+   align-items: center; /* 세로 중앙 정렬을 위한 속성 */
 }
 .regul {
-	display: flex;
-	align-items: center;
+   display: flex;
+   align-items: center;
 }
 
 .regul ul {
-	margin: 0px 0 0 20px;
-	float: right;
+   margin: 0px 0 0 20px;
+   float: right;
 }
 
 .regul li {
-	list-style-type: none;
-	color: grey;
+   list-style-type: none;
+   color: grey;
 }
 
 .regul li span {
-	color: red;
+   color: red;
 }
   #selectedPetImage {
         width: 200px; /* 원하는 크기로 조절 */
@@ -96,8 +96,8 @@ p span {
 </head>
 <body>
 
-	<!-- Checkout Section Begin -->
-	<section class="checkout spad">
+   <!-- Checkout Section Begin -->
+   <section class="checkout spad">
     <div class="container">
         <div class="checkout__form">
             <div class="petreg_title col-lg-2" style="margin-left: 440px; text-align: center;">
@@ -116,63 +116,70 @@ p span {
                                 <input type="file" name="upload" size=25 required id="petImageInput" accept="image/*" onchange="displaySelectedImage()">
                             </div>
                         </div>
+                         <div class="col-lg-6">
+                        <div class="checkout__input">
+                           
+                           <input type="text" name="pet_name"
+                              placeholder="반려동물의 이름을 입력하세요" required>
+                        </div>
+                     </div>
                         <div class="col-lg-6">
-								<div class="checkout__input">
-									
-									<input type="text" name="pet_bday"
-										placeholder="반려동물의 생년월일을 입력하세요" required>
-								</div>
-							</div>
-							<div class="col-lg-6" >
-								<label for="acc">
-									<p>
-										성별<span>*</span>
-									</p> <input type="radio" name="pet_gender" id="male" value="남아"
-									required> 남아 <span class="radio" style="margin-right: 10px;"></span>
-									<input type="radio" name="pet_gender" id="female" value="여아" required>
-									여아 <span class="radio"></span>
-								</label>
-							</div>
-							<div class="col-lg-6">
-								<label for="acc"> <input type="checkbox"
-									name="pet_neutralize" id="neutralize" required> 중성화여부 <span
-									class="checkmark"></span>
-								</label>
-							</div>
-							<div class="col-lg-6" style="margin-top: 10px;">
-								<div class="checkout__input">
-									
-									<input type="text" name="pet_weight" placeholder="몸무게(kg)">
-								</div>
-							</div>
-							<div class="regul">
-							<ul>
-									<li><span>*</span>은 필수 입력 사항입니다.</li>
-								</ul>
-							</div>
-								<div class="flex col-lg-6">
-								<button type="submit" class="site-btn"
-									style="margin: 20px 0 0 50px;">등록</button>
-							    <button type="button" class="site-btn" style="margin: 20px 0 0 20px;"
-							     onclick="javascript:history.back()">취소</button>
-							</div>
-						</div>
-						</div>
-						</form>
-					</div>
-		</div>
-	</section>
-	<!-- Checkout Section End -->
+                        <div class="checkout__input">
+                           
+                           <input type="text" name="pet_bday"
+                              placeholder="반려동물의 생년월일을 입력하세요" required>
+                        </div>
+                     </div>
+                     <div class="col-lg-6" >
+                        <label for="acc">
+                           <p>
+                              성별<span>*</span>
+                           </p> <input type="radio" name="pet_gender" id="male" value="남아"
+                           required> 남아 <span class="radio" style="margin-right: 10px;"></span>
+                           <input type="radio" name="pet_gender" id="female" value="여아" required>
+                           여아 <span class="radio"></span>
+                        </label>
+                     </div>
+                     <div class="col-lg-6">
+                        <label for="acc"> <input type="checkbox"
+                           name="pet_neutralize" id="neutralize" required> 중성화여부 <span
+                           class="checkmark"></span>
+                        </label>
+                     </div>
+                     <div class="col-lg-6" style="margin-top: 10px;">
+                        <div class="checkout__input">
+                           
+                           <input type="text" name="pet_weight" placeholder="몸무게(kg)">
+                        </div>
+                     </div>
+                     <div class="regul">
+                     <ul>
+                           <li><span>*</span>은 필수 입력 사항입니다.</li>
+                        </ul>
+                     </div>
+                        <div class="flex col-lg-6">
+                        <button type="submit" class="site-btn"
+                           style="margin: 20px 0 0 50px;">등록</button>
+                         <button type="button" class="site-btn" style="margin: 20px 0 0 20px;"
+                          onclick="javascript:history.back()">취소</button>
+                     </div>
+                  </div>
+                  </div>
+                  </form>
+               </div>
+      </div>
+   </section>
+   <!-- Checkout Section End -->
 
-	<!-- Js Plugins -->
-	<script src="../js/jquery-3.3.1.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/jquery.nice-select.min.js"></script>
-	<script src="../js/jquery-ui.min.js"></script>
-	<script src="../js/jquery.slicknav.js"></script>
-	<script src="../js/mixitup.min.js"></script>
-	<script src="../js/owl.carousel.min.js"></script>
-	<script src="../js/main.js"></script>
+   <!-- Js Plugins -->
+   <script src="../js/jquery-3.3.1.min.js"></script>
+   <script src="../js/bootstrap.min.js"></script>
+   <script src="../js/jquery.nice-select.min.js"></script>
+   <script src="../js/jquery-ui.min.js"></script>
+   <script src="../js/jquery.slicknav.js"></script>
+   <script src="../js/mixitup.min.js"></script>
+   <script src="../js/owl.carousel.min.js"></script>
+   <script src="../js/main.js"></script>
 
 
 

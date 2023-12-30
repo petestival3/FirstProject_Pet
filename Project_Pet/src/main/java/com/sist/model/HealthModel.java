@@ -185,14 +185,10 @@ public void hsptDetailList(HttpServletRequest request,HttpServletResponse respon
 	HealthDAO dao=HealthDAO.newInstance();
 	HealthVO vo=dao.hsptDetailList(Integer.parseInt(no));
 	
-	
-	
-	request.setAttribute("no", no);
-	request.setAttribute("vo", vo);
-	
 	JSONObject obj=new JSONObject();
 	obj.put("address", vo.getHospital_address());
 	obj.put("phone", vo.getHospital_phone());
+	obj.put("name", vo.getHospital_name());
 	
 	try
 	{

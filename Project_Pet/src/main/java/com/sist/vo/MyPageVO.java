@@ -2,7 +2,15 @@ package com.sist.vo;
 
 public class MyPageVO {
 	private int petno, pet_filesize;
-	private String pet_image, pet_name, pet_bday, pet_gender, pet_weight, pet_filename;
+	private String pet_image, pet_name, pet_bday, pet_gender, pet_weight, pet_filename, user_id;
+	
+	
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	public int getPetno() {
 		return petno;
 	}

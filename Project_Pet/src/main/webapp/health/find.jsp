@@ -18,8 +18,24 @@
 <title>Ogani | Template</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23e8040d553778eeeb77f0900cb92322&libraries=services"></script>
 <script type="text/javascript">
+
 $(function() {
+	var map;
+    var mapContainer;
+
+
+    $.getScript('//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_API_KEY&libraries=services', function() {
+        // 지도 초기화 코드
+        mapContainer = document.getElementById('map');
+        mapOption = {
+            center: new kakao.maps.LatLng(37.566826, 126.9786567),
+            level: 3
+        };
+        map = new kakao.maps.Map(mapContainer, mapOption);
+    });
+	
     $('.hsptDetail').click(function() {
         let no = $(this).attr("data-no");
         $.ajax({
@@ -31,6 +47,7 @@ $(function() {
                 let json = JSON.parse(res);
                 $('#phone').text(json.phone);
                 $('#address').text(json.address);
+                $('#name').text(json.name);
 
                 $('#dialog').dialog({
                     autoOpen: false,
@@ -38,30 +55,36 @@ $(function() {
                     height: 650,
                     modal: true
                 }).dialog("open");
+                
+                $.ajax({
+                    type: "get",
+                    url: "https://dapi.kakao.com/v2/local/search/address.json?query=&page=1&size=10&no=1",
+                    data: {"no": no},
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader("Authorization", "KakaoAK 23e8040d553778eeeb77f0900cb92322");
+                    },
+                    success: function(res) {
+                        var hospitalAddress = res.address;
+                        displayMap(hospitalAddress);
+                        
+                        
+                        
+                        $('#dialog').dialog({
+                            autoOpen: false,
+                            width: 1150,
+                            height: 650,
+                            modal: true
+                        }).dialog("open");
+                    }
+                });
+                
             }
         });
-        $.ajax({
-            type: "get",
-            url: "https://dapi.kakao.com/v2/search/web",
-            headers: {"Authorization": 'KakaoAK 23e8040d553778eeeb77f0900cb92322'},
-            data: {"no": no},
-           
-            success: function(res) {
-						
-            	var hospitalAddress = res.address;
-            	
-            	displayMap(hospitalAddress);
-            	
-                $('#dialog').dialog({
-                    autoOpen: false,
-                    width: 1150,
-                    height: 650,
-                    modal: true
-                }).dialog("open");
-            }
-        });
+        
     });
 });
+
+
 
 </script>
 
@@ -70,7 +93,7 @@ $(function() {
 <body>
 
 	<!-- Blog Details Section Begin -->
-			<section class="blog-details spad">
+	<section class="blog-details spad">
 		<div class="container" style="text-align: center;">
 			<div class="row">
 
@@ -101,7 +124,7 @@ $(function() {
 					<div class="row" style="text-align: center;">
 						<div class="order-3"
 							style="margin: 0 auto; padding: 0px 0px 20px 0px;">
-							<div class="product__pagination" style= "margin: 10px;">
+							<div class="product__pagination" style="margin: 10px;">
 								<c:if test="${startPage>1 }">
 									<a href="find.do?page=${startPage-1}"><i
 										class="fa fa-long-arrow-left"></i></a>
@@ -128,20 +151,42 @@ $(function() {
 				</div>
 
 			</div>
-				
-		<div id="dialog" title="병원정보상세보기" style="display:none">
-					<table class="table">
-					<tr>
-						<td width="35%" height="45%" align="center" >
-						<span class="icon_phone"></span>
-							<h4>Phone</h4>
-							<p id="phone"></p>
-						</td>
-						<td width="65%" align="center" rowspan="4">
-							<div id="map" style="width: 500px%; height: 450px;"></div> 
-							<script
-								type="text/javascript"
-								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23e8040d553778eeeb77f0900cb92322&libraries=services"></script>
+
+			<div id="dialog" title="병원정보상세보기" style="display: none">
+				<div class="container">
+					<div class="row">
+						<!-- 왼쪽에 정보 -->
+						<div class="col-sm-5">
+							<table class="table">
+								<tr>
+									<td width="35%" height="45%" align="center"><span
+										class="fa fa-hospital-o"></span>
+										<h4>name</h4>
+										<p id="name"></p></td>
+								</tr>
+								<tr>
+									<td width="35%" height="45%" align="center"><span
+										class="icon_phone"></span>
+										<h4>Phone</h4>
+										<p id="phone"></p></td>
+								</tr>
+								<tr>
+									<td width="35%" height="35%" align="center"><span
+										class="icon_pin_alt"></span>
+										<h4>Address</h4>
+										<p id="address"></p></td>
+								</tr>
+								<tr>
+									<td width="35%" align="center"><span
+										class="icon_clock_alt"></span>
+										<h4>Reservation</h4> <a href="#">예약하기</a></td>
+								</tr>
+							</table>
+							<a href="javascript:history.back()" class="primary-btn">목 록</a>
+						</div>
+						<!-- 오른쪽에 지도 -->
+						<div class="col-sm-7">
+							<div id="map" style="width: 100%; height: 450px;"></div>
 							<script>
 					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 					mapOption = {
@@ -187,22 +232,13 @@ $(function() {
 										}
 									});
 				</script>
-						</td>
-					</tr>
-					<tr>
-						<td width="35%" height="45%" align="center"><span
-							class="icon_pin_alt"></span>
-							<h4>Address</h4>
-							<p id="address"></p></td>
-					</tr>
-					<tr>
-						<td width="35%" align="center"><span class="icon_clock_alt"></span>
-							<h4>Reservation</h4> <a href="#">예약하기</a></td>
-				</table>
-				<a href="../health/find.do" class="primary-btn">목 록</a>
+						</div>
+					</div>
 				</div>
-				</div>
-				</section>
+			</div>
+		</div>
+
+	</section>
 	<!-- Blog Details Section End -->
 
 </body>

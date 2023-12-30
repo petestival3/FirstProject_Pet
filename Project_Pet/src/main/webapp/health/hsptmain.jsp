@@ -9,28 +9,15 @@
 <meta name="keywords" content="Ogani, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="../css/health.css">
 <title>Ogani | Template</title>
-<style type="text/css">
-
-.product__pagination a.selected {
-	background-color: #007bff;
-	color: #fff;
-	border: 1px solid #007bff;
-}
-.breadcrumb-section
-{
-	margin-top: 30px;
-}
-.search_2 {
-	float: right;
-}
-</style>
 
 </head>
 <body>
 <div id="preloder">
 		<div class="loader"></div>
 	</div>
+	<div class="hspt_main">
 	<section class="breadcrumb-section set-bg" data-setbg="../img/banner_2.jpg">
         <div class="container">
             <div class="row">
@@ -46,6 +33,7 @@
             </div>
         </div>
     </section>
+    </div>
 
 		<div class="container">
 				<div class="blog__sidebar__search">

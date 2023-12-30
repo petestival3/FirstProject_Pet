@@ -2,9 +2,13 @@ package com.sist.model;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -32,7 +36,7 @@ public String resList(HttpServletRequest request, HttpServletResponse response)
 @RequestMapping("mypage/my_petreg.do")
 public String petregData(HttpServletRequest request, HttpServletResponse response) throws IOException
 {
-	
+
 	
 	request.setAttribute("main_jsp", "../mypage/my_petreg.jsp");
 	return "../main/main.jsp";
@@ -43,7 +47,9 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 	    try {
 	        request.setCharacterEncoding("UTF-8");
 	    } catch (Exception ex) {}
-
+	    
+	  
+	    
 	    MyPageDAO dao = MyPageDAO.newInstance();
 	    MyPageVO vo = new MyPageVO();
 
@@ -64,15 +70,20 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 	    }
 
 	    // 파라미터값 받기
+	    HttpSession session=request.getSession();
+	    String user_Id = (String) session.getAttribute("id");
+	    
 	    String pet_name = mr.getParameter("pet_name");
 	    String pet_bday = mr.getParameter("pet_bday");
 	    String pet_gender = mr.getParameter("pet_gender");
 	    String pet_weight = mr.getParameter("pet_weight");
 
+	    vo.setUser_id(user_Id);
 	    vo.setPet_name(pet_name);
 	    vo.setPet_bday(pet_bday);
 	    vo.setPet_gender(pet_gender);
 	    vo.setPet_weight(pet_weight);
+	    
 
 //	    System.out.println("pet_name: " + pet_name);
 //	    System.out.println("pet_bday: " + pet_bday);
@@ -81,9 +92,55 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 //	    System.out.println("pet_filename: " + filename);
 
 	    dao.petRegInsert(vo);
+	 
 
 	    return "redirect:../mypage/my_petreg.do";
 	
 }
+//	@RequestMapping("mypage/my_petinfo.do")
+//	public void petInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//	    try {
+//	        request.setCharacterEncoding("UTF-8");
+//	    } catch (Exception ex) {}
+//
+//	    HttpSession session=request.getSession();
+//		session.getAttribute("id");
+//
+//	    MyPageVO vo = new MyPageVO();
+//
+////	    String pet_name = request.getParameter("pet_name");
+////	    String pet_bday = request.getParameter("pet_bday");
+////	    String pet_gender = request.getParameter("pet_gender");
+////	    String pet_weight = request.getParameter("pet_weight");
+//	    String id=(String) request.getParameter("id");
+//	    
+//	    
+//	    JSONObject obj=new JSONObject();
+//	    obj.put("pet_name", vo.getPet_name());
+//	    obj.put("pet_gender", vo.getPet_gender());
+//	    obj.put("pet_bday", vo.getPet_bday());
+//	    obj.put("pet_weight", vo.getPet_weight());
+//	    
+//	    try
+//		{
+//			response.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
+//			PrintWriter out=response.getWriter();
+//			out.write(obj.toString());
+//		}catch(Exception ex) {}
+//	   
+//}
+	
+	
+	
+
+//@RequestMapping("mypage/my_main.do")
+//public String petInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//	MyPageDAO dao = MyPageDAO.newInstance();
+//	String pno = request.getParameter("pno");
+//	dao.petInfo(Integer.parseInt(pno));
+//
+//	request.setAttribute("main_jsp", "../mypage/my_main.jsp");
+//	return "../main/main.jsp";
+//}
 
 }
