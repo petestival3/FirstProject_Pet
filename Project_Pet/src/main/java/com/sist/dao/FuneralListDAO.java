@@ -89,4 +89,35 @@ public class FuneralListDAO {
 		   }
 		   return total;
 	   }
+	   
+	   //장례 리스트 목록 상세보기 (다이얼로그)
+	   public FuneralListVO funeralFindDetailData(int CR_COM_NO)
+	   {
+		   FuneralListVO vo=new FuneralListVO();
+		   try
+		   {
+			   conn=dbconn.getConnection();
+			   String sql="SELECT CR_COM_NO,CR_COM_SECTOR,CR_COM_NAME,CR_COM_PHONE,CR_COM_LOC,CR_COM_HOMEPAGE "
+					     +"FROM FUNERAL_COMPANY_LIST "
+					     +"WHERE CR_COM_NO="+CR_COM_NO;
+			   ps=conn.prepareStatement(sql);
+			   ResultSet rs=ps.executeQuery();
+			   rs.next();
+			   vo.setCR_COM_NO(rs.getInt(1));
+			   vo.setCR_COM_SECTOR(rs.getString(2));
+			   vo.setCR_COM_NAME(rs.getString(3));
+			   vo.setCR_COM_PHONE(rs.getString(4));
+			   vo.setCR_COM_LOC(rs.getString(5));
+			   vo.setCR_COM_HOMEPAGE(rs.getString(6));
+			   rs.close();
+		   }catch(Exception ex)
+		   {
+			   ex.printStackTrace();
+		   }
+		   finally
+		   {
+			   dbconn.disConnection(conn, ps);
+		   }
+		   return vo;
+	   }
 }

@@ -141,17 +141,13 @@ li {
 <script type="text/javascript">
 $(function(){
 	/* $( "#dialog" ).dialog(); */
-	$('.images').click(function(){
-		let gu=$(this).attr('data-value')
-		location.href="../food/location.do?gu="+gu
-	});
 	
-	$('.foodImg').click(function(){
-		let fno=$(this).attr("data-fno");
+	$('.f_list_li').click(function(){
+		let CR_COM_NO=$(this).attr("data-fno");
 		$.ajax({
 			type:'post',
-			url:'../food/location_detail.do',
-			data:{"fno":fno},
+			url:'../FuneralDetail/detail_f.do',
+			data:{"CR_COM_NO":CR_COM_NO},
 			success:function(res){
 				let json=JSON.parse(res);
 				
@@ -174,6 +170,7 @@ $(function(){
 				$('#content').text(json.content);
 				$('#poster').attr("src",json.poster)
 				//$('#dialog').attr("title",json.name+" 상세보기")
+				
 				$('#dialog').dialog({
 					autoOpen:false,
 					width:650,
@@ -231,8 +228,9 @@ $(function(){
 			<li><span class="f_list_num">번호</span> <span class="f_list_name">업체명</span>
 				<span class="f_list_addr">주소</span></li>
 			<c:forEach var="vo" items="${list }" varStatus="s">
-				<li><a
-					href="../FuneralDetail/detail_f.do?CR_COM_NO=${vo.CR_COM_NO }">
+				<li class="f_list_li" data-fno="${vo.CR_COM_NO }">
+				<!--<a href="../FuneralDetail/detail_f.do?CR_COM_NO=${vo.CR_COM_NO }"> -->
+				<a href="#">
 						<span>${vo.CR_COM_NO }</span> <span>${vo.CR_COM_NAME }</span> <span>${vo.CR_COM_LOC }</span>
 				</a></li>
 			</c:forEach>

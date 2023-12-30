@@ -74,5 +74,4 @@ public class FuneralDetailDAO {
 		return fdvo;
 	}
 	
-	
 }
