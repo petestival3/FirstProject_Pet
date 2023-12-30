@@ -39,7 +39,7 @@
 				<div class="blog__sidebar__search">
 				<form method="post" action="hsptsearch.do">
 				 
-					<div class="col-lg-4 col-md-5 order-md-1 order-1" style="margin-left: 655px; margin-top: 30px;">
+					<div class="col-lg-5 col-md-5 order-md-1 order-1" style="margin-left: 40px; margin-top: 30px;">
 							<div class="search_1" style="display: flex; align-items: center;">
 							<select id="state" name="st">
 								<option value="전체" ${st eq "전체"?"selected":""}>전체</option>
@@ -53,7 +53,7 @@
 								<input type="text" placeholder="Search..." name="fd"
 									value="${fd eq null?"":fd }">
 										
-								<button type="submit">
+								<button type="submit" style="margin-right: 20px;">
 									<span class="icon_search" ></span>
 								</button>
 								</div>

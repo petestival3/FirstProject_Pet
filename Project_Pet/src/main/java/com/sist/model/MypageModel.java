@@ -86,7 +86,7 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 	    vo.setPet_check(pet_check);
 	    vo.setPet_weight(pet_weight);
 	    
-	    System.out.println(pet_check);
+	    
 	    
 
 //	    System.out.println("pet_name: " + pet_name);

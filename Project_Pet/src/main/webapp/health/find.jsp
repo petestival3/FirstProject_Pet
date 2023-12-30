@@ -95,16 +95,12 @@ $(function() {
 	<!-- Blog Details Section Begin -->
 	<section class="blog-details spad">
 		<div class="container" style="text-align: center;">
-			<div class="row">
+			<div class="row" style="margin-top: -15px;">
 
 
 				<div class="blog__sidebar__item">
 
-					<div class="row" style="margin-top: 10px;">
-						<div class="hspt-title">
-							<h2>병원목록</h2>
-						</div>
-					</div>
+					
 					<table class="hsptfind-table">
 						<tr class="success">
 							<th width=5% class="text-center">번호</th>

@@ -106,7 +106,7 @@ public class HealthDAO {
 						+ "ORDER BY no ASC)) "
 						+ "WHERE num BETWEEN ? AND ?";
 //			   System.out.println("Executing SQL for 전체: " + sql);
-			   System.out.println("전체 출력");
+//			   System.out.println("전체 출력");
 			    ps=conn.prepareStatement(sql);
 	            ps.setString(1, fd);
 				ps.setInt(2, start);
@@ -120,7 +120,7 @@ public class HealthDAO {
 	                    + "ORDER BY no ASC)) "
 	                    + "WHERE num BETWEEN ? AND ?";
 //	          System.out.println("Executing SQL for specific state: " + sql); 
-	          System.out.println("서울 출력");
+//	          System.out.println("서울 출력");
 	           ps = conn.prepareStatement(sql);
 	            ps.setString(1, st);
 	            ps.setString(2, fd);

@@ -9,13 +9,33 @@
 <meta name="keywords" content="Ogani, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Ogani | Template</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="../css/health.css">
+<style type="text/css">
 
-<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
+
+</style>
+<title>Ogani | Template</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23e8040d553778eeeb77f0900cb92322&libraries=services"></script>
 <script type="text/javascript">
+
 $(function() {
+	var map;
+    var mapContainer;
+
+
+    $.getScript('//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_API_KEY&libraries=services', function() {
+        // 지도 초기화 코드
+        mapContainer = document.getElementById('map');
+        mapOption = {
+            center: new kakao.maps.LatLng(37.566826, 126.9786567),
+            level: 3
+        };
+        map = new kakao.maps.Map(mapContainer, mapOption);
+    });
+	
     $('.hsptDetail').click(function() {
         let no = $(this).attr("data-no");
         $.ajax({
@@ -28,22 +48,45 @@ $(function() {
                 $('#phone').text(json.phone);
                 $('#address').text(json.address);
                 $('#name').text(json.name);
-                
+
                 $('#dialog').dialog({
                     autoOpen: false,
                     width: 1150,
                     height: 650,
                     modal: true
                 }).dialog("open");
+                
+                $.ajax({
+                    type: "get",
+                    url: "https://dapi.kakao.com/v2/local/search/address.json?query=&page=1&size=10&no=1",
+                    data: {"no": no},
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader("Authorization", "KakaoAK 23e8040d553778eeeb77f0900cb92322");
+                    },
+                    success: function(res) {
+                        var hospitalAddress = res.address;
+                        displayMap(hospitalAddress);
+                        
+                        
+                        
+                        $('#dialog').dialog({
+                            autoOpen: false,
+                            width: 1150,
+                            height: 650,
+                            modal: true
+                        }).dialog("open");
+                    }
+                });
+                
             }
         });
+        
     });
 });
+
+
+
 </script>
-<style type="text/css">
-
-
-</style>
 
 </head>
 
@@ -51,17 +94,14 @@ $(function() {
 
 	<!-- Blog Details Section Begin -->
 	<section class="blog-details spad">
-				<div class="container">
-				<div class="row">
+		<div class="container" style="text-align: center;">
+			<div class="row" style="margin-top: -15px;">
 
-			<!-- 검색바 -->
-			
-			<div class="blog__sidebar__item" style="width: 1030px; height: 800px;">
-		<div class="row" style="margin-top: 10px;">
-						<div class="hspt-title">
-							<h2>병원목록</h2>
-						</div>
-		<table class="hsptfind-table">
+
+				<div class="blog__sidebar__item">
+
+					
+					<table class="hsptfind-table">
 						<tr class="success">
 							<th width=5% class="text-center">번호</th>
 							<th width=35% class="text-center">병원명</th>
@@ -77,37 +117,39 @@ $(function() {
 							</tr>
 						</c:forEach>
 					</table>
-		</div>
-	
-	
-	
-			<div class="row">
-			<div class="order-3" style="margin: 0 auto; padding: 10px 0px 20px 0px;">
-				<div class="product__pagination">
-					<c:if test="${startPage>1 }">
-						<a href="hsptsearch.do?page=${startPage-1}&st=${st }&fd=${fd }"><i
-							class="fa fa-long-arrow-left"></i></a>
-					</c:if>
-					<c:forEach var="i" begin="${startPage }" end="${endPage }">
-						<c:choose>
-							<c:when test="${i eq curpage}">
-								<a href="hsptsearch.do?page=${i}&st=${st }&fd=${fd }" class="selected">${i}</a>
-							</c:when>
-							<c:otherwise>
-								<a href="hsptsearch.do?page=${i}&st=${st }&fd=${fd }">${i}</a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<c:if test="${endPage<totalpage }">
-						<a href="hsptsearch.do?page=${endPage+1}&st=${st }&fd=${fd }"><i
-							class="fa fa-long-arrow-right"></i></a>
-					</c:if>
+					<div class="row" style="text-align: center;">
+						<div class="order-3"
+							style="margin: 0 auto; padding: 0px 0px 20px 0px;">
+							<div class="product__pagination" style="margin: 10px;">
+								<c:if test="${startPage>1 }">
+									<a href="hsptsearch.do?page=${startPage-1}&st=${st }&fd=${fd }"><i
+										class="fa fa-long-arrow-left"></i></a>
+								</c:if>
+								<c:forEach var="i" begin="${startPage }" end="${endPage }">
+									<c:choose>
+										<c:when test="${i eq curpage}">
+											<a href="hsptsearch.do?page=${i}&st=${st }&fd=${fd }"
+												class="selected">${i}</a>
+										</c:when>
+										<c:otherwise>
+											<a href="hsptsearch.do?page=${i}&st=${st }&fd=${fd }">${i}</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<c:if test="${endPage<totalpage }">
+									<a href="hsptsearch.do?page=${endPage+1}&st=${st }&fd=${fd }"><i
+										class="fa fa-long-arrow-right"></i></a>
+								</c:if>
+							</div>
+						</div>
+
+					</div>
+
 				</div>
+
 			</div>
-		</div>
-		</div>
-		</div>
-				<div id="dialog" title="병원정보상세보기" style="display: none">
+
+			<div id="dialog" title="병원정보상세보기" style="display: none">
 				<div class="container">
 					<div class="row">
 						<!-- 왼쪽에 정보 -->
