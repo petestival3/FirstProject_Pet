@@ -71,7 +71,7 @@ display:none;
                     	
                     	<c:forEach var="vo" items="${list }">
                         <div class="col-lg-4 col-md-4 col-sm-4 ">
-                        <a href="../walk/walkDetail.do?wno=${vo.wno }&page=${curpage}&loc=${loc}">
+                        <a href="../walk/walkDetail.do?wno=${vo.wno }">
                             <div class="blog__item walk_wrapper">
                                 
                                 <div class="blog__item__text walk_list_style">

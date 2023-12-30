@@ -16,6 +16,9 @@ import com.sist.dao.WalkDAO;
 import com.sist.dao.*;
 import com.sist.vo.*;
 import com.sist.vo.WalkVO;
+
+import oracle.net.aso.l;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -49,9 +52,10 @@ public class WalkModel {
 		request.setAttribute("loc", loc);
 		request.setAttribute("start", start);
 		request.setAttribute("end", end);
+		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("walk_jsp", "../walk/walkList.jsp");
 		request.setAttribute("main_jsp", "../walk/walkMain.jsp");
-		request.setAttribute("totalpage", totalpage);
+		
 	
 				
 		
@@ -64,8 +68,7 @@ public class WalkModel {
 	public String walkDetail(HttpServletRequest request, HttpServletResponse response) {
 		
 		String wno=request.getParameter("wno");
-		String page=request.getParameter("page");
-		String loc=request.getParameter("loc");
+		
 		
 		WalkDAO dao=WalkDAO.newInstance();
 		
@@ -75,8 +78,7 @@ public class WalkModel {
 		//코스별 기능구현 에이젝스.....
 			request.setAttribute("csSize", courseList.size());
 			request.setAttribute("courseList", courseList);
-		request.setAttribute("loc", loc);
-		request.setAttribute("curpage", page);
+	
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../walk/walkDetail.jsp");
 			
@@ -85,6 +87,71 @@ public class WalkModel {
 		return "../main/main.jsp";
 	
 }
+	@RequestMapping("walk/walkSearchList.do")
+	public void walkSearchList(HttpServletRequest request, HttpServletResponse response) {
+		
+		
+		  try
+		  {
+			  request.setCharacterEncoding("UTF-8");
+		  }catch(Exception ex) {}
+		  
+		  String loc=request.getParameter("loc");
+		  String w_name=request.getParameter("w_name");
+		 
+		  WalkDAO dao=WalkDAO.newInstance();
+		  JSONArray arr=new JSONArray();
+		
+		  List<WalkVO>list =dao.walkSearchList(loc, w_name, 1);
+		  
+		  if(list.size()==0)
+		  {
+			  JSONObject obj=new JSONObject();
+			  obj.put("listSize", list.size());
+			  obj.put("msg", "검색결과가 없습니다.");
+			  arr.add(obj);
+		  }
+		  else
+		  {
+			  int i=0;
+			
+			  
+			  for(WalkVO vo:list)
+			  {
+				 
+				  JSONObject obj=new JSONObject();
+				  	obj.put("wno", vo.getWno());
+				  	obj.put("w_name", vo.getWname());
+				  	obj.put("signgu_name", vo.getSigngu_name());
+				  	obj.put("address", vo.getAddress());
+				  	obj.put("cla", vo.getcLa());
+				  	obj.put("clo", vo.getcLo());
+				 
+				
+				  if(i==0)
+				  {
+					 obj.put("listSize", list.size());
+				  }
+				  arr.add(obj);
+				  
+				  i++;
+			  }
+		  }
+		 
+		  try
+		  {
+			  response.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
+			  PrintWriter out=response.getWriter();
+			  out.write(arr.toJSONString());
+		  }catch(Exception ex) {
+			  ex.printStackTrace();
+			  
+		  }
+		  
+		
+	
+	}
+	
 	
 	
 	

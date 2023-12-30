@@ -37,8 +37,10 @@
     <!-- Blog Details Section Begin -->
     <section class="blog-details spad">
         <div class="container">
-         <span class="back_walk_list"><a href="../walk/walkList.do?page=${param.page }&loc=${param.loc}"><img src="../img/left.png.svg" alt="">목록</a></span>
+        	
+          <span class="back_walk_list"><a href="javascript:history.back()"><img src="../img/left.png.svg" alt="">목록</a></span>
         
+         
             <div class="row">
             	
                 <div class="col-lg-4 col-md-5 order-md-1 order-2">

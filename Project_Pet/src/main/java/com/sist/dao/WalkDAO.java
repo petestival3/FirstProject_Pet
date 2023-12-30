@@ -139,6 +139,67 @@ public List<WalkVO> walkList(String loc,int page){
 
 
 
+public synchronized List<WalkVO> walkSearchList(String loc,String w_name,int page){
+	List<WalkVO>list=new ArrayList<WalkVO>();
+	try {
+		String msg="";
+		if(!loc.equals("전체")) {
+			msg="si_name=? AND ";
+		}
+		
+		conn=dbconn.getConnection();
+		
+		String sql="SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo,num "
+				+"FROM (SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo,rownum as num "
+				+"FROM (SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo FROM walk_name_info "
+				+"WHERE "+msg+" w_name LIKE '%'||?||'%' )) "
+				+"WHERE num BETWEEN ? AND ?";
+		
+		ps=conn.prepareStatement(sql);
+		
+		int start=(ROW_SIZE*page)-(ROW_SIZE-1);
+		int end= ROW_SIZE*page;
+		
+		if(!loc.equals("전체")) {
+			ps.setString(1, msg);
+			ps.setString(2, w_name);
+			ps.setInt(3, start);
+			ps.setInt(4, end);
+		}
+		else {
+			ps.setString(1, w_name);
+			ps.setInt(2, start);
+			ps.setInt(3, end);
+		}
+		
+		
+		ResultSet rs= ps.executeQuery();
+		while(rs.next()) {
+			WalkVO vo=new WalkVO();
+			vo.setWno(rs.getInt(1));
+			vo.setWname(rs.getString(2));
+			vo.setSigngu_name(rs.getString(3));
+			vo.setAddress(rs.getString(4));
+			vo.setcLa(rs.getString(5));
+			vo.setcLo(rs.getString(6));
+			list.add(vo);
+			
+		}
+		rs.close();
+		ps.close();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return list;
+	
+}
+
+
 public WalkVO walkDetail(int wno) {
 	WalkVO vo =new WalkVO();
 	try {
