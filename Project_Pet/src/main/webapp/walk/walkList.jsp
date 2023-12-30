@@ -68,7 +68,7 @@ display:none;
 	                <div class="col-lg-8 col-md-7 walkNormalList">
                     <div class="row ">
                     	
-                    	
+                    	<!-- 일반 리스트 -->
                     	<c:forEach var="vo" items="${list }">
                         <div class="col-lg-4 col-md-4 col-sm-4 ">
                         <a href="../walk/walkDetail.do?wno=${vo.wno }">
@@ -86,7 +86,7 @@ display:none;
                             </a>
                         </div>
                         </c:forEach>
-                       
+                       <!-- 일반 리스트 종료 -->
                    
                         
                         <div class="col-lg-12">
@@ -115,34 +115,22 @@ display:none;
                         </center>
                             </div>
                         </div>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
-                 <div class="col-lg-8 col-md-7 walkSearchList">
-                    <div class="row " id="walkSearchWrapper">
-                    	
-                    	
-                    	
                        
-                   
-                        
-                        <div class="col-lg-12">
-                            
-                            <div class="product__pagination blog__pagination prod_page" id="walkSearchPage">
-                               <center>
-                     		   </center>
-                            </div>
-                        </div>
-                        
-                        
                     </div>
                 </div>
                 
+                
+                
+                
+                
+                <!-- 에이젝스 서치리스트 -->
+                 <div class="col-lg-8 col-md-7 walkSearchList">
+                
+                    <div class="row" id="walkSearchWrapper">
+                    
+                    </div>
+                </div>
+                 <!-- 에이젝스 서치리스트 종료 -->
                 
                 
                 

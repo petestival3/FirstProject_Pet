@@ -140,13 +140,14 @@ public List<WalkVO> walkList(String loc,int page){
 
 
 public synchronized List<WalkVO> walkSearchList(String loc,String w_name,int page){
+	
 	List<WalkVO>list=new ArrayList<WalkVO>();
 	try {
 		String msg="";
 		if(!loc.equals("전체")) {
 			msg="si_name=? AND ";
 		}
-		
+		System.out.println(w_name);
 		conn=dbconn.getConnection();
 		
 		String sql="SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo,num "
@@ -194,9 +195,46 @@ public synchronized List<WalkVO> walkSearchList(String loc,String w_name,int pag
 	finally {
 		dbconn.disConnection(conn, ps);
 	}
-	
+	System.out.println(list.size());
 	return list;
 	
+}
+
+
+
+public synchronized int walkSearchTotalPage(String loc,String w_name) {
+	int totalpage=0;
+	String msg="";
+	if (!loc.equals("전체")) {
+		msg="AND si_name=?";
+	}
+	try {
+		
+	conn=dbconn.getConnection();
+	String sql="SELECT CEIL(COUNT(*)/15.0) FROM WALK_NAME_INFO WHERE w_name LIKE '%'||?||'%' "+msg;
+	
+	ps=conn.prepareStatement(sql);
+	
+	ps.setString(1, w_name);
+	if (!loc.equals("전체")) {	
+		ps.setString(2, loc);
+	}
+	
+	ResultSet rs=ps.executeQuery();
+	if(rs.next()) {
+		totalpage=rs.getInt(1);
+	}
+	rs.close();
+	
+	
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	return totalpage;
 }
 
 

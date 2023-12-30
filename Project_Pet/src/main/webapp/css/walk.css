@@ -159,3 +159,10 @@ display:none;
 		color:mediumblue;
 		font-size: 23px;
 	}
+	
+	 .w_selected-page {
+        /* 선택된 페이지에 대한 스타일을 여기에 추가하세요 */
+        background-color:lightslategray; /* 예시: 배경색을 변경합니다 */
+        font-weight: bold; /* 예시: 폰트를 굵게 변경합니다 */
+        /* 원하는 스타일을 추가하세요 */
+    }

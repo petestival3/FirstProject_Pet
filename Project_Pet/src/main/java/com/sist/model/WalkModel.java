@@ -98,11 +98,23 @@ public class WalkModel {
 		  
 		  String loc=request.getParameter("loc");
 		  String w_name=request.getParameter("w_name");
+		 String page=request.getParameter("page");
 		 
+		 int curpage=Integer.parseInt(page);
 		  WalkDAO dao=WalkDAO.newInstance();
 		  JSONArray arr=new JSONArray();
-		
-		  List<WalkVO>list =dao.walkSearchList(loc, w_name, 1);
+		System.out.println("모델페이지:"+page);
+		 
+		  List<WalkVO>list =dao.walkSearchList(loc, w_name, curpage);
+		  
+		  int totalpage=dao.walkSearchTotalPage(loc, w_name);
+		  
+		  final int block=10;
+		  int start = ((curpage-1)/block*block)+1;
+			int end = ((curpage-1)/block*block)+10;
+			if(end>totalpage) {
+				end=totalpage;
+			}
 		  
 		  if(list.size()==0)
 		  {
@@ -131,6 +143,9 @@ public class WalkModel {
 				  if(i==0)
 				  {
 					 obj.put("listSize", list.size());
+					 obj.put("totalpage", totalpage);
+					 obj.put("start",start);
+					 obj.put("end",end);
 				  }
 				  arr.add(obj);
 				  
