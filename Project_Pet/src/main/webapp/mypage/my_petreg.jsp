@@ -103,7 +103,7 @@ p span {
             <div class="petreg_title col-lg-2" style="margin-left: 440px; text-align: center;">
                 <h4>마이펫 등록</h4>
             </div>
-            <form method="post" action="my_petInsert.do" enctype="multipart/form-data">
+            <form method="post" action="my_petInsert.do" enctype="multipart/form-data" id="petForm" onsubmit="return setCheckValue()">
 
                 <div class="row">
                     <div class="col-lg-8 col-md-6" style="margin-left: 360px;">
@@ -113,7 +113,7 @@ p span {
                                 <p>
                                     <img id="selectedPetImage" src="../img/mainlogo.png" style="max-width: 100%; max-height: 200px; margin-top: 10px;">
                                 </p>
-                                <input type="file" name="upload" size=25 required id="petImageInput" accept="image/*" onchange="displaySelectedImage()">
+                                <input type="file" name="upload" size=25 id="petImageInput" accept="image/*" onchange="displaySelectedImage()">
                             </div>
                         </div>
                          <div class="col-lg-6">
@@ -140,19 +140,18 @@ p span {
                            여아 <span class="radio"></span>
                         </label>
                      </div>
-                     <div class="col-lg-6">
-                        <label for="acc"> <input type="checkbox"
-                           name="pet_neutralize" id="neutralize" required> 중성화여부 <span
-                           class="checkmark"></span>
-                        </label>
-                     </div>
-                     <div class="col-lg-6" style="margin-top: 10px;">
-                        <div class="checkout__input">
-                           
-                           <input type="text" name="pet_weight" placeholder="몸무게(kg)">
-                        </div>
-                     </div>
-                     <div class="regul">
+							<div class="col-lg-6">
+								<label> <input type="checkbox" name="pet_check"
+									id="pet_name" value="y"> 중성화여부 <span class="checkmark"></span>
+								</label>
+							</div>
+							<div class="col-lg-6" style="margin-top: 10px;">
+								<div class="checkout__input">
+
+									<input type="text" name="pet_weight" placeholder="몸무게(kg)">
+								</div>
+							</div>
+							<div class="regul">
                      <ul>
                            <li><span>*</span>은 필수 입력 사항입니다.</li>
                         </ul>

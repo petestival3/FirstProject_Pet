@@ -76,13 +76,17 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 	    String pet_name = mr.getParameter("pet_name");
 	    String pet_bday = mr.getParameter("pet_bday");
 	    String pet_gender = mr.getParameter("pet_gender");
+	    String pet_check = mr.getParameter("pet_check");
 	    String pet_weight = mr.getParameter("pet_weight");
 
 	    vo.setUser_id(user_Id);
 	    vo.setPet_name(pet_name);
 	    vo.setPet_bday(pet_bday);
 	    vo.setPet_gender(pet_gender);
+	    vo.setPet_check(pet_check);
 	    vo.setPet_weight(pet_weight);
+	    
+	    System.out.println(pet_check);
 	    
 
 //	    System.out.println("pet_name: " + pet_name);

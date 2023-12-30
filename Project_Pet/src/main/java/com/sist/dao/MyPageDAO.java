@@ -22,17 +22,18 @@ public class MyPageDAO {
 		try
 		{
 			conn=dbconn.getConnection();
-			String sql="INSERT INTO pet_reg (petno, user_id, pet_image, pet_name, pet_bday, pet_gender, pet_weight, pet_filename,pet_filesize) "
-					+ "VALUES (pr_petno_seq.nextval,?,?,?,?,?,?,?,?)";
+			String sql="INSERT INTO pet_reg (petno, user_id, pet_image, pet_name, pet_bday, pet_gender, pet_check, pet_weight, pet_filename,pet_filesize) "
+					+ "VALUES (pr_petno_seq.nextval,?,?,?,?,?,?,?,?,?)";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, vo.getUser_id());
 			ps.setString(2, vo.getPet_image());
 			ps.setString(3, vo.getPet_name());
 			ps.setString(4, vo.getPet_bday());
 			ps.setString(5, vo.getPet_gender());
-			ps.setString(6, vo.getPet_weight());
-			ps.setString(7, vo.getPet_filename());
-			ps.setInt(8, vo.getPet_filesize());
+			ps.setString(6, vo.getPet_check());
+			ps.setString(7, vo.getPet_weight());
+			ps.setString(8, vo.getPet_filename());
+			ps.setInt(9, vo.getPet_filesize());
 			
 			ps.executeUpdate();
 			
