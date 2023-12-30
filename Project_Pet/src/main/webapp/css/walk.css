@@ -1,0 +1,157 @@
+@charset "UTF-8";
+
+.kyj_selected {
+  background-color: #c0c0c0; /* 약간 흐릿한 회색 배경색 */
+  border-radius: 5px; /* 모서리를 둥글게 */
+  padding: 5px 10px; /* 여백 설정 */
+  color: #333; /* 텍스트 색상 */
+  font-weight: bold; /* 텍스트 굵게 */
+  text-decoration: none; /* 링크 텍스트의 밑줄 제거 */
+  transition: background-color 0.3s ease; /* 부드러운 전환 효과 */
+}
+
+.kyj_selected:hover {
+  background-color: #a9a9a9; /* 호버 시 약간 진한 회색 */
+  color: #fff; /* 호버 시 텍스트 색상을 흰색으로 변경 */
+}
+.ky{
+	 width: 1600px;
+	 margin:0 auto;
+ }
+ 
+  .walk_cate li a {
+    display: inline-block;
+    padding: 8px 12px; /* 여백을 줄임 */
+    border: 2px solid transparent;
+    border-radius: 20px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    }
+    
+    .walk_cate a:hover {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+  }
+    
+    .kyj_walk{
+		height:100%;
+	}
+	.course-container {
+    width: 100%; /* 원하는 가로 너비 설정 */
+    
+}
+
+
+.walk_course {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    list-style: none;
+    justify-content: space-between;
+}
+
+.walk_course li {
+    width: calc(50% - 5px); /* 2개씩 배치하고자 할 때 너비 설정 */
+    margin-bottom: 10px; /* 간격 조절 */
+    box-sizing: border-box;
+    height:70px;
+}
+
+.walk_course li > button {
+  width:100%;height:100%;
+}
+
+@media screen and (max-width: 600px) {
+    .walk_course li {
+        width: calc(50% - 5px); /* 화면이 작을 때 2개씩 배치되도록 설정 */
+    }
+}
+	
+	
+	.comment-header span {
+  font-size: small; /* 작은 폰트 크기 */
+  opacity: 0.7; /* 투명도로 흐릿한 효과 */
+}
+
+/* 버튼 스타일 */
+
+
+
+
+.mc{
+font-weight: bold; /* 진한 글씨체 */
+  font-size: larger; /* 큰 폰트 크기 */
+}
+.dbday{
+
+margin-top:10px;
+ font-size: x-small; /* 작은 폰트 크기 */
+  opacity: 0.7; /* 투명도로 흐릿한 효과 */
+}
+
+
+
+
+.find_Load_view{
+margin-top:15px;
+}
+.find_Load_view > span a{
+color:#333333;
+font-weight:bold;
+}
+
+.find_Load_view > span a:hover{
+color:black;
+font-weight:bold;
+}
+.data_place{
+ margin-top:20px;
+ }
+ .hidden_title{
+display:none;
+
+ }
+ 
+ .control_title{
+ font-weight:bold;
+ }
+ 
+ .prod_page a:hover
+  		{
+  		  background-color: #333;
+    color: #fff;
+    border-color: #333;
+  		}
+ 
+	
+	 .name_overflow {
+        /* 텍스트가 넘칠 경우 줄임표로 처리 */
+        white-space: nowrap; /* 넘치는 텍스트를 줄바꿈하지 않고 한 줄에 표시 */
+        overflow: hidden; /* 넘치는 부분을 숨김 */
+        text-overflow: ellipsis; /* 넘칠 때 ...으로 표시 */
+    }
+    
+     .walk_wrapper {
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease;
+        border: 2px solid transparent; /* 호버 시 테두리 색상 변경을 위한 초기 값 */
+    }
+
+    .walk_list_style{
+     text-align:center;
+    }
+    
+    .walk_wrapper:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.5);
+        border-color: #1565c0; /* 보다 진한 테두리 색상 */
+    }
+    .walk_wrapper:hover .name_overflow,
+    .walk_wrapper:hover p {
+        color: #3498db; /* 호버 시에 텍스트 색상 변경 */
+    }
+	

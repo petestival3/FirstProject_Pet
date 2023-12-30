@@ -1,35 +1,55 @@
 package com.sist.vo;
 
 public class ProductVO {
-/*
- *  PNO                                       NOT NULL NUMBER
- P_NAME                                    NOT NULL VARCHAR2(1000)
- P_GRADE                                            NUMBER(2,1)
- P_PRICE                                   NOT NULL VARCHAR2(100)
- P_IMAGE                                            VARCHAR2(1000)
- P_PERCENT                                          VARCHAR2(500)
- P_LOWER_PRICE                                      VARCHAR2(500)
- P_SHIPMENT                                         VARCHAR2(500)
- P_STACK                                            NUMBER
- P_CATEGORY                                NOT NULL VARCHAR2(500)
- P_EXPIRE_DATE                                      VARCHAR2(500)
- P_DETAIL_TEXT                                      CLOB
- P_DETAIL_IMAGE                                     VARCHAR2(4000)
- P_LIKE                                             NUMBER
- P_HIT                                              NUMBER
- P_REVIEW_NUM                                       NUMBER
- * 
- * 
- */
-	private int pno,p_like,p_hit,p_review_num,intPrice,intPercent;
-	private double p_grade;
-	private String p_name,p_price,p_image,p_percent,p_lower_price,p_shipment,p_stack,p_category,p_expire_date,p_detail_image;
+
+	
+
+	private int p_stack,p_like,p_hit,p_review_num,pno,p_intprice,p_intpercent,p_intlowerprice;
 	public int getPno() {
 		return pno;
+	}
+	public int getP_intprice() {
+		return p_intprice;
+	}
+	public void setP_intprice(int p_intprice) {
+		this.p_intprice = p_intprice;
+	}
+	public int getP_intlowerprice() {
+		return p_intlowerprice;
+	}
+	public void setP_intlowerprice(int p_intlowerprice) {
+		this.p_intlowerprice = p_intlowerprice;
+	}
+	public int getP_intpercent() {
+		return p_intpercent;
+	}
+	public void setP_intpercent(int p_intpercent) {
+		this.p_intpercent = p_intpercent;
 	}
 	public void setPno(int pno) {
 		this.pno = pno;
 	}
+	private double p_grade;
+	private String p_name,p_price,p_image,p_percent,p_lower_price,p_shipment,p_category,p_expire_date,p_detail_image,p_detail_text,p_sub_image;
+	public String getP_detail_text() {
+		return p_detail_text;
+	}
+	public String getP_sub_image() {
+		return p_sub_image;
+	}
+	public void setP_sub_image(String p_sub_image) {
+		this.p_sub_image = p_sub_image;
+	}
+	public void setP_detail_text(String p_detail_text) {
+		this.p_detail_text = p_detail_text;
+	}
+	public int getP_stack() {
+		return p_stack;
+	}
+	public void setP_stack(int p_stack) {
+		this.p_stack = p_stack;
+	}
+	
 	public int getP_like() {
 		return p_like;
 	}
@@ -47,18 +67,6 @@ public class ProductVO {
 	}
 	public void setP_review_num(int p_review_num) {
 		this.p_review_num = p_review_num;
-	}
-	public int getIntPrice() {
-		return intPrice;
-	}
-	public void setIntPrice(int intPrice) {
-		this.intPrice = intPrice;
-	}
-	public int getIntPercent() {
-		return intPercent;
-	}
-	public void setIntPercent(int intPercent) {
-		this.intPercent = intPercent;
 	}
 	public double getP_grade() {
 		return p_grade;
@@ -102,12 +110,6 @@ public class ProductVO {
 	public void setP_shipment(String p_shipment) {
 		this.p_shipment = p_shipment;
 	}
-	public String getP_stack() {
-		return p_stack;
-	}
-	public void setP_stack(String p_stack) {
-		this.p_stack = p_stack;
-	}
 	public String getP_category() {
 		return p_category;
 	}
@@ -117,8 +119,8 @@ public class ProductVO {
 	public String getP_expire_date() {
 		return p_expire_date;
 	}
-	public void setP_expire_date(String p_expire_date) {
-		this.p_expire_date = p_expire_date;
+	public void setP_expire_date(String p_expiredate) {
+		this.p_expire_date = p_expiredate;
 	}
 	public String getP_detail_image() {
 		return p_detail_image;

@@ -11,4 +11,6 @@
    <bean id="health" class="com.sist.model.HealthModel"></bean>
    <bean id="member" class="com.sist.model.MemberModel"></bean>
    <bean id="qnaBoard" class="com.sist.model.QnaBoardModel"></bean>
+   <bean id="product" class="com.sist.model.ProductModel"></bean>
+   <bean id="walk" class="com.sist.model.WalkModel"></bean>
 </beans>

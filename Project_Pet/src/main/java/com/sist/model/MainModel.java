@@ -14,8 +14,9 @@ public class MainModel {
 	{
 		
 		String ssss="가평";
-		ProductDAO pdao=ProductDAO.newInstance();
-		List<ProductVO>plist =pdao.homeProduct();
+		ProductDAO pdao=ProductDAO.newInstace();
+		List<ProductVO>plist=pdao.homeProduct();
+		
 		AnimalDAO adao=AnimalDAO.newInstance();
 		List<AnimalVO> alist=adao.animalBlogList();
 		

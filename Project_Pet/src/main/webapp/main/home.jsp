@@ -114,11 +114,15 @@ function stayhome(fds){
                 <div class="categories__slider owl-carousel">
                 <c:forEach var="pvo" items="${ plist}">
                     
-                    <div class="col-lg-3">
-                        <div><a href="#"><img src="${pvo.p_image }">
-                            <h5 class="sp_title text-center">${pvo.p_name }</h5></a>
-                        </div>
-                    </div>
+                     <a href="../product/DetailBefore.do?pno=${pvo.pno }&count=3">
+             						  <img src="${pvo.p_image }" class="customimage">
+                       					 <div class="product__item">
+                    		  	 	  <div class="product__item__text">
+                               			  <h5>${pvo.p_name }</h5>
+                                    <h6>${pvo.p_lower_price }</h6>
+                                </div>
+                                </div>
+   								</a>	   
                 </c:forEach>
                  
                 </div>
