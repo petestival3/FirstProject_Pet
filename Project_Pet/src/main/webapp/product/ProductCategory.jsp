@@ -39,7 +39,9 @@
                     
                  <div id="highsale_container1">
   				  <div style="height: 100%; display: flex; flex-direction: column;" class="product_items">
+  				
       				  <c:forEach var="hsvo" items="${highSaleList}">
+      				
       				  <div class="product_item">
       			   <div class="product__item">
                    

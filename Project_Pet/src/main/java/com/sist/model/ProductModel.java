@@ -247,6 +247,60 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 		return send;
 	}
 	
+	@RequestMapping("product/ProductSearchList.do")
+	public String ProductSearchList(HttpServletRequest request, HttpServletResponse response) {
+				try {
+					request.setCharacterEncoding("UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			ProductDAO dao=ProductDAO.newInstace();
+		
+				String sct=request.getParameter("sct");
+				String strpage=request.getParameter("page");
+				String ss=request.getParameter("ss");
+				if (sct==null) {
+					sct="전체";
+				}
+				if (strpage==null) {
+					strpage="1";
+				}
+				if (ss==null) {
+					ss="";
+				}
+				
+				int curpage=Integer.parseInt(strpage);
+				int sTotalPage=dao.productSearchTotalPage(sct, ss);
+				List<ProductVO>list=dao.productSearchList(sct, ss, curpage);
+				List<Integer>catenumList=dao.ProductCateNum();	
+				List<ProductVO>highSaleList=dao.highSaleList();
+				
+				final int block=10;
+				int start = ((curpage-1)/block*block)+1;
+				int end = ((curpage-1)/block*block)+10;
+				if(end>sTotalPage) {
+					end=sTotalPage;
+				}
+				
+				request.setAttribute("highSaleList", highSaleList);
+				request.setAttribute("page", strpage);
+				request.setAttribute("sct", sct);
+				request.setAttribute("ss", ss);
+				request.setAttribute("sTotalPage", sTotalPage);
+				request.setAttribute("searchList", list);
+				request.setAttribute("start", start);
+				request.setAttribute("end", end);
+				request.setAttribute("size", list.size());
+				request.setAttribute("cateNumList", catenumList);
+				request.setAttribute("product_jsp", "../product/ProductSearchList.jsp");
+				request.setAttribute("main_jsp", "../product/ProductMain.jsp");
+				
+		
+		
+		return "../main/main.jsp";
+	}
+	
 	
 	
 }

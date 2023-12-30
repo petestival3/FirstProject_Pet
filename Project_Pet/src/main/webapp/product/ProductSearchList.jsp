@@ -8,50 +8,14 @@
 
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" content="Ogani, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/style.css" type="text/css">
-    <style type="text/css">
-    .nav-pills{
-    color:black;
-    
-    }
-    .kyj_selected{
-    background-color: blue;
-    }
-    </style>
+   
 </head>
 
 <body>
   
-	
-    <!-- Product Section Begin -->
-    
-        
-       
-        
-        
-        
-        
-           
-               
-              <div class="col-lg-9 col-md-7">
+			
+  				
+              <div class="col-lg-9 col-md-7" style="margin-top:100px;">
                     <div class="row">
               				<c:forEach var="vo" items="${searchList }">
               				<c:url value="DetailBefore.do?count=2" var="url">
@@ -60,10 +24,10 @@
               				<c:param name="ss" value="${ss}"/>
               				<c:param name="page" value="${page}"/>
               				</c:url>
-             						 <div class="col-lg-4 col-md-6 col-sm-6">
+             						 <div class="col-lg-4 col-md-6 col-sm-6 image-container">
              						 <a href="<c:out value="${url}" />">
-             						  <img src="${vo.p_image }">
-                       					 <div class="product__item">
+             						  <img src="${vo.p_image }" class="customimage">
+                       					 <div class="product__item ">
                     		  	 	  <div class="product__item__text">
                                			  <h5>${vo.p_name }</h5>
                                     <h6>${vo.p_lower_price }</h6>
@@ -74,6 +38,8 @@
                         
                         </c:forEach>
                             </div>
+                            
+                            
               					 <c:choose>
 									<c:when test="${i eq page}">
 									<a href="../product/ProductSearchList.do?page=${i }&ct=${ct}&rt=${rt}" class="kyj_selected">${i }</a>
@@ -121,8 +87,7 @@
                 
                 </c:if>
     
-    <!-- Product Section End -->
-
+   
    
 
     

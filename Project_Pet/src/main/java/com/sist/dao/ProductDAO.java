@@ -548,5 +548,99 @@ public List<ProductVO> highSaleList(){
 	return list;
 }
 
+public List<ProductVO> productSearchList(String sct,String ss,int page){
+	String msg="";
+	if (sct.equals("전체")) {
+		msg="WHERE p_name Like '%'||?||'%'";
+	}
+	else {
+		msg="WHERE p_category=? AND p_name LIKE '%'||?||'%'";
+	}
+	List<ProductVO>list= new ArrayList<ProductVO>();
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT pno,p_name,p_image,p_lower_price,num "
+				   +"FROM (SELECT pno,p_name,p_image,p_lower_price,rownum as num "
+				   +"FROM (SELECT pno,p_name,p_image,p_lower_price "
+				   +"FROM PRODUCT_DETAIL "
+				   +msg +")) "
+				   +"WHERE num BETWEEN ? AND ?";
+		ps=conn.prepareStatement(sql);
+		
+		int start=(ROW_SIZE*page)-(ROW_SIZE-1);
+		int end= ROW_SIZE*page;
+		
+		if (sct.equals("전체")) {
+			ps.setString(1,ss);
+			ps.setInt(2, start);
+			ps.setInt(3, end);
+		}
+		else {
+			ps.setString(1, sct);
+			ps.setString(2, ss);
+			ps.setInt(3, start);
+			ps.setInt(4, end);
+		}
+		ResultSet rs= ps.executeQuery();
+		while(rs.next()) {
+			ProductVO vo =new ProductVO();
+			vo.setPno(rs.getInt(1));
+			vo.setP_name(rs.getString(2));
+			vo.setP_image(rs.getString(3));
+			vo.setP_lower_price(rs.getString(4));
+			list.add(vo);
+		}
+		rs.close();
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	return list;
+	
+}
+
+public int productSearchTotalPage(String sct,String ss) {
+	int total=0;
+	String msg="";
+	if (sct.equals("전체")) {
+		msg="WHERE p_name LIKE '%'||?||'%'";
+	}
+	else {
+		msg="WHERE p_category=? AND p_name LIKE '%'||?||'%'";
+	}
+	
+	
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT CEIL(COUNT(*)/"+ROW_SIZE+") FROM PRODUCT_DETAIL "+msg;
+		ps=conn.prepareStatement(sql);
+		if (sct.equals("전체")) {
+			ps.setString(1, ss);
+		}
+		else {
+			ps.setString(1, sct);
+			ps.setString(2, ss);
+		}
+		
+		ResultSet rs=ps.executeQuery();
+		rs.next();
+		total=rs.getInt(1);
+		rs.close();
+					
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return total;
+	
+}
+
 
 }

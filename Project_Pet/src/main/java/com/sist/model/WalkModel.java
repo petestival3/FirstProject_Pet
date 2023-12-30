@@ -103,7 +103,7 @@ public class WalkModel {
 		 int curpage=Integer.parseInt(page);
 		  WalkDAO dao=WalkDAO.newInstance();
 		  JSONArray arr=new JSONArray();
-		System.out.println("모델페이지:"+page);
+		
 		 
 		  List<WalkVO>list =dao.walkSearchList(loc, w_name, curpage);
 		  

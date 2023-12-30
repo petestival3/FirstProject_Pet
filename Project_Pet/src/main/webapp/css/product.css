@@ -29,7 +29,7 @@
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 20px; /* 아래쪽 간격 */
-      margin-left:290px;
+      margin-left:240px;
   }
 
   .p_rank li {
@@ -100,7 +100,58 @@
   		}
 	 
 	
-	  
+	.product_search_bar{
+position:absolute;
+
+top:430px;
+}
+
+.product_search_bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+/* 검색 옵션(select 요소)에 대한 스타일 */
+#searchOptions {
+    margin-right: 10px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 14px;
+    outline: none; /* 포커스 효과 제거 */
+}
+
+/* 입력 필드(input 요소)에 대한 스타일 */
+.product_search_bar input[type="text"] {
+    height: 40px;
+    width: 160px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    outline: none; /* 포커스 효과 제거 */
+}
+
+/* 검색 버튼에 대한 스타일 */
+.product_search_bar button {
+    height: 40px;
+    width: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    outline: none; /* 포커스 효과 제거 */
+}
+
+/* 버튼 아이콘에 대한 스타일 */
+.product_search_bar button .icon_search {
+    display: inline-block;
+    vertical-align: middle;
+}  
 	  
 	  
 	  

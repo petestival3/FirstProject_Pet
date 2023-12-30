@@ -147,7 +147,7 @@ public synchronized List<WalkVO> walkSearchList(String loc,String w_name,int pag
 		if(!loc.equals("전체")) {
 			msg="si_name=? AND ";
 		}
-		System.out.println(w_name);
+		
 		conn=dbconn.getConnection();
 		
 		String sql="SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo,num "
@@ -195,7 +195,7 @@ public synchronized List<WalkVO> walkSearchList(String loc,String w_name,int pag
 	finally {
 		dbconn.disConnection(conn, ps);
 	}
-	System.out.println(list.size());
+
 	return list;
 	
 }
