@@ -8,8 +8,7 @@
 <title>Insert title here</title>
  <style type="text/css">
  
- 
- 
+  
  
  </style>
 </head>
@@ -41,10 +40,18 @@
          <span class="back_walk_list"><a href="../walk/walkList.do?page=${param.page }&loc=${param.loc}"><img src="../img/left.png.svg" alt="">목록</a></span>
         
             <div class="row">
-            
+            	
                 <div class="col-lg-4 col-md-5 order-md-1 order-2">
                     <div class="blog__sidebar kyj_walk"><!--산책로 디테일 왼쪽 사이드메뉴 -->
+                   
                        <div id="course_detail_inform" style="width:100%; height:95%; margin-top:45px;">
+                       			<div id="defaultInform">
+  								  <div style="height:auto;"><img src="../img/산책1.jpg" ></div>
+    							  <div style="height:auto;"><img src="../img/산책2.jpg" ></div>
+   								  <div style="height:auto;"><img src="../img/산책3.jpg" ></div>
+   								  <div style="height:auto;"><img src="../img/산책4.jpg" ></div>
+								</div>
+                       
                        		<div style="text-align:center; margin-bottom:20px;" class="hidden_title"><h3 id="level"></h3></span>
                        		<div class="data_place" id="level_image" style="text-align: center;"><img src="../img/levelA.png" height="120" ></div>
                        		</div>
@@ -160,6 +167,9 @@ geocoder.addressSearch('${vo.address}', function(result, status) {
                     <div class="course-container">
                     <c:if test="${csSize==0}">
                     <h1>코스정보가 없습니다.</h1>
+                    </c:if>
+                    <c:if test="${csSize!=0}">
+                    	<div class="showCourse_inform">* 클릭 시 상세정보를 볼 수있습니다.</div>
                     </c:if>
   			<ul class="walk_course" data-size="${csSize }">
   			<c:forEach var="courseVo" items="${courseList }">

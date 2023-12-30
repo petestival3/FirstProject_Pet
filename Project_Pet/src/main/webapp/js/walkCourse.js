@@ -2,22 +2,7 @@ let selectedRes = null;
 let isClicked = false;
 
 $(function() {
-    $('.show_corsue').mouseover(function() {
-        if (!isClicked) {
-            let wcno = $(this).closest('.get_wcno').attr('data-wcno');
-            $.ajax({
-                type: 'post',
-                url: '../walk/walkCourseAjaxInform.do',
-                data: { "wcno": wcno },
-                success: function(json) {
-                    let res = JSON.parse(json);
-                    if (!isClicked) {
-                        showInfo(res);
-                    }
-                }
-            });
-        }
-    });
+   
 
     $('.show_corsue').click(function() {
         isClicked = true;
@@ -26,6 +11,8 @@ $(function() {
            $('.show_corsue').addClass('btn-info'); 
             $(this).removeClass('btn-info'); 
              $(this).addClass('btn-primary'); 
+             $('#defaultInform').hide();
+             $('.showCourse_inform').hide();
         
         $.ajax({
             type: 'post',

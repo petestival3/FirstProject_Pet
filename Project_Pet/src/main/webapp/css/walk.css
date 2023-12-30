@@ -154,4 +154,8 @@ display:none;
     .walk_wrapper:hover p {
         color: #3498db; /* 호버 시에 텍스트 색상 변경 */
     }
-	
+	.showCourse_inform{
+		margin-bottom:15px;
+		color:mediumblue;
+		font-size: 23px;
+	}
