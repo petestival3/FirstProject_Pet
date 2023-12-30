@@ -244,15 +244,15 @@ $(function(){
 	<nav class="pagination">
 		<ul>
 			<c:if test="${startPage>1 }">
-				<li><a href="../FuneralDetail/detail_f.do?page=${startPage-1 }">&laquo;
+				<li><a href="../FuneralDetail/list_f.do?page=${startPage-1 }">&laquo;
 						Previous</a></li>
 			</c:if>
 			<c:forEach var="i" begin="${startPage }" end="${endPage }">
 				<li ${i==curpage?"class=current":""}><a
-					href="../FuneralDetail/detail_f.do?page=${i }">${i }</a></li>
+					href="../FuneralDetail/list_f.do?page=${i }">${i }</a></li>
 			</c:forEach>
 			<c:if test="${endPage<totalpage }">
-				<li><a href="../FuneralDetail/detail_f.do?page=${endPage+1 }">Next
+				<li><a href="../FuneralDetail/list_f.do?page=${endPage+1 }">Next
 						&raquo;</a></li>
 			</c:if>
 		</ul>

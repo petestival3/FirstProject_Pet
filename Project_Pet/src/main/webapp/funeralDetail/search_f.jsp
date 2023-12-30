@@ -266,8 +266,24 @@ $(function(){
    </div>
 	<!-- 검색하기 내용 종료 -->
 	
-	<!-- 페이지 나누기 번호 시작 -->
-	<h6 style="text-align: center; margin-bottom: 30px;">페이지 나누는 번호 넣기</h6>
+	<!-- json으로 목록을 출력한거라 페이지 나누는 dao를 다시 구성해야할거같음.. -->
+	<!-- 페이지 나누기 번호 시작
+	<nav class="pagination">
+		<ul>
+			<c:if test="${startPage>1 }">
+				<li><a href="../FuneralDetail/search_f.do?page=${startPage-1 }">&laquo;
+						Previous</a></li>
+			</c:if>
+			<c:forEach var="i" begin="${startPage }" end="${endPage }">
+				<li ${i==curpage?"class=current":""}><a
+					href="../FuneralDetail/search_f.do?page=${i }">${i }</a></li>
+			</c:forEach>
+			<c:if test="${endPage<totalpage }">
+				<li><a href="../FuneralDetail/search_f.do?page=${endPage+1 }">Next
+						&raquo;</a></li>
+			</c:if>
+		</ul>
+	</nav>
 	<!-- 페이지 나누기 번호 종료 -->
 </body>
 </html>
