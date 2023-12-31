@@ -3,6 +3,9 @@ package com.sist.model;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Base64;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,14 +20,43 @@ import com.sist.dao.MyPageDAO;
 import com.sist.vo.MyPageVO;
 
 public class MypageModel {
-@RequestMapping("mypage/mypage.do")
-public String mypageMain(HttpServletRequest request, HttpServletResponse response)
-{
-	
-	request.setAttribute("mypage_jsp", "../mypage/my_main.jsp");
-	request.setAttribute("main_jsp", "../mypage/mypage.jsp");
-	return "../main/main.jsp";
-}
+	@RequestMapping("mypage/mypage.do")
+	public String mypageMain(HttpServletRequest request, HttpServletResponse response) {
+	    try {
+	        request.setCharacterEncoding("UTF-8");
+	    } catch (Exception ex) {}
+
+	    HttpSession session = request.getSession();
+	    String id = (String) session.getAttribute("id");
+	    MyPageDAO dao = MyPageDAO.newInstance();
+	    MyPageVO vo = dao.mypagePet(id);
+
+	    String filename = vo.getPet_filename();
+	    String path = "c://download";
+	    File file = new File(path + "\\" + filename);
+
+	    try {
+	        // 파일이 존재하면 읽어오고 Base64로 인코딩
+	        if (file.exists()) {
+	            // 파일의 확장자 추출
+	            String extension = filename.substring(filename.lastIndexOf(".") + 1);
+
+	            // 이미지를 바이트 배열로 읽어오기
+	            byte[] imageData = Files.readAllBytes(file.toPath());
+
+	            // 바이트 배열을 Base64 인코딩으로 변환
+	            String petimg = "data:image/" + extension + ";base64," + Base64.getEncoder().encodeToString(imageData);
+
+	            // JSP에 전달할 속성 설정
+	            request.setAttribute("petimg", petimg);
+	        } 
+	    } catch (Exception ex) {}
+
+	    request.setAttribute("vo", vo);
+	    request.setAttribute("mypage_jsp", "../mypage/my_main.jsp");
+	    request.setAttribute("main_jsp", "../mypage/mypage.jsp");
+	    return "../main/main.jsp";
+	}
 @RequestMapping("mypage/my_res.do")
 public String resList(HttpServletRequest request, HttpServletResponse response)
 {
@@ -133,18 +165,6 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 //		}catch(Exception ex) {}
 //	   
 //}
-	
-	
-	
 
-//@RequestMapping("mypage/my_main.do")
-//public String petInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//	MyPageDAO dao = MyPageDAO.newInstance();
-//	String pno = request.getParameter("pno");
-//	dao.petInfo(Integer.parseInt(pno));
-//
-//	request.setAttribute("main_jsp", "../mypage/my_main.jsp");
-//	return "../main/main.jsp";
-//}
 
 }

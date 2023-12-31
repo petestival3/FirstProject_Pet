@@ -47,55 +47,27 @@ public class MyPageDAO {
 			dbconn.disConnection(conn, ps);
 		}
 	}
-	
-//	public List<MyPageVO> petRegData()
-//	{
-//		List<MyPageVO> list=new ArrayList<MyPageVO>();
-//		try
-//		{
-//			conn=dbconn.getConnection();
-//			String sql="SELECT petno, pet_image, pet_name, pet_bday, pet_gender, pet_weight"
-//					+ "FROM pet_reg "
-//					+ "ORDER BY petno DESC";
-//			ps=conn.prepareStatement(sql);
-//			ResultSet rs=ps.executeQuery();
-//			while(rs.next())
-//			{
-//				MyPageVO vo=new MyPageVO();
-//				vo.setPetno(rs.getInt(1));
-//				vo.setPet_image(rs.getString(2));
-//				vo.setPet_name(rs.getString(3));
-//				vo.setPet_bday(rs.getString(4));
-//				vo.setPet_gender(rs.getString(5));
-//				vo.setPet_weight(rs.getString(6));
-//				list.add(vo);
-//			}
-//			rs.close();
-//		}
-//		catch(Exception ex)
-//		{
-//			ex.printStackTrace();
-//		}
-//		finally
-//		{
-//			dbconn.disConnection(conn, ps);
-//		}
-//		return list;
-//	}
-//	
-	public MyPageVO petInfo(int pno)
+		
+	public MyPageVO mypagePet(String id)
 	{
 		MyPageVO vo=new MyPageVO();
 		try
 		{
 			conn=dbconn.getConnection();
-			String sql="SELECT petno, pet_filename, pet_name, pet_bday, pet_gender, pet_wegith "
+			String sql="SELECT pet_filename, pet_name, pet_bday, pet_gender, pet_weight "
 					+ "FROM pet_reg "
-					+ "WHERE petno=?";
+					+ "WHERE user_id=?";
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, pno);
+			ps.setString(1, id);
 			ResultSet rs=ps.executeQuery();
-			rs.close();
+			if (rs.next()) {
+	            vo.setPet_filename(rs.getString(1));
+	            vo.setPet_name(rs.getString(2));
+	            vo.setPet_bday(rs.getString(3));
+	            vo.setPet_gender(rs.getString(4));
+	            vo.setPet_weight(rs.getString(5));
+	        }
+	        rs.close();
 		}
 		catch(Exception ex)
 		{
