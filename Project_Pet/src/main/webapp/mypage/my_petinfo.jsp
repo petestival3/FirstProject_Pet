@@ -31,7 +31,21 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script type="text/javascript">
+function displaySelectedImage() {
+    var input = document.getElementById('petImageInput');
+    var image = document.getElementById('selectedPetImage');
 
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            image.src = e.target.result;
+            image.style.display = 'block'; // 이미지를 보이게 함
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 </script>
 <style type="text/css">
 
@@ -89,7 +103,7 @@ p span {
             <div class="petreg_title col-lg-2" style="margin-left: 440px; text-align: center;">
                 <h4>마이펫 관리</h4>
             </div>
-            <form method="post" action="my_petinfo.do" enctype="multipart/form-data" id="petForm" onsubmit="return setCheckValue()">
+            <form method="post" action="my_petupdate.do" enctype="multipart/form-data" id="petForm" onsubmit="return setCheckValue()">
 
                 <div class="row">
                     <div class="col-lg-8 col-md-6" style="margin-left: 360px;">
@@ -113,7 +127,7 @@ p span {
                         <div class="checkout__input">
                            
                            <input type="text" name="pet_bday"
-                              placeholder="반려동물의 생년월일을 입력하세요" required>
+                               placeholder="반려동물의 생년월일을 입력하세요" required>
                         </div>
                      </div>
                      <div class="col-lg-6" >
@@ -134,7 +148,7 @@ p span {
 							<div class="col-lg-6" style="margin-top: 10px;">
 								<div class="checkout__input">
 
-									<input type="text" name="pet_weight" placeholder="몸무게(kg)">
+									<input type="text" name="pet_weight"  placeholder="몸무게(kg)">
 								</div>
 							</div>
 							<div class="regul">
@@ -144,7 +158,7 @@ p span {
                      </div>
                         <div class="flex col-lg-6">
                         <button type="submit" class="site-btn"
-                           style="margin: 20px 0 0 50px;">등록</button>
+                           style="margin: 20px 0 0 50px;">수정</button>
                          <button type="button" class="site-btn" style="margin: 20px 0 0 20px;"
                           onclick="javascript:history.back()">취소</button>
                      </div>
