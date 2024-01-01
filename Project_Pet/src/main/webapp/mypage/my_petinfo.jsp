@@ -119,14 +119,14 @@ p span {
                          <div class="col-lg-6">
                         <div class="checkout__input">
                            
-                           <input type="text" name="pet_name"
+                           <input type="text" name="pet_name" value="${vo.pet_name }"
                               placeholder="반려동물의 이름을 입력하세요" required>
                         </div>
                      </div>
                         <div class="col-lg-6">
                         <div class="checkout__input">
                            
-                           <input type="text" name="pet_bday"
+                           <input type="text" name="pet_bday" value="${vo.pet_bday }"
                                placeholder="반려동물의 생년월일을 입력하세요" required>
                         </div>
                      </div>
@@ -148,7 +148,7 @@ p span {
 							<div class="col-lg-6" style="margin-top: 10px;">
 								<div class="checkout__input">
 
-									<input type="text" name="pet_weight"  placeholder="몸무게(kg)">
+									<input type="text" name="pet_weight" value="${vo.pet_weight }" placeholder="몸무게(kg)">
 								</div>
 							</div>
 							<div class="regul">
