@@ -54,7 +54,7 @@ public class MyPageDAO {
 		try
 		{
 			conn=dbconn.getConnection();
-			String sql="SELECT pet_filename, pet_name, pet_bday, pet_gender, pet_weight "
+			String sql="SELECT pet_filename, pet_name, pet_bday, pet_gender, pet_check, pet_weight "
 					+ "FROM pet_reg "
 					+ "WHERE user_id=?";
 			ps=conn.prepareStatement(sql);
@@ -65,7 +65,8 @@ public class MyPageDAO {
 	            vo.setPet_name(rs.getString(2));
 	            vo.setPet_bday(rs.getString(3));
 	            vo.setPet_gender(rs.getString(4));
-	            vo.setPet_weight(rs.getString(5));
+	            vo.setPet_check(rs.getString(5));
+	            vo.setPet_weight(rs.getString(6));
 	        }
 	        rs.close();
 		}
@@ -86,15 +87,16 @@ public class MyPageDAO {
 	        conn = dbconn.getConnection();
 
 	        String sql = "UPDATE pet_reg "
-	                + "SET pet_name=?, pet_bday=?, pet_gender=?, pet_weight=?, pet_filename=? "
+	                + "SET pet_name=?, pet_bday=?, pet_gender=?,pet_check=?, pet_weight=?, pet_filename=? "
 	                + "WHERE user_id=?";
 	        ps = conn.prepareStatement(sql);
 	        ps.setString(1, vo.getPet_name());
 	        ps.setString(2, vo.getPet_bday());
 	        ps.setString(3, vo.getPet_gender());
-	        ps.setString(4, vo.getPet_weight());
-	        ps.setString(5, vo.getPet_filename());
-	        ps.setString(6, id);
+	        ps.setString(4, vo.getPet_check());
+	        ps.setString(5, vo.getPet_weight());
+	        ps.setString(6, vo.getPet_filename());
+	        ps.setString(7, id);
 	        ps.executeUpdate();
 	    }
 	       

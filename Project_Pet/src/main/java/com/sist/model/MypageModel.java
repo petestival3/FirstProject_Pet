@@ -115,6 +115,7 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 	    vo.setPet_bday(pet_bday);
 	    vo.setPet_gender(pet_gender);
 	    vo.setPet_check(pet_check);
+	    System.out.println(vo.getPet_check());
 	    vo.setPet_weight(pet_weight);
 
 //	    System.out.println("pet_name: " + pet_name);
@@ -207,7 +208,7 @@ public String petUpdate(HttpServletRequest request, HttpServletResponse response
     vo.setPet_name(pet_name);
     vo.setPet_bday(pet_bday);
     vo.setPet_gender(pet_gender);
-    vo.setPet_check(pet_check);
+    vo.setPet_check("y".equals(pet_check) ? "y" : null);
     vo.setPet_weight(pet_weight);
 
     dao.mypagePetUpdate(id,vo);
