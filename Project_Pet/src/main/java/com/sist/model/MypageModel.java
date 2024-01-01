@@ -158,6 +158,12 @@ public String mypetInfo(HttpServletRequest request, HttpServletResponse response
     String pet_check = request.getParameter("pet_check");
     String pet_weight = request.getParameter("pet_weight");
     
+    vo.setPet_name(pet_name);
+    vo.setPet_bday(pet_bday);
+    vo.setPet_gender(pet_gender);
+    vo.setPet_check(pet_check);
+    vo.setPet_weight(pet_weight);
+    
     request.setAttribute("vo", vo);
 
 	request.setAttribute("main_jsp", "../mypage/my_petinfo.jsp");
