@@ -110,6 +110,7 @@
     <link rel="stylesheet" href="../css/productCategory.css">
     <link rel="stylesheet" href="../css/product_review.css">
     <link rel="stylesheet" href="../css/walk.css" type="text/css">
+    <link rel="stylesheet" href="../css/review.css" type="text/css">
     
     
     <!-- xeicon -->

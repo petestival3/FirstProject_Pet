@@ -7,12 +7,16 @@
 <html>
 <head>
 <style type="text/css">
+
+
 .pro_detail_img{
 width:100%; display:none;
 }
 .close_pro_detail_inform{
 display:none;
 }
+
+ 
 
 </style>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
@@ -280,9 +284,42 @@ function requestPay() {
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                    <h6>상품후기</h6>
-                                    <p>상품후기
-                                    </p>
+                                   <div class="review-container">
+      <img src="../img/mainlogo.png" alt="User Avatar" class="user-image" />
+
+      <div class="mid_1">
+        <div class="user-info">
+          <img
+            src="../img/mainlogo.png"
+            alt="Reviewer Avatar"
+            class="reviewer-avatar"
+            style="float: left"
+          />
+          <div class="user-name">사용자1</div>
+        </div>
+        <br />
+        <div class="mid_2">
+          <div class="rating" style="width:120px;">
+            <span class="star">⭐️</span>
+            <span class="star">⭐️</span>
+            <span class="star">⭐️</span>
+             <span class="star">⭐️</span>
+            <span class="half-star">⭐️</span>
+          </div>
+          
+        </div>
+        <p style="float:right;">작성날짜 적는 곳</p>
+        <div class="mid_3">
+         	<p><h3>4.5/5</h3></p>
+          <p class="review-text">
+            여기어때 정말 좋아요! 서비스가 훌륭하고 위치도 좋습니다. 여기어때
+            정말 좋아요! 서비스가 훌륭하고 위치도 좋습니다. 여기어때 정말
+            좋아요! 서비스가 훌륭하고 위치도 좋습니다.
+          </p>
+        </div>
+      </div>
+    </div>
+                                  
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
