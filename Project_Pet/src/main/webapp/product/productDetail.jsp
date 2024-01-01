@@ -6,17 +6,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link rel="stylesheet" href="../shadow/css/shadowbox.css">
+<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
+<script type="text/javascript">
+
+
+
+</script>
+
+
+
+
+
 <style type="text/css">
 
 
-.pro_detail_img{
-width:100%; display:none;
-}
-.close_pro_detail_inform{
-display:none;
-}
 
- 
+.review-container {
+    box-shadow: none; /* 특정 스타일을 없애고자 할 때, 값을 none으로 설정 */
+    /* 필요에 따라 다른 속성도 재설정할 수 있습니다. */
+  }
+
 
 </style>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
@@ -239,22 +250,22 @@ function requestPay() {
                     <div class="product__details__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                                <a class="nav-link active" data-toggle="tab" href="#p_tabs-1" role="tab"
                                     aria-selected="true">상품상세정보</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                                <a class="nav-link" data-toggle="tab" href="#p_tabs-2" role="tab"
                                     aria-selected="false">상품후기</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
+                                <a class="nav-link" data-toggle="tab" href="#p_tabs-3" role="tab"
                                     aria-selected="false">상품문의 <span>(1)</span></a>
                             </li>
                         </ul>
                         
                         
                         <div class="tab-content">
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <div class="tab-pane active" id="p_tabs-1" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                 
                                 <c:if test="${!(vo.p_detail_image==null || vo.p_detail_image=='') }">
@@ -282,47 +293,248 @@ function requestPay() {
                                     </p>
                                 </div>
                             </div>
-                            <div class="tab-pane" id="tabs-2" role="tabpanel">
+                            <div class="tab-pane" id="p_tabs-2" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                   <div class="review-container">
-      <img src="../img/mainlogo.png" alt="User Avatar" class="user-image" />
-
-      <div class="mid_1">
-        <div class="user-info">
-          <img
-            src="../img/mainlogo.png"
-            alt="Reviewer Avatar"
-            class="reviewer-avatar"
-            style="float: left"
-          />
-          <div class="user-name">사용자1</div>
-        </div>
-        <br />
-        <div class="mid_2">
-          <div class="rating" style="width:120px;">
-            <span class="star">⭐️</span>
-            <span class="star">⭐️</span>
-            <span class="star">⭐️</span>
-             <span class="star">⭐️</span>
-            <span class="half-star">⭐️</span>
-          </div>
-          
-        </div>
-        <p style="float:right;">작성날짜 적는 곳</p>
-        <div class="mid_3">
-         	<p><h3>4.5/5</h3></p>
-          <p class="review-text">
-            여기어때 정말 좋아요! 서비스가 훌륭하고 위치도 좋습니다. 여기어때
-            정말 좋아요! 서비스가 훌륭하고 위치도 좋습니다. 여기어때 정말
-            좋아요! 서비스가 훌륭하고 위치도 좋습니다.
-          </p>
-        </div>
-      </div>
-    </div>
+                                
+                                <c:if test="${prListSize!=0 }">
+                                <div class="p_total_review_container">
+                                 	
+                                 		<div class="p_total_review">
+                                 		
+                                 		 <div class="rating" style="width:400px; margin-top:10px; margin-bottom:10px;">
+                                 		 	<c:if test="${vo.p_grade>=0.5 and vo.p_grade<1 }">
+                                 		 	  <span class="half-star">⭐️</span>
+                                 		 	</c:if>
+                                 		 	
+                                 		 	<c:if test="${vo.p_grade>=1 and vo.p_grade<1.5 }">
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	</c:if>
+                                 		 	
+                                 		 		<c:if test="${vo.p_grade>=1.5 and vo.p_grade<2 }">
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	   <span class="half-star">⭐️</span>
+                                 		 	</c:if>
+                                 		 	
+                                 		 	<c:if test="${vo.p_grade>=2 and vo.p_grade<2.5 }">
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	</c:if>
+                                 		 	
+                                 		 	<c:if test="${vo.p_grade>=2.5 and vo.p_grade<3 }">
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	  <span class="half-star">⭐️</span>
+                                 		 	</c:if>
+                                 		 	
+                                 		 	<c:if test="${vo.p_grade>=3 and vo.p_grade<3.5 }">
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	   <span class="star">⭐️</span>
+                                 		 	</c:if>
+                                 		 	
+                                 		 	<c:if test="${vo.p_grade>=3.5 and vo.p_grade<4 }">
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	   <span class="star">⭐️</span>
+                                 		 	    <span class="half-star">⭐️</span>
+                                 		 	</c:if>
+                                 		 	
+                                 		 		<c:if test="${vo.p_grade>=4 and vo.p_grade<4.5 }">
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	   <span class="star">⭐️</span>
+                                 		 	     <span class="star">⭐️</span>
+                                 		 		</c:if>
+                                 		 	
+                                 		 	
+                                 		 		<c:if test="${vo.p_grade>=4.5 and vo.p_grade<5 }">
+                                 		 		
+                                 		 		
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	   <span class="star">⭐️</span>
+                                 		 	     <span class="star">⭐️</span>
+                                 		 	      <span class="half-star">⭐️</span>
+                                 		 	     
+                                 		 	     
+                                 		 		</c:if>
+                                 		 	
+                                 		 	
+                                 		 		<c:if test="${vo.p_grade>=5 }">
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	   <span class="star">⭐️</span>
+                                 		 	     <span class="star">⭐️</span>
+                                 		 	      <span class="star">⭐️</span>
+                                 		 		</c:if>
+                                 		 	
+									           
+									          </div>
+									          
+									          <div style="margin-top:10px;">
+									         
+									          <h1>평점 ${vo.p_grade }/5</h1>
+									          </div>
+                                 		
+                                 		</div>
+                                 		
+                                 		<div class="p_select_review_option" style="margin-top:30px;">
+                                 		<ul class="p_rank p_review_rank">
+                                 			<li class="r_option"><a href=#>높은 평점순</a> </li>
+                                 			<li class="r_option"><a href=#>낮은 평점순</a> </li>
+                                 			<li class="r_option"><a href=#>최신날짜 순</a> </li>
+                                 			<li class="r_option"><a href=#>오래된날짜 순 </a> </li>
+                                 				
+                                 		</ul>
+                                 			<div style="margin-left:990px;">
+                                 		<button id="write_product_review">후기 작성하기</button>
+                                 		</div>
+                                 		</div>
+                                 	</div>
+                                 	<hr>
+                                 	</c:if>
+                                
+                                
+                                
+                                <c:if test="${prListSize==0 }">
+                                <div><h2>등록된 후기가없습니다</h2></div>
+                                	<div style="margin-left:990px;">
+                                 		<button id="write_product_review">후기 작성하기</button>
+                                 		</div>
+                                </c:if>
+                                
+                                
+                                
+                                
+                                <c:if test="${prListSize!=0 }">
+                                	<c:forEach var="prVo" items="${prList }">
+                                	
+                                 	
+                                 
+                                 
+                                 <!-- for문 -->
+                                  <div class="row product_review_container">
+                                  	 <div class="col-md-4">
+                                  	 <div class="p_review_image">
+                                  	 <p>후기사진</p>
+                                  	
+                                  	 <img src="${vo.p_image }">
+                                  	 </div>
+                                  	 </div>
+                                  	 
                                   
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                  
+   										 <div class="col-md-8">
+                                   <div class="review-container">
+      								<img src="../img/mainlogo.png" alt="User Avatar" class="user-image" />
+
+									      <div class="mid_1">
+									        <div class="user-info">
+									          <img
+									            src="../img/mainlogo.png"
+									            alt="Reviewer Avatar"
+									            class="reviewer-avatar"
+									            style="float: left"
+									          />
+									          <div class="user-name">${prVo.writer }</div>  <span style="margin-left:70px;">${prVo.dbday }</span>
+									        </div>
+									        <br />
+									        <div class="mid_2">
+									          <div class="rating" style="width:120px;">
+									          
+									          
+									          
+									        	<c:if test="${prVo.score>=0.5 and prVo.score<1 }">
+                                 		 	  <span class="half-star">⭐️</span>
+                                 		 	</c:if>
+                                 		 	
+                                 		 	<c:if test="${prVo.score>=1 and prVo.score<1.5 }">
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	</c:if>
+                                 		 	
+                                 		 		<c:if test="${prVo.score>=1.5 and prVo.score<2 }">
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	   <span class="half-star">⭐️</span>
+                                 		 	</c:if>
+                                 		 	
+                                 		 	<c:if test="${prVo.score>=2 and prVo.score<2.5 }">
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	</c:if>
+                                 		 	
+                                 		 	<c:if test="${prVo.score>=2.5 and prVo.score<3 }">
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	  <span class="half-star">⭐️</span>
+                                 		 	</c:if>
+                                 		 	
+                                 		 	<c:if test="${prVo.score>=3 and prVo.score<3.5 }">
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	   <span class="star">⭐️</span>
+                                 		 	</c:if>
+                                 		 	
+                                 		 	<c:if test="${prVo.score>=3.5 and prVo.score<4 }">
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	   <span class="star">⭐️</span>
+                                 		 	    <span class="half-star">⭐️</span>
+                                 		 	</c:if>
+                                 		 	
+                                 		 		<c:if test="${prVo.score>=4 and prVo.score<4.5 }">
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	   <span class="star">⭐️</span>
+                                 		 	     <span class="star">⭐️</span>
+                                 		 		</c:if>
+                                 		 	
+                                 		 	
+                                 		 		<c:if test="${prVo.score>=4.5 and prVo.score<5 }">
+                                 		 		
+                                 		 		
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	   <span class="star">⭐️</span>
+                                 		 	     <span class="star">⭐️</span>
+                                 		 	      <span class="half-star">⭐️</span>
+                                 		 	     
+                                 		 	     
+                                 		 		</c:if>
+                                 		 	
+                                 		 	
+                                 		 		<c:if test="${prVo.score>=5 }">
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	  <span class="star">⭐️</span>
+                                 		 	   <span class="star">⭐️</span>
+                                 		 	     <span class="star">⭐️</span>
+                                 		 	      <span class="star">⭐️</span>
+                                 		 		</c:if>
+									            
+									            
+									            
+									            
+									            
+									          </div>
+									          
+									        </div>
+									       
+									        <div class="mid_3">
+									         	<p><h3>${prVo.score }/5</h3></p>
+									          <p class="review-text">
+									           ${prVo.content }
+									          </p>
+									        </div>
+									      </div>
+    										</div>
+                                  
+                              		 	 </div>
+                              		 	 </div>
+                              		 	 	</c:forEach>
+                              		 	 	</c:if>
+                              		 	 <!-- for문 -->
+                              		 	 </div>
+                            		</div>
+                            <div class="tab-pane" id="p_tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <h6>문의하기</h6>
                                     <p>문의하기</p>

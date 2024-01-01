@@ -15,7 +15,7 @@ private Connection conn;
 private  static ProductDAO dao;
 private CreateDBCPconnection dbconn = new CreateDBCPconnection();
 private final int ROW_SIZE=12;
-
+private final int REVIEW_ROW_SIZE=4;
 
 public static ProductDAO newInstace() {
 	if(dao==null) {
@@ -334,7 +334,7 @@ public ProductVO productDetail(int pno) {
 		ps=conn.prepareStatement(sql);
 		ps.executeUpdate();
 		
-		sql="SELECT pno,p_name,p_lower_price,p_percent,p_category,p_hit,p_image,p_intprice,p_price,p_expire_date,p_shipment,p_stack,p_like,p_detail_image,p_intlowerprice from product_detail where pno="+pno;
+		sql="SELECT pno,p_name,p_lower_price,p_percent,p_category,p_hit,p_image,p_intprice,p_price,p_expire_date,p_shipment,p_stack,p_like,p_detail_image,p_intlowerprice,p_grade from product_detail where pno="+pno;
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			rs.next();
@@ -355,6 +355,7 @@ public ProductVO productDetail(int pno) {
 			vo.setP_like(rs.getInt(13));
 			vo.setP_detail_image(rs.getString(14));
 			vo.setP_intlowerprice(rs.getInt(15));
+			vo.setP_grade(rs.getDouble(16));
 			rs.close();
 		
 	} catch (Exception e) {
@@ -639,6 +640,49 @@ public int productSearchTotalPage(String sct,String ss) {
 	}
 	
 	return total;
+	
+}
+
+public List<ReviewVO> product_reviewHighScoreList(int page,int pno) {
+	List<ReviewVO> list=new ArrayList<ReviewVO>();
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT writer,TO_CHAR(revdate,'YYYY-MM-DD HH24:MI:SS'),content,imgname,imgsize,score,num "
+					+"FROM(SELECT writer,revdate,content,imgname,imgsize,score,rownum as num "
+					+"FROM(SELECT writer,revdate,content,imgname,imgsize,score FROM review "
+					+"WHERE typeno=2 AND objno=? "
+					+"ORDER BY score DESC))"
+					+"WHERE num BETWEEN ? AND ?";
+		ps=conn.prepareStatement(sql);
+		int start=(ROW_SIZE*page)-(ROW_SIZE-1);
+		int end= ROW_SIZE*page;
+		ps.setInt(1, pno);
+		ps.setInt(2, start);
+		ps.setInt(3, end);
+
+	ResultSet rs=ps.executeQuery();
+	
+	while(rs.next()) {
+		ReviewVO vo= new ReviewVO();
+		vo.setWriter(rs.getString(1));
+		vo.setDbday(rs.getString(2));
+		vo.setContent(rs.getString(3));
+		vo.setImgname(rs.getString(4));
+		vo.setImgsize(rs.getInt(5));
+		vo.setScore(rs.getDouble(6));
+		
+		list.add(vo);
+	}
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+	e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return list;
 	
 }
 

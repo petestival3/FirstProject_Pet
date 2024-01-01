@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.ProductDAO;
 import com.sist.vo.ProductVO;
+import com.sist.vo.ReviewVO;
 import com.sist.vo.ProductVO;
 
 public class ProductModel {
@@ -113,7 +114,7 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 			ProductDAO dao=ProductDAO.newInstace();
 			ProductVO vo =dao.productDetail(Integer.parseInt(pno));
 			List<ProductVO>subImageList=dao.productSubImage(Integer.parseInt(pno));
-			
+			List<ReviewVO>prList=dao.product_reviewHighScoreList(1, Integer.parseInt(pno));
 			request.setAttribute("subImageList", subImageList);
 			request.setAttribute("vo", vo);
 			request.setAttribute("main_jsp", "../product/productDetail.jsp");
@@ -122,7 +123,8 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 			request.setAttribute("rt", rt);
 			request.setAttribute("lcount",lcount);//목록으로 돌아가는 카운트
 			request.setAttribute("ss", ss);
-			
+			request.setAttribute("prList", prList);
+			request.setAttribute("prListSize", prList.size());
 			
 			List<ProductVO>clist=new ArrayList<ProductVO>();
 			List<ProductVO>rlist=dao.productRelativeList(Integer.parseInt(pno));
@@ -299,6 +301,17 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 		
 		
 		return "../main/main.jsp";
+	}
+	
+	
+	
+	
+	
+	
+	@RequestMapping("product/Product_insert_review.do")
+	public String Product_insert_review(HttpServletRequest request, HttpServletResponse response) {
+			
+		return "../product/product_insert_review.jsp";
 	}
 	
 	

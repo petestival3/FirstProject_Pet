@@ -1,6 +1,14 @@
 /**
  * 
  */
+Shadowbox.init({
+    players: ['iframe'],
+   
+});
+
+
+
+
 
  $(document).ready(function() {
     let mainImageSrc = $('.product__details__pic__item img').attr('src'); // 초기 메인 이미지 저장
@@ -35,6 +43,28 @@
 		
 	})
    
+
+
+
+	
+	
+	
+	$("#write_product_review").click(function(){
+			Shadowbox.open({
+			content:'../product/Product_insert_review.do',
+			player:'iframe',
+			title:'리뷰',
+			width:800,
+			height:800
+		})
+	})
+	
+	
+	
+	
+
+
+
 
   
     
