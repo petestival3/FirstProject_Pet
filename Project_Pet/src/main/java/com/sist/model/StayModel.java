@@ -19,7 +19,7 @@ public class StayModel {
 		String page=request.getParameter("page");
 		if(page==null) 
 			page="1";
-		
+		String stype="0";
 		StayDAO dao=StayDAO.newInstance();
 		int curpage=Integer.parseInt(page);
 		int totalpage=dao.StayTotalPage();
@@ -34,7 +34,8 @@ public class StayModel {
 		
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
-	
+		
+		request.setAttribute("stype", stype);
 		request.setAttribute("list", list);
 		request.setAttribute("toplist", toplist);
 		request.setAttribute("curpage", curpage);
@@ -108,6 +109,7 @@ String stayno=request.getParameter("stayno");
 				  obj.put("name", vo.getName());
 				  obj.put("image", vo.getImage());
 				  obj.put("price", vo.getPrice());
+				  obj.put("stayno", vo.getStayno());
 				  arr.add(obj);
 			  }
 		  try
@@ -117,4 +119,125 @@ String stayno=request.getParameter("stayno");
 			  out.write(arr.toJSONString());
 		  }catch(Exception ex) {}
 	}
+	
+	@RequestMapping("stay/stypelist.do")
+	public String stay_stypelist(HttpServletRequest request, HttpServletResponse response) {
+		
+		String[] types= {"","호텔","캠핑","펜션","모텔"};
+		String[] engtypes= {"","Hotel","Camping","Pension","Motel"};
+		String page=request.getParameter("page");
+		if(page==null) 
+			page="1";
+		String typeno=request.getParameter("stype");
+		String stype=types[Integer.parseInt(typeno)];
+		String engtype=engtypes[Integer.parseInt(typeno)];
+		
+		StayDAO dao=StayDAO.newInstance();
+		int curpage=Integer.parseInt(page);
+		int totalpage=dao.StayTypeTotalPage(stype);
+		final int BLOCK=5;
+		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		List<StayVO> list=dao.stayTypeListAllData(stype,curpage);
+		List<StayVO> toplist=dao.stayLikeTop();
+		int staytotal=dao.stayTypeCount(stype);
+		if(endPage>totalpage)
+			endPage=totalpage;
+		
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		
+		request.setAttribute("stype", typeno);
+		request.setAttribute("list", list);
+		request.setAttribute("toplist", toplist);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("staytotal", staytotal);
+		
+		// 쿠키 데이터 전송
+		Cookie[] cookies=request.getCookies();
+		List<StayVO> stcList=new ArrayList<StayVO>();
+		if(cookies!=null) {
+			for(int i=cookies.length-1;i>=0;i--) {
+				if(cookies[i].getName().startsWith("stays")) {
+					String no=cookies[i].getValue();
+					StayVO vo=dao.stayDetail(Integer.parseInt(no));
+					stcList.add(vo);
+				}
+			}
+		}
+		request.setAttribute("stcList", stcList);
+		request.setAttribute("count", stcList.size());
+		
+		
+		
+		request.setAttribute("main_jsp", "../stay/stypelist.jsp");
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("stay/stay_location.do")
+	public String stay_location(HttpServletRequest request, HttpServletResponse response) {
+		
+		request.setAttribute("main_jsp", "../stay/location.jsp");
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("stay/stypeSortlist.do")
+	public String stay_stypeSortlist(HttpServletRequest request, HttpServletResponse response) {
+		
+		String[] types= {"","호텔","캠핑","펜션","모텔"};
+		String[] engtypes= {"","Hotel","Camping","Pension","Motel"};
+		String page=request.getParameter("page");
+		if(page==null) 
+			page="1";
+		String typeno=request.getParameter("stype");
+		String stype=types[Integer.parseInt(typeno)];
+		String engtype=engtypes[Integer.parseInt(typeno)];
+		
+		String sb=request.getParameter("sb");
+		
+		StayDAO dao=StayDAO.newInstance();
+		int curpage=Integer.parseInt(page);
+		int totalpage=dao.StayTypeTotalPage(stype);
+		final int BLOCK=5;
+		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		List<StayVO> list=dao.staySortDESCListData(stype,curpage,sb);
+		List<StayVO> toplist=dao.stayLikeTop();
+		int staytotal=dao.stayTypeCount(stype);
+		if(endPage>totalpage)
+			endPage=totalpage;
+		
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		
+		request.setAttribute("sb", sb);
+		request.setAttribute("stype", typeno);
+		request.setAttribute("list", list);
+		request.setAttribute("toplist", toplist);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("staytotal", staytotal);
+		
+		// 쿠키 데이터 전송
+		Cookie[] cookies=request.getCookies();
+		List<StayVO> stcList=new ArrayList<StayVO>();
+		if(cookies!=null) {
+			for(int i=cookies.length-1;i>=0;i--) {
+				if(cookies[i].getName().startsWith("stays")) {
+					String no=cookies[i].getValue();
+					StayVO vo=dao.stayDetail(Integer.parseInt(no));
+					stcList.add(vo);
+				}
+			}
+		}
+		request.setAttribute("stcList", stcList);
+		request.setAttribute("count", stcList.size());
+		
+		
+		
+		request.setAttribute("main_jsp", "../stay/stypeSortlist.jsp");
+		return "../main/main.jsp";
+	}
+	
 }

@@ -30,7 +30,7 @@ function stayhome(fds){
                     +'<div class="featured__item">'
                     +'<img src="'+vo.image+'" style="border-radius: 10px;overflow: hidden;">'
                 	+'<div class="featured__item__text">'
-                    +'<h6 id="ssss"><a href="#">'+vo.name+'</a></h6>'
+                    +'<h6 id="ssss"><a href="../stay/detail_before.do?stayno='+vo.stayno+'">'+vo.name+'</a></h6>'
                     +'<h5>&#8361;'+vo.price+'~</h5>'
                 	+'</div>'
             		+'</div>'

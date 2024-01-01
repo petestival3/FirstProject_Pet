@@ -90,7 +90,7 @@ public class StayDAO {
 				ps=conn.prepareStatement(sql);
 				ps.executeUpdate();
 				
-				sql="SELECT stype,sname,score,address,detail_address,price,review_count,around,basic,petinfo,other,mainimage,sub1,sub2,sub3,sub4,staymsg FROM stayinfo,STAYDETAIL,stayimage "
+				sql="SELECT stay_no,stype,sname,score,address,detail_address,price,review_count,around,basic,petinfo,other,mainimage,sub1,sub2,sub3,sub4,staymsg FROM stayinfo,STAYDETAIL,stayimage "
 						+ "WHERE stay_no=sdno AND stay_no=sino AND stay_no=?";
 				// 실무에서는 위처럼 order by를 쓰지 않고 index_asc를 쓴다
 				ps=conn.prepareStatement(sql);
@@ -98,24 +98,24 @@ public class StayDAO {
 				// INDEX_ASC(테이블명 인덱스명,PK,UK), INDEX_DESC(), INDEX()
 				ResultSet rs=ps.executeQuery();
 				rs.next();
-					
-					vo.setType(rs.getString(1));
-					vo.setName(rs.getString(2));
-					vo.setScore(rs.getDouble(3));
-					vo.setAddress(rs.getString(4));
-					vo.setDetailaddr(rs.getString(5));
-					vo.setPrice(rs.getInt(6));
-					vo.setRevcount(rs.getInt(7));
-					vo.setAround(rs.getString(8));
-					vo.setBasic(rs.getString(9));
-					vo.setPetinfo(rs.getString(10));
-					vo.setOther(rs.getString(11));
-					vo.setImage(rs.getString(12));
-					vo.setSub1(rs.getString(13));
-					vo.setSub2(rs.getString(14));
-					vo.setSub3(rs.getString(15));
-					vo.setSub4(rs.getString(16));
-					vo.setMsg(rs.getString(17));
+					vo.setStayno(rs.getInt(1));
+					vo.setType(rs.getString(2));
+					vo.setName(rs.getString(3));
+					vo.setScore(rs.getDouble(4));
+					vo.setAddress(rs.getString(5));
+					vo.setDetailaddr(rs.getString(6));
+					vo.setPrice(rs.getInt(7));
+					vo.setRevcount(rs.getInt(8));
+					vo.setAround(rs.getString(9));
+					vo.setBasic(rs.getString(10));
+					vo.setPetinfo(rs.getString(11));
+					vo.setOther(rs.getString(12));
+					vo.setImage(rs.getString(13));
+					vo.setSub1(rs.getString(14));
+					vo.setSub2(rs.getString(15));
+					vo.setSub3(rs.getString(16));
+					vo.setSub4(rs.getString(17));
+					vo.setMsg(rs.getString(18));
 				rs.close();
 			}catch(Exception ex) {
 				ex.printStackTrace();
@@ -270,7 +270,7 @@ public class StayDAO {
 			return list;
 		}
 		// 타입별 카운트
-		public int hotelcount(String type) {
+		public int stayTypeCount(String type) {
 			int count=0;
 			try {
 				conn=dbconn.getConnection();
@@ -291,27 +291,33 @@ public class StayDAO {
 		}
 		
 		// 타입별 모든 리스트 출력
-		public List<StayVO> stayTypeListAllData(String fd){
+		public List<StayVO> stayTypeListAllData(String fd,int page){
 			List<StayVO> list=new ArrayList<StayVO>();
 			try {
 				conn=dbconn.getConnection();
-				String sql="SELECT stay_no,sname,score,address,detail_address,price,mainimage,rownum "
-						+ "FROM (SELECT stay_no,sname,score,address,detail_address,price,mainimage "
-						+ "FROM stayinfo,stayimage WHERE stayinfo.STAY_NO=stayimage.SINO) "
-						+ "WHERE stype LIKE '%'||?||'%'";
+				String sql="SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage,num "
+						+ "FROM (SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage,rownum as num "
+						+ "FROM (SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage "
+						+ "FROM stayinfo,stayimage WHERE stayinfo.STAY_NO=stayimage.SINO AND stype LIKE '%'||?||'%')) "
+						+ "WHERE num BETWEEN ? AND ?";
 				
 				ps=conn.prepareStatement(sql);
+				int start=(ROW_SIZE*page)-(ROW_SIZE-1);
+				int end=ROW_SIZE*page;
 				ps.setString(1, fd);
+				ps.setInt(2, start);
+				ps.setInt(3, end);
 				ResultSet rs=ps.executeQuery();
 				while(rs.next()) {
 					StayVO vo=new StayVO();
 					vo.setStayno(rs.getInt(1));
-					vo.setName(rs.getString(2));
-					vo.setScore(rs.getDouble(3));
-					vo.setAddress(rs.getString(4));
-					vo.setDetailaddr(rs.getString(5));
-					vo.setPrice(rs.getInt(6));
-					vo.setImage(rs.getString(7));
+					vo.setType(rs.getString(2));
+					vo.setName(rs.getString(3));
+					vo.setScore(rs.getDouble(4));
+					vo.setAddress(rs.getString(5));
+					vo.setDetailaddr(rs.getString(6));
+					vo.setPrice(rs.getInt(7));
+					vo.setImage(rs.getString(8));
 					list.add(vo);
 				}
 				rs.close();
@@ -360,5 +366,46 @@ public class StayDAO {
 			}
 			return count;
 		}
+		
+		// Sort리스트(타입별)
+		public List<StayVO> staySortDESCListData(String fd,int page,String sb){
+			List<StayVO> list=new ArrayList<StayVO>();
+			try {
+				conn=dbconn.getConnection();
+				String sql="SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage,num "
+						+ "FROM (SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage,rownum as num "
+						+ "FROM (SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage "
+						+ "FROM stayinfo,stayimage WHERE stayinfo.STAY_NO=stayimage.SINO AND stype LIKE '%'||?||'%'"
+						+ " ORDER BY "+sb+" DESC )) "
+						+ "WHERE num BETWEEN ? AND ?";
+				
+				ps=conn.prepareStatement(sql);
+				int start=(ROW_SIZE*page)-(ROW_SIZE-1);
+				int end=ROW_SIZE*page;
+				ps.setString(1, fd);
+				ps.setInt(2, start);
+				ps.setInt(3, end);
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					StayVO vo=new StayVO();
+					vo.setStayno(rs.getInt(1));
+					vo.setType(rs.getString(2));
+					vo.setName(rs.getString(3));
+					vo.setScore(rs.getDouble(4));
+					vo.setAddress(rs.getString(5));
+					vo.setDetailaddr(rs.getString(6));
+					vo.setPrice(rs.getInt(7));
+					vo.setImage(rs.getString(8));
+					list.add(vo);
+				}
+				rs.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				dbconn.disConnection(conn, ps);
+			}
+			return list;
+		}
+		
 		
 }

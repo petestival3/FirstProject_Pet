@@ -57,7 +57,7 @@
                         <div class="sidebar__item">
                             <h4>Department</h4>
                             <ul>
-                                <li><a href="../stay/list.do" ${stype==0?"class=active":"" }>All</a></li>
+                                <li><a href="../stay/list.do">All</a></li>
                                 <li><a href="../stay/stypelist.do?stype=1" ${stype==1?"class=active":"" }>Hotel</a></li>
                                 <li><a href="../stay/stypelist.do?stype=2" ${stype==2?"class=active":"" }>Camping</a></li>
                                 <li><a href="../stay/stypelist.do?stype=3" ${stype==3?"class=active":"" }>Pension</a></li>
@@ -222,13 +222,13 @@
                     <div class="text-center">
                     <div class="product__pagination">
                     <c:if test="${startPage>1 }">
-                        <a href="../stay/list.do?page=${startPage-1 }"><i class="fa fa-long-arrow-left"></i></a>
+                        <a href="../stay/stypelist.do?stype=${stype }&page=${startPage-1 }"><i class="fa fa-long-arrow-left"></i></a>
                     </c:if>
                        <c:forEach var="i" begin="${startPage }" end="${endPage }">
-                       <a href="list.do?page=${i}" ${i==curpage?"class=active":"" }>${i}</a>
+                       <a href="../stay/stypelist.do?stype=${stype }&page=${i}" ${i==curpage?"class=active":"" }>${i}</a>
                         </c:forEach>
                     <c:if test="${endPage<totalpage }">
-                        <a href="../stay/list.do?page=${endPage+1 }"><i class="fa fa-long-arrow-right"></i></a>
+                        <a href="../stay/stypelist.do?stype=${stype }&page=${endPage+1 }"><i class="fa fa-long-arrow-right"></i></a>
                     </c:if>
                     </div>
                     </div>
