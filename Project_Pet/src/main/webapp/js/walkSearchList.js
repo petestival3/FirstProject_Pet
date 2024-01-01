@@ -1,8 +1,7 @@
  $(document).ready(function() {
 
 	
-
-	
+		let isRequestPending=false;
 		let loc='전체';
 		let w_name=''
 	
@@ -12,6 +11,8 @@
 
 		
 	$('#walkSearchOption').change(function(){
+		
+		
 		loc=$(this).val();
 		
 		$('#walkSearchBar').val('')
@@ -23,7 +24,7 @@
 	
 	$('#walkSearchBar').keyup(function(){
 		$('.kyj_selected').removeClass('kyj_selected');
-		
+	
 		 let cate = $('.walk_cate > li > a');
     cate.each(function() {
         if ($(this).text() === loc) {
@@ -34,18 +35,30 @@
 		w_name=$(this).val();
 		
 		
+		   if (w_name.trim() === '') {
+            // 입력창이 비어있을 때 처리할 내용
+           
+            return;
+        }
+		
 	
-		
+		if(!isRequestPending){
+			isRequestPending=true;
+			
 			ajax(1);
+		}
+			
+				
+			
 		
-		})         
+		});         
 		
 			
 					
 			function ajax(page){
 				
       				 
-      			
+      					
       			
 				$.ajax({
 						
@@ -139,22 +152,28 @@
 											
 								}
 									
-                				
+                			
 							
+						},
+						complete: function(){
+							isRequestPending=false;
+						},
+						error :function(xhr,status,error){
+							console.log(error)
+							isRequestPending=false;
 						}
 						
 						
 						
 					})
+				
 			}		
 					
 					
 					
 					
 				
-					
-					
-					
+			
 					
 		
 

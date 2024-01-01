@@ -139,7 +139,7 @@ public List<WalkVO> walkList(String loc,int page){
 
 
 
-public synchronized List<WalkVO> walkSearchList(String loc,String w_name,int page){
+public List<WalkVO> walkSearchList(String loc,String w_name,int page){
 	
 	List<WalkVO>list=new ArrayList<WalkVO>();
 	try {
@@ -162,7 +162,7 @@ public synchronized List<WalkVO> walkSearchList(String loc,String w_name,int pag
 		int end= ROW_SIZE*page;
 		
 		if(!loc.equals("전체")) {
-			ps.setString(1, msg);
+			ps.setString(1, loc);
 			ps.setString(2, w_name);
 			ps.setInt(3, start);
 			ps.setInt(4, end);
@@ -195,6 +195,7 @@ public synchronized List<WalkVO> walkSearchList(String loc,String w_name,int pag
 	finally {
 		dbconn.disConnection(conn, ps);
 	}
+	
 
 	return list;
 	
@@ -202,7 +203,7 @@ public synchronized List<WalkVO> walkSearchList(String loc,String w_name,int pag
 
 
 
-public synchronized int walkSearchTotalPage(String loc,String w_name) {
+public int walkSearchTotalPage(String loc,String w_name) {
 	int totalpage=0;
 	String msg="";
 	if (!loc.equals("전체")) {
@@ -299,7 +300,7 @@ public List<WalkVO> walkCourseData(int wno){
 }
 
 
-public synchronized WalkVO walkCourseAjaxInform(int wcno) {
+public WalkVO walkCourseAjaxInform(int wcno) {
 	WalkVO vo =new WalkVO();
 try {
 	conn=dbconn.getConnection();

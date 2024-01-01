@@ -99,7 +99,7 @@ public class WalkModel {
 		  String loc=request.getParameter("loc");
 		  String w_name=request.getParameter("w_name");
 		 String page=request.getParameter("page");
-		 
+		
 		 int curpage=Integer.parseInt(page);
 		  WalkDAO dao=WalkDAO.newInstance();
 		  JSONArray arr=new JSONArray();
