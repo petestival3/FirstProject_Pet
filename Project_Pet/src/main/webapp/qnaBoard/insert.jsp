@@ -31,7 +31,7 @@
    <main class="container clear">
     <h2 class="sectiontitle">QnA</h2>
     <div class="row">
-     <form method="post" action="../replyboard/insert_ok.do">
+     <form method="post" action="#">
       <table class="table">
         <tr>
           <th width=20% class="text-center">제목</th>

@@ -38,7 +38,7 @@ public class QnaBoardModel {
 //		
 //		// count 변경 => 2page 넘어가서도 글번호 올바르게 출력하는 코딩 (페이지)
 //		count=count-((curpage*10)-10);
-		request.setAttribute("page", page);
+//		request.setAttribute("page", page);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("list", list);
 //		request.setAttribute("count", count);

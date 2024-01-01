@@ -177,8 +177,8 @@ nav.pagination li{
                                         <div class="product__discount__item__text">
                                             <span>${tList.losedate }</span>
                                             
-                                            <h5><a href="#" class="tListTitle">${tList.title }</a></h5>
-                                            <div class="product__item__price">${tList.loseinfo }</div>
+                                            <h5><a href="../losedog/losedogdetail.do?ldno=${tList.ldno }" class="tListTitle">${tList.title }</h5>
+                                            <div class="product__item__price">${tList.loseinfo }</a></div>
                                         </div>
                                     </div>
                                 </div>
