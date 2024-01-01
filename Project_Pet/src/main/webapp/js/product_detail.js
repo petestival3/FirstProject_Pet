@@ -19,9 +19,22 @@
         }
     );
     
-   let price = parseFloat($('#detail_p_price').attr('data-price'));
-    let quantity = parseInt($(".kyj__calculate").val());
-    let target = $('#kyj_total_price');
+    
+    $('#show_pro_detail_inform').click(function(){
+		$('#show_pro_detail_inform').hide()
+		$('.pro_detail_img').show()
+		$('.close_pro_detail_inform').show()
+		
+	})
+    
+    
+      $('.close_pro_detail_inform').click(function(){
+		$('.pro_detail_img').hide()
+		$('#show_pro_detail_inform').show()
+		$('.close_pro_detail_inform').hide()
+		
+	})
+   
 
   
     

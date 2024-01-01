@@ -6,7 +6,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.pro_detail_img{
+width:100%; display:none;
+}
+.close_pro_detail_inform{
+display:none;
+}
 
+</style>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 
 <script type="text/javascript">
@@ -203,13 +211,7 @@ function requestPay() {
                          	<button>좋아요 예정</button>
                       </div>
       			
-      					
-                      
-                         
-                      
-                          
-
-                          
+      				  
                         <!--  
                                 목록으로 돌아가기 위함으로 DetailListBack.do 에 파라미터 값으로 
                              	현재 보는 상세보기가 최근본상품을 통한 상세보기인건지 단순 목록에서 본 상세보기인지 구분
@@ -226,7 +228,75 @@ function requestPay() {
                       
                 </div>
                 
-                <div class="container">
+              
+        
+                <div class="col-lg-12">
+                 
+                    <div class="product__details__tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                                    aria-selected="true">상품상세정보</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                                    aria-selected="false">상품후기</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
+                                    aria-selected="false">상품문의 <span>(1)</span></a>
+                            </li>
+                        </ul>
+                        
+                        
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                
+                                <c:if test="${!(vo.p_detail_image==null || vo.p_detail_image=='') }">
+                                <div>
+                                  <center>
+                                  <div>
+                                  <button id="show_pro_detail_inform" class="btn btn-lg btn-info">상품상세정보 펼치기&nbsp;&nbsp;&gt;</button>
+                                 
+                                  </div>
+                                  <div> <button class="close_pro_detail_inform btn btn-lg btn-info">상품상세정보 접기&nbsp;&nbsp;&gt;</button></div>
+                                  </center>
+                                    <p>
+                                     <center><div class="pro_detail_img">
+                                    <img src="${vo.p_detail_image }">
+                                    <div><button class="close_pro_detail_inform btn btn-lg btn-info">상품상세정보 접기&nbsp;&nbsp;&gt;</button></div>
+                                    </div>
+                                    </center>
+                                    </div>
+                                    </c:if>
+                                    
+                                    <c:if test="${(vo.p_detail_image==null || vo.p_detail_image=='') }">
+                                    <div><center><img src="../img/noImg.png"></center></div>
+                                      </c:if>
+                                    
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                    <h6>상품후기</h6>
+                                    <p>상품후기
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                    <h6>문의하기</h6>
+                                    <p>문의하기</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                          <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title related__product__title">
@@ -264,13 +334,15 @@ function requestPay() {
                         </div>
                     </div>
                     
-                </div>
+               	 </div>
                 </c:forEach>
               
             </div>
         </div>
         
-         <div class="container">
+        
+        
+           <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title related__product__title">
@@ -315,46 +387,9 @@ function requestPay() {
         </div>
         
         
-                <div class="col-lg-12">
-                 
-                    <div class="product__details__tab">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                                    aria-selected="true">상품상세정보</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                                    aria-selected="false">상품후기</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                                    aria-selected="false">상품문의 <span>(1)</span></a>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>상품상세정보</h6>
-                                    <p>
-                                    <img src="${vo.p_detail_image }" style="width:100%;">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-2" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>상품후기</h6>
-                                    <p>상품후기
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-3" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>문의하기</h6>
-                                    <p>문의하기</p>
-                                </div>
-                            </div>
-                        </div>
+        
+        
+        
                     </div>
                 </div>
             </div>

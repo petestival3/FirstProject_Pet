@@ -6,8 +6,10 @@
   
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
+
 
 <section class="blog spad">
         <div class="container">

@@ -1,0 +1,62 @@
+#product_half-stars-example {
+  /* use display:inline-flex to prevent whitespace issues. alternatively, you can put all the children of .product_rating-group on a single line */
+  /* make hover effect work properly in IE */
+  /* hide radio inputs */
+  /* set icon padding and size */
+  /* add padding and positioning to half star labels */
+  /* set default star color */
+  /* set color of none icon when unchecked */
+  /* if none icon is checked, make it red */
+  /* if any input is checked, make its following siblings grey */
+  /* make all stars orange on product_rating group hover */
+  /* make hovered input's following siblings grey on hover */
+  /* make none icon grey on product_rating group hover */
+  /* make none icon red on hover */
+}
+#product_half-stars-example .product_rating-group {
+  display: inline-flex;
+}
+#product_half-stars-example .product_rating__icon {
+  pointer-events: none;
+}
+#product_half-stars-example .product_rating__input {
+  position: absolute !important;
+  left: -9999px !important;
+}
+#product_half-stars-example .product_rating__label {
+  cursor: pointer;
+  /* if you change the left/right padding, update the margin-right property of .product_rating__label--half as well. */
+  padding: 0 0.1em;
+  font-size: 2rem;
+}
+#product_half-stars-example .product_rating__label--half {
+  padding-right: 0;
+  margin-right: -0.6em;
+  z-index: 2;
+}
+#product_half-stars-example .product_rating__icon--star {
+  color: orange;
+}
+#product_half-stars-example .product_rating__icon--none {
+  color: #eee;
+}
+#product_half-stars-example .product_rating__input--none:checked + .product_rating__label .product_rating__icon--none {
+  color: red;
+}
+#product_half-stars-example .product_rating__input:checked ~ .product_rating__label .product_rating__icon--star {
+  color: #ddd;
+}
+#product_half-stars-example .product_rating-group:hover .product_rating__label .product_rating__icon--star,
+#product_half-stars-example .product_rating-group:hover .product_rating__label--half .product_rating__icon--star {
+  color: orange;
+}
+#product_half-stars-example .product_rating__input:hover ~ .product_rating__label .product_rating__icon--star,
+#product_half-stars-example .product_rating__input:hover ~ .product_rating__label--half .product_rating__icon--star {
+  color: #ddd;
+}
+#product_half-stars-example .product_rating-group:hover .product_rating__input--none:not(:hover) + .product_rating__label .product_rating__icon--none {
+  color: #eee;
+}
+#product_half-stars-example .product_rating__input--none:hover + .product_rating__label .product_rating__icon--none {
+  color: red;
+}

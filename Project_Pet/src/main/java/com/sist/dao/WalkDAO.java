@@ -87,10 +87,10 @@ public List<WalkVO> walkList(String loc,int page){
 	try {
 		
 		conn= dbconn.getConnection();
-		String sql="SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo,num "
-					+"FROM (SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo,rownum as num "
-					+"FROM (SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo FROM walk_name_info "
-					+msg+ ")) "
+		String sql="SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo,reply_amount,num "
+					+"FROM (SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo,reply_amount,rownum as num "
+					+"FROM (SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo,reply_amount FROM walk_name_info "
+					+msg+ " ORDER BY reply_amount DESC)) "
 					+"WHERE num BETWEEN ? AND ?";
 		ps=conn.prepareStatement(sql);
 		
@@ -120,6 +120,7 @@ public List<WalkVO> walkList(String loc,int page){
 			vo.setAddress(rs.getString(4));
 			vo.setcLa(rs.getString(5));
 			vo.setcLo(rs.getString(6));
+			vo.setReply_amount(rs.getInt(7));
 			list.add(vo);
 			
 		}
@@ -150,10 +151,10 @@ public List<WalkVO> walkSearchList(String loc,String w_name,int page){
 		
 		conn=dbconn.getConnection();
 		
-		String sql="SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo,num "
-				+"FROM (SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo,rownum as num "
-				+"FROM (SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo FROM walk_name_info "
-				+"WHERE "+msg+" w_name LIKE '%'||?||'%' )) "
+		String sql="SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo,reply_amount,num "
+				+"FROM (SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo,reply_amount,rownum as num "
+				+"FROM (SELECT wno,w_name,signgu_name,lnm_addr,cours_spot_la,cours_spot_lo,reply_amount FROM walk_name_info "
+				+"WHERE "+msg+" w_name LIKE '%'||?||'%' ORDER BY reply_amount DESC)) "
 				+"WHERE num BETWEEN ? AND ?";
 		
 		ps=conn.prepareStatement(sql);
@@ -183,6 +184,7 @@ public List<WalkVO> walkSearchList(String loc,String w_name,int page){
 			vo.setAddress(rs.getString(4));
 			vo.setcLa(rs.getString(5));
 			vo.setcLo(rs.getString(6));
+			vo.setReply_amount(rs.getInt(7));
 			list.add(vo);
 			
 		}
@@ -373,6 +375,17 @@ public  void walkReplyInsert(WalkReplyVO vo,String pwd) {
 	
 		dbconn.disConnection(conn, ps);
 		
+		conn=dbconn.getConnection();
+		
+		sql="UPDATE WALK_NAME_INFO SET "
+			+"reply_amount=reply_amount+1 "
+			+"WHERE wno=? ";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, vo.getBno());
+		ps.executeUpdate();
+		
+		dbconn.disConnection(conn, ps);
+		
 	} catch (Exception e) {
 		// TODO: handle exception
 	e.printStackTrace();
@@ -554,6 +567,17 @@ public void walkAddReplyInsert(String pwd,WalkReplyVO vo) {
 		ps.executeUpdate();
 		dbconn.disConnection(conn, ps);
 		
+		
+		conn=dbconn.getConnection();
+		sql="UPDATE WALK_NAME_INFO SET "
+			+"reply_amount=reply_amount+1 "
+			+"WHERE wno=? ";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, vo.getBno());
+		ps.executeUpdate();
+		
+		dbconn.disConnection(conn, ps);
+		
 		} catch (Exception e) {
 		// TODO: handle exception
 	e.printStackTrace();
@@ -568,12 +592,12 @@ public void walkAddReplyInsert(String pwd,WalkReplyVO vo) {
 public  boolean walkDeleteReply(int rno,String pwd) {
 	boolean bCheck=false;
 	String db_pwd="";
-	
+	int wno=0;
 	String msg="삭제한 댓글입니다.";
 	try {
 		conn=dbconn.getConnection();
 		
-			String sql="SELECT pwd FROM BOARD_REPLY WHERE rno=?";
+			String sql="SELECT pwd,bno FROM BOARD_REPLY WHERE rno=?";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, rno);
 			ResultSet rs=ps.executeQuery();
@@ -581,6 +605,7 @@ public  boolean walkDeleteReply(int rno,String pwd) {
 			if(rs.next()) {
 			
 			db_pwd=rs.getString(1);
+			wno=rs.getInt(2);
 			}
 			rs.close();
 			dbconn.disConnection(conn, ps);
@@ -631,6 +656,16 @@ public  boolean walkDeleteReply(int rno,String pwd) {
 						dbconn.disConnection(conn, ps);
 						conn=dbconn.getConnection();
 			
+							
+						sql="UPDATE WALK_NAME_INFO SET "
+							+"reply_amount=reply_amount-1 "
+							+"WHERE wno=? ";
+						ps=conn.prepareStatement(sql);
+						ps.setInt(1, wno);
+						ps.executeUpdate();
+						
+						dbconn.disConnection(conn, ps);
+						
 		}
 		
 		else {

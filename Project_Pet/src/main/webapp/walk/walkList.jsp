@@ -7,24 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-/* 검색어 입력창 스타일 */
-#walkSearchBar {
-  height: 40px;
-  width: 300px;
-  padding: 0 10px;
-  border: 1px solid #ddd;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  outline: none;
-}
-.walkSearch{
-margin-top:50px;
-}
-.walkSearchList{
-display:none;
-}
 
 </style>
 
@@ -69,19 +51,23 @@ display:none;
                     <div class="row ">
                     	
                     	<!-- 일반 리스트 -->
-                    	<c:forEach var="vo" items="${list }">
+                    	<c:forEach var="vo" items="${list }" varStatus="loop">
                         <div class="col-lg-4 col-md-4 col-sm-4 ">
                         <a href="../walk/walkDetail.do?wno=${vo.wno }">
                             <div class="blog__item walk_wrapper">
-                                
+                              
+                                	 <c:if test="${loop.index < 3 && loc=='전체'}">
+                                   	<span class="hot_walk">hot</span>
+                                   </c:if>
                                 <div class="blog__item__text walk_list_style">
-                                   
-                                    <h3 class="name_overflow">${vo.wname }</h3>
-                                    <p></p>
+                                
+                                   <h3 class="name_overflow">${vo.wname }</h3>
+                                    <p style="color:blue; opacity:0.8;">(reply: ${vo.reply_amount })</p>
                                     <p class="name_overflow">${vo.signgu_name }</p>
                                     <p class="name_overflow">${vo.address }</p>
                                    
                                 </div>
+                                
                             </div>
                             </a>
                         </div>

@@ -138,6 +138,7 @@ public class WalkModel {
 				  	obj.put("address", vo.getAddress());
 				  	obj.put("cla", vo.getcLa());
 				  	obj.put("clo", vo.getcLo());
+				  	obj.put("reply_amount",vo.getReply_amount());
 				 
 				
 				  if(i==0)
@@ -146,6 +147,7 @@ public class WalkModel {
 					 obj.put("totalpage", totalpage);
 					 obj.put("start",start);
 					 obj.put("end",end);
+					 
 				  }
 				  arr.add(obj);
 				  

@@ -1,7 +1,7 @@
 package com.sist.vo;
 
 public class WalkVO {
-private int wcno,wno;
+private int wcno,wno,reply_amount;
 private String wname,w_course_name,course_inform,signgu_name,course_level,course_length,course_lengthDetail,addInfrom,course_time,optn,toilet,conventionName,address,
 cLa,cLo,msg,level_image;
 public String getCourse_level() {
@@ -15,6 +15,12 @@ public String getWname() {
 }
 public String getW_course_name() {
 	return w_course_name;
+}
+public int getReply_amount() {
+	return reply_amount;
+}
+public void setReply_amount(int reply_amount) {
+	this.reply_amount = reply_amount;
 }
 public void setW_course_name(String w_course_name) {
 	this.w_course_name = w_course_name;

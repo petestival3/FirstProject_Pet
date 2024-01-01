@@ -166,3 +166,37 @@ display:none;
         font-weight: bold; /* 예시: 폰트를 굵게 변경합니다 */
         /* 원하는 스타일을 추가하세요 */
     }
+    
+    /* 검색어 입력창 스타일 */
+#walkSearchBar {
+  height: 40px;
+  width: 300px;
+  padding: 0 10px;
+  border: 1px solid #ddd;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  outline: none;
+}
+.walkSearch{
+margin-top:50px;
+}
+.walkSearchList{
+display:none;
+}
+
+
+
+.hot_walk {
+    display: inline-block;
+    padding: 2px 5px;
+    border-radius: 3px;
+    background-color: #ff5555;
+    color: #FFD700;
+    font-size: 15px;
+    transition: font-size 0.5s;
+    margin-right: 5px; 
+   	
+}
+

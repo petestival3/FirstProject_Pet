@@ -37,12 +37,12 @@
                     </div>
                    
                     
-                 <div id="highsale_container1">
-  				  <div style="height: 100%; display: flex; flex-direction: column;" class="product_items">
+                 <div id="highsale_container1" >
+  				  <div style="height: 100%; display: flex; flex-direction: column; " class="product_items">
   				
       				  <c:forEach var="hsvo" items="${highSaleList}">
       				
-      				  <div class="product_item">
+      				  <div class="product_item" style="border-radius: 15px; border: 1px solid #ccc;">
       			   <div class="product__item">
                    
                     		<c:url value="DetailBefore.do?count=1" var="hsurl">

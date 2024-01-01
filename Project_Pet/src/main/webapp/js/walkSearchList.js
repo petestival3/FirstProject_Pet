@@ -4,10 +4,14 @@
 		let isRequestPending=false;
 		let loc='전체';
 		let w_name=''
-	
 		
-        
-        
+		
+		
+	
+         
+         
+         
+	
 
 		
 	$('#walkSearchOption').change(function(){
@@ -16,15 +20,9 @@
 		loc=$(this).val();
 		
 		$('#walkSearchBar').val('')
-	
-	})
-	
-	
-	
-	
-	$('#walkSearchBar').keyup(function(){
-		$('.kyj_selected').removeClass('kyj_selected');
-	
+		
+		
+		$('.kyj_selected').removeClass('kyj_selected'); // 지역을 변경할때 카테고리 selected 변경
 		 let cate = $('.walk_cate > li > a');
     cate.each(function() {
         if ($(this).text() === loc) {
@@ -32,11 +30,30 @@
         }
     });
 		
+		
+	
+	})
+	
+	
+	
+	
+	$('#walkSearchBar').keyup(function(){
+		
+	
+		$('.kyj_selected').removeClass('kyj_selected'); // 지역을 변경할때 카테고리 selected 변경
+		 let cate = $('.walk_cate > li > a');
+    cate.each(function() {
+        if ($(this).text() === loc) {
+            $(this).addClass('kyj_selected');
+        }
+    });
+		
+		
 		w_name=$(this).val();
 		
 		
 		   if (w_name.trim() === '') {
-            // 입력창이 비어있을 때 처리할 내용
+           
            
             return;
         }
@@ -101,7 +118,7 @@
 													+' <div class="blog__item walk_wrapper">'
 													+'<div class="blog__item__text walk_list_style">'
 													+'<h3 class="name_overflow">'+vo.w_name+'</h3>'
-													+'<p></p>'
+													+'<p style="color:blue; opacity:0.8;">(reply: '+vo.reply_amount+')</p>'
 													+' <p class="name_overflow">'+vo.signgu_name+'</p>'
 													+' <p class="name_overflow">'+vo.address+'</p>'
 													+'</div>'
