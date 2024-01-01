@@ -153,7 +153,14 @@
                             <a href="../mypage/my_petreg.do">마이펫 등록</a>
                             </c:if>
                             </li>
-                            <li style="text-indent: 20px"><a href="#">마이펫 관리</a></li>
+                            <li style="text-indent: 20px">
+                            <c:if test="${empty sessionScope.id}">
+                            <a href="../member/login.jsp">마이펫 관리</a>
+                            </c:if>
+                            <c:if test="${not empty sessionScope.id}">
+                            <a href="../mypage/my_petinfo.do">마이펫 관리</a>
+                            </c:if>
+                            </li>
                         </ul>
                     </div>
                 </div>

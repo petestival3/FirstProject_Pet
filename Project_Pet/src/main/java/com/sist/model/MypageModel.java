@@ -19,6 +19,7 @@ import com.sist.controller.RequestMapping;
 import com.sist.dao.MyPageDAO;
 import com.sist.vo.MyPageVO;
 
+
 public class MypageModel {
 	@RequestMapping("mypage/mypage.do")
 	public String mypageMain(HttpServletRequest request, HttpServletResponse response) {
@@ -133,38 +134,35 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 	    return "redirect:../mypage/my_petreg.do";
 	
 }
-//	@RequestMapping("mypage/my_petinfo.do")
-//	public void petInfo(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//	    try {
-//	        request.setCharacterEncoding("UTF-8");
-//	    } catch (Exception ex) {}
-//
-//	    HttpSession session=request.getSession();
-//		session.getAttribute("id");
-//
-//	    MyPageVO vo = new MyPageVO();
-//
-////	    String pet_name = request.getParameter("pet_name");
-////	    String pet_bday = request.getParameter("pet_bday");
-////	    String pet_gender = request.getParameter("pet_gender");
-////	    String pet_weight = request.getParameter("pet_weight");
-//	    String id=(String) request.getParameter("id");
-//	    
-//	    
-//	    JSONObject obj=new JSONObject();
-//	    obj.put("pet_name", vo.getPet_name());
-//	    obj.put("pet_gender", vo.getPet_gender());
-//	    obj.put("pet_bday", vo.getPet_bday());
-//	    obj.put("pet_weight", vo.getPet_weight());
-//	    
-//	    try
-//		{
-//			response.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
-//			PrintWriter out=response.getWriter();
-//			out.write(obj.toString());
-//		}catch(Exception ex) {}
-//	   
-//}
+
+@RequestMapping("mypage/my_petinfo.do")
+public String mypetInfo(HttpServletRequest request, HttpServletResponse response) {
+	try {
+		request.setCharacterEncoding("UTF-8");
+	} catch (Exception ex) {
+	}
+
+	HttpSession session = request.getSession();
+	String id = (String) session.getAttribute("id");
+	MyPageDAO dao = MyPageDAO.newInstance();
+	MyPageVO vo = dao.mypagePet(id);
+	vo=dao.mypagePetInfo(id);
+	
+	String filename = vo.getPet_filename();
+    String path = "c://download";
+    File file = new File(path + "\\" + filename);
+    
+    String pet_name = request.getParameter("pet_ name");
+    String pet_bday = request.getParameter("pet_bday");
+    String pet_gender = request.getParameter("pet_gender");
+    String pet_check = request.getParameter("pet_check");
+    String pet_weight = request.getParameter("pet_weight");
+    
+    request.setAttribute("vo", vo);
+
+	request.setAttribute("main_jsp", "../mypage/my_petinfo.jsp");
+	return "../main/main.jsp";
+}
 
 
 }

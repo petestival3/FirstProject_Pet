@@ -79,5 +79,41 @@ public class MyPageDAO {
 		}
 		return vo;
 	}
+	public MyPageVO mypagePetInfo(String id)
+	{
+		MyPageVO vo=new MyPageVO();
+		try
+		{
+			conn=dbconn.getConnection();
+			String sql="UPDATE pet_reg "
+					+ "SET pet_filename=?, pet_name=?, pet_bday=?, pet_gender=?, pet_weight=? "
+					+ "WHERE user_id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getPet_filename());
+			ps.setString(2, vo.getPet_name());
+			ps.setString(3, vo.getPet_bday());
+			ps.setString(4, vo.getPet_gender());
+			ps.setString(5, vo.getPet_weight());
+			ps.setString(6, id);
+			ps.executeUpdate();
+
+			vo.setPet_filename(vo.getPet_filename());
+			vo.setPet_name(vo.getPet_name());
+			vo.setPet_bday(vo.getPet_bday());
+			vo.setPet_gender(vo.getPet_gender());
+			vo.setPet_weight(vo.getPet_weight());
+
+			
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbconn.disConnection(conn, ps);
+		}
+		return vo;
+	}
 	
 }
