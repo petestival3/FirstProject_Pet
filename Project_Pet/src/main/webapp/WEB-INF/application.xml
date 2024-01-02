@@ -13,4 +13,5 @@
    <bean id="qnaBoard" class="com.sist.model.QnaBoardModel"></bean>
    <bean id="product" class="com.sist.model.ProductModel"></bean>
    <bean id="walk" class="com.sist.model.WalkModel"></bean>
+   <bean id="freeboard" class="com.sist.model.FreeBoardModel"></bean>
 </beans>

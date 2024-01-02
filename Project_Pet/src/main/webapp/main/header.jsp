@@ -102,7 +102,7 @@
                             </li>
                             <li><a href="#">COMMUNITY</a>
                                <ul class="header__menu__dropdown">
-                                    <li><a href="#">자유게시판</a></li>
+                                    <li><a href="../freeboard/list.do">자유게시판</a></li>
                                     <li><a href="#">반려동물 자랑게시판</a></li>
                                     <li><a href="../qnaBoard/list.do">문의게시판</a></li>
                                     <li><a href="#">공지사항</a></li>
