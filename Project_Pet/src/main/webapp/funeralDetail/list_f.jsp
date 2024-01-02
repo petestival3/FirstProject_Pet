@@ -143,28 +143,34 @@ $(function(){
 	/* $( "#dialog" ).dialog(); */
 	
 	$('.funeral_list_title').click(function () {
+		
 			let CR_COM_NO=$(this).attr("data-fno");
 			$.ajax({
 				type:'post',
 				url:'../FuneralDetail/list_f_detail.do',
 				data:{"CR_COM_NO":CR_COM_NO},
 				success:function(res){
-					let json=JSON.parse(res);
+					try {
+					    let json = JSON.parse(res);
+					    // 성공적으로 JSON 파싱이 이루어질 경우의 코드
+					    $('#name').text(json.name);
+					    $('#sector').text(json.sector);
+					    $('#phone').text(json.phone);
+					    $('#loc').text(json.loc);
+					    $('#homepage').text(json.homepage);
 
-				$('#name').text(json.name)
-				$('#sector').text(json.sector)
-				$('#phone').text(json.phone)
-				$('#loc').text(json.loc);
-				$('#homepage').text(json.homepage)
+					    $('#dialog').dialog({
+					        autoOpen:false,
+					        width:650,
+					        height:700,
+					        modal:true
+					    }).dialog("open");
+					} catch (error) {
+					    console.error("JSON 파싱 오류:", error);
+					    // 오류가 발생했을 때의 처리
+					}
 				
-				/*
-				$('#dialog').dialog({
-					autoOpen:false,
-					width:650,
-					height:700,
-					modal:true
-				}).dialog("open")*/
-				 $('#dialog').dialog('open'); // 여기서 다이얼로그 열기
+
 			}
 		})
 		
@@ -246,7 +252,7 @@ $(function(){
 	<!-- 장례 전체 목록 페이지 종료 -->
 
 	<!-- 다이얼로그 테이블 상세보기 시작 -->
-	<div id="dialog" title="장례식장 상세보기" style="display:;">
+	<div id="dialog" title="장례식장 상세보기" style="display:none;">
 		<table class="detail_table">
 			<tr>
 				<td class="detail_table_title text-center" colspan="2">상세보기</td>
