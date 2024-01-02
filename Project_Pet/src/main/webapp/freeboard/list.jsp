@@ -16,14 +16,15 @@
 <body>
 <div class="wrapper row3">
   <main class="container clear"> 
-  <h2 class="sectiontitle">자유게시판</h2>
-  <div class="row row1" style="height: 500px">
+  <h2 class="sectiontitle text-center">자유게시판</h2>
+  <div class="row row1" style="height: 200px">
    <table class="table">
     <tr>
      <td>
-      <a href="../freeboard/insert.do"
-       class="btn btn-sm btn-danger">글작성</a>
-       <a href="javascript:history.back()" class="primary-btn" style="font-weight: bold;">목록</a>
+      <!-- <a href="../freeboard/insert.do"
+       class="btn btn-sm btn-danger">글작성</a> -->
+       <a href="../freeboard/insert.do" 
+       class="primary-btn" style="font-weight: bold;">작성하기</a>
      </td>
     </tr>
    </table>
@@ -39,7 +40,7 @@
     <c:forEach var="vo" items="${list }">
       <tr>
        <td class="text-center" width=10%>${count }</td>
-       <td width=55%><a href="../freeboard.do?no=${vo.no }">${vo.subject }</a>
+       <td width=55%><a href="../freeboard/detail.do?no=${vo.no }">${vo.subject }</a>
         &nbsp; <c:if test="${today==vo.dbday }">
           <sup><img src="../freeboard/new.gif"></sup>
         </c:if></td>
@@ -58,6 +59,9 @@
          <a href="#" class="btn btn-danger btn-sm">다음</a>
         </td>
     </tr>
+    
+    
+			      
     
     
     
