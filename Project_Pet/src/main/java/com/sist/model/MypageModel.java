@@ -118,11 +118,11 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 	    System.out.println(vo.getPet_check());
 	    vo.setPet_weight(pet_weight);
 
-//	    System.out.println("pet_name: " + pet_name);
-//	    System.out.println("pet_bday: " + pet_bday);
-//	    System.out.println("pet_gender: " + pet_gender);
-//	    System.out.println("pet_weight: " + pet_weight);
-//	    System.out.println("pet_filename: " + filename);
+	    System.out.println("pet_name: " + pet_name);
+	    System.out.println("pet_bday: " + pet_bday);
+	    System.out.println("pet_gender: " + pet_gender);
+	    System.out.println("pet_weight: " + pet_weight);
+	    System.out.println("pet_filename: " + filename);
 
 	    dao.petRegInsert(vo);
 	 
