@@ -1,9 +1,13 @@
 package com.sist.model;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
+
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 import com.sist.vo.*;
@@ -80,4 +84,30 @@ public class FuneralDetailModel {
 		  request.setAttribute("main_jsp", "../funeralDetail/detail_f.jsp");
 		  return "../main/main.jsp";
 	}
+	
+	 @RequestMapping("FuneralDetail/list_f_detail.do")
+	  public void funeralFindDetailData(HttpServletRequest request,
+			  HttpServletResponse response)
+	  {
+		// JSON 전송 
+		  String fno=request.getParameter("fno");
+		  FuneralListDAO dao=FuneralListDAO.newInstance();
+		  FuneralListVO vo=dao.funeralFindDetailData(Integer.parseInt(fno));
+		  JSONObject obj=new JSONObject();
+		  //obj.put("poster", vo.getPoster());//{"poster":값,......}
+		  obj.put("name", vo.getCR_COM_NAME());
+		  obj.put("sector", vo.getCR_COM_SECTOR());
+		  obj.put("phone", vo.getCR_COM_PHONE());
+		  obj.put("loc", vo.getCR_COM_LOC());
+		  obj.put("homepage", vo.getCR_COM_HOMEPAGE());
+		  
+		  // 전송 => ajax
+		  try
+		  {
+			  response.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
+			  PrintWriter out=response.getWriter();
+			  out.write(obj.toJSONString());
+		  }catch(Exception ex) {}
+		
+	  }
 }

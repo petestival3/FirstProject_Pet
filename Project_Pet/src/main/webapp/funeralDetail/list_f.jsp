@@ -135,48 +135,36 @@ li {
 </style>
 
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+ <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 <script type="text/javascript">
 $(function(){
 	/* $( "#dialog" ).dialog(); */
 	
-	$('.f_list_li').click(function(){
-		let CR_COM_NO=$(this).attr("data-fno");
-		$.ajax({
-			type:'post',
-			url:'../FuneralDetail/detail_f.do',
-			data:{"CR_COM_NO":CR_COM_NO},
-			success:function(res){
-				let json=JSON.parse(res);
-				
-				$('#name').html(json.name+'&nbsp;<span style="color:orange">'+json.score+'</span>')
-				$('#type').text(json.type)
-				let temp=json.theme;
-				let theme=temp.split(",");
-				let html='<ul>'
-				for(let t of theme)
-				{
-					html+='<li>'+t+'</li>'
-				}
-				html+='</ul>'
-				$('#theme').html(html);
+	$('.funeral_list_title').click(function () {
+			let CR_COM_NO=$(this).attr("data-fno");
+			$.ajax({
+				type:'post',
+				url:'../FuneralDetail/list_f_detail.do',
+				data:{"CR_COM_NO":CR_COM_NO},
+				success:function(res){
+					let json=JSON.parse(res);
+
+				$('#name').text(json.name)
+				$('#sector').text(json.sector)
 				$('#phone').text(json.phone)
-				$('#address').text(json.address);
-				$('#time').text(json.time)
-				$('#seat').text(json.seat)
-				$('#price').text(json.price)
-				$('#content').text(json.content);
-				$('#poster').attr("src",json.poster)
-				//$('#dialog').attr("title",json.name+" 상세보기")
+				$('#loc').text(json.loc);
+				$('#homepage').text(json.homepage)
 				
+				/*
 				$('#dialog').dialog({
 					autoOpen:false,
 					width:650,
 					height:700,
 					modal:true
-				}).dialog("open")
+				}).dialog("open")*/
+				 $('#dialog').dialog('open'); // 여기서 다이얼로그 열기
 			}
 		})
 		
@@ -231,7 +219,7 @@ $(function(){
 				<li class="f_list_li" data-fno="${vo.CR_COM_NO }">
 				<!--<a href="../FuneralDetail/detail_f.do?CR_COM_NO=${vo.CR_COM_NO }"> -->
 				<a href="#">
-						<span>${vo.CR_COM_NO }</span> <span>${vo.CR_COM_NAME }</span> <span>${vo.CR_COM_LOC }</span>
+						<span>${vo.CR_COM_NO }</span> <span class="funeral_list_title" data-fno="${vo.CR_COM_NO }">${vo.CR_COM_NAME }</span> <span>${vo.CR_COM_LOC }</span>
 				</a></li>
 			</c:forEach>
 		</ul>
@@ -258,30 +246,30 @@ $(function(){
 	<!-- 장례 전체 목록 페이지 종료 -->
 
 	<!-- 다이얼로그 테이블 상세보기 시작 -->
-	<div id="dialog" title="장례식장 상세보기" style="display:">
+	<div id="dialog" title="장례식장 상세보기" style="display:;">
 		<table class="detail_table">
 			<tr>
 				<td class="detail_table_title text-center" colspan="2">상세보기</td>
 			</tr>
 			<tr>
 				<td width="20%" class="text-center">업체명</td>
-				<td width="50%" id="seat">${vo.CR_COM_NAME }</td>
+				<td width="50%" id="name">${vo.CR_COM_NAME }</td>
 			</tr>
 			<tr>
 				<td width="20%" class="text-center">분야</td>
-				<td width="50%" id="seat">${vo.CR_COM_SECTOR }</td>
+				<td width="50%" id="sector">${vo.CR_COM_SECTOR }</td>
 			</tr>
 			<tr>
 				<td width="20%" class="text-center">전화번호</td>
-				<td width="50%" id="seat">${vo.CR_COM_PHONE }</td>
+				<td width="50%" id="phone">${vo.CR_COM_PHONE }</td>
 			</tr>
 			<tr>
 				<td width="20%" class="text-center">위치</td>
-				<td width="50%" id="seat">${vo.CR_COM_LOC }</td>
+				<td width="50%" id="loc">${vo.CR_COM_LOC }</td>
 			</tr>
 			<tr>
 				<td width="20%" class="text-center">홈페이지</td>
-				<td width="50%" id="seat">${vo.CR_COM_HOMEPAGE }</td>
+				<td width="50%" id="homepage">${vo.CR_COM_HOMEPAGE }</td>
 			</tr>
 			<tr>
 				<td colspan="3" class="text-right"><a href="#"
