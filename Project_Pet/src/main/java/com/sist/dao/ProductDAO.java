@@ -687,4 +687,76 @@ public List<ReviewVO> product_reviewHighScoreList(int page,int pno) {
 }
 
 
+public void insertProductReview(ReviewVO vo) {
+	
+	int reviewAmount=0;
+	int p_grade=0;
+	
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT COUNT(*) FROM REVIEW WHERE OBJNO=?";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, vo.getObjno());
+		ResultSet rs= ps.executeQuery();
+		
+		if(rs.next()) {
+			reviewAmount=rs.getInt(1);
+		}
+		rs.close();
+		
+		dbconn.disConnection(conn, ps);
+		
+		conn=dbconn.getConnection();
+		 sql="SELECT p_grade FROM product_detail WHERE pno=?";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, vo.getObjno());
+		 rs= ps.executeQuery();
+		
+		if(rs.next()) {
+			p_grade=rs.getInt(1);
+		}
+		rs.close();
+		dbconn.disConnection(conn, ps);
+		
+		
+		
+		conn=dbconn.getConnection();
+		sql="INSERT INTO REVIEW (REVNO,OBJNO,WRITER,CONTENT,IMGNAME,IMGSIZE,SCORE,TYPENO) "
+			+"VALUES(REVIEW_REVNO_SEQ.nextval,?,?,?,?,?,?,2)";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, vo.getObjno());
+		ps.setString(2, vo.getWriter());
+		ps.setString(3, vo.getContent());
+		ps.setString(4, vo.getImgname());
+		ps.setInt(5, vo.getImgsize());
+		ps.setDouble(6, vo.getScore());
+		
+		ps.executeUpdate();
+		dbconn.disConnection(conn, ps);
+		
+		
+		double newGrade = (p_grade * reviewAmount + vo.getScore()) / (reviewAmount + 1);
+		newGrade = Math.round(newGrade * 10.0) / 10.0; 
+		
+		conn=dbconn.getConnection();
+		sql="UPDATE product_detail SET "
+		   +"p_grade=? "
+			+"WHERE pno=?";	
+				ps=conn.prepareStatement(sql);
+				ps.setDouble(1, newGrade);
+				ps.setInt(2, vo.getObjno());
+				ps.executeUpdate();
+				dbconn.disConnection(conn, ps);
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+	e.printStackTrace();
+	}
+	
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+}
+
+
 }

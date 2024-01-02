@@ -161,7 +161,7 @@ function requestPay() {
                     	<div>
                     	<span class="category-tag" style="margin-bottom:10px;"><a href="ProductList.do?ct=${vo.p_category }">${vo.p_category }</a></span>
                          <span class="hit-wrapper hit-number">조회수${vo.p_hit}</span>
-                        <h3 id="title">${vo.p_name }</h3>
+                        <h3 id="title" data-pno="${vo.pno }">${vo.p_name }</h3>
                     </div>
 
 

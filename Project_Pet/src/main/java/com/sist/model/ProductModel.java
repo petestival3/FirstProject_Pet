@@ -1,13 +1,22 @@
 package com.sist.model;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
+import javax.naming.Context;
+import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.swing.JPopupMenu.Separator;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.ProductDAO;
 import com.sist.vo.ProductVO;
@@ -310,10 +319,71 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 	
 	@RequestMapping("product/Product_insert_review.do")
 	public String Product_insert_review(HttpServletRequest request, HttpServletResponse response) {
+			String  pno= request.getParameter("pno");
 			
+			request.setAttribute("pno", pno);
 		return "../product/product_insert_review.jsp";
 	}
 	
+	
+	
+	@RequestMapping("product/Product_handle_review.do")
+	public void Product_handle_review(HttpServletRequest request, HttpServletResponse response) {
+		
+		  try {
+		        request.setCharacterEncoding("UTF-8");
+		    } catch (Exception ex) {}
+
+			
+			
+			HttpSession session=request.getSession();
+			String writer=(String)session.getAttribute("id");
+			String score = "";
+			 String content = "";
+			 String pno = "";
+			
+			ServletContext context = request.getServletContext();
+			String path = context.getRealPath("/");
+			String reviewImg="reviewImg";
+			path = path + File.separator + reviewImg;
+			
+			 int max = 1024 * 1024 * 100;
+			 ProductDAO dao =ProductDAO.newInstace();
+			 ReviewVO vo=new ReviewVO();
+
+			    MultipartRequest mr;
+			    String imgname="";
+				try {
+					mr = new MultipartRequest(request, path, max, "UTF-8", new DefaultFileRenamePolicy());
+					 imgname= mr.getFilesystemName("image");
+					score = mr.getParameter("score");
+					 content = mr.getParameter("content");
+					  pno = mr.getParameter("pno");
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			 
+
+			    if (imgname == null) {
+			        vo.setImgname("");
+			        vo.setImgsize(0);
+			    } else {
+			    	File file = new File(path + File.separator + imgname);
+			      vo.setImgname(imgname);
+			      vo.setImgsize((int) file.length());
+			    }
+
+	       vo.setContent(content);
+	       vo.setWriter(writer);
+	       vo.setScore(Double.parseDouble(score));
+	       vo.setObjno(Integer.parseInt(pno));
+	       
+	       dao.insertProductReview(vo);
+	       
+			
+	}
 	
 	
 }
