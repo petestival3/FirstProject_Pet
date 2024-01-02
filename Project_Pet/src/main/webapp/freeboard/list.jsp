@@ -6,28 +6,49 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style type="text/css">
 .row1{
 	margin: 0px auto;
 }
+nav.pagination ul{
+	list-style: none;
+}
+nav.pagination li{
+	display: inline-block;
+}
+.product__pagination li.active,
+.blog__pagination li.active {
+	background: #5a70e9;
+	border-color: #a6a6a6;
+	color: #ffffff;
+}
 </style>
 </head>
 <body>
-<div class="wrapper row3">
-  <main class="container clear"> 
-  <h2 class="sectiontitle text-center">자유게시판</h2>
-  <div class="row row1" style="height: 200px">
-   <table class="table">
-    <tr>
-     <td>
-      <!-- <a href="../freeboard/insert.do"
-       class="btn btn-sm btn-danger">글작성</a> -->
-       <a href="../freeboard/insert.do" 
-       class="primary-btn" style="font-weight: bold;">작성하기</a>
-     </td>
-    </tr>
-   </table>
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="../img/bread.jpg" style="margin-top: 20px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Free Board</h2>
+                        <div class="breadcrumb__option">
+                            <%-- <a href="./index.html">유기동물 보호센터&nbsp;&nbsp;</a>--%>
+                            <span>Community&nbsp;&nbsp;-&nbsp;&nbsp;Free Board</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+<section class="blog-details spad">
+ <div class="container">
+  <div class="row" style="margin-top: 10px;">
+   
+   
    <table class="table">
     <tr>
      <th class="text-center" width=10%>번호</th>
@@ -51,23 +72,42 @@
       <c:set var="count" value="${count-1 }"/>
     </c:forEach>
     
-    <!-- 페이지 -->
-    <tr>
-        <td colspan="5" class="text-center">
-         <a href="#" class="btn btn-danger btn-sm">이전</a>
-         ${curpage } page / ${totalpage } pages
-         <a href="#" class="btn btn-danger btn-sm">다음</a>
-        </td>
-    </tr>
-    
-    
-			      
-    
-    
-    
+    <%-- 페이지 --%>
+     <div class="row" style="text-align: center;">
+             <nav class="pagination">
+             <div class="product__pagination" style="margin: 0px auto;">
+			   <ul>
+			    <%-- startPage : 1 , 11 , 21 , 31... --%>
+			    <c:if test="${startPage>1 }">
+			     <li><a href="../freeboard/list.do?page=${startPage-1 }">&laquo;</a></li>
+			    </c:if>
+			         
+			    <c:forEach var="i" begin="${startPage }" end="${endPage }">
+			       <li ${curpage==i?"class=active":"" }><a href="../freeboard/list.do?page=${i }">${i }</a></li>
+			    </c:forEach>
+			          
+			    <c:if test="${endPage<totalpage }">
+			     <li><a href="../freeboard/list.do?page=${endPage+1 }">&raquo;</i></a></li>
+			    </c:if>
+			   </ul>
+			 </div>
+			 </nav>
+     </div>
+    <!-- 글작성 -->
+    <div class="freeboard_insert">
+    <table class="table">
+     <tr>
+      <td>
+       <a href="../freeboard/insert.do" 
+       class="primary-btn" style="font-weight: bold;">작성하기</a>
+      </td>
+     </tr>
+    </table>
+    </div>
+
    </table>
   </div>
-  </main>
 </div>
+</section>
 </body>
 </html>
