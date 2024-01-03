@@ -13,11 +13,13 @@ nav.pagination ul{
 nav.pagination li{
 	display: inline-block;
 }
-.dogtitle{
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+.product__pagination li.active,
+.blog__pagination li.active {
+	background: #5a70e9;
+	border-color: #a6a6a6;
+	color: #ffffff;
 }
+
 .tListTitle{
 	display: block;
 	margin: 0px auto;
@@ -26,12 +28,6 @@ nav.pagination li{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	font-size: 15px;
-}
-.product__pagination li.active,
-.blog__pagination li.active {
-	background: #5a70e9;
-	border-color: #a6a6a6;
-	color: #ffffff;
 }
 .sidebar__item ul li a {
 	font-size: 16px;
@@ -43,10 +39,22 @@ nav.pagination li{
 	-o-transition: all, 0.3s;
 	transition: all, 0.3s;
 }
+.dogtitle{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 .sidebar__item ul li a:hover {
 	color: #5a70e9;
 }
-
+.product__discount__item__text h5 a {
+	color: #1c1c1c;
+}
+a {
+    color: black;
+    text-decoration: none;
+    background-color: transparent;
+}
 
 </style>
 </head>
@@ -176,7 +184,6 @@ nav.pagination li{
                                         </div>
                                         <div class="product__discount__item__text">
                                             <span>${tList.losedate }</span>
-                                            
                                             <h5><a href="../losedog/losedogdetail.do?ldno=${tList.ldno }" class="tListTitle">${tList.title }</h5>
                                             <div class="product__item__price">${tList.loseinfo }</a></div>
                                         </div>

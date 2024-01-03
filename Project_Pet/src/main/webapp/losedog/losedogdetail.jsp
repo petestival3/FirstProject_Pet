@@ -108,22 +108,24 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                                    aria-selected="true">Description</a>
+                                    aria-selected="true">특징</a>
                             </li>
-                            <li class="nav-item">
+                            
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
                                     aria-selected="false">Information</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
                                     aria-selected="false">Reviews <span>(1)</span></a>
-                            </li>
+                            </li> -->
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                    <h6>Products Infomation</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+                                    <br>
+                                    <h6>${ldvo.feature }</h6>
+                                    <!-- <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
                                         Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus
                                         suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam
                                         vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada.
@@ -140,7 +142,7 @@
                                         nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
                                         Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed
                                         porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum
-                                        sed sit amet dui. Proin eget tortor risus.</p>
+                                        sed sit amet dui. Proin eget tortor risus.</p> -->
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
@@ -189,7 +191,7 @@
     <!-- Product Details Section End -->
 
     <!-- Related Product Section Begin -->
-    <section class="related-product">
+    <!-- <section class="related-product">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -261,7 +263,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Related Product Section End -->
 
 

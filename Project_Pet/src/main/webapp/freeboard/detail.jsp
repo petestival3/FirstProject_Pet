@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style type="text/css">
 .row1{
 	margin: 0px auto;
@@ -61,9 +60,27 @@ $(function(){
 </script>
 </head>
 <body>
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="../img/bread.jpg" style="margin-top: 20px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Free Board</h2>
+                        <div class="breadcrumb__option">
+                            <%-- <a href="./index.html">유기동물 보호센터&nbsp;&nbsp;</a>--%>
+                            <span>Community&nbsp;&nbsp;-&nbsp;&nbsp;Free Board</span>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
 <div class="wrapper row3">
   <main class="container clear"> 
-  <h2 class="sectiontitle">내용 보기</h2>
   <div class="row row1" style="height: 500px">
     <table class="table">
       <tr>

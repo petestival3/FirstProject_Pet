@@ -41,6 +41,14 @@ nav.pagination li{
 .sidebar__item ul li a:hover {
 	color: #5a70e9;
 }
+.product__discount__item__text h5 a {
+	color: #1c1c1c;
+}
+a {
+    color: black;
+    text-decoration: none;
+    background-color: transparent;
+}
 </style>
 </head>
 
@@ -169,8 +177,8 @@ nav.pagination li{
                                         </div>
                                         <div class="product__discount__item__text">
                                             <span>${cList.closedate }</span>
-                                            <h5><a href="#" class="tListTitle">${cList.ctitle }</a></h5>
-                                            <div class="product__item__price">${cList.closeinfo }</div>
+                                            <h5><a href="../losecat/losecatdetail.do?lcno=${cList.lcno }" class="cListTitle">${cList.ctitle }</h5>
+                                            <div class="product__item__price">${cList.closeinfo }</a></div>
                                         </div>
                                     </div>
                                 </div>

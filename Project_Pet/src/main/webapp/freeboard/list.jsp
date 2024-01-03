@@ -7,21 +7,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.row1{
-	margin: 0px auto;
-}
-nav.pagination ul{
-	list-style: none;
-}
-nav.pagination li{
-	display: inline-block;
-}
-.product__pagination li.active,
-.blog__pagination li.active {
+.product__pagination li.active{
 	background: #5a70e9;
 	border-color: #a6a6a6;
 	color: #ffffff;
 }
+a {
+    color: black;
+    text-decoration: none;
+}
+
 </style>
 </head>
 <body>
@@ -72,11 +67,40 @@ nav.pagination li{
       <!--<c:set var="count" value="${count-1 }"/>-->
     </c:forEach>
     
+    
+			 
+    
+    <!-- 글작성 -->
+    <div class="freeboard_insert">
+    <table class="table">
+    
+     <tr>
+      <td>
+       <a href="../freeboard/insert.do" 
+       class="primary-btn" style="font-weight: bold;">작성하기</a>
+      </td>
+     </tr>
+
+    </table>
+    
     <%-- 페이지 --%>
-             <nav class="pagination">
              <div class="product__pagination" style="margin: 0px auto;">
+			   
+			    <!--<c:if test="${startPage>1 }">
+			     <li>
+		         <a href="../freeboard/list.do?page=${startPage-1 }">&laquo;</a>
+		         </li>
+		        </c:if>
+		        
+		         ${curpage } page / ${totalpage } pages
+		         
+		        <c:if test="${endPage<totalpage }">
+		         <li>
+		         <a href="../freeboard/list.do?page=${endPage+1 }">&raquo;</a>
+		         </li>
+		        </c:if> -->
+		        
 			   <ul>
-			    <%-- startPage : 1 , 11 , 21 , 31... --%>
 			    <c:if test="${startPage>1 }">
 			     <li><a href="../freeboard/list.do?page=${startPage-1 }">&laquo;</a></li>
 			    </c:if>
@@ -91,18 +115,7 @@ nav.pagination li{
 			    </c:if>
 			   </ul>
 			 </div>
-			 </nav>
     
-    <!-- 글작성 -->
-    <div class="freeboard_insert">
-    <table class="table">
-     <tr>
-      <td>
-       <a href="../freeboard/insert.do" 
-       class="primary-btn" style="font-weight: bold;">작성하기</a>
-      </td>
-     </tr>
-    </table>
     </div>
 
    </table>

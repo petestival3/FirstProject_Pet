@@ -107,18 +107,21 @@
                                 <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
                                     aria-selected="true">특징</a>
                             </li>
-                            <li class="nav-item">
+                            
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
                                     aria-selected="false">Information</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
                                     aria-selected="false">Reviews <span>(1)</span></a>
-                            </li>
+                            </li> -->
+                            
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="product__details__tab__desc">
+                                    <br>
                                     <h6>${lcvo.cfeature }</h6>
                                  <!-- <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
                                         Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus
@@ -186,7 +189,7 @@
     <!-- Product Details Section End -->
 
     <!-- Related Product Section Begin -->
-    <section class="related-product">
+    <!-- <section class="related-product">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -258,7 +261,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Related Product Section End -->
 
 
