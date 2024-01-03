@@ -87,4 +87,23 @@ public class ReviewDAO {
 		}
 		return total;
 	}
+
+	public void reviewInsert(ReviewVO vo) {
+		try {
+			conn=dbconn.getConnection();
+			String sql="INSERT INTO review(revno,objno,writer,revdate,content,score,typeno) VALUES("
+					+ "review_revno_seq.nextval,?,?,SYSDATE,?,?,?)";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, vo.getRevno());
+			ps.setString(2, vo.getWriter());
+			ps.setString(3, vo.getContent());
+			ps.setDouble(4, vo.getScore());
+			ps.setInt(5, vo.getTypeno());
+			ps.executeUpdate();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			dbconn.disConnection(conn, ps);
+		}
+	}
 }

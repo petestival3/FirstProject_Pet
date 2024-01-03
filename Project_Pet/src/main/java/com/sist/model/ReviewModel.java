@@ -63,5 +63,30 @@ public class ReviewModel {
 		  }catch(Exception ex) {}
 	}
 	
+	@RequestMapping("review/insert.do")
+	public String review_insert(HttpServletRequest request,HttpServletResponse response) {
+		
+		try {
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		String objno=request.getParameter("objno");
+		String typeno=request.getParameter("type");
+		String writer=request.getParameter("writer");
+		String score=request.getParameter("rating3");
+		String Content=request.getParameter("content");
+		
+		ReviewVO vo=new ReviewVO();
+		vo.setContent(Content);
+		vo.setObjno(Integer.parseInt(objno));
+		vo.setTypeno(Integer.parseInt(typeno));
+		vo.setScore(Double.parseDouble(score));
+		vo.setWriter(writer);
+		
+		ReviewDAO dao=ReviewDAO.newInstance();
+		dao.reviewInsert(vo);
+		
+		return "redirect:../stay/detail_before.do?stayno="+objno;
+	}
+	
 	
 }

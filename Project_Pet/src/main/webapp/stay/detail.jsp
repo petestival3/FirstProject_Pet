@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/star.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style type="text/css">
@@ -28,7 +29,7 @@
 $(function(){
 	let revpage=1
 	let typeno=1
-	let objno=${vo.stayno}
+	let objno='${vo.stayno}'
 	reviewlist(typeno,objno,revpage)
 	/* $('.pageBtn').click(function(){
 		let fds=$(this).attr('value');
@@ -361,11 +362,11 @@ function reviewlist(typeno,objno,revpage){
 									    <div class="modal-dialog">
 									      <!-- Modal content-->
 									      <div class="modal-content">
-									      	<form class="review-form" method="post" action="reviewinsert.jsp">
+									      	<form class="review-form" method="post" action="../review/insert.do">
 									        <div class="modal-header">
 									          <p>별점을 선택해주세요!</p>
 									          
-									          <div id="full-stars-example-two" style=margin-top:30px;margin-left:30px>
+									          <div id="full-stars-example-two" style=margin-top:30px;margin-left:10px>
 											    <div class="rating-group">
 											        <input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio">
 											        <label aria-label="1 star" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
@@ -385,9 +386,10 @@ function reviewlist(typeno,objno,revpage){
 									        <div class="modal-body">
 									           <p>어떤점이 만족스러우셨나요?<p>
 									           
-											      <input type="hidden" name="sno" value=<%=sno %> >
-											      <input type="hidden" name="typeno" value="1" >
-											      <textarea name=msg rows=10 cols=60 required></textarea>
+											      <input type="hidden" name="objno" value="${stayno }" >
+											      <input type="hidden" name="type" value="2" >
+											      <input type="hidden" name="writer" value="${sessionScope.name }">
+											      <textarea name="content" rows=10 cols=60 required></textarea>
 											      <div class="modal-footer">
 											          <button type="submit" class="btn btn-default">저장</button>
 											          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
