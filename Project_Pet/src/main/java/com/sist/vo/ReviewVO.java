@@ -4,6 +4,9 @@ import java.sql.Date;
 
 public class ReviewVO {
 private int revno,objno,typeno,imgsize;
+private double score;
+private String writer,content,imgname,dbday;
+private Date revdate;
 public int getImgsize() {
 	return imgsize;
 }
@@ -65,8 +68,6 @@ public Date getRevdate() {
 public void setRevdate(Date revdate) {
 	this.revdate = revdate;
 }
-private double score;
-private String writer,content,imgname,dbday;
-private Date revdate;
+
 
 }

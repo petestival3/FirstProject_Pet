@@ -23,11 +23,13 @@
 </style>
 <script type="text/javascript">
 $(function(){
-	let pp=1
-	reviewlist(ss)
-	$('.homeStayBtn').click(function(){
+	let revpage=1
+	let typeno=1
+	let objno=${vo.stayno}
+	reviewlist(typeno,objno,revpage)
+	$('.pageBtn').click(function(){
 		let fds=$(this).attr('value');
-		stayhome(fds)
+		reviewlist(fds)
 	})
 	
 });
@@ -39,23 +41,64 @@ function reviewlist(typeno,objno,revpage){
 		success:function(json){
 			let res=JSON.parse(json);
 			let html='';
-			for(let vo of res){
-				html+='<div class="col-lg-3 col-md-4 col-sm-6">'
-                    +'<div class="featured__item">'
-                    +'<img src="'+vo.image+'" style="border-radius: 10px;overflow: hidden;">'
-                	+'<div class="featured__item__text">'
-                    +'<h6 id="ssss"><a href="../stay/detail_before.do?stayno='+vo.stayno+'">'+vo.name+'</a></h6>'
-                    +'<h5>&#8361;'+vo.price+'~</h5>'
-                	+'</div>'
-            		+'</div>'
-        			+'</div>'
+			for(let revo of res){
+				html+='<img src="../img/mainlogo.png" alt="../img/mainlogo.png" class="user-image" />'
+					+'<div class="mid_1">'
+					+'<div class="user-info">'
+					+'<img src="../img/mainlogo.png" alt="../img/mainlogo.png" class="reviewer-avatar" style="float:left">'
+					+'<div class="user-name">'+revo.writer+'</div>'
+					+'</div>'
+					+'<br />'
+					+'<div class="mid_2">'
+					+'<div class="rating">'
+					+'<span class="star">⭐️</span>'
+					+'</div>'
+					+'<p>'+revo.dbday+'</p>'
+					+'</div>'
+					+'<div class="mid_3">'
+					+'<p class="review-text">'+revo.content+'</p>'
+					+'</div>'
+					+'</div>'
 			}
 			console.log(html)
 			$('#reivewprint').html(html)
 		}
 	})
 }
-
+/*
+ * <img src="../img/mainlogo.png" alt="User Avatar" class="user-image" />
+		
+     <div class="mid_1">
+       <div class="user-info">
+         <img
+           src="../img/mainlogo.png"
+           alt="Reviewer Avatar"
+           class="reviewer-avatar"
+           style="float: left"
+         />
+         <div class="user-name">사용자1</div>
+       </div>
+       <br />
+       <div class="mid_2">
+         <div class="rating">
+           <span class="star">⭐️</span>
+           <span class="star">⭐️</span>
+           <span class="star">⭐️</span>
+           <span class="star">⭐️</span>
+           <span class="star">⭐️</span>
+         </div>
+         <p>작성날짜 적는 곳</p>
+       </div>
+       <div class="mid_3">
+         <p class="review-type">타입 적는 곳</p>
+         <p class="review-text">
+           여기어때 정말 좋아요! 서비스가 훌륭하고 위치도 좋습니다. 여기어때
+           정말 좋아요! 서비스가 훌륭하고 위치도 좋습니다. 여기어때 정말
+           좋아요! 서비스가 훌륭하고 위치도 좋습니다.
+         </p>
+       </div>
+     </div>
+ */
 </script>
 </head>
 <body>
@@ -306,38 +349,7 @@ function reviewlist(typeno,objno,revpage){
                                   <input type="button" value="리뷰 작성" id="ReviewBtn"> 
                                 </div>
                                 <div class="review-container" id="reviewprint">
-							      <img src="../img/mainlogo.png" alt="User Avatar" class="user-image" />
-							
-							      <div class="mid_1">
-							        <div class="user-info">
-							          <img
-							            src="../img/mainlogo.png"
-							            alt="Reviewer Avatar"
-							            class="reviewer-avatar"
-							            style="float: left"
-							          />
-							          <div class="user-name">사용자1</div>
-							        </div>
-							        <br />
-							        <div class="mid_2">
-							          <div class="rating">
-							            <span class="star">⭐️</span>
-							            <span class="star">⭐️</span>
-							            <span class="star">⭐️</span>
-							            <span class="star">⭐️</span>
-							            <span class="star">⭐️</span>
-							          </div>
-							          <p>작성날짜 적는 곳</p>
-							        </div>
-							        <div class="mid_3">
-							          <p class="review-type">타입 적는 곳</p>
-							          <p class="review-text">
-							            여기어때 정말 좋아요! 서비스가 훌륭하고 위치도 좋습니다. 여기어때
-							            정말 좋아요! 서비스가 훌륭하고 위치도 좋습니다. 여기어때 정말
-							            좋아요! 서비스가 훌륭하고 위치도 좋습니다.
-							          </p>
-							        </div>
-							      </div>
+							      
 							    </div>
                                 </div>
                             </div>

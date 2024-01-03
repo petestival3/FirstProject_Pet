@@ -22,7 +22,7 @@ public class ReviewDAO {
 	
 	// 목록출력
 	// typeno => 1:stay 2:shop 3:hospital 4:funeral
-	public List<ReviewVO> ReviewListData(int page,int objno,int typeno){
+	public List<ReviewVO> ReviewListData(int typeno,int objno,int page){
 		List<ReviewVO> list=new ArrayList<ReviewVO>();
 		try {
 			conn=dbconn.getConnection();
