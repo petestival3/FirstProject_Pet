@@ -2,7 +2,7 @@ package com.sist.dao;
 import java.util.*;
 import java.sql.*;
 import com.sist.dbcp.*;
-import com.sist.vo.MyPageVO;
+import com.sist.vo.*;
 
 public class MyPageDAO {
 	private Connection conn;
@@ -97,6 +97,75 @@ public class MyPageDAO {
 	        ps.setString(5, vo.getPet_weight());
 	        ps.setString(6, vo.getPet_filename());
 	        ps.setString(7, id);
+	        ps.executeUpdate();
+	    }
+	       
+	    catch (Exception ex)
+	    {
+	        ex.printStackTrace();
+	    }
+	    finally
+	    {
+	        dbconn.disConnection(conn, ps);
+	    }
+	}
+	public MemberVO mypageMy(String id)
+	{
+		MemberVO vo=new MemberVO();
+		try
+		{
+			conn=dbconn.getConnection();
+			String sql="SELECT id, pwd, sex, name, birthday, email, post, addr1, addr2, phone, content "
+					+ "FROM member "
+					+ "WHERE id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ResultSet rs=ps.executeQuery();
+			if (rs.next()) {
+				vo.setId(rs.getString(1));
+				vo.setPwd(rs.getString(2));
+				vo.setSex(rs.getString(3));
+	            vo.setName(rs.getString(4));
+	            vo.setBirth(rs.getString(5));
+	            vo.setEmail(rs.getString(6));
+	            vo.setPost(rs.getString(7));
+	            vo.setAddr1(rs.getString(8));
+	            vo.setAddr2(rs.getString(9));
+	            vo.setPhone(rs.getString(10));
+	            vo.setContent(rs.getString(11));
+	        }
+	        rs.close();
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbconn.disConnection(conn, ps);
+		}
+		return vo;
+	}
+	public void mypageMyUpdate(String id, MemberVO vo)
+	{
+	    try
+	    {
+	        conn = dbconn.getConnection();
+
+	        String sql = "UPDATE member "
+	                + "SET pwd=?, name=?, sex=?, email=?, post=?, addr1=?, addr2=?, phone=?, content=? "
+	                + "WHERE id=?";
+	        ps = conn.prepareStatement(sql);
+	        ps.setString(1, vo.getPwd());
+	        ps.setString(2, vo.getName());
+	        ps.setString(3, vo.getSex());
+	        ps.setString(4, vo.getEmail());
+	        ps.setString(5, vo.getPost());
+	        ps.setString(6, vo.getAddr1());
+	        ps.setString(7, vo.getAddr2());
+	        ps.setString(8, vo.getPhone());
+	        ps.setString(9, vo.getContent());
+	        ps.setString(10, id);
 	        ps.executeUpdate();
 	    }
 	       

@@ -13,25 +13,27 @@
 </head>
 <body>
 <div class="col-md-9 my-page">
-			<table class="table">
-					<tr>
-						<th colspan="2">My Profile</th>
-					</tr>
-					<tr>
-						<td rowspan="4"><img src="../img/mainlogo.png" class="my_profile"></td>
-						<td>이름</td>
-					</tr>
-					<tr>
-						<td>전화번호</td>
-					</tr>
-					<tr>
-						<td>이메일</td>
-					</tr>
-					<tr>
-						<td>주소</td>
-					</tr>
-					
-				</table>
+			<c:if test="${not empty sessionScope.id}">
+						<table class="table">
+							<tr>
+								<th colspan="2">My Profile</th>
+							</tr>
+							<tr>
+										<td rowspan="5"><img src="../img/mainlogo.png"
+											class="my_profile"></td>
+								<td>${myvo.name }</td>
+							</tr>
+							<tr>
+								<td>${myvo.birth }</td>
+							</tr>
+							<tr>
+								<td>${myvo.phone }</td>
+							</tr>
+							<tr>
+								<td>${myvo.addr1 }</td>
+							</tr>
+						</table>
+					</c:if>
 		<c:choose>
 			<c:when test="${not empty sessionScope.id}">
 				<c:choose>

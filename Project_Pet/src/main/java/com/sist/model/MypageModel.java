@@ -17,6 +17,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.MyPageDAO;
+import com.sist.vo.MemberVO;
 import com.sist.vo.MyPageVO;
 
 
@@ -31,6 +32,7 @@ public class MypageModel {
 	    String id = (String) session.getAttribute("id");
 	    MyPageDAO dao = MyPageDAO.newInstance();
 	    MyPageVO vo = dao.mypagePet(id);
+	    MemberVO myvo=dao.mypageMy(id);
 
 	    String filename = vo.getPet_filename();
 	    String path = "c://download";
@@ -54,6 +56,7 @@ public class MypageModel {
 	    } catch (Exception ex) {}
 
 	    request.setAttribute("vo", vo);
+	    request.setAttribute("myvo", myvo);
 	    request.setAttribute("mypage_jsp", "../mypage/my_main.jsp");
 	    request.setAttribute("main_jsp", "../mypage/mypage.jsp");
 	    return "../main/main.jsp";
@@ -169,6 +172,7 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 	}
 
 
+	
 @RequestMapping("mypage/my_petupdate.do")
 public String petUpdate(HttpServletRequest request, HttpServletResponse response) throws IOException {
     try {
@@ -216,6 +220,61 @@ public String petUpdate(HttpServletRequest request, HttpServletResponse response
 
     return "redirect:../mypage/my_petinfo.do";
 
+}
+@RequestMapping("mypage/my_info.do")
+public String myInfo(HttpServletRequest request, HttpServletResponse response) {
+    try {
+        request.setCharacterEncoding("UTF-8");
+    } catch (Exception ex) {}
+
+    HttpSession session = request.getSession();
+    String id = (String) session.getAttribute("id");
+    MyPageDAO dao = MyPageDAO.newInstance();
+    MemberVO myvo = dao.mypageMy(id);
+
+    request.setAttribute("myvo", myvo);
+    request.setAttribute("main_jsp", "../mypage/my_info.jsp");
+    return "../main/main.jsp";
+}
+@RequestMapping("mypage/my_update.do")
+public String myUpdate(HttpServletRequest request, HttpServletResponse response) {
+    try {
+        request.setCharacterEncoding("UTF-8");
+    } catch (Exception ex) {}
+
+    HttpSession session = request.getSession();
+    String id = (String) session.getAttribute("id");
+    MyPageDAO dao = MyPageDAO.newInstance();
+    MemberVO myvo=new MemberVO();
+
+    
+    String pwd=request.getParameter("pwd");
+    String name=request.getParameter("name");
+    String sex=request.getParameter("sex");
+    String email=request.getParameter("email");
+    String post=request.getParameter("post");
+    String addr1=request.getParameter("addr1");
+    String addr2=request.getParameter("addr2");
+    String phone=request.getParameter("phone");
+    String content=request.getParameter("content");
+    
+   myvo.setPwd(pwd);
+   myvo.setSex(sex);
+   myvo.setName(name);
+   myvo.setEmail(email);
+   myvo.setPost(post);
+   myvo.setAddr1(addr1);
+   myvo.setAddr2(addr2);
+   myvo.setPhone(phone);
+   myvo.setContent(content);
+   
+   System.out.println(myvo.getSex());
+   
+   dao.mypageMyUpdate(id, myvo);
+
+    request.setAttribute("myvo", myvo);
+    request.setAttribute("main_jsp", "../mypage/my_info.jsp");
+    return "../main/main.jsp";
 }
 
 
