@@ -97,7 +97,7 @@
                                     <li><a href="../FuneralDetail/produce.do">장례 절차 안내</a></li>
                                     <li><a href="../FuneralDetail/list_f.do">장례식장 전체목록</a></li>
                                     <li><a href="../FuneralDetail/search_f.do">장례식장 검색하기</a></li>
-                                    <li><a href="../FuneralDetail/reserve.do">장례 예약하기</a></li>
+                                    <li><a href="../reserve/reserve_funeral.do">장례 예약하기</a></li>
                                 </ul>
                             </li>
                             <li><a href="#">COMMUNITY</a>
