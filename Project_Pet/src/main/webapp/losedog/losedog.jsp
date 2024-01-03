@@ -55,6 +55,9 @@ a {
     text-decoration: none;
     background-color: transparent;
 }
+a:hover {
+	color: #5a70e9;
+}
 
 </style>
 </head>

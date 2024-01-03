@@ -10,6 +10,26 @@
 .row1{
 	margin: 0px auto;
 }
+.delete-btn {
+	display: inline-block;
+	font-size: 14px;
+	padding: 10px 28px 10px;
+	color: #ffffff;
+	text-transform: uppercase;
+	font-weight: 700;
+	background: #5a70e9;
+	letter-spacing: 2px;
+}
+.update-btn {
+	display: inline-block;
+	font-size: 14px;
+	padding: 10px 28px 10px;
+	color: #ffffff;
+	text-transform: uppercase;
+	font-weight: 700;
+	background: #5a70e9;
+	letter-spacing: 2px;
+}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -85,31 +105,35 @@ $(function(){
     <table class="table">
       <tr>
        <th class="text-center" width=20%>번호</th>
-       <td class="text-center" width=30%>${vo.no }</td>
+       <td width=30%>${vo.no }</td>
        <th class="text-center" width=20%>작성일</th>
-       <td class="text-center" width=30%>${vo.dbday }</td>
+       <td width=30%>${vo.dbday }</td>
       </tr>
       <tr>
        <th class="text-center" width=20%>이름</th>
-       <td class="text-center" width=30%>${vo.name }</td>
+       <td width=30%>${vo.name }</td>
        <th class="text-center" width=20%>조회수</th>
-       <td class="text-center" width=30%>${vo.hit }</td>
+       <td width=30%>${vo.hit }</td>
       </tr>
       <tr>
        <th class="text-center" width=20%>제목</th>
        <td colspan="3">${vo.subject }</td>
       </tr>
       <tr>
-       <td colspan="4" class="text-left" valign="top" height="200"><pre style="white-space: pre-wrap; border: none; background-color: white;">${vo.content }</pre></td>
+       <th width=20%></th>
+       <td colspan="3" class="text-left" valign="top" height="200"><pre style="white-space: pre-wrap; border: none; background-color: white; font-size: 15px;">${vo.content }</pre></td>
       </tr>
       <tr>
        <td colspan="4" class="text-right">
+        <c:if test="${sessionScope.id!=null }">
         <a href="../freeboard/update.do?no=${vo.no }"
-         class="btn btn-success btn-xs">수정</a>
+         class="update-btn">수정</a>
         <span
-         class="btn btn-info btn-xs" id="delete">삭제</span>
+         class="delete-btn" id="delete" style="cursor: pointer">삭제</span>
+         </c:if>
          <a href="../freeboard/list.do"
-         class="btn btn-warning btn-xs">목록</a>
+         class="primary-btn">목록</a>
+         
        </td>
       </tr>
       <tr id="del" style="display: none">

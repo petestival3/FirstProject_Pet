@@ -24,7 +24,7 @@ public class FreeBoardDAO {
 			conn=dbconn.getConnection();
 			String sql="SELECT no,subject,name,TO_CHAR(regdate,'yyyy-MM-dd'),hit,num "
 					 + "FROM (SELECT no,subject,name,regdate,hit,rownum as num "
-					 + "FROM (SELECT /*+ INDEX_DESC(project_board pb_no_pk) +*/ no,subject,name,regdate,hit "
+					 + "FROM (SELECT /*+ INDEX_DESC(free_board fb_no_pk) +*/ no,subject,name,regdate,hit "
 					 + "FROM free_board)) "
 					 + "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);

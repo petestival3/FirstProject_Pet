@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style type="text/css">
 .row1{
 	margin: 0px auto;
@@ -72,7 +71,7 @@ $(function(){
 <body>
 <div class="wrapper row3">
   <main class="container clear"> 
-  <h2 class="sectiontitle">수정하기</h2>
+  <br><h2 class="sectiontitle">수정하기</h2><br>
   <div class="row row1" style="height: 500px">
   <form method="post" id="board_frm">
    <table class="table">

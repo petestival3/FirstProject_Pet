@@ -45,6 +45,7 @@ public class FreeBoardModel {
 	@RequestMapping("freeboard/insert.do")
 	public String freeboard_insert(HttpServletRequest request,HttpServletResponse response)
 	{
+		
 		request.setAttribute("main_jsp", "../freeboard/insert.jsp");
 		return "../main/main.jsp";
 	}

@@ -7,6 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+.product__pagination ul{
+	list-style: none;
+}
+.product__pagination li{
+	display: inline-block;
+}
 .product__pagination li.active{
 	background: #5a70e9;
 	border-color: #a6a6a6;
@@ -15,6 +21,12 @@
 a {
     color: black;
     text-decoration: none;
+}
+a:hover {
+	color: #5a70e9;
+}
+.table_freeboard a:hover {
+	color: white;
 }
 
 </style>
@@ -71,17 +83,24 @@ a {
 			 
     
     <!-- 글작성 -->
+    
     <div class="freeboard_insert">
+    
     <table class="table">
+    <table class="table_freeboard">
     
      <tr>
       <td>
+      <c:if test="${sessionScope.id!=null }">
        <a href="../freeboard/insert.do" 
        class="primary-btn" style="font-weight: bold;">작성하기</a>
+      </c:if>
       </td>
      </tr>
-
+     
     </table>
+    </table>
+    
     
     <%-- 페이지 --%>
              <div class="product__pagination" style="margin: 0px auto;">
