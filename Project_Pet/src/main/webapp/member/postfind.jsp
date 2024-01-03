@@ -60,10 +60,21 @@ $(function(){
 					    +'</tr>'
 					for(let vo of res)
 					{
-						html+='<tr onclick="ok(\''+vo.zipcode+'\',\''+vo.address+'\')" class="dataTr">'
+						if(parent.joinFrm)
+						{
+							html+='<tr onclick="ok(\''+vo.zipcode+'\',\''+vo.address+'\')" class="dataTr">'
 						    +'<td class="text-center" width="20%">'+vo.zipcode+'</td>'
 						    +'<td width="80%">'+vo.address+'</td>'
 						    +'</tr>'
+						}
+						else
+						{
+							html+='<tr onclick="ok2(\''+vo.zipcode+'\',\''+vo.address+'\')" class="dataTr">'
+						    +'<td class="text-center" width="20%">'+vo.zipcode+'</td>'
+						    +'<td width="80%">'+vo.address+'</td>'
+						    +'</tr>'
+						}
+						
 						    
 					}
 					 
@@ -76,12 +87,19 @@ $(function(){
 		})
 	})
 })
-function ok(zip,addr)
-{
-	parent.joinFrm.post.value=zip;
-	parent.joinFrm.addr1.value=addr;
-	parent.Shadowbox.close()
+function  ok(zip, addr) {
+  parent.joinFrm.post.value = zip;
+  parent.joinFrm.addr1.value = addr;
+  parent.Shadowbox.close();
+
 }
+function  ok2(zip, addr) {
+	  parent.MyFrm.post.value = zip;
+	  parent.MyFrm.addr1.value = addr;
+	  parent.Shadowbox.close();
+
+	}
+
 </script>
 </head>
 <body>
