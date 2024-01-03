@@ -61,7 +61,7 @@
     
     <!-- 예약 사이드 매뉴 시작 -->
     <div class="res_submenu">
-      <a href="reserve.do">
+      <a href="../reserve/reserve_funeral.do">
        <i class="xi-calendar-add"></i>
        <p>예약하기</p>
       </a>
