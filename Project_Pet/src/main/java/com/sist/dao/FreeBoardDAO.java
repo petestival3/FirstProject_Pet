@@ -58,28 +58,51 @@ public class FreeBoardDAO {
 	}
 	
 	// 총페이지 
-		public int boardRowCount()
+//		public int boardRowCount()
+//		{
+//			int total=0;
+//			try
+//			{
+//				conn=dbconn.getConnection();
+//				String sql="SELECT COUNT(*) FROM free_board";
+//				ps=conn.prepareStatement(sql);
+//				ResultSet rs=ps.executeQuery();
+//				rs.next();
+//				total=rs.getInt(1);
+//				rs.close();
+//			}catch(Exception ex)
+//			{
+//				ex.printStackTrace();
+//			}
+//			finally
+//			{
+//				dbconn.disConnection(conn, ps);
+//			}
+//			return total;
+//		}
+	public int freeBoardTotalPage()
+	{
+		int total=0;
+		try
 		{
-			int total=0;
-			try
-			{
-				conn=dbconn.getConnection();
-				String sql="SELECT COUNT(*) FROM free_board";
-				ps=conn.prepareStatement(sql);
-				ResultSet rs=ps.executeQuery();
-				rs.next();
-				total=rs.getInt(1);
-				rs.close();
-			}catch(Exception ex)
-			{
-				ex.printStackTrace();
-			}
-			finally
-			{
-				dbconn.disConnection(conn, ps);
-			}
-			return total;
+			conn=dbconn.getConnection();
+			String sql="SELECT CEIL(COUNT(*)/12.0) FROM free_board";
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			total=rs.getInt(1);
+			rs.close();
+			
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
 		}
+		finally
+		{
+			dbconn.disConnection(conn, ps);
+		}
+		return total;
+	}
 		
 		// 추가
 		public void boardInsert(FreeBoardVO vo)

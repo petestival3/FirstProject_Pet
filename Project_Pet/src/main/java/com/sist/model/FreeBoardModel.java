@@ -22,12 +22,21 @@ public class FreeBoardModel {
 		// 2. 데이터베이스 연동
 		FreeBoardDAO dao=FreeBoardDAO.newInstance();
 		List<FreeBoardVO> list=dao.boardListData(curpage);
-		int totalpage=(int)Math.ceil(dao.boardRowCount()/10.0);
-		int count=dao.boardRowCount();
-		count=count-((curpage*10)-10);
-		request.setAttribute("count", count);
+		int totalpage=dao.freeBoardTotalPage();
+		
+		final int BLOCK=10;
+		int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		if(endPage>totalpage)
+			endPage=totalpage;
+//		int totalpage=(int)Math.ceil(dao.boardRowCount()/10.0);
+//		int count=dao.boardRowCount();
+//		count=count-((curpage*10)-10);
+//		request.setAttribute("count", count);
 		request.setAttribute("curpage", curpage);
 		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
 		request.setAttribute("list", list);
 		request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		request.setAttribute("main_jsp", "../freeboard/list.jsp");

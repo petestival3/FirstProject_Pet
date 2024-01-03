@@ -57,10 +57,10 @@ nav.pagination li{
      <th class="text-center" width=20%>작성일</th>
      <th class="text-center" width=10%>조회수</th>
     </tr>
-    <c:set var="count" value="${count }"/>
+    <!--<c:set var="count" value="${count }"/>-->
     <c:forEach var="vo" items="${list }">
       <tr>
-       <td class="text-center" width=10%>${count }</td>
+       <td class="text-center" width=10%>${vo.no }</td>
        <td width=55%><a href="../freeboard/detail.do?no=${vo.no }">${vo.subject }</a>
         &nbsp; <c:if test="${today==vo.dbday }">
           <sup><img src="../freeboard/new.gif"></sup>
@@ -69,11 +69,10 @@ nav.pagination li{
        <td class="text-center" width=15%>${vo.dbday }</td>
        <td class="text-center" width=10%>${vo.hit }</td>
       </tr>
-      <c:set var="count" value="${count-1 }"/>
+      <!--<c:set var="count" value="${count-1 }"/>-->
     </c:forEach>
     
     <%-- 페이지 --%>
-     <div class="row" style="text-align: center;">
              <nav class="pagination">
              <div class="product__pagination" style="margin: 0px auto;">
 			   <ul>
@@ -85,6 +84,7 @@ nav.pagination li{
 			    <c:forEach var="i" begin="${startPage }" end="${endPage }">
 			       <li ${curpage==i?"class=active":"" }><a href="../freeboard/list.do?page=${i }">${i }</a></li>
 			    </c:forEach>
+			         
 			          
 			    <c:if test="${endPage<totalpage }">
 			     <li><a href="../freeboard/list.do?page=${endPage+1 }">&raquo;</i></a></li>
@@ -92,7 +92,7 @@ nav.pagination li{
 			   </ul>
 			 </div>
 			 </nav>
-     </div>
+    
     <!-- 글작성 -->
     <div class="freeboard_insert">
     <table class="table">
