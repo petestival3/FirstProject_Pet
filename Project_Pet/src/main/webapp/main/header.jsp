@@ -91,7 +91,12 @@
                                     <li><a href="../health/newsmain.do">펫케어 콘텐츠</a></li>
                                 </ul>
                             </li>
-                            <li><a href="../stay/list.do">HOTEL</a></li>
+                            <li><a href="../stay/list.do">HOTEL</a>
+                              <ul class="header__menu__dropdown">
+                                    <li><a href="../stay/list.do">호텔 전체목록</a></li>
+                                    <li><a href="../reserve/reserve_hotel.do">호텔 예약하기</a></li>
+                              </ul>
+                            </li>
                             <li><a href="#">FUNERAL</a>
                                <ul class="header__menu__dropdown">
                                     <li><a href="../FuneralDetail/produce.do">장례 절차 안내</a></li>
