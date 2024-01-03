@@ -52,6 +52,13 @@ function stayhome(fds){
 </style>
 </head>
 <body>
+   <!-- 예약 사이드 매뉴 시작 -->
+   <div class="res_submenu">
+      <a href="../FuneralDetail/reserve.do"> <i class="xi-calendar-add"></i>
+         <p>예약하기</p>
+      </a>
+   </div>
+   <!-- 예약 사이드 매뉴 종료 -->
 	<!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
