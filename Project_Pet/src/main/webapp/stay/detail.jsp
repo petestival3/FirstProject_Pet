@@ -21,6 +21,42 @@
     justify-content: space-between;
 }
 </style>
+<script type="text/javascript">
+$(function(){
+	let pp=1
+	reviewlist(ss)
+	$('.homeStayBtn').click(function(){
+		let fds=$(this).attr('value');
+		stayhome(fds)
+	})
+	
+});
+function reviewlist(typeno,objno,revpage){
+	$.ajax({
+		type:'post',
+		url:'../review/list.do',
+		data:{"typeno":typeno,"objno":objno,"revpage":revpage},
+		success:function(json){
+			let res=JSON.parse(json);
+			let html='';
+			for(let vo of res){
+				html+='<div class="col-lg-3 col-md-4 col-sm-6">'
+                    +'<div class="featured__item">'
+                    +'<img src="'+vo.image+'" style="border-radius: 10px;overflow: hidden;">'
+                	+'<div class="featured__item__text">'
+                    +'<h6 id="ssss"><a href="../stay/detail_before.do?stayno='+vo.stayno+'">'+vo.name+'</a></h6>'
+                    +'<h5>&#8361;'+vo.price+'~</h5>'
+                	+'</div>'
+            		+'</div>'
+        			+'</div>'
+			}
+			console.log(html)
+			$('#reivewprint').html(html)
+		}
+	})
+}
+
+</script>
 </head>
 <body>
 <!-- Breadcrumb Section Begin -->
@@ -266,21 +302,43 @@
                             </div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                <div style="height: 30px">
-                                  <input type="button"> 
+                                <div style="height: 30px; float: right">
+                                  <input type="button" value="리뷰 작성" id="ReviewBtn"> 
                                 </div>
-                                    <h6>Products Infomation</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
-                                        Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
-                                        sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
-                                        eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
-                                        sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
-                                        diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-                                        ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                        Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                                        Proin eget tortor risus.</p>
+                                <div class="review-container" id="reviewprint">
+							      <img src="../img/mainlogo.png" alt="User Avatar" class="user-image" />
+							
+							      <div class="mid_1">
+							        <div class="user-info">
+							          <img
+							            src="../img/mainlogo.png"
+							            alt="Reviewer Avatar"
+							            class="reviewer-avatar"
+							            style="float: left"
+							          />
+							          <div class="user-name">사용자1</div>
+							        </div>
+							        <br />
+							        <div class="mid_2">
+							          <div class="rating">
+							            <span class="star">⭐️</span>
+							            <span class="star">⭐️</span>
+							            <span class="star">⭐️</span>
+							            <span class="star">⭐️</span>
+							            <span class="star">⭐️</span>
+							          </div>
+							          <p>작성날짜 적는 곳</p>
+							        </div>
+							        <div class="mid_3">
+							          <p class="review-type">타입 적는 곳</p>
+							          <p class="review-text">
+							            여기어때 정말 좋아요! 서비스가 훌륭하고 위치도 좋습니다. 여기어때
+							            정말 좋아요! 서비스가 훌륭하고 위치도 좋습니다. 여기어때 정말
+							            좋아요! 서비스가 훌륭하고 위치도 좋습니다.
+							          </p>
+							        </div>
+							      </div>
+							    </div>
                                 </div>
                             </div>
                         </div>
