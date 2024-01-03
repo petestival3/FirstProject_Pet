@@ -12,11 +12,11 @@
   <script type="text/javascript">
   $(function(){
 	  
-	 
+	  
 	  
 	  let value='2.5'
 	 const pno=$('.p_review_insert_container').attr('data-review_pno')
-
+	
 
 	        function sendDataToParent(data) {
 	            window.parent.postMessage(data, '*');
@@ -38,7 +38,10 @@
 		
 		$('#review_child_btn').click(function(){
 			
+		
+			
 			  let content=$('#p_review_content').val()
+			  
 			  
 			  if(content.trim()===null || content.trim()===''){
 				
@@ -46,6 +49,10 @@
 				  
 				  return;
 			  }
+			  
+			 
+			  
+			
 			  else{
 				  
 				  event.preventDefault(); // 기본 이벤트 동작 막기

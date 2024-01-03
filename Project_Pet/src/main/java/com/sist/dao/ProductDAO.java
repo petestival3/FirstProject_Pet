@@ -694,7 +694,7 @@ public void insertProductReview(ReviewVO vo) {
 	
 	try {
 		conn=dbconn.getConnection();
-		String sql="SELECT COUNT(*) FROM REVIEW WHERE OBJNO=?";
+		String sql="SELECT p_review_num FROM product_detail WHERE pno=?";
 		ps=conn.prepareStatement(sql);
 		ps.setInt(1, vo.getObjno());
 		ResultSet rs= ps.executeQuery();
@@ -740,7 +740,8 @@ public void insertProductReview(ReviewVO vo) {
 		
 		conn=dbconn.getConnection();
 		sql="UPDATE product_detail SET "
-		   +"p_grade=? "
+		   +"p_grade=? ,"
+			+"p_review_num=p_review_num+1 "	
 			+"WHERE pno=?";	
 				ps=conn.prepareStatement(sql);
 				ps.setDouble(1, newGrade);

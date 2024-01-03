@@ -414,11 +414,11 @@ function requestPay() {
                                  
                                  <!-- for문 -->
                                   <div class="row product_review_container">
-                                  	 <div class="col-md-4">
-                                  	 <div class="p_review_image">
+                                  	 <div class="col-md-4" style="width:200px; height:200px ;">
+                                  	 <div class="p_review_image" style="width:100%; height:100%;">
                                   	 <p>후기사진</p>
                                   	
-                                  	 <img src="${vo.p_image }">
+                                  	 <img src="../reviewImg/${prVo.imgname }" style="width:100%; height:100%; object-fit: contain;">
                                   	 </div>
                                   	 </div>
                                   	 
