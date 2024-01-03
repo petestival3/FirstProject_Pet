@@ -110,7 +110,8 @@
     <link rel="stylesheet" href="../css/productCategory.css">
     <link rel="stylesheet" href="../css/product_review.css">
     <link rel="stylesheet" href="../css/walk.css" type="text/css">
-    <link rel="stylesheet" href="../css/review.css" type="text/css">
+    <link rel="stylesheet" href="../css/review.css" type="text/css">  
+    <link rel="stylesheet" href="../css/star.css">
     
     
     <!-- xeicon -->
@@ -161,5 +162,7 @@
     <script src="../js/walk_reply_ajax.js"></script>
     <script src="../js/walkCourse.js"></script>
     <script src="../js/walkSearchList.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

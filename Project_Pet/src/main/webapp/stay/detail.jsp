@@ -6,10 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/star.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <style type="text/css">
 .stayintro {
     height: 200px;
@@ -27,9 +24,9 @@
 </style>
 <script type="text/javascript">
 $(function(){
-	let revpage=1
-	let typeno=1
-	let objno='${vo.stayno}'
+	let revpage='1'
+	let typeno='1'
+	let objno='1'
 	reviewlist(typeno,objno,revpage)
 	/* $('.pageBtn').click(function(){
 		let fds=$(this).attr('value');
@@ -37,6 +34,10 @@ $(function(){
 	}) */
 	
 });
+
+$('')
+
+
 function reviewlist(typeno,objno,revpage){
 	$.ajax({
 		type:'post',
@@ -388,7 +389,6 @@ function reviewlist(typeno,objno,revpage){
 									           
 											      <input type="hidden" name="objno" value="${stayno }" >
 											      <input type="hidden" name="type" value="2" >
-											      <input type="hidden" name="writer" value="${sessionScope.name }">
 											      <textarea name="content" rows=10 cols=60 required></textarea>
 											      <div class="modal-footer">
 											          <button type="submit" class="btn btn-default">저장</button>

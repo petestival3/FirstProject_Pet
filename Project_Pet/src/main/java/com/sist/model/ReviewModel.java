@@ -5,6 +5,7 @@ import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -69,9 +70,12 @@ public class ReviewModel {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		}catch(Exception ex) {}
+		
+		HttpSession session=request.getSession();
+		String name=(String)session.getAttribute("name");
 		String objno=request.getParameter("objno");
 		String typeno=request.getParameter("type");
-		String writer=request.getParameter("writer");
+		String writer=name;
 		String score=request.getParameter("rating3");
 		String Content=request.getParameter("content");
 		
