@@ -26,7 +26,20 @@
 .review-container {
     box-shadow: none; /* 특정 스타일을 없애고자 할 때, 값을 none으로 설정 */
     /* 필요에 따라 다른 속성도 재설정할 수 있습니다. */
+  
+  
+  
   }
+ 
+  
+  .mid_3{
+ width:400px;
+  overflow-wrap: break-word; /* 컨테이너 경계를 넘어가는 경우 단어를 자르고 줄바꿈 */
+
+  }
+  
+  
+
 
 
 </style>
@@ -294,10 +307,11 @@ function requestPay() {
                                 </div>
                             </div>
                             <div class="tab-pane" id="p_tabs-2" role="tabpanel">
-                                <div class="product__details__tab__desc">
+                            	<div id="input_list">
+                                <div class="product__details__tab__desc" id="firstLoadPage">
                                 
                                 <c:if test="${prListSize!=0 }">
-                                <div class="p_total_review_container">
+                                <div class="p_total_review_container" >
                                  	
                                  		<div class="p_total_review">
                                  		
@@ -380,14 +394,19 @@ function requestPay() {
                                  		
                                  		<div class="p_select_review_option" style="margin-top:30px;">
                                  		<ul class="p_rank p_review_rank">
-                                 			<li class="r_option"><a href=#>높은 평점순</a> </li>
-                                 			<li class="r_option"><a href=#>낮은 평점순</a> </li>
-                                 			<li class="r_option"><a href=#>최신날짜 순</a> </li>
-                                 			<li class="r_option"><a href=#>오래된날짜 순 </a> </li>
+                                 			<li class="r_option"><button id="highscore" class="btn btn-info prClickBtn">높은 평점순</button></li>
+                                 			<li class="r_option"><button id="lowscore" class="btn btn-info prClickBtn">낮은 평점순</button> </li>
+                                 			<li class="r_option"><button id="latestdate" class="btn btn-info prClickBtn">최신날짜 순</button></li>
+                                 			<li class="r_option"><button id="olddate" class="btn btn-info prClickBtn">오래된날짜 순 </button> </li>
                                  				
                                  		</ul>
                                  			<div style="margin-left:990px;">
-                                 		<button id="write_product_review">후기 작성하기</button>
+                                 			<c:if test="${sessionScope.id==null || sessionScope.id=='' }">
+                                 				<span>로그인 후 후기등록이 가능합니다.</span>
+                                 			</c:if>
+                                 			<c:if test="${sessionScope.id!=null }">
+                                 		<button id="write_product_review" class="btn-sm btn-danger">후기 작성하기</button>
+                                 		</c:if>
                                  		</div>
                                  		</div>
                                  	</div>
@@ -399,7 +418,7 @@ function requestPay() {
                                 <c:if test="${prListSize==0 }">
                                 <div><h2>등록된 후기가없습니다</h2></div>
                                 	<div style="margin-left:990px;">
-                                 		<button id="write_product_review">후기 작성하기</button>
+                                 		<button id="write_product_review" class="btn-sm btn-danger">후기 작성하기</button>
                                  		</div>
                                 </c:if>
                                 
@@ -413,12 +432,18 @@ function requestPay() {
                                  
                                  
                                  <!-- for문 -->
-                                  <div class="row product_review_container">
+                                  <div class="row product_review_container" data-page="1">
                                   	 <div class="col-md-4" style="width:200px; height:200px ;">
                                   	 <div class="p_review_image" style="width:100%; height:100%;">
-                                  	 <p>후기사진</p>
-                                  	
+                                  	 
+                                  	<c:if test="${prVo.imgsize>0 }">
                                   	 <img src="../reviewImg/${prVo.imgname }" style="width:100%; height:100%; object-fit: contain;">
+                                  	</c:if>
+                                  	
+                                  	<c:if test="${prVo.imgsize==0 }">
+                                  	 <img src="../img/noImg.png" style="width:100%; height:100%; object-fit: contain;">
+                                  	</c:if>
+                                  	
                                   	 </div>
                                   	 </div>
                                   	 
@@ -436,7 +461,7 @@ function requestPay() {
 									            class="reviewer-avatar"
 									            style="float: left"
 									          />
-									          <div class="user-name">${prVo.writer }</div>  <span style="margin-left:70px;">${prVo.dbday }</span>
+									          <div class="user-name">${prVo.writer }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:10px;opacity:0.5;">${ prVo.dbday}</span></div>
 									        </div>
 									        <br />
 									        <div class="mid_2">
@@ -523,6 +548,7 @@ function requestPay() {
 									          <p class="review-text">
 									           ${prVo.content }
 									          </p>
+									          	 
 									        </div>
 									      </div>
     										</div>
@@ -532,7 +558,20 @@ function requestPay() {
                               		 	 	</c:forEach>
                               		 	 	</c:if>
                               		 	 <!-- for문 -->
+                              		 	  <div class="Rpagination">
+                              		 	  
+                              		 	  
+									 	    <c:if test="${prListSize!=0 }">
+									    <div class="centered-text"><h2>1/${prTotalpage }</h2></div>
+									   </c:if>
+									    <c:if test="${reviewTotalPage>1}">
+									    <span><button class="btn btn-lg btn-primary Rnext-btn">다음</button></span>
+										</c:if>
+									</div>
                               		 	 </div>
+                              		 	 </div>
+                              		 	
+
                             		</div>
                             <div class="tab-pane" id="p_tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">

@@ -645,17 +645,19 @@ public int productSearchTotalPage(String sct,String ss) {
 
 public List<ReviewVO> product_reviewHighScoreList(int page,int pno) {
 	List<ReviewVO> list=new ArrayList<ReviewVO>();
+	
+	
 	try {
 		conn=dbconn.getConnection();
 		String sql="SELECT writer,TO_CHAR(revdate,'YYYY-MM-DD HH24:MI:SS'),content,imgname,imgsize,score,num "
 					+"FROM(SELECT writer,revdate,content,imgname,imgsize,score,rownum as num "
 					+"FROM(SELECT writer,revdate,content,imgname,imgsize,score FROM review "
 					+"WHERE typeno=2 AND objno=? "
-					+"ORDER BY score DESC))"
+					+"ORDER BY score DESC ,revdate DESC))"
 					+"WHERE num BETWEEN ? AND ?";
 		ps=conn.prepareStatement(sql);
-		int start=(ROW_SIZE*page)-(ROW_SIZE-1);
-		int end= ROW_SIZE*page;
+		int start=(REVIEW_ROW_SIZE*page)-(REVIEW_ROW_SIZE-1);
+		int end= REVIEW_ROW_SIZE*page;
 		ps.setInt(1, pno);
 		ps.setInt(2, start);
 		ps.setInt(3, end);
@@ -673,7 +675,11 @@ public List<ReviewVO> product_reviewHighScoreList(int page,int pno) {
 		
 		list.add(vo);
 	}
+	rs.close();
+	dbconn.disConnection(conn, ps);
 		
+	
+	
 	} catch (Exception e) {
 		// TODO: handle exception
 	e.printStackTrace();
@@ -687,10 +693,212 @@ public List<ReviewVO> product_reviewHighScoreList(int page,int pno) {
 }
 
 
+public List<ReviewVO> product_reviewLowScoreList(int page,int pno) {
+	List<ReviewVO> list=new ArrayList<ReviewVO>();
+	
+	
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT writer,TO_CHAR(revdate,'YYYY-MM-DD HH24:MI:SS'),content,imgname,imgsize,score,num "
+					+"FROM(SELECT writer,revdate,content,imgname,imgsize,score,rownum as num "
+					+"FROM(SELECT writer,revdate,content,imgname,imgsize,score FROM review "
+					+"WHERE typeno=2 AND objno=? "
+					+"ORDER BY score ASC ,revdate DESC))"
+					+"WHERE num BETWEEN ? AND ?";
+		ps=conn.prepareStatement(sql);
+		int start=(REVIEW_ROW_SIZE*page)-(REVIEW_ROW_SIZE-1);
+		int end= REVIEW_ROW_SIZE*page;
+		ps.setInt(1, pno);
+		ps.setInt(2, start);
+		ps.setInt(3, end);
+
+	ResultSet rs=ps.executeQuery();
+	
+	while(rs.next()) {
+		ReviewVO vo= new ReviewVO();
+		vo.setWriter(rs.getString(1));
+		vo.setDbday(rs.getString(2));
+		vo.setContent(rs.getString(3));
+		vo.setImgname(rs.getString(4));
+		vo.setImgsize(rs.getInt(5));
+		vo.setScore(rs.getDouble(6));
+		
+		list.add(vo);
+	}
+	rs.close();
+	dbconn.disConnection(conn, ps);
+		
+	
+	
+	} catch (Exception e) {
+		// TODO: handle exception
+	e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return list;
+	
+}
+
+
+public List<ReviewVO> product_reviewLatestDateList(int page,int pno) {
+	List<ReviewVO> list=new ArrayList<ReviewVO>();
+	
+	
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT writer,TO_CHAR(revdate,'YYYY-MM-DD HH24:MI:SS'),content,imgname,imgsize,score,num "
+					+"FROM(SELECT writer,revdate,content,imgname,imgsize,score,rownum as num "
+					+"FROM(SELECT writer,revdate,content,imgname,imgsize,score FROM review "
+					+"WHERE typeno=2 AND objno=? "
+					+"ORDER BY revdate DESC))"
+					+"WHERE num BETWEEN ? AND ?";
+		ps=conn.prepareStatement(sql);
+		int start=(REVIEW_ROW_SIZE*page)-(REVIEW_ROW_SIZE-1);
+		int end= REVIEW_ROW_SIZE*page;
+		ps.setInt(1, pno);
+		ps.setInt(2, start);
+		ps.setInt(3, end);
+
+	ResultSet rs=ps.executeQuery();
+	
+	while(rs.next()) {
+		ReviewVO vo= new ReviewVO();
+		vo.setWriter(rs.getString(1));
+		vo.setDbday(rs.getString(2));
+		vo.setContent(rs.getString(3));
+		vo.setImgname(rs.getString(4));
+		vo.setImgsize(rs.getInt(5));
+		vo.setScore(rs.getDouble(6));
+		
+		list.add(vo);
+	}
+	rs.close();
+	dbconn.disConnection(conn, ps);
+		
+	
+	
+	} catch (Exception e) {
+		// TODO: handle exception
+	e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return list;
+	
+}
+
+
+public List<ReviewVO> product_reviewOldDateList(int page,int pno) {
+	List<ReviewVO> list=new ArrayList<ReviewVO>();
+	
+	
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT writer,TO_CHAR(revdate,'YYYY-MM-DD HH24:MI:SS'),content,imgname,imgsize,score,num "
+					+"FROM(SELECT writer,revdate,content,imgname,imgsize,score,rownum as num "
+					+"FROM(SELECT writer,revdate,content,imgname,imgsize,score FROM review "
+					+"WHERE typeno=2 AND objno=? "
+					+"ORDER BY revdate ASC))"
+					+"WHERE num BETWEEN ? AND ?";
+		ps=conn.prepareStatement(sql);
+		int start=(REVIEW_ROW_SIZE*page)-(REVIEW_ROW_SIZE-1);
+		int end= REVIEW_ROW_SIZE*page;
+		ps.setInt(1, pno);
+		ps.setInt(2, start);
+		ps.setInt(3, end);
+
+	ResultSet rs=ps.executeQuery();
+	
+	while(rs.next()) {
+		ReviewVO vo= new ReviewVO();
+		vo.setWriter(rs.getString(1));
+		vo.setDbday(rs.getString(2));
+		vo.setContent(rs.getString(3));
+		vo.setImgname(rs.getString(4));
+		vo.setImgsize(rs.getInt(5));
+		vo.setScore(rs.getDouble(6));
+		
+		list.add(vo);
+	}
+	rs.close();
+	dbconn.disConnection(conn, ps);
+		
+	
+	
+	} catch (Exception e) {
+		// TODO: handle exception
+	e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return list;
+	
+}
+
+
+
+
+public int product_review_totalPage(int pno) {
+	int totalpage=0;
+	
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT CEIL(COUNT(*)/4.0) FROM review WHERE objno=?";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, pno);
+		ResultSet rs= ps.executeQuery();
+		if(rs.next()) {
+			totalpage=rs.getInt(1);
+		}
+		rs.close();
+		dbconn.disConnection(conn, ps);
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	return totalpage;
+}
+
+public double newGrade(int pno) {
+	double newGrade=0;
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT p_grade FROM product_detail WHERE pno=?";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, pno);
+		
+		ResultSet rs= ps.executeQuery();
+		if(rs.next()) {
+			newGrade=rs.getDouble(1);
+		}
+		rs.close();
+	} catch (Exception e) {
+		// TODO: handle exception
+	e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return newGrade;
+}
+
+
 public void insertProductReview(ReviewVO vo) {
 	
 	int reviewAmount=0;
-	int p_grade=0;
+	int p_grade_sum=0;
 	
 	try {
 		conn=dbconn.getConnection();
@@ -707,13 +915,13 @@ public void insertProductReview(ReviewVO vo) {
 		dbconn.disConnection(conn, ps);
 		
 		conn=dbconn.getConnection();
-		 sql="SELECT p_grade FROM product_detail WHERE pno=?";
+		 sql="SELECT SUM(score) FROM review WHERE objno=?";
 		ps=conn.prepareStatement(sql);
 		ps.setInt(1, vo.getObjno());
 		 rs= ps.executeQuery();
 		
 		if(rs.next()) {
-			p_grade=rs.getInt(1);
+			p_grade_sum=rs.getInt(1);
 		}
 		rs.close();
 		dbconn.disConnection(conn, ps);
@@ -735,7 +943,7 @@ public void insertProductReview(ReviewVO vo) {
 		dbconn.disConnection(conn, ps);
 		
 		
-		double newGrade = (p_grade * reviewAmount + vo.getScore()) / (reviewAmount + 1);
+		double newGrade = (p_grade_sum + vo.getScore()) / (reviewAmount + 1);
 		newGrade = Math.round(newGrade * 10.0) / 10.0; 
 		
 		conn=dbconn.getConnection();

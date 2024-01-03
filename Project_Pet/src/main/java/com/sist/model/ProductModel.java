@@ -2,6 +2,7 @@ package com.sist.model;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JPopupMenu.Separator;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -124,6 +128,9 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 			ProductVO vo =dao.productDetail(Integer.parseInt(pno));
 			List<ProductVO>subImageList=dao.productSubImage(Integer.parseInt(pno));
 			List<ReviewVO>prList=dao.product_reviewHighScoreList(1, Integer.parseInt(pno));
+			
+			int reviewTotalPage=dao.product_review_totalPage(Integer.parseInt(pno));
+			request.setAttribute("reviewTotalPage", reviewTotalPage);
 			request.setAttribute("subImageList", subImageList);
 			request.setAttribute("vo", vo);
 			request.setAttribute("main_jsp", "../product/productDetail.jsp");
@@ -135,10 +142,12 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 			request.setAttribute("prList", prList);
 			request.setAttribute("prListSize", prList.size());
 			
+			int prTotalpage=dao.product_review_totalPage(Integer.parseInt(pno));
 			List<ProductVO>clist=new ArrayList<ProductVO>();
 			List<ProductVO>rlist=dao.productRelativeList(Integer.parseInt(pno));
 			request.setAttribute("rlist", rlist);
 			request.setAttribute("rlistSize", rlist.size());
+			request.setAttribute("prTotalpage", prTotalpage);
 			try {
 			
 				Cookie[] cookies=request.getCookies();
@@ -347,6 +356,8 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 			String reviewImg="reviewImg";
 			path = path + File.separator + reviewImg;
 			
+			
+			
 			 int max = 1024 * 1024 * 100;
 			 ProductDAO dao =ProductDAO.newInstace();
 			 ReviewVO vo=new ReviewVO();
@@ -384,6 +395,88 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 	       
 			
 	}
+	
+	@RequestMapping("product/Product_review_newList.do")
+	public void Product_review_newList(HttpServletRequest request, HttpServletResponse response) {
+		
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+			String  pno= request.getParameter("pno");
+			String page=request.getParameter("page");
+			String type=request.getParameter("type");
+			
+			int curpage=Integer.parseInt(page);
+			
+			ProductDAO dao=ProductDAO.newInstace();
+			
+			/*
+			   * writer,TO_CHAR(revdate,'YYYY-MM-DD HH24:MI:SS'),content,imgname,imgsize,score
+			   * 
+			   */
+			HttpSession session =request.getSession();
+			String id=(String)session.getAttribute("id");
+			
+			
+			JSONArray arr=new JSONArray();
+			List<ReviewVO>list=null;
+			if(type.equals("1")) {
+				//높은 평점순 
+				list=dao.product_reviewHighScoreList(curpage, Integer.parseInt(pno));
+			}
+			
+			
+			if(type.equals("2")) {
+				list=dao.product_reviewLowScoreList(curpage, Integer.parseInt(pno));
+			}
+			
+			if(type.equals("3")) {
+				list=dao.product_reviewLatestDateList(curpage, Integer.parseInt(pno));
+			}
+			
+			if(type.equals("4")) {
+				list=dao.product_reviewOldDateList(curpage, Integer.parseInt(pno));
+			}
+		double newGrade=dao.newGrade(Integer.parseInt(pno));
+		int totalpage=dao.product_review_totalPage(Integer.parseInt(pno));
+		
+			int i=0;
+			
+			for (ReviewVO vo : list) {
+				JSONObject obj=new JSONObject();
+					
+				
+				obj.put("writer", vo.getWriter());
+				obj.put("dbday", vo.getDbday());
+				obj.put("content", vo.getContent());
+				obj.put("imgname", vo.getImgname());
+				obj.put("imgsize", vo.getImgsize());
+				obj.put("score", vo.getScore());
+				
+				arr.add(obj);
+				
+				if (i==0) {
+					obj.put("listSize", list.size());
+					obj.put("newGrade", newGrade);
+					obj.put("totalpage", totalpage);
+					obj.put("id", id);
+				}
+				i++;
+			}
+		
+			 try
+			  {
+				  response.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
+				  PrintWriter out=response.getWriter();
+				  out.write(arr.toJSONString());
+			  }catch(Exception ex) {}
+			
+		
+	}
+	
 	
 	
 }
