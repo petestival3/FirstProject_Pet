@@ -230,9 +230,9 @@ public String myInfo(HttpServletRequest request, HttpServletResponse response) {
     HttpSession session = request.getSession();
     String id = (String) session.getAttribute("id");
     MyPageDAO dao = MyPageDAO.newInstance();
-    MemberVO myvo = dao.mypageMy(id);
+    MemberVO vo = dao.mypageMy(id);
 
-    request.setAttribute("myvo", myvo);
+    request.setAttribute("vo", vo);
     request.setAttribute("main_jsp", "../mypage/my_info.jsp");
     return "../main/main.jsp";
 }
@@ -245,7 +245,7 @@ public String myUpdate(HttpServletRequest request, HttpServletResponse response)
     HttpSession session = request.getSession();
     String id = (String) session.getAttribute("id");
     MyPageDAO dao = MyPageDAO.newInstance();
-    MemberVO myvo=new MemberVO();
+    MemberVO vo=new MemberVO();
 
     
     String pwd=request.getParameter("pwd");
@@ -258,21 +258,21 @@ public String myUpdate(HttpServletRequest request, HttpServletResponse response)
     String phone=request.getParameter("phone");
     String content=request.getParameter("content");
     
-   myvo.setPwd(pwd);
-   myvo.setSex(sex);
-   myvo.setName(name);
-   myvo.setEmail(email);
-   myvo.setPost(post);
-   myvo.setAddr1(addr1);
-   myvo.setAddr2(addr2);
-   myvo.setPhone(phone);
-   myvo.setContent(content);
+   vo.setPwd(pwd);
+   vo.setSex(sex);
+   vo.setName(name);
+   vo.setEmail(email);
+   vo.setPost(post);
+   vo.setAddr1(addr1);
+   vo.setAddr2(addr2);
+   vo.setPhone(phone);
+   vo.setContent(content);
    
-   System.out.println(myvo.getSex());
+   System.out.println(vo.getSex());
    
-   dao.mypageMyUpdate(id, myvo);
+   dao.mypageMyUpdate(id, vo);
 
-    request.setAttribute("myvo", myvo);
+    request.setAttribute("vo", vo);
     request.setAttribute("main_jsp", "../mypage/my_info.jsp");
     return "../main/main.jsp";
 }

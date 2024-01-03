@@ -48,7 +48,7 @@ $(function(){
 
 				<fieldset>
 					<input name="id" id="id" class="writeid" placeholder="ID 입력"
-						type="text" tabindex="1" style="float: left;" value="${myvo.id }"
+						type="text" tabindex="1" style="float: left;" value="${vo.id }"
 						readonly>
 
 				</fieldset>
@@ -62,43 +62,43 @@ $(function(){
 				</fieldset>
 				<fieldset>
 					<input name="name" id="name" placeholder="이름 입력" type="text"
-						tabindex="4" value="${myvo.name }" required>
+						tabindex="4" value="${vo.name }" required>
 				</fieldset>
 				<fieldset>
-					<input type="radio" tabindex="5" name="sex" value="남자" ${myvo.sex eq '남자'?'checked':''} required>남자 
-					<input type="radio" tabindex="6" name="sex" value="여자" ${myvo.sex eq '여자'?'checked':''} required>여자
+					<input type="radio" tabindex="5" name="sex" value="남자" ${vo.sex eq '남자'?'checked':''} required>남자 
+					<input type="radio" tabindex="6" name="sex" value="여자" ${vo.sex eq '여자'?'checked':''} required>여자
 				</fieldset>
 				<fieldset>
 					<input name="birth" placeholder="생년월일 입력" type="date"
-						tabindex="7" value="${myvo.birth }" readonly>
+						tabindex="7" value="${vo.birth }" readonly>
 
 				</fieldset>
 				<fieldset>
 					<input name="email" id="email" placeholder="이메일" type="text"
-						tabindex="8" value="${myvo.email }" required>
+						tabindex="8" value="${vo.email }" required>
 				</fieldset>
 				<fieldset>
 					<input name="post" id="post" class="writepost" placeholder="우편번호"
 						type="text" tabindex="9" style="float: left;"
-						value="${myvo.post }" readonly>
+						value="${vo.post }" readonly>
 					<button class="postnum" name="postnum" type="button"
 						id="contact-post" style="float: left">우편번호검색</button>
 				</fieldset>
 				<fieldset>
 					<input name="addr1" id="addr1" placeholder="주소" type="text"
-						tabindex="10" value="${myvo.addr1 }" readonly>
+						tabindex="10" value="${vo.addr1 }" readonly>
 				</fieldset>
 				<fieldset>
 					<input name="addr2" id="addr2" placeholder="상세주소" type="text"
-						tabindex="11" value="${myvo.addr2 }">
+						tabindex="11" value="${vo.addr2 }">
 				</fieldset>
 				<fieldset>
 					<input name="phone" id="phone" placeholder="전화번호" type="text"
-						tabindex="12" value="${myvo.phone }" required>
+						tabindex="12" value="${vo.phone }" required>
 				</fieldset>
 				<fieldset>
 					<textarea name="content" placeholder="당신의 반려동물을 소개해주세요."
-						tabindex="13"  required>${myvo.content }</textarea>
+						tabindex="13"  required>${vo.content }</textarea>
 				</fieldset>
 				<fieldset>
 					<button name="submit" type="submit" id="contact-submit"
