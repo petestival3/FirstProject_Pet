@@ -15,4 +15,5 @@
    <bean id="walk" class="com.sist.model.WalkModel"></bean>
    <bean id="freeboard" class="com.sist.model.FreeBoardModel"></bean>
    <bean id="review" class="com.sist.model.ReviewModel"></bean>
+   <bean id="reserve" class="com.sist.model.ReserveModel"></bean>
 </beans>
