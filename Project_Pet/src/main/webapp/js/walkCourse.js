@@ -3,7 +3,7 @@ let isClicked = false;
 
 $(function() {
    
-
+	//코스상세정보를 보기위한 js
     $('.show_corsue').click(function() {
         isClicked = true;
         let wcno = $(this).closest('.get_wcno').attr('data-wcno');
@@ -20,12 +20,12 @@ $(function() {
             data: { "wcno": wcno },
             success: function(json) {
                 selectedRes = JSON.parse(json);
-                showInfo(selectedRes);
+                showInfo(selectedRes);//showinfo 함수호출을 통해 리스트 jsp에 출력
             }
         });
     });
 });
-
+//리스트를 새로 작성하는 함수
 function showInfo(info) {
     let div	 = $('#level');
     let div0 = $('#level_image > img');

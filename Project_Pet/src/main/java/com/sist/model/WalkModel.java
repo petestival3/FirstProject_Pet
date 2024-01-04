@@ -23,6 +23,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class WalkModel {
+	
+	//산책로 일반 리스트 모델
 	@RequestMapping("walk/walkList.do")
 	public String walkList(HttpServletRequest request, HttpServletResponse response) {
 		String strpage= request.getParameter("page");
@@ -63,7 +65,7 @@ public class WalkModel {
 	
 }
 	
-	
+	//산책로 상세보기 모델
 	@RequestMapping("walk/walkDetail.do")
 	public String walkDetail(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -87,6 +89,10 @@ public class WalkModel {
 		return "../main/main.jsp";
 	
 }
+	
+	
+	
+	//산책로 검색리스트 모델
 	@RequestMapping("walk/walkSearchList.do")
 	public void walkSearchList(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -174,7 +180,7 @@ public class WalkModel {
 	
 	
 	
-	
+	//산책로 댓글리스트 (ajax)모델
 	@RequestMapping("walk/walkReplyAjaxList.do")
 	public void walkReplyAjaxList(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -257,7 +263,7 @@ public class WalkModel {
 	
 	}
 	
-	
+	//산책로 댓글입력(ajax) 모델
 	@RequestMapping("walk/walkReplyAjaxAdd.do")
 	public void walkReplyAjaxAdd(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -286,7 +292,7 @@ public class WalkModel {
 	
 }
 	
-	
+	//산책로 대댓글입력 모델(ajax)
 	@RequestMapping("walk/walkReplyMoreAdd.do")
 	public void walkReplyMoreAjaxAdd(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -317,7 +323,7 @@ public class WalkModel {
 	
 }
 	
-	
+	//산책로 댓글삭제모델(ajax)
 	@RequestMapping("walk/walkReplyDelete.do")
 	public void walkReplyDeleteAjax(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -361,7 +367,7 @@ public class WalkModel {
 	
 }
 	
-	
+		//상품 댓글 업데이트(수정) 모델(ajax)
 	@RequestMapping("walk/walkReplyUpdate.do")
 	public void walkReplyUpdateAjax(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -411,7 +417,7 @@ public class WalkModel {
 	
 }
 	
-	
+	//산책로 상세정보중 코스상세정보를 선택시 보여주기위한 ajax처리를 위한 모델
 	@RequestMapping("walk/walkCourseAjaxInform.do")
 	public void walkCourseAjaxInform(HttpServletRequest request, HttpServletResponse response) {
 		

@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function() {//상품 초특가할인제어 js
 	  let itemHeight = $('.product_item').outerHeight();
 	  let currentIndex = 0;
 	  let slideCount = 0;

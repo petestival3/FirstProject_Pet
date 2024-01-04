@@ -36,7 +36,7 @@
 	
 	
 	
-	
+	//keyup을 하면 조건이 맞으면 ajax리스트 출력
 	$('#walkSearchBar').keyup(function(){
 		
 	
@@ -52,14 +52,14 @@
 		w_name=$(this).val();
 		
 		
-		   if (w_name.trim() === '') {
+		   if (w_name.trim() === '') {//검색어 없을시 return
            
            
             return;
         }
 		
 	
-		if(!isRequestPending){
+		if(!isRequestPending){//dao동시접근을 제어하기위함
 			isRequestPending=true;
 			
 			ajax(1);
@@ -71,7 +71,7 @@
 		});         
 		
 			
-					
+					//검색리스트를 받아오는 ajax를 담은 함수
 			function ajax(page){
 				
       				 

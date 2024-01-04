@@ -26,7 +26,7 @@ public static ProductDAO newInstace() {
 }
 
 
-public List<ProductVO> homeProduct(){
+public List<ProductVO> homeProduct(){ //메인 화면 상품인기순위
 	List<ProductVO>list=new ArrayList<>();
 	try {
 		conn=dbconn.getConnection();
@@ -66,7 +66,7 @@ public List<ProductVO> homeProduct(){
 
 
 
-public List<ProductVO> productBystackList(String ct,int page){
+public List<ProductVO> productBystackList(String ct,int page){ //상품 품절임박 리스트
 	
 	List< ProductVO> list= new ArrayList<ProductVO>();
 	String msg="";
@@ -123,7 +123,7 @@ public List<ProductVO> productBystackList(String ct,int page){
 }
 
 
-public List<ProductVO> productByASCList(String ct,int page,String rt){
+public List<ProductVO> productByASCList(String ct,int page,String rt){ //상품 ASC순 리스트(rt= > 순위나열할 종류) rt받아서 asc로나열
 	
 	List< ProductVO> list= new ArrayList<ProductVO>();
 	String msg="";
@@ -186,7 +186,7 @@ public List<ProductVO> productByASCList(String ct,int page,String rt){
 
 
 
-public List<ProductVO> productByDescList(String ct,int page,String rt){
+public List<ProductVO> productByDescList(String ct,int page,String rt){ //상품 DESC순 리스트(rt= > 순위나열할 종류) rt받아서 DESC로나열
 	
 	List< ProductVO> list= new ArrayList<ProductVO>();
 	String msg="";
@@ -248,7 +248,7 @@ public List<ProductVO> productByDescList(String ct,int page,String rt){
 
 
 
-public int productByStackTotalPage(String ct) {
+public int productByStackTotalPage(String ct) { //재고순 토탈페이지
 	String msg="";
 	
 	if(!(ct.equals("전체"))){
@@ -285,7 +285,7 @@ public int productByStackTotalPage(String ct) {
 
 
 
-public int productTotalPage(String ct) {
+public int productTotalPage(String ct) { //재고순을 제외한 나머지 토탈페이지 msg를 활용한 동적쿼리 
 	String msg="";
 	if(!(ct.equals("전체"))){
 		ct="'"+ct+"'";
@@ -324,7 +324,7 @@ public int productTotalPage(String ct) {
 
 
 
-public ProductVO productDetail(int pno) {
+public ProductVO productDetail(int pno) { //상품상세보기
 	ProductVO vo=new ProductVO();
 	try {
 		conn=dbconn.getConnection();
@@ -373,7 +373,7 @@ public ProductVO productDetail(int pno) {
 
 
 
-public ProductVO productDetail_Before(int pno) {
+public ProductVO productDetail_Before(int pno) { //상품상세보기 클릭시 실행되어야하는 메소드
 	ProductVO vo=new ProductVO();
 	try {
 		conn=dbconn.getConnection();
@@ -404,7 +404,7 @@ public ProductVO productDetail_Before(int pno) {
 
 
 
-public List<Integer> ProductCateNum(){
+public List<Integer> ProductCateNum(){ //상품리스트 좌단에 출력되는 카테고리 목록의 각 카테고리별 상품 개수 출력
 	List<Integer>list= new ArrayList<Integer>();
 	try {
 		conn=dbconn.getConnection();
@@ -435,7 +435,7 @@ public List<Integer> ProductCateNum(){
 	return list;
 }
 
-public List<ProductVO> productSubImage(int pno){
+public List<ProductVO> productSubImage(int pno){//상품상세보기에 사진 하단의 서브이미지들
 	
 	List<ProductVO>list= new ArrayList<ProductVO>();
 	try {
@@ -462,7 +462,7 @@ public List<ProductVO> productSubImage(int pno){
 	return list;
 }
 
-public List<ProductVO> productRelativeList(int pno){
+public List<ProductVO> productRelativeList(int pno){//상품 상세보기의 관련상품리스트
 	List<ProductVO>list =new ArrayList<ProductVO>();
 		try {
 			
@@ -511,7 +511,7 @@ public List<ProductVO> productRelativeList(int pno){
 }
 
 
-public List<ProductVO> highSaleList(){
+public List<ProductVO> highSaleList(){ //상품 리스트 좌단에 초특가 할인리스트
 	List<ProductVO> list= new ArrayList<ProductVO>();
 	try {
 		conn=dbconn.getConnection();
@@ -549,7 +549,7 @@ public List<ProductVO> highSaleList(){
 	return list;
 }
 
-public List<ProductVO> productSearchList(String sct,String ss,int page){
+public List<ProductVO> productSearchList(String sct,String ss,int page){//상품 검색리스트
 	String msg="";
 	if (sct.equals("전체")) {
 		msg="WHERE p_name Like '%'||?||'%'";
@@ -603,7 +603,7 @@ public List<ProductVO> productSearchList(String sct,String ss,int page){
 	
 }
 
-public int productSearchTotalPage(String sct,String ss) {
+public int productSearchTotalPage(String sct,String ss) {//상품검색리스트 토탈페이지
 	int total=0;
 	String msg="";
 	if (sct.equals("전체")) {
@@ -643,7 +643,7 @@ public int productSearchTotalPage(String sct,String ss) {
 	
 }
 
-public List<ReviewVO> product_reviewHighScoreList(int page,int pno) {
+public List<ReviewVO> product_reviewHighScoreList(int page,int pno) {//상품상세보기의 리뷰높은할인순 리스트
 	List<ReviewVO> list=new ArrayList<ReviewVO>();
 	
 	
@@ -693,7 +693,7 @@ public List<ReviewVO> product_reviewHighScoreList(int page,int pno) {
 }
 
 
-public List<ReviewVO> product_reviewLowScoreList(int page,int pno) {
+public List<ReviewVO> product_reviewLowScoreList(int page,int pno) {//상품상세보기의 리뷰낮은할인순 리스트
 	List<ReviewVO> list=new ArrayList<ReviewVO>();
 	
 	
@@ -743,7 +743,7 @@ public List<ReviewVO> product_reviewLowScoreList(int page,int pno) {
 }
 
 
-public List<ReviewVO> product_reviewLatestDateList(int page,int pno) {
+public List<ReviewVO> product_reviewLatestDateList(int page,int pno) {//상품상세보기의 리뷰최근순 리스트
 	List<ReviewVO> list=new ArrayList<ReviewVO>();
 	
 	
@@ -793,7 +793,7 @@ public List<ReviewVO> product_reviewLatestDateList(int page,int pno) {
 }
 
 
-public List<ReviewVO> product_reviewOldDateList(int page,int pno) {
+public List<ReviewVO> product_reviewOldDateList(int page,int pno) {//상품상세보기의 오래된순 리스트
 	List<ReviewVO> list=new ArrayList<ReviewVO>();
 	
 	
@@ -845,7 +845,7 @@ public List<ReviewVO> product_reviewOldDateList(int page,int pno) {
 
 
 
-public int product_review_totalPage(int pno) {
+public int product_review_totalPage(int pno) {//리뷰 토탈페이지
 	int totalpage=0;
 	
 	try {
@@ -870,7 +870,7 @@ public int product_review_totalPage(int pno) {
 	return totalpage;
 }
 
-public double newGrade(int pno) {
+public double newGrade(int pno) {//리뷰 에이젝스 리스트 초기화시 새로운평점
 	double newGrade=0;
 	try {
 		conn=dbconn.getConnection();
@@ -895,7 +895,7 @@ public double newGrade(int pno) {
 }
 
 
-public void insertProductReview(ReviewVO vo) {
+public void insertProductReview(ReviewVO vo) {//리뷰 인서트
 	
 	int reviewAmount=0;
 	int p_grade_sum=0;

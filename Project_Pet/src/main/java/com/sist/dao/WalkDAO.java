@@ -29,7 +29,7 @@ public static WalkDAO newInstance() {
 	
 }
 
-public int walkTotalPage(String loc) {
+public int walkTotalPage(String loc) { //산책로 토탈페이지
 	String msg="";
 	if(!(loc.equals("전체"))){
 		
@@ -72,7 +72,7 @@ public int walkTotalPage(String loc) {
 
 
 
-public List<WalkVO> walkList(String loc,int page){
+public List<WalkVO> walkList(String loc,int page){//산책로 일반리스트
 	
 	List<WalkVO> list= new ArrayList<WalkVO>();
 	String msg="";
@@ -140,7 +140,7 @@ public List<WalkVO> walkList(String loc,int page){
 
 
 
-public List<WalkVO> walkSearchList(String loc,String w_name,int page){
+public List<WalkVO> walkSearchList(String loc,String w_name,int page){//산책로 검색리시트(ajax)
 	
 	List<WalkVO>list=new ArrayList<WalkVO>();
 	try {
@@ -205,7 +205,7 @@ public List<WalkVO> walkSearchList(String loc,String w_name,int page){
 
 
 
-public int walkSearchTotalPage(String loc,String w_name) {
+public int walkSearchTotalPage(String loc,String w_name) {//산책로 토탈페이지(ajax)
 	int totalpage=0;
 	String msg="";
 	if (!loc.equals("전체")) {
@@ -241,7 +241,7 @@ public int walkSearchTotalPage(String loc,String w_name) {
 }
 
 
-public WalkVO walkDetail(int wno) {
+public WalkVO walkDetail(int wno) {//산책로 상세보기
 	WalkVO vo =new WalkVO();
 	try {
 		
@@ -271,7 +271,7 @@ public WalkVO walkDetail(int wno) {
 	return vo;
 }
 
-public List<WalkVO> walkCourseData(int wno){
+public List<WalkVO> walkCourseData(int wno){//산책로 상세코스에 대한 정보
 	List<WalkVO>list =new ArrayList<WalkVO>();
 	
 	try {
@@ -302,7 +302,7 @@ public List<WalkVO> walkCourseData(int wno){
 }
 
 
-public WalkVO walkCourseAjaxInform(int wcno) {
+public WalkVO walkCourseAjaxInform(int wcno) {//산책로 상세코스에 대한 ajax를 이용한 정보띄우는 리스트
 	WalkVO vo =new WalkVO();
 try {
 	conn=dbconn.getConnection();
@@ -336,7 +336,7 @@ finally {
 	return vo;
 }
 
-public  void walkReplyInsert(WalkReplyVO vo,String pwd) {
+public  void walkReplyInsert(WalkReplyVO vo,String pwd) {//산책로 댓글 인서트
 	try {
 		
 		
@@ -397,7 +397,7 @@ public  void walkReplyInsert(WalkReplyVO vo,String pwd) {
 	
 }
 
-public  int walkReplyTotalPage(int wno) {
+public  int walkReplyTotalPage(int wno) {//산책로 댓글 토탈페이지
 	
 	int totalpage=0;
 	
@@ -425,7 +425,7 @@ public  int walkReplyTotalPage(int wno) {
 	
 }
 
-public  List<WalkReplyVO> walkReplyListData(int wno,int page){
+public  List<WalkReplyVO> walkReplyListData(int wno,int page){//산책로 댓글리스트
 	List<WalkReplyVO>list=new ArrayList<WalkReplyVO>();
 	try {
 		conn=dbconn.getConnection();
@@ -470,7 +470,7 @@ public  List<WalkReplyVO> walkReplyListData(int wno,int page){
 	return list;
 }
 
-public  int walkReplyAmount(int wno) {
+public  int walkReplyAmount(int wno) {//산책로 댓글총개수
 	int replyAmount=0;
 	try {
 		conn=dbconn.getConnection();
@@ -495,7 +495,7 @@ public  int walkReplyAmount(int wno) {
 }
 
 
-public void walkAddReplyInsert(String pwd,WalkReplyVO vo) {
+public void walkAddReplyInsert(String pwd,WalkReplyVO vo) {//산책로 대댓글 인서트
 	try {
 		conn=dbconn.getConnection();
 		
@@ -589,7 +589,7 @@ public void walkAddReplyInsert(String pwd,WalkReplyVO vo) {
 	
 }
 
-public  boolean walkDeleteReply(int rno,String pwd) {
+public  boolean walkDeleteReply(int rno,String pwd) {//산책로 댓글 딜리트
 	boolean bCheck=false;
 	String db_pwd="";
 	int wno=0;
@@ -705,7 +705,7 @@ public  boolean walkDeleteReply(int rno,String pwd) {
 	
 }
 
-public boolean walkReplyUpdate(WalkReplyVO vo,String pwd) {
+public boolean walkReplyUpdate(WalkReplyVO vo,String pwd) {//산책로 댓글 업데이트(수정)
 	
 	boolean bCheck=false;
 	String db_pwd="";
@@ -755,7 +755,7 @@ public boolean walkReplyUpdate(WalkReplyVO vo,String pwd) {
 }
 
 
-public String rootId(int root) {
+public String rootId(int root) {//산책로 댓글중 부모댓글의 아이디정보 가져오는 메소드
 	String rootId="";
 	try {
 		conn=dbconn.getConnection();

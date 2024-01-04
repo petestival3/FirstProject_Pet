@@ -394,10 +394,10 @@ function requestPay() {
                                  		
                                  		<div class="p_select_review_option" style="margin-top:30px;">
                                  		<ul class="p_rank p_review_rank">
-                                 			<li class="r_option"><button id="highscore" class="btn btn-info prClickBtn">높은 평점순</button></li>
-                                 			<li class="r_option"><button id="lowscore" class="btn btn-info prClickBtn">낮은 평점순</button> </li>
-                                 			<li class="r_option"><button id="latestdate" class="btn btn-info prClickBtn">최신날짜 순</button></li>
-                                 			<li class="r_option"><button id="olddate" class="btn btn-info prClickBtn">오래된날짜 순 </button> </li>
+                                 			<li class="r_option"><button id="highscore" class="btn btn-primary">높은 평점순</button></li>
+                                 			<li class="r_option"><button id="lowscore" class="btn btn-info">낮은 평점순</button> </li>
+                                 			<li class="r_option"><button id="latestdate" class="btn btn-info">최신날짜 순</button></li>
+                                 			<li class="r_option"><button id="olddate" class="btn btn-info">오래된날짜 순 </button> </li>
                                  				
                                  		</ul>
                                  			<div style="margin-left:990px;">

@@ -30,7 +30,7 @@ import com.sist.vo.ProductVO;
 public class ProductModel {
 	
 	
-
+	//상품 리스트 모델
 	@RequestMapping("product/ProductList.do")
 public String productList(HttpServletRequest request, HttpServletResponse response) {
 	String strpage=request.getParameter("page");
@@ -108,6 +108,7 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 	//이유는 detail.jsp 에서 목록으로 돌아갈떄 el로 꺼내고 , 최근본상품에서 디테일로 바로 넘어갈떄 el이용해서 넘어가야 하기때문
 	//parameter값으로 넘기면 jsp에서 자바를 사용해야한다
 	//여기서는 요청처리후 detail.jsp로 이동
+	//상품 디테일 모델
 	@RequestMapping("product/productDetail.do")
 	public String productDetail(HttpServletRequest request, HttpServletResponse response) {
 		try {
@@ -188,7 +189,7 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 			
 			
 			
-	
+	//상품 디테일 이동전 쿠키저장을 위한 모델
 	//리스트에서 상세보기 클릭하면 거침 쿠키설정후 쿠키를 보내고 파라미터값으로 페이지,카테고리등등정보보냄(목록으로 돌아가기 위함)=> detail.do로이동
 	@RequestMapping("product/DetailBefore.do")
 	public String DetailBefore(HttpServletRequest request, HttpServletResponse response) {
@@ -230,7 +231,7 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 	
 	//목록 돌아가기 최근 상품 디테일에선 디폴트 목록 , 일반 디테일에선 보던 목록으로 돌아감
 	//detailback.do 수행후 파라미터값이 있냐 없냐 를 따져서 productlist.do 메소드로 이동
-	
+	//상품상세보기에서 목록으로 돌아가기 클릭시 홈화면으로 돌아가냐,이전보던 페이지,카테고리 로 돌아가냐 , 삼품리스트 초기화면으로 돌아가냐를 선택하는 모델(lcount를 활용)
 	@RequestMapping("product/DetailListBack.do")
 	public String DetailListBack(HttpServletRequest request, HttpServletResponse response) {
 		String ct=request.getParameter("ct");
@@ -267,6 +268,8 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 		return send;
 	}
 	
+	
+	//상품검색리스트 모델
 	@RequestMapping("product/ProductSearchList.do")
 	public String ProductSearchList(HttpServletRequest request, HttpServletResponse response) {
 				try {
@@ -325,7 +328,7 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 	
 	
 	
-	
+	//상품 리뷰입력 모델(ajax)
 	@RequestMapping("product/Product_insert_review.do")
 	public String Product_insert_review(HttpServletRequest request, HttpServletResponse response) {
 			String  pno= request.getParameter("pno");
@@ -335,7 +338,7 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 	}
 	
 	
-	
+	//상품 리뷰입력시 데이터처리를 위한모델 (ajax)
 	@RequestMapping("product/Product_handle_review.do")
 	public void Product_handle_review(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -396,6 +399,7 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 			
 	}
 	
+	//상품 리뷰를 ajax로 새로고침된 리스트를 보내기 위한 모델
 	@RequestMapping("product/Product_review_newList.do")
 	public void Product_review_newList(HttpServletRequest request, HttpServletResponse response) {
 		

@@ -1,7 +1,7 @@
 /**
  * 
  */
-
+// 상품상세보기의 + -버튼 클릭시 총액값 대입하는 js
  $(document).ready(function() {
     let price = parseFloat($('#detail_p_price').attr('data-price'));
     let quantity = parseInt($(".kyj__calculate").val());

@@ -218,7 +218,7 @@
     
    
     
-   
+   	//댓글 관련 버튼에관한 js
     function clickBtn(){
       let wno = $('#selectWno').attr('data-wno');
    

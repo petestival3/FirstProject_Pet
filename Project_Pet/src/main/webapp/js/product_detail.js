@@ -1,6 +1,8 @@
 /**
  * 
  */
+
+//후기 쉐도우박스 초기화
 Shadowbox.init({
     players: ['iframe'],
     
@@ -15,6 +17,7 @@ Shadowbox.init({
 	let type=1;
     let mainImageSrc = $('.product__details__pic__item img').attr('src'); // 초기 메인 이미지 저장
     
+    //서브이미지 클릭시 상품이미지 변경되는 js
     $('.sub-image').hover(
         function() {
             const index = $(this).data('index');
@@ -29,7 +32,7 @@ Shadowbox.init({
         }
     );
     
-    
+     //서브이미지 클릭시 상품이미지 변경되는 js
     $('#show_pro_detail_inform').click(function(){
 		$('#show_pro_detail_inform').hide()
 		$('.pro_detail_img').show()
@@ -37,7 +40,7 @@ Shadowbox.init({
 		
 	})
     
-    
+     //서브이미지 클릭시 상품이미지 변경되는 js
       $('.close_pro_detail_inform').click(function(){
 		$('.pro_detail_img').hide()
 		$('#show_pro_detail_inform').show()
@@ -50,7 +53,7 @@ Shadowbox.init({
 
 	
 	
-	
+	//후기작성 클릭시 쉐도우박스 오픈
 	$(document).on('click', '#write_product_review', function() {
     Shadowbox.open({
         content: '../product/Product_insert_review.do?pno=' + pno,
@@ -61,14 +64,14 @@ Shadowbox.init({
     });
 });
 	
-  window.addEventListener('message', function(event) {
-    console.log(event.data);
-   	newList(1,1)
+  window.addEventListener('message', function(event) {//insert_review.jsp에서 등록하기 버튼 클릭시 받는 데이터(메시지)
+    
+   	newList(1,1)//새로운 리뷰리스트 출력
    
 });
 
 
-function newList(page) {
+function newList(page) {//새로운 리뷰리스트를 출력하는 ajax를 담은 함수
 	
     $.ajax({
         type: 'post',
@@ -125,11 +128,37 @@ function newList(page) {
             html += '</div>';
             html += '<div class="p_select_review_option" style="margin-top:30px;">';
             html += '<ul class="p_rank p_review_rank">'
-            	+'<li class="r_option"><button id="highscore" class="btn btn-info prClickBtn">높은 평점순</button></li>'
-            	+'<li class="r_option"><button id="lowscore" class="btn btn-info prClickBtn">낮은 평점순</button></li>'
-            	+'<li class="r_option"><button id="latestdate" class="btn btn-info prClickBtn">최신날짜 순</button></li>'
-            	+'<li class="r_option"><button id="olddate"  class="btn btn-info prClickBtn">오래된날짜 순 </button> </li>'
-            	+'</ul>'
+            
+            if(type===1){
+            html+='<li class="r_option"><button id="highscore" class="btn btn-primary">높은 평점순</button></li>'
+            	+'<li class="r_option"><button id="lowscore" class="btn btn-info">낮은 평점순</button></li>'
+            	+'<li class="r_option"><button id="latestdate" class="btn btn-info">최신날짜 순</button></li>'
+            	+'<li class="r_option"><button id="olddate"  class="btn btn-info">오래된날짜 순 </button> </li>'
+            	}
+            	
+            	if(type===2){
+            html+='<li class="r_option"><button id="highscore" class="btn btn-info">높은 평점순</button></li>'
+            	+'<li class="r_option"><button id="lowscore" class="btn btn-primary">낮은 평점순</button></li>'
+            	+'<li class="r_option"><button id="latestdate" class="btn btn-info">최신날짜 순</button></li>'
+            	+'<li class="r_option"><button id="olddate"  class="btn btn-info">오래된날짜 순 </button> </li>'
+            	}
+            	
+            	if(type===3){
+            html+='<li class="r_option"><button id="highscore" class="btn btn-info">높은 평점순</button></li>'
+            	+'<li class="r_option"><button id="lowscore" class="btn btn-info">낮은 평점순</button></li>'
+            	+'<li class="r_option"><button id="latestdate" class="btn btn-primary">최신날짜 순</button></li>'
+            	+'<li class="r_option"><button id="olddate"  class="btn btn-info">오래된날짜 순 </button> </li>'
+            	}
+            	
+            	if(type===4){
+            html+='<li class="r_option"><button id="highscore" class="btn btn-info">높은 평점순</button></li>'
+            	+'<li class="r_option"><button id="lowscore" class="btn btn-info">낮은 평점순</button></li>'
+            	+'<li class="r_option"><button id="latestdate" class="btn btn-info">최신날짜 순</button></li>'
+            	+'<li class="r_option"><button id="olddate"  class="btn btn-primary">오래된날짜 순 </button> </li>'
+            	}
+            	
+            	
+           html+='</ul>'
             	+'<div style="margin-left:990px;">'
             	if(id===null || id==='' || typeof id==="undefined"){
             		html+='<span>로그인 후 후기등록이 가능합니다.</span>'
@@ -240,7 +269,7 @@ function newList(page) {
 	
 	
 		
-
+	//다음버튼 클릭시 다음ajax리뷰리스트 호출
 	$(document).on('click', '.Rnext-btn', function() {
 		
 		let page=$('.product_review_container').attr('data-page')
@@ -248,12 +277,13 @@ function newList(page) {
 		newList(Number(page)+1);
 	});
 	
+	//이전버튼 클릭시 이전ajax리뷰리스트 호출
 	$(document).on('click', '.Rprev-btn', function() {
 	let page=$('.product_review_container').attr('data-page')
     newList(page - 1); // 이전 페이지 로드
 });
 	
-	
+	//목록별 출력 별 타입을 지정하고 리스트 호출
 	$(document).on('click', '#lowscore', function() {
 	
 		type=2
@@ -278,6 +308,7 @@ $(document).on('click', '#olddate', function() {
 		type=4
 	newList(1)
 });
+
 
 
  
