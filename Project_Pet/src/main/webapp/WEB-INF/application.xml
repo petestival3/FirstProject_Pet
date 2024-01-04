@@ -18,4 +18,5 @@
    <bean id="reserve" class="com.sist.model.ReserveModel"></bean>
    <bean id="like" class="com.sist.model.LikeModel"></bean>
    <bean id="jjim" class="com.sist.model.JJimModel"></bean>
+    <bean id="productqna" class="com.sist.model.ProductQnaModel"></bean>
 </beans>

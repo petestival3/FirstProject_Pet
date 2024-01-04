@@ -213,9 +213,9 @@
     });
     
      $(document).on('click', '.movePage', function() {
-		  console.log('클릭')
+		  
         let movePage = parseInt($(this).data('wclickpage'));
-       console.log(movePage)
+     
         ajax(movePage); // 페이지 값을 전달하여 검색을 요청
    
     });

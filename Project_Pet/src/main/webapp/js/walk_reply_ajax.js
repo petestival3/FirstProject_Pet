@@ -142,7 +142,7 @@
                               }
                                  
                         }   
-               commentListHtml+=' <input type="password" size="13" name="addpassword" id="addpassword" placeholder="비밀번호" required>'
+               commentListHtml+=' <input type="password" size="13" name="addpassword" class="addpassword" placeholder="비밀번호" required>'
                            +'<input type="submit" id="addReplyBtn" value="등록"></div><hr></div>'
                            
                         
@@ -156,7 +156,7 @@
                               }
                                  
                         }   
-               commentListHtml+='<input type="password" name="dpassword" placeholder="비밀번호" id="delpassword" required>'   
+               commentListHtml+='<input type="password" name="dpassword" placeholder="비밀번호" class="delpassword" required>'   
                            +'<input type="submit" id="ReplyDeleteBtn" value="삭제">'   
                
                            +'</div>'   
@@ -183,7 +183,7 @@
                               }
                                  
                         }
-               commentListHtml+=' <input type="password" size="10" name="uppassword" id="uppassword" placeholder="비밀번호" required>'
+               commentListHtml+=' <input type="password" size="10" name="uppassword" class="uppassword" placeholder="비밀번호" required>'
                            +'<input type="submit" id="replyUpdateBtn" value="수정"></div><hr></div>'               
                            
          
@@ -315,7 +315,7 @@
           
           
                 
-           let addpassword = $(this).closest('.addreply').find('#addpassword').val();
+           let addpassword = $(this).closest('.addreply').find('.addpassword').val();
               let addcontent = $(this).closest('.addreply').find('#addcontent').val();
             let rno = $(this).closest('#getRno').attr('data-rno');
              
@@ -325,7 +325,7 @@
             }
              
              if(addpassword.trim()===""){
-              $(this).closest('.addreply').find('#addpassword').focus();
+              $(this).closest('.addreply').find('.addpassword').focus();
                return;
             }
             
@@ -349,7 +349,7 @@
          $('.comment-section').on('click', '#ReplyDeleteBtn', function() {
          let clickedButton = $(this); // 클릭한 버튼 요소 저장
                 
-           let dpassword= $(this).closest('.dpassword').find('#delpassword').val();
+           let dpassword= $(this).closest('.dpassword').find('.delpassword').val();
           
                   let rno = $(this).closest('#getRno').attr('data-rno');
                   let mainContent = $(this).closest('.comment').find('.dpassword');
@@ -358,7 +358,7 @@
           
              
              if(dpassword.trim()===""){
-              $(this).closest('.dpassword').find('#delpassword').focus();
+              $(this).closest('.dpassword').find('.delpassword').focus();
                return;
             }
          
@@ -380,8 +380,8 @@
                         $(mainContentDOM).append(newMsg);
                              }
                              
-                                    clickedButton.closest('.dpassword').find('#delpassword').val('');
-                               clickedButton.closest('.dpassword').find('#delpassword').focus();
+                                    clickedButton.closest('.dpassword').find('.delpassword').val('');
+                               clickedButton.closest('.dpassword').find('.delpassword').focus();
                               stopGetComments = true; 
                   }
                   
@@ -401,7 +401,7 @@
          $('.comment-section').on('click', '#replyUpdateBtn', function() {
          let clickedButton = $(this); // 클릭한 버튼 요소 저장
       
-           let uppassword = $(this).closest('.modifyreply').find('#uppassword').val();
+           let uppassword = $(this).closest('.modifyreply').find('.uppassword').val();
           
               let upcontent = $(this).closest('.modifyreply').find('#upcontent').val();
                   
@@ -416,7 +416,7 @@
              
              if(uppassword.trim()===""){
                
-               $(this).closest('.modifyreply').find('#uppassword').focus();
+               $(this).closest('.modifyreply').find('.uppassword').focus();
              
                return;
             }
@@ -432,7 +432,6 @@
                success:function(updateJson){
                   let updateRes=JSON.parse(updateJson)
                   if(updateRes.msg==='비밀번호가 틀렸습니다.'){
-                     console.log(updateRes.msg)
                   
                        if (!UpdatepasswordErrorState.hasOwnProperty(rno)) {
                         UpdatepasswordErrorState[rno] = true; // 한 번만 오류 메시지 생성
@@ -440,8 +439,8 @@
                         $(mainContent).append(newMsg);
                              }
                              
-                                    clickedButton.closest('.modifyreply').find('#uppassword').val('');
-                               clickedButton.closest('.modifyreply').find('#uppassword').focus();
+                                    clickedButton.closest('.modifyreply').find('.uppassword').val('');
+                               clickedButton.closest('.modifyreply').find('.uppassword').focus();
                               stopGetComments = true; 
                   }
                   
