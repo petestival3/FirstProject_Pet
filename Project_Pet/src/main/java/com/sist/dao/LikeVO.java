@@ -1,4 +1,4 @@
-package com.sist.vo;
+package com.sist.dao;
 
 public class LikeVO {
 

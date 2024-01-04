@@ -5,8 +5,6 @@ import java.sql.*;
 import com.sist.vo.*;
 import com.sist.dbcp.*;
 
-import com.sist.vo.LikeVO;
-
 public class LikeDAO {
 	/*
 	여기에 좋아요 테이블 만들어서 넣어두기...

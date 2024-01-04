@@ -1,4 +1,4 @@
-package com.sist.vo;
+package com.sist.dao;
 /*
  * ㅠㅠ테이블 만들엇는데 아닌거같음..당연함...데이터가없음..
  * 
