@@ -84,6 +84,12 @@ public class FreeBoardModel {
 		request.setAttribute("vo", vo);
 		// => 댓글 목록 
 		request.setAttribute("main_jsp", "../freeboard/detail.jsp");
+		
+		// 댓글 읽기 
+		FreeBoardReplyDAO fdao=FreeBoardReplyDAO.newInstance();
+		List<FreeBoardReplyVO> list=fdao.replyListData(Integer.parseInt(no));
+		request.setAttribute("list", list);
+		
 		return "../main/main.jsp";
 	}
 	

@@ -144,6 +144,68 @@ $(function(){
        </td>
       </tr>
     </table>
+    
+    <div style="height: 20px"></div>
+   <div class="col-sm-8">
+       <table class="table">
+	     <%-- 댓글 출력 위치 --%>
+	     <tr>
+	      <td>
+	        <c:forEach var="rvo" items="${list }">
+	          <table class="table">
+	           <tr>
+	             <td class="text-left">
+	               <c:if test="${rvo.group_tab>0 }">
+	                 <c:forEach var="i" begin="1" end="${rvo.group_tab }">
+	                  &nbsp;&nbsp;
+	                 </c:forEach>
+	                 <img src="image/re_icon.png">
+	               </c:if>
+	               ◑${rvo.name }&nbsp;(${rvo.dbday })
+	             </td>
+	             <td class="text-right">
+	               <c:if test="${sessionScope.id!=null }">
+	                <c:if test="${sessionScope.id==rvo.id }">
+	                 <span class="btn btn-xs btn-success ups" data-no="${rvo.no }">수정</span>
+	                 <a href="../board/reply_delete.do?no=${rvo.no }&bno=${vo.no}" class="btn btn-xs btn-info">삭제</a>
+	                </c:if>
+	                <span class="btn btn-xs btn-warning ins" data-no="${rvo.no }">댓글</a>
+	               </c:if>
+	             </td>
+	           </tr>
+	           <tr>
+	             <td colspan="2"><pre style="white-space: pre-wrap;background-color: white;border: none">${rvo.msg }</pre></td>
+	           </tr>
+	           <tr style="display:none" class="reins" id="i${rvo.no }">
+			      <td colspan="2">
+			        <form method="post" action="../board/reply_reply_insert.do" class="inline">
+			         <input type=hidden name=bno value="${vo.no}">
+			         <%-- bno는 다시 detail.do로 이동 --%>
+			         <input type=hidden name=pno value="${rvo.no }">
+			         <textarea rows="5" cols="55" name="msg" style="float: left"></textarea>
+		             <input type=submit value="댓글쓰기" 
+		              style="width: 100px;height: 104px;background-color: green;color:white;">
+			        </form>
+			      </td>
+			     </tr>
+	           <tr style="display: none" class="updates" id="u${rvo.no }">
+			      <td colspan="2">
+			        <form method="post" action="../board/reply_update.do" class="inline">
+			         <input type=hidden name=bno value="${vo.no}">
+			         <%-- bno는 다시 detail.do로 이동 --%>
+			         <input type=hidden name=no value="${rvo.no }">
+			         <textarea rows="5" cols="55" name="msg" style="float: left">${rvo.msg }</textarea>
+		             <input type=submit value="댓글수정" 
+		              style="width: 100px;height: 104px;background-color: green;color:white;">
+			        </form>
+			      </td>
+			     </tr>
+	          </table>
+	        </c:forEach>
+	      </td>
+	     </tr>
+	   </table>
+    
   </div>
   </main>
 </div>
