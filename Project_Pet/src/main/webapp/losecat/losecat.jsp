@@ -19,7 +19,7 @@ nav.pagination li{
 	border-color: #a6a6a6;
 	color: #ffffff;
 }
-.tListTitle{
+.cListTitle{
 	display: block;
 	margin: 0px auto;
 	width: 280px;
