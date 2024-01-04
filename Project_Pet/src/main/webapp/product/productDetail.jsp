@@ -418,7 +418,12 @@ function requestPay() {
                                 <c:if test="${prListSize==0 }">
                                 <div><h2>등록된 후기가없습니다</h2></div>
                                 	<div style="margin-left:990px;">
+                                 	<c:if test="${sessionScope.id==null || sessionScope.id=='' }">
+                                 				<span>로그인 후 후기등록이 가능합니다.</span>
+                                 			</c:if>
+                                 			<c:if test="${sessionScope.id!=null }">
                                  		<button id="write_product_review" class="btn-sm btn-danger">후기 작성하기</button>
+                                 		</c:if>
                                  		</div>
                                 </c:if>
                                 
