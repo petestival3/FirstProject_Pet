@@ -39,10 +39,10 @@
 					style="width: 30px; height: 30px"></td>
 				<td>
 				<p>찜하기번호${vo.no }</p>
-				<p>품목번호${vo.pno }</p>
-				<p>품명${vo.p_name }</p>
-				<p>원가${vo.p_price }</p>
-				<p>할인가${vo.p_lower_price }</p>
+				<p>품목번호${vo.pvo.pno }</p>
+				<p>품명${vo.pvo.p_name }</p>
+				<p>원가${vo.pvo.p_price }</p>
+				<p>할인가${vo.pvo.p_lower_price }</p>
 				</td>
 		     </tr>
 		     <tr>

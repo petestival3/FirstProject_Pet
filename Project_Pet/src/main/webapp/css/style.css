@@ -1178,7 +1178,7 @@ ol {
 
 .latest-product__item__text {
 	overflow: hidden;
-	padding-top: 10px;
+	padding-top: 0px !important;
 }
 
 .latest-product__item__text h6 {

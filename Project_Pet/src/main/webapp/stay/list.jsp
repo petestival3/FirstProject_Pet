@@ -27,6 +27,10 @@
 	font-weight: bold;
 	color: blue;
 }
+.latest-product__item__text {
+	overflow: hidden;
+	padding-top: 0px !important;
+}
 </style>
 </head>
 <body>
