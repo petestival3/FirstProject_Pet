@@ -272,7 +272,7 @@ function requestPay() {
                                     aria-selected="false">상품후기</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#p_tabs-3" role="tab"
+                                <a class="nav-link" data-toggle="tab" href="#p_tabs-3" role="tab" id="p_qna"
                                     aria-selected="false">상품문의 <span>(1)</span></a>
                             </li>
                         </ul>
@@ -581,8 +581,44 @@ function requestPay() {
                             		</div>
                             <div class="tab-pane" id="p_tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                    <h6>문의하기</h6>
-                                    <p>문의하기</p>
+                                   	<div class="product_qna_container">
+                                   		<table class="table" id="qna_wrapper">
+                                   			<thead class="qna_firstData">
+                                   			<tr class="text-center">
+                                   			  <th width=10%>번호</th>
+                                   			  <th width=15%>작성자</th>
+                                   			  <th width=15%>제목</th>
+                                   			  <th width=45%>내용</th>
+                                   			  <th width=15%>등록일자</th>
+                                   			</tr>
+                                   			</thead>
+                                   			
+                                   			<tbody class="input_qnaData">
+                                   			
+                                   			</tbody>
+                                   		</table>
+                                   			<div class="qna_firstData">
+                                   				<div><button>상품문의하기</button></div>
+                                   			
+                                   			</div>
+                                   			
+                                   				<table id="qna_insert_wrapper">
+                                   				<tr>
+                                   					<th>제목</th>
+                                   					<td>
+                                   				<input type="text" size=20>
+                                   					</td>
+                                   				</tr>
+                                   				
+                                   				<tr>
+                                   					<th style=" vertical-align: top;">내용</th>
+                                   					<td>
+                                   				 <textarea rows="10" cols="50"></textarea>
+                                   				 	</td>
+                                   				 </tr>
+                                   				</table>
+                                   			
+                                   	</div>
                                 </div>
                             </div>
                         </div>

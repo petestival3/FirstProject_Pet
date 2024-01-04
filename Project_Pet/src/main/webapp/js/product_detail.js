@@ -310,8 +310,27 @@ $(document).on('click', '#olddate', function() {
 });
 
 
+//상품문의 관련 js시작
 
- 
+
+ $(document).on('click', '#p_qna', function() {//상품문의 버튼클릭시
+	
+		
+});
+
+
+function qnaList(page){//ajax로 qna리스트 받아올 함수
+		
+		$.ajax({		
+			    type: 'post',
+		        url: '',
+		        data: { "pno": pno, "page": page},
+		        success: function (json){
+					
+				}
+						
+		})
+}
     
     
 });

@@ -3,8 +3,26 @@ package com.sist.vo;
 import java.util.Date;
 
 public class QnaBoardVO {
-	private int qno,qhit,qtype,pno,group_id,group_step,group_tab,root,depth;
-	private String qtitle,qwriter,qpwd,qcontent,dbday,id,name,answercheck;
+	private int qno,qhit,qtype,pno,group_id,group_step,group_tab,root,depth,filesize;
+	public int getFilesize() {
+		return filesize;
+	}
+	public void setFilesize(int filesize) {
+		this.filesize = filesize;
+	}
+	public String getSecretcheck() {
+		return secretcheck;
+	}
+	public void setSecretcheck(String secretcheck) {
+		this.secretcheck = secretcheck;
+	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	private String qtitle,qwriter,qpwd,qcontent,dbday,id,name,answercheck,secretcheck,filename;
 	public String getAnswercheck() {
 		return answercheck;
 	}
