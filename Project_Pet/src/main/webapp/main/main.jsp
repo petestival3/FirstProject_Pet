@@ -69,6 +69,7 @@
 		width: 50px;
 		height: 50px;
 		font-size: 15px;
+		z-index: 999;
     }
 .scroll-to-top:hover{
 	 box-shadow: 0 5px 5px 5px rgba(90,112,233, 0.2);
