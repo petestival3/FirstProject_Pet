@@ -61,7 +61,7 @@
     
     <!-- 검색 사이드 매뉴 시작 -->
 	<div class="search_submenu">
-		<a href="search_f.do"> <i class="xi-search"></i>
+		<a href="../FuneralDetail/search_f.do"> <i class="xi-search"></i>
 			<p>검색하기</p>
 		</a>
 	</div>

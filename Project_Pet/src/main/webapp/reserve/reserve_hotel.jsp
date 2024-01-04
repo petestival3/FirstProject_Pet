@@ -61,8 +61,8 @@
     
     <!-- 검색 사이드 매뉴 시작 -->
 	<div class="search_submenu">
-		<a href="search_f.do"> <i class="xi-search"></i>
-			<p>검색하기</p>
+		<a href="../stay/list.do"> <i class="xi-compass-o"></i>
+			<p>호텔찾기</p>
 		</a>
 	</div>
 	<!-- 검색 사이드 매뉴 종료 -->
@@ -77,5 +77,6 @@
 		<div class="res_t"></div>
 	</div>
 	<!-- 예약하기 내용 종료 -->
+	
 </body>
 </html>
