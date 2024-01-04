@@ -169,6 +169,7 @@ $(function () {
    $('.detail_li').hide()
    
    $('.detail_open_btn').click(function () {
+	  let funeralno=$(this).attr('data-funno')
 	  $('.detail_li').show('slow')
    });
    $('.detail_hide_btn').click(function () {
@@ -236,7 +237,7 @@ $(function () {
          
          <c:forEach var="vo" items="${list }" varStatus="s">
             <li class="f_list_li" data-fno="${vo.CR_COM_NO }">
-               <a href="#" class="detail_open_btn"> <span>${vo.CR_COM_NO }</span> <span
+               <a href="#" class="detail_open_btn" data-funno="${vo.CR_COM_NO }"> <span>${vo.CR_COM_NO }</span> <span
                   class="funeral_list_title" data-fno="${vo.CR_COM_NO }">${vo.CR_COM_NAME }</span>
                   <span>${vo.CR_COM_LOC }</span>
             </a>
