@@ -4,7 +4,13 @@ import java.util.Date;
 
 public class QnaBoardVO {
 	private int qno,qhit,qtype,pno,group_id,group_step,group_tab,root,depth;
-	private String qtitle,qwriter,qpwd,qcontent,dbday,id,name;
+	private String qtitle,qwriter,qpwd,qcontent,dbday,id,name,answercheck;
+	public String getAnswercheck() {
+		return answercheck;
+	}
+	public void setAnswercheck(String answercheck) {
+		this.answercheck = answercheck;
+	}
 	private Date qregdate;
 	
 	public String getId() {
