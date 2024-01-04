@@ -967,5 +967,29 @@ public void insertProductReview(ReviewVO vo) {//리뷰 인서트
 	}
 }
 
-
+//리뷰를 아이디,상품 당 하나의 리뷰만 등록가능한 것을 체크하기위해 개수를 가져오는 메소드
+public int reviewUserCount(int pno,String writer) {
+	int count=0;
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT COUNT(*) FROM REVIEW WHERE objno=? AND writer=?";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, pno);
+		ps.setString(2, writer);
+		
+		ResultSet rs=ps.executeQuery();
+		if(rs.next()) {
+			count=rs.getInt(1);
+		}
+		rs.close();
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return count;
+}
 }

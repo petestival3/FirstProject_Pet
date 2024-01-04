@@ -80,7 +80,7 @@
                 })
                 .catch(error => {
                     // 에러 처리
-                    console.error('There was a problem with the upload:', error);
+                  	alert('상품후기는 아이디당 한번 작성가능합니다.')
                 });
               
            }

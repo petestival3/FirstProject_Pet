@@ -346,7 +346,7 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 		        request.setCharacterEncoding("UTF-8");
 		    } catch (Exception ex) {}
 
-			
+		  	
 			
 			HttpSession session=request.getSession();
 			String writer=(String)session.getAttribute("id");
@@ -394,7 +394,15 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 	       vo.setScore(Double.parseDouble(score));
 	       vo.setObjno(Integer.parseInt(pno));
 	       
-	       dao.insertProductReview(vo);
+	       int count=dao.reviewUserCount(Integer.parseInt(pno), writer);
+	       
+	       if (count>0) {
+	    	   response.setStatus(HttpServletResponse.SC_BAD_REQUEST); //일부로 ajax에게 에러발생을 전달
+	       	}else {
+	       	  dao.insertProductReview(vo); // count가 0일경우 insert가능
+	       	}
+	       
+	     
 	       
 			
 	}
