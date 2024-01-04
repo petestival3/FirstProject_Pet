@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*,com.sist.dao.*,com.sist.vo.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%
+    List<JJimVO> list=JJimDAO.JJimListData();
+    request.setAttribute("list", list);
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,15 +32,17 @@
 				<h2 class="sectiontitle">${name}님의찜 목록</h2>
 			</div>
 			<!-- 실제 찜하기 데이터를 반복적으로 표시하는 부분 -->
-			<c:forEach begin="1" end="2">
+			<c:forEach var="vo" items="${list }">
 			<table class="table" style="background-color: #fff">
 			<tr>
-			<td><img src="${vo.poster }"
+			<td><img src="${vo.p_image }"
 					style="width: 30px; height: 30px"></td>
 				<td>
-				<p>${vo.no }품목번호</p>
-				<p>품명${vo.name }</p>
-				<p>전화번호${vo.tel }</p>
+				<p>찜하기번호${vo.no }</p>
+				<p>품목번호${vo.pno }</p>
+				<p>품명${vo.p_name }</p>
+				<p>원가${vo.p_price }</p>
+				<p>할인가${vo.p_lower_price }</p>
 				</td>
 		     </tr>
 		     <tr>
