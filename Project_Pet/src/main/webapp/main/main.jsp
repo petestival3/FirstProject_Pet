@@ -150,7 +150,7 @@
 
     <!-- Js Plugins -->
     
-  	 <script src="../js/jquery-3.3.1.min.js"></script> 
+<!--   	 <script src="../js/jquery-3.3.1.min.js"></script>  -->
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/jquery.nice-select.min.js"></script>
    	<script src="../js/jquery-ui.min.js"></script>
@@ -164,7 +164,8 @@
     <script src="../js/walk_reply_ajax.js"></script>
     <script src="../js/walkCourse.js"></script>
     <script src="../js/walkSearchList.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23e8040d553778eeeb77f0900cb92322&libraries=services"></script>
+<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>
