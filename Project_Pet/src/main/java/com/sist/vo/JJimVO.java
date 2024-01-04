@@ -1,4 +1,5 @@
-package com.sist.dao;
+package com.sist.vo;
+import com.sist.dao.*;
 /*
  * ㅠㅠ테이블 만들엇는데 아닌거같음..당연함...데이터가없음..
  * 
@@ -41,6 +42,13 @@ SQL> desc Product_detail;
 */
 
 public class JJimVO {
-	private int no,gno;
-    private String id;
+    
+    private int no;
+    private String ID;
+    private int pno;
+    private String p_name,p_image,p_price,p_lower_price;
+    private ProductVO pvo=new ProductVO();
+    private MemberVO mvo=new MemberVO();
+    
+    
 }

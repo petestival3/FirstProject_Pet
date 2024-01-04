@@ -16,13 +16,4 @@ public class JJimModel {
 		return "../main/main.jsp";
 	}
 	
-	 @RequestMapping("mypage/my_JJim_cancle.do")
-	   public String mypage_jjim_cancel(HttpServletRequest request,
-			   HttpServletResponse response)
-	   {
-		   String no=request.getParameter("no");
-		   JJimDAO dao=JJimDAO.newInstance();
-		   dao.JJimCancel(Integer.parseInt(no));
-		   return "redirect:../mypage/my_JJim.do";
-	   }
 }

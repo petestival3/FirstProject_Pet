@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.dao.JJim-mapper">
    <select id="JJimListData" resultType="JJimVO">
-      
+      SELECT no,
+      (SELECT ID FROM MEMBER WHERE ID=goods_jjim.ID) as ID,
+      (SELECT pno FROM Product_detail WHERE pno=goods_jjim.pno) as pno,
+      (SELECT p_name FROM Product_detail WHERE pno=goods_jjim.pno) as p_name,
+      (SELECT p_image FROM Product_detail WHERE pno=goods_jjim.pno) as p_image,
+      (SELECT p_price FROM Product_detail WHERE pno=goods_jjim.pno) as p_price,
+      (SELECT p_lower_price FROM Product_detail WHERE pno=goods_jjim.pno) as p_lower_price,
+      FROM goods_jjim
    </select>
 </mapper>
