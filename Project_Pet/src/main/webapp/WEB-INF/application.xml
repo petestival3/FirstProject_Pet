@@ -16,4 +16,6 @@
    <bean id="freeboard" class="com.sist.model.FreeBoardModel"></bean>
    <bean id="review" class="com.sist.model.ReviewModel"></bean>
    <bean id="reserve" class="com.sist.model.ReserveModel"></bean>
+   <bean id="like" class="com.sist.model.LikeModel"></bean>
+   <bean id="jjim" class="com.sist.model.JJimModel"></bean>
 </beans>
