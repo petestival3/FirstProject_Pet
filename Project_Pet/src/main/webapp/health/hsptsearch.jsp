@@ -18,7 +18,6 @@
 <title>Ogani | Template</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23e8040d553778eeeb77f0900cb92322&libraries=services"></script>
 <script type="text/javascript">
 
 $(function() {
@@ -169,7 +168,7 @@ $(function() {
 									<td width="35%" height="45%" align="center"><span
 										class="fa fa-hospital-o"></span>
 										<h4>name</h4>
-										<p id="name"></p></td>
+										<p class="name"></p></td>
 								</tr>
 								<tr>
 									<td width="35%" height="45%" align="center"><span
