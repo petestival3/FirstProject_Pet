@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*,com.sist.dao.*,com.sist.vo.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <%
     List<JJimVO> list=JJimDAO.JJimListData();
     request.setAttribute("list", list);
@@ -29,7 +28,7 @@
 	<div class="col-md-9">
 		<div class="reservation_container">
 			<div class="reservation_header">
-				<h2 class="sectiontitle">${name}님의찜 목록</h2>
+				<h2 class="sectiontitle">${vo.ID}님의찜 목록</h2>
 			</div>
 			<!-- 실제 찜하기 데이터를 반복적으로 표시하는 부분 -->
 			<c:forEach var="vo" items="${list }">
