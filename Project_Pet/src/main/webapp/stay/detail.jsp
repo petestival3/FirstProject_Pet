@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link rel="stylesheet" href="../shadow/css/shadowbox.css">
+<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <style type="text/css">
 .stayintro {
     height: 200px;
@@ -23,19 +25,29 @@
 }
 </style>
 <script type="text/javascript">
+Shadowbox.init({
+	players:['iframe']
+})
 $(function(){
-	let revpage='1'
-	let typeno='1'
-	let objno='1'
-	reviewlist(typeno,objno,revpage)
-	/* $('.pageBtn').click(function(){
-		let fds=$(this).attr('value');
-		reviewlist(fds)
-	}) */
+		const sno=$('#staynumber').attr('stayno')
+		let revpage='1'
+		let typeno='1'
+		reviewlist(typeno,sno,revpage)
+		/* $('.pageBtn').click(function(){
+			let fds=$(this).attr('value');
+			reviewlist(fds)
+		}) */
+	$("#review_write_Btn").click(function(){
+		Shadowbox.open({
+			content:'../review/insert.do?stayno='+sno,
+			player:'iframe',
+			title:'후기작성',
+			width:700,
+			height:600
+		})
+	})
 	
-});
-
-$('')
+})
 
 
 function reviewlist(typeno,objno,revpage){
@@ -70,40 +82,7 @@ function reviewlist(typeno,objno,revpage){
 		}
 	})
 }
-/*
- * <img src="../img/mainlogo.png" alt="User Avatar" class="user-image" />
-		
-     <div class="mid_1">
-       <div class="user-info">
-         <img
-           src="../img/mainlogo.png"
-           alt="Reviewer Avatar"
-           class="reviewer-avatar"
-           style="float: left"
-         />
-         <div class="user-name">사용자1</div>
-       </div>
-       <br />
-       <div class="mid_2">
-         <div class="rating">
-           <span class="star">⭐️</span>
-           <span class="star">⭐️</span>
-           <span class="star">⭐️</span>
-           <span class="star">⭐️</span>
-           <span class="star">⭐️</span>
-         </div>
-         <p>작성날짜 적는 곳</p>
-       </div>
-       <div class="mid_3">
-         <p class="review-type">타입 적는 곳</p>
-         <p class="review-text">
-           여기어때 정말 좋아요! 서비스가 훌륭하고 위치도 좋습니다. 여기어때
-           정말 좋아요! 서비스가 훌륭하고 위치도 좋습니다. 여기어때 정말
-           좋아요! 서비스가 훌륭하고 위치도 좋습니다.
-         </p>
-       </div>
-     </div>
- */
+
 </script>
 </head>
 <body>
@@ -152,7 +131,7 @@ function reviewlist(typeno,objno,revpage){
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3>${vo.name }</h3>
+                        <h3 id="staynumber" data-stayno="${vo.stayno }">${vo.name }</h3>
                         <p style="margin-bottom: 15px">${vo.detailaddr }</p>
                         <div class="product__details__rating">
                             <i class="fa fa-star"></i>
@@ -351,7 +330,8 @@ function reviewlist(typeno,objno,revpage){
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                 <div style="height: 30px; float: right">
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="float:right;">리뷰 작성</button> 
+                            <!--     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="float:right;">리뷰 작성</button>  -->
+                                <button type="button" id="review_write_Btn" class="btn btn-info btn-sm" style="float:right;">리뷰 작성</button> 
                                 </div>
                                 <div class="review-container" id="reviewprint">
 							      
@@ -359,7 +339,7 @@ function reviewlist(typeno,objno,revpage){
                                 </div>
                             </div>
                             <!-- Modal -->
-									  <div class="modal fade" id="myModal" role="dialog">
+									  <%-- <div class="modal fade" id="myModal" role="dialog">
 									    <div class="modal-dialog">
 									      <!-- Modal content-->
 									      <div class="modal-content">
@@ -400,7 +380,7 @@ function reviewlist(typeno,objno,revpage){
 									      </div>
 									      
 									    </div>
-									  </div>
+									  </div> --%>
 									  <!-- Modal End -->
                         </div>
                     </div>

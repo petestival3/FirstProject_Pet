@@ -1,8 +1,11 @@
 package com.sist.model;
+import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.*;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,6 +14,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.sist.vo.*;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
 public class ReviewModel {
@@ -64,8 +69,8 @@ public class ReviewModel {
 		  }catch(Exception ex) {}
 	}
 	
-	@RequestMapping("review/insert.do")
-	public String review_insert(HttpServletRequest request,HttpServletResponse response) {
+	@RequestMapping("review/insert_ok.do")
+	public String review_insertok(HttpServletRequest request,HttpServletResponse response) {
 		
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -73,14 +78,45 @@ public class ReviewModel {
 		
 		HttpSession session=request.getSession();
 		String name=(String)session.getAttribute("name");
-		String objno=request.getParameter("objno");
-		String typeno=request.getParameter("type");
 		String writer=name;
-		String score=request.getParameter("rating3");
-		String Content=request.getParameter("content");
 		
+		String score = "";
+		String content = "";
+		String objno = "";
+		String typeno = "";
+		
+		ServletContext context = request.getServletContext();
+		String path = context.getRealPath("/");
+		String reviewImg="reviewImg";
+		path = path + File.separator + reviewImg;
+		
+		int max = 1024 * 1024 * 100;
 		ReviewVO vo=new ReviewVO();
-		vo.setContent(Content);
+		MultipartRequest mr;
+	    String imgname="";
+	    try {
+			mr = new MultipartRequest(request, path, max, "UTF-8", new DefaultFileRenamePolicy());
+			imgname= mr.getFilesystemName("upload");
+			score = mr.getParameter("rating3");
+			content = mr.getParameter("content");
+			objno = mr.getParameter("sno");
+			typeno = mr.getParameter("type");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    if (imgname == null) {
+	        vo.setImgname("");
+	        vo.setImgsize(0);
+	    } else {
+	    	File file = new File(path + File.separator + imgname);
+	      vo.setImgname(imgname);
+	      vo.setImgsize((int) file.length());
+	    }
+		
+		vo.setContent(content);
 		vo.setObjno(Integer.parseInt(objno));
 		vo.setTypeno(Integer.parseInt(typeno));
 		vo.setScore(Double.parseDouble(score));
@@ -92,5 +128,12 @@ public class ReviewModel {
 		return "redirect:../stay/detail_before.do?stayno="+objno;
 	}
 	
+	@RequestMapping("review/insert.do")
+	public String review_insert(HttpServletRequest request,HttpServletResponse response) {
+		
+		String sno=request.getParameter("stayno");
+		request.setAttribute("sno", sno);
+		return "../review/reviewinsert.jsp";
+	}
 	
 }
