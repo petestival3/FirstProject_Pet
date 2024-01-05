@@ -37,18 +37,20 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 	String ct=request.getParameter("ct");
 	String rt=request.getParameter("rt");
 	List<ProductVO>list=null;
-	
+	String[] cts= {"","전체","간식","배변/위생","목욕/미용","사료","장난감","건강관리","식기","산책/이동장","하우스/울타리","의류/악세서리"};
 	ProductDAO dao=ProductDAO.newInstace();
 	if (strpage==null) {
 		strpage="1";
 	}
 	if (ct==null) {
-		ct="전체";
+		ct="1";
 	}
 	if(rt==null) {
 		
 		rt="p_intprice";
 	}
+	String ctNum=ct;
+	ct=cts[Integer.parseInt(ct)];
 
 	int curpage=Integer.parseInt(strpage);
 	int totalpage=dao.productTotalPage(ct);
@@ -94,6 +96,7 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
 		request.setAttribute("end", end);
 		request.setAttribute("rt", rt);
 		request.setAttribute("cateNumList", catenumList);
+		request.setAttribute("ctNum", ctNum);
 	
 	return "../main/main.jsp";
 }

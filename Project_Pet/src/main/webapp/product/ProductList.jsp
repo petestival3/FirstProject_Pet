@@ -60,10 +60,10 @@
            
                 <div class="cust">
         <ul class="nav nav-pills p_rank">
-  	  <li ><a href="ProductList.do?ct=${ct }&rt=p_intprice" class="${rt eq 'p_intprice'?'kyj_selected':'' }">가격순</a></li>
- 	  <li><a href="ProductList.do?ct=${ct }&rt=p_hit" class="${rt eq 'p_hit'?'kyj_selected':'' }">조회수</a></li>
-  	  <li><a href="ProductList.do?ct=${ct }&rt=p_review_num" class="${rt eq 'p_review_num'?'kyj_selected':'' }">후기개수</a></li>
-     <li><a href="ProductList.do?ct=${ct }&rt=p_stack" class="${rt eq 'p_stack'?'kyj_selected':'' }">품절임박</a></li>
+  	  <li ><a href="ProductList.do?ct=${ctNum }&rt=p_intprice" class="${rt eq 'p_intprice'?'kyj_selected':'' }">가격순</a></li>
+ 	  <li><a href="ProductList.do?ct=${ctNum }&rt=p_hit" class="${rt eq 'p_hit'?'kyj_selected':'' }">조회수</a></li>
+  	  <li><a href="ProductList.do?ct=${ctNum }&rt=p_review_num" class="${rt eq 'p_review_num'?'kyj_selected':'' }">후기개수</a></li>
+     <li><a href="ProductList.do?ct=${ctNum }&rt=p_stack" class="${rt eq 'p_stack'?'kyj_selected':'' }">품절임박</a></li>
 	    </ul> 
 	    
         </div>
