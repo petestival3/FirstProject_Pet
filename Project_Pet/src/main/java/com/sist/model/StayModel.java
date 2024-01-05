@@ -66,6 +66,8 @@ public class StayModel {
 		String stayno=request.getParameter("stayno");
 		
 		StayDAO dao=StayDAO.newInstance();
+		dao.stayRevCountUpdate(Integer.parseInt(stayno), 1);
+		dao.stayScoreUpdate(Integer.parseInt(stayno), 1);
 		StayVO vo=dao.stayDetail(Integer.parseInt(stayno));
 		List<RoomVO> rlist=dao.RoomListData(Integer.parseInt(stayno));
 		

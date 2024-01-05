@@ -26,7 +26,8 @@
 .stayrevrow{
 	display: flex;
 	margin-top: 10px;
-	border: 1px solid red;
+	border: 1px solid #c0c0c0;
+	border-radius: 10px;
 }
 .review-container{
 	display:block;
@@ -40,7 +41,7 @@ $(function(){
 		const sno=$('#staynumber').attr('data-stayno')
 		console.log(sno)
 		let revpage='1'
-		let typeno='2'
+		let typeno='1'
 		reviewlist(typeno,sno,revpage)
 		/* $('.pageBtn').click(function(){
 			let fds=$(this).attr('value');
@@ -173,11 +174,70 @@ function reviewlist(typeno,objno,revpage){
                         <h3 id="staynumber" data-stayno="${vo.stayno }">${vo.name }</h3>
                         <p style="margin-bottom: 15px">${vo.detailaddr }</p>
                         <div class="product__details__rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
+                        <c:if test="${vo.score<1.3 }">
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star" style="color: #c0c0c0"></i>
+                        	<i class="fa fa-star" style="color: #c0c0c0"></i>
+                        	<i class="fa fa-star" style="color: #c0c0c0"></i>
+                        	<i class="fa fa-star" style="color: #c0c0c0"></i>
+                        </c:if>
+                        <c:if test="${vo.score>=1.3 && vo.score<1.8  }">
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star-half-o"></i>
+                        	<i class="fa fa-star" style="color: #c0c0c0"></i>
+                        	<i class="fa fa-star" style="color: #c0c0c0"></i>
+                        	<i class="fa fa-star" style="color: #c0c0c0"></i>
+                        </c:if>
+                        <c:if test="${vo.score>=1.8 && vo.score<2.3  }">
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star" style="color: #c0c0c0"></i>
+                        	<i class="fa fa-star" style="color: #c0c0c0"></i>
+                        	<i class="fa fa-star" style="color: #c0c0c0"></i>
+                        </c:if>
+                        <c:if test="${vo.score>=2.3 && vo.score<2.8 }">
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star-half-o"></i>
+                        	<i class="fa fa-star" style="color: #c0c0c0"></i>
+                        	<i class="fa fa-star" style="color: #c0c0c0"></i>
+                        </c:if>
+                        <c:if test="${vo.score>=2.8 && vo.score<3.3 }">
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star" style="color: #c0c0c0"></i>
+                        	<i class="fa fa-star" style="color: #c0c0c0"></i>
+                        </c:if>
+                        <c:if test="${vo.score>=3.3 && vo.score<3.8 }">
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star-half-o"></i>
+                        	<i class="fa fa-star" style="color: #c0c0c0"></i>
+                        </c:if>
+                        <c:if test="${vo.score>=3.8 && vo.score<4.3 }">
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star" style="color: #c0c0c0"></i>
+                        </c:if>
+                        <c:if test="${vo.score>=4.3 && vo.score<4.8 }">
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star-half-o"></i>
+                        </c:if>
+                        <c:if test="${vo.score>=4.8 }">
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star"></i>
+                        	<i class="fa fa-star"></i>
+                        </c:if>
+                            <!-- <i class="fa fa-star-half-o"></i> -->
                             <span>${vo.revcount }개 리뷰</span>
                         </div>
                         <div style="height: 15px"></div>

@@ -407,5 +407,58 @@ public class StayDAO {
 			return list;
 		}
 		
+		// 후기 갯수 업데이트
+		public void stayRevCountUpdate(int stayno,int typeno) {
+			try {
+				conn=dbconn.getConnection();
+				String sql="SELECT COUNT(*) FROM review "
+						+ "WHERE objno=? AND typeno=?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, stayno);
+				ps.setInt(2, typeno);
+				int revcount=0;
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				revcount=rs.getInt(1);
+				rs.close();
+				ps.close();
+				
+				sql="UPDATE stayinfo SET review_count="+revcount+" WHERE stay_no="+stayno;
+				ps=conn.prepareStatement(sql);
+				ps.executeUpdate();
+				
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				dbconn.disConnection(conn, ps);
+			}
+		}
 		
+		
+		// 후기 점수 업데이트
+		public void stayScoreUpdate(int stayno,int typeno) {
+			try {
+				conn=dbconn.getConnection();
+				String sql="SELECT AVG(score) FROM review "
+						+ "WHERE objno=? AND typeno=?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, stayno);
+				ps.setInt(2, typeno);
+				int avg=0;
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				avg=rs.getInt(1);
+				rs.close();
+				ps.close();
+				
+				sql="UPDATE stayinfo SET score="+avg+" WHERE stay_no="+stayno;
+				ps=conn.prepareStatement(sql);
+				ps.executeUpdate();
+				
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				dbconn.disConnection(conn, ps);
+			}
+		}
 }

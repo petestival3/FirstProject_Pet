@@ -33,6 +33,9 @@ public class ReviewModel {
 		  if(page==null)
 			  page="1";
 		  ReviewDAO dao=ReviewDAO.newInstance();
+		  StayDAO sdao=StayDAO.newInstance();
+		  sdao.stayRevCountUpdate(Integer.parseInt(objno), Integer.parseInt(typeno));
+		  sdao.stayScoreUpdate(Integer.parseInt(objno), Integer.parseInt(typeno));
 		  // JSON변경 
 		  // VO => {} ==> JSONObject
 		  // List => [{},{}...] ==> JSONArray
@@ -83,7 +86,7 @@ public class ReviewModel {
 		String score = "";
 		String content = "";
 		String objno = "";
-		String typeno = "2";
+		String typeno = "1";
 		
 		ServletContext context = request.getServletContext();
 		String path = context.getRealPath("/");
