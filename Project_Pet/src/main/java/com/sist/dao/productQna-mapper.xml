@@ -4,9 +4,22 @@
 
 
 
-<select id="productQnaListData" resultType="QnaBoardVO">
+<select id="productQnaListData" resultType="QnaBoardVO" parameterType="hashmap">
 
-SELECT qno FROM QnaBOARD
+SELECT qno, qtitle, qcontent,
+answercheck, secretcheck, filename, filesize, qwriter,TO_CHAR(qregdate,'YYYY-MM-DD HH24:MI:SS') as dbday 
+FROM(SELECT qno, qtitle, qcontent,
+answercheck, secretcheck, filename, filesize, qwriter,qregdate,rownum as num
+FROM (SELECT qno, qtitle, qcontent,
+answercheck, secretcheck, filename, filesize, qwriter,qregdate FROM QNABOARD ORDER BY qno DESC))
+WHERE num BETWEEN #{start} AND #{end}
+
+
 </select> 
+
+
+<select id="productQnaTotalPage" resultType="int">
+SELECT CEIL(COUNT(*)/10.0) FROM QNABOARD WHERE qtype=2
+</select>
 
 </mapper>

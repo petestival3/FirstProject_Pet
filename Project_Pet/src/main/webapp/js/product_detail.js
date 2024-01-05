@@ -64,6 +64,19 @@ Shadowbox.init({
     });
 });
 	
+	
+	$(document).on('click', '#p_qnaBtn', function() {
+    Shadowbox.open({
+        content: '../product/product_qna_insert.jsp',
+        player: 'iframe',
+        title: 'qna',
+        width: 800,
+        height: 800,
+    });
+});
+	
+	
+	
   window.addEventListener('message', function(event) {//insert_review.jsp에서 등록하기 버튼 클릭시 받는 데이터(메시지)
     
    	newList(1,1)//새로운 리뷰리스트 출력
@@ -314,7 +327,7 @@ $(document).on('click', '#olddate', function() {
 
 
  $(document).on('click', '#p_qna', function() {//상품문의 버튼클릭시
-	
+	qnaList(1);
 		
 });
 
@@ -323,10 +336,26 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 		
 		$.ajax({		
 			    type: 'post',
-		        url: '',
+		        url: 'product_qna.do',
 		        data: { "pno": pno, "page": page},
 		        success: function (json){
+					let res=JSON.parse(json)
+					let qnaSize=res[0].size;
 					
+					let input_qnaData=$('.input_qnaData')
+					
+					let html=''
+					for(vo of res){
+						html+='<tr>'
+						html+='<td width:10%>'+vo.qno+'</td>'
+						html+='<td width:15%>'+vo.qwriter+'</td>'
+						html+='<td width:15%>'+vo.qtitle+'</td>'
+						html+='<td width:45%>'+vo.qcontent+'</td>'
+						html+='<td width:15%>'+vo.dbday+'</td>'
+						html+='</tr>'
+					}
+					
+					input_qnaData.html(html);
 				}
 						
 		})

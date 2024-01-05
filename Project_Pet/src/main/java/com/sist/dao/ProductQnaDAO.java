@@ -2,6 +2,7 @@ package com.sist.dao;
 
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,12 +27,18 @@ public class ProductQnaDAO {
 		}
 	}
 
-		public static List<QnaBoardVO> productQnaListData() {
+		public static List<QnaBoardVO> productQnaListData(Map map) {
 			SqlSession session =null;
 			List<QnaBoardVO> list=new ArrayList<QnaBoardVO>();
+		
 			try {
+				
+				
+				
 				session=ssf.openSession();
-				list=session.selectList("productQnaListData");
+				list=session.selectList("productQnaListData",map);
+				System.out.println(list.size());
+				System.out.println();
 				
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -44,6 +51,26 @@ public class ProductQnaDAO {
 			}
 			return list;
 			
+		}
+		
+		
+		public static int productQnaTotalPage() {
+			int totalpage=0;
+			SqlSession session =null;
+			
+			try {
+				session=ssf.openSession();
+				totalpage=session.selectOne("productQnaTotalPage");
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			finally {
+				if(session!=null) {
+					session.close();
+				}
+			}
+			return totalpage;
 		}
 	
 }
