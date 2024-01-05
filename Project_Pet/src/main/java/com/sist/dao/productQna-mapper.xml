@@ -18,8 +18,18 @@ WHERE num BETWEEN #{start} AND #{end}
 </select> 
 
 
-<select id="productQnaTotalPage" resultType="int">
-SELECT CEIL(COUNT(*)/10.0) FROM QNABOARD WHERE qtype=2
+<select id="productQnaTotalPage" resultType="int" parameterType="int">
+SELECT CEIL(COUNT(*)/10.0) FROM QNABOARD WHERE pno=#{pno}
+</select>
+
+<insert id="productQnaInsert" parameterType="QnaBoardVO">
+INSERT INTO QNABOARD
+(QNO,QTITLE,QCONTENT,PNO,QWRITER,SECRETCHECK,FILENAME,FILESIZE)
+VALUES(qna_qno_seq.nextval,#{qtitle},#{qcontent},#{pno},#{qwriter},#{secretcheck},#{filename},#{filesize})
+</insert>
+
+<select id="productQnaCount"  resultType="int" parameterType="hashmap">
+SELECT COUNT(*) FROM QNABOARD where pno=#{pno} AND qwriter=#{qwriter}
 </select>
 
 </mapper>

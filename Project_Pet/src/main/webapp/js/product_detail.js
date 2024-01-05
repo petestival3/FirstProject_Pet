@@ -67,9 +67,9 @@ Shadowbox.init({
 	
 	$(document).on('click', '#p_qnaBtn', function() {
     Shadowbox.open({
-        content: '../product/product_qna_insert.jsp',
+        content: '../product/product_qna_sendData.do?pno='+pno,
         player: 'iframe',
-        title: 'qna',
+        title: '문의하기',
         width: 800,
         height: 800,
     });
@@ -78,8 +78,16 @@ Shadowbox.init({
 	
 	
   window.addEventListener('message', function(event) {//insert_review.jsp에서 등록하기 버튼 클릭시 받는 데이터(메시지)
+    let recData=event.data
     
-   	newList(1,1)//새로운 리뷰리스트 출력
+    if(recData==='sendReview'){
+			newList(1,1)//새로운 리뷰리스트 출력
+	}
+	else if(recData==='sendQna'){
+		console.log('큐엔에이 출력')
+		
+	}
+   
    
 });
 
@@ -346,7 +354,7 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 					
 					let html=''
 					for(vo of res){
-						html+='<tr>'
+						html+='<tr class="text-align:center;">'
 						html+='<td width:10%>'+vo.qno+'</td>'
 						html+='<td width:15%>'+vo.qwriter+'</td>'
 						html+='<td width:15%>'+vo.qtitle+'</td>'

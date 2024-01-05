@@ -584,9 +584,9 @@ function requestPay() {
                             <div class="tab-pane" id="p_tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                       <div class="product_qna_container">
-                                         <table class="table" id="qna_wrapper">
+                                         <table class="table text-center" id="qna_wrapper">
                                             <thead class="qna_firstData">
-                                            <tr class="text-center">
+                                            <tr>
                                               <th width=10%>번호</th>
                                               <th width=15%>작성자</th>
                                               <th width=15%>제목</th>

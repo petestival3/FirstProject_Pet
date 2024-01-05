@@ -74,7 +74,7 @@
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
-                    sendDataToParent('새로운 리스트 출력')
+                    sendDataToParent('sendReview')
                     parent.Shadowbox.close()
                     
                 })

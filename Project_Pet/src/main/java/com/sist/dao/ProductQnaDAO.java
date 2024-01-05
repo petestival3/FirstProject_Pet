@@ -54,13 +54,13 @@ public class ProductQnaDAO {
 		}
 		
 		
-		public static int productQnaTotalPage() {
+		public static int productQnaTotalPage(int pno) {
 			int totalpage=0;
 			SqlSession session =null;
 			
 			try {
 				session=ssf.openSession();
-				totalpage=session.selectOne("productQnaTotalPage");
+				totalpage=session.selectOne("productQnaTotalPage",pno);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -71,6 +71,52 @@ public class ProductQnaDAO {
 				}
 			}
 			return totalpage;
+		}
+		
+		
+		
+		
+		public static void productQnaInsert(QnaBoardVO vo) {
+			SqlSession session =null;
+			
+		
+			try {
+				
+				session=ssf.openSession(true);
+				
+				session.insert("productQnaInsert",vo);
+				System.out.println("실행333");
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			finally {
+				if(session!=null) {
+					session.close();
+				}
+			}
+			
+			
+		}
+		
+		public static int productQnaCount(Map map) {
+			int count=0;
+			SqlSession session =null;
+			
+			try {
+				session=ssf.openSession();
+				count=session.selectOne("productQnaCount",map);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			finally {
+				if(session!=null) {
+					session.close();
+				}
+			}
+			return count;
 		}
 	
 }
