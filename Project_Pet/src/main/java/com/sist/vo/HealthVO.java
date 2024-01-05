@@ -4,11 +4,16 @@ public class HealthVO {
 	private int no;
 	private String hospital_name,hospital_phone,hospital_address, state;
 	
-	private int no2;
+	private int no2,hit;
 	private String news_subject, news_img, news_content, news_subtitle;
 	private String news_date1,news_date2;
 	
-	
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
 
 	public String getNews_date1() {
 		return news_date1;

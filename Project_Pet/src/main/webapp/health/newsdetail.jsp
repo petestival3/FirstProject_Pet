@@ -41,7 +41,7 @@ padding: 0px;
                         ${vo.news_subject }
                         </h3>
                         <p>
-                        ${vo.news_date1 }&nbsp;&nbsp;&nbsp;&nbsp; ${vo.news_date2 }
+                        ${vo.news_date1 }&nbsp;&nbsp;&nbsp;&nbsp; ${vo.news_date2 } &nbsp;&nbsp;&nbsp;&nbsp; 조회수: ${vo.hit }
                         </p>
                           <img src=${vo.news_img } style="text-center"><br>
                         <p>

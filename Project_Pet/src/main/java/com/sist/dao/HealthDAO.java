@@ -338,7 +338,13 @@ public class HealthDAO {
 		try
 		{
 			conn=dbconn.getConnection();
-			String sql="SELECT pn.pno,news_subject,news_img,news_content,newsdate_1,newsdate_2  "
+			String sql="UPDATE petnews SET "
+					+"hit=hit+1 "
+					+"WHERE pno="+no;
+			ps=conn.prepareStatement(sql);
+			ps.executeUpdate();
+			
+					sql="SELECT pn.pno,news_subject,news_img,news_content,newsdate_1,newsdate_2,hit  "
 					+ "FROM petnews pn "
 					+ "INNER JOIN petnews_sub pns ON pn.pno=pns.pno "
 					+ "INNER JOIN newsdate ON pn.pno = newsdate.pno "
@@ -352,6 +358,7 @@ public class HealthDAO {
 			vo.setNews_content(rs.getString(4));
 			vo.setNews_date1(rs.getString(5));
 			vo.setNews_date2(rs.getString(6));
+			vo.setHit(rs.getInt(7));
 			rs.close();	
 		}
 		catch(Exception ex)
