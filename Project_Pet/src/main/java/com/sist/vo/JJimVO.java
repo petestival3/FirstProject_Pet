@@ -48,7 +48,61 @@ public class JJimVO {
     private int pno;
     private String p_name,p_image,p_price,p_lower_price;
     private ProductVO pvo=new ProductVO();
-    private MemberVO mvo=new MemberVO();
+    public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
+	public String getID() {
+		return ID;
+	}
+	public void setID(String iD) {
+		ID = iD;
+	}
+	public int getPno() {
+		return pno;
+	}
+	public void setPno(int pno) {
+		this.pno = pno;
+	}
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	public String getP_image() {
+		return p_image;
+	}
+	public void setP_image(String p_image) {
+		this.p_image = p_image;
+	}
+	public String getP_price() {
+		return p_price;
+	}
+	public void setP_price(String p_price) {
+		this.p_price = p_price;
+	}
+	public String getP_lower_price() {
+		return p_lower_price;
+	}
+	public void setP_lower_price(String p_lower_price) {
+		this.p_lower_price = p_lower_price;
+	}
+	public ProductVO getPvo() {
+		return pvo;
+	}
+	public void setPvo(ProductVO pvo) {
+		this.pvo = pvo;
+	}
+	public MemberVO getMvo() {
+		return mvo;
+	}
+	public void setMvo(MemberVO mvo) {
+		this.mvo = mvo;
+	}
+	private MemberVO mvo=new MemberVO();
     
     
 }

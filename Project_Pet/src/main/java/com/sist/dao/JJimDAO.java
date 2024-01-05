@@ -30,6 +30,7 @@ public class JJimDAO {
 	   {
 		   SqlSession session=ssf.openSession();
 		   List<JJimVO> list=session.selectList("JJimListData");
+		   System.out.println(list.size());
 		   session.close();
 		   return list;
 	   }
