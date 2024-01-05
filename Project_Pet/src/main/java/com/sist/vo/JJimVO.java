@@ -48,6 +48,7 @@ public class JJimVO {
     private int pno;
     private String p_name,p_image,p_price,p_lower_price;
     private ProductVO pvo=new ProductVO();
+    private MemberVO mvo=new MemberVO();
 
     public int getNo() {
 		return no;

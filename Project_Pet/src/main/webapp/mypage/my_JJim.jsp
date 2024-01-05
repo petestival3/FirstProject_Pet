@@ -28,7 +28,7 @@
 	<div class="col-md-9">
 		<div class="reservation_container">
 			<div class="reservation_header">
-				<h2 class="sectiontitle">${sessionScope.name }님의찜 목록</h2>
+				<h2 class="sectiontitle">${sessionScope.name}님의찜 목록</h2>
 			</div>
 			<!-- 실제 찜하기 데이터를 반복적으로 표시하는 부분 -->
 			<c:forEach var="vo" items="${list }">
