@@ -58,11 +58,11 @@ a:hover {
    
    <table class="table">
     <tr>
-     <th class="text-center" width=10%>번호</th>
-     <th class="text-center" width=50%>제목</th>
-     <th class="text-center" width=10%>작성자</th>
-     <th class="text-center" width=20%>작성일</th>
-     <th class="text-center" width=10%>조회수</th>
+     <th class="text-center" width=10% style="font-size: 13px;">번호</th>
+     <th class="text-center" width=50% style="font-size: 13px;">제목</th>
+     <th class="text-center" width=10% style="font-size: 13px;">작성자</th>
+     <th class="text-center" width=20% style="font-size: 13px;">작성일</th>
+     <th class="text-center" width=10% style="font-size: 13px;">조회수</th>
     </tr>
     <!--<c:set var="count" value="${count }"/>-->
     <c:forEach var="vo" items="${list }">

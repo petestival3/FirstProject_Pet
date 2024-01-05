@@ -17,7 +17,7 @@
 	color: #ffffff;
 	text-transform: uppercase;
 	font-weight: 700;
-	background: #5a70e9;
+	background: #dc3545;
 	letter-spacing: 2px;
 }
 .update-btn {
@@ -27,7 +27,7 @@
 	color: #ffffff;
 	text-transform: uppercase;
 	font-weight: 700;
-	background: #5a70e9;
+	background: #ff8e07;
 	letter-spacing: 2px;
 }
 </style>
@@ -143,10 +143,12 @@ $(function(){
         class="btn btn-sm btn-danger">
        </td>
       </tr>
+      
+      
     </table>
+    </div>
     
-    <div style="height: 20px"></div>
-   <div class="col-sm-8">
+   <div class="col-sm-12">
        <table class="table">
 	     <%-- 댓글 출력 위치 --%>
 	     <tr>
@@ -161,15 +163,15 @@ $(function(){
 	                 </c:forEach>
 	                 <img src="image/re_icon.png">
 	               </c:if>
-	               ◑${rvo.name }&nbsp;(${rvo.dbday })
+	               <i class="fa fa-user-circle"></i>&nbsp;${rvo.name }&nbsp;(${rvo.dbday })
 	             </td>
 	             <td class="text-right">
 	               <c:if test="${sessionScope.id!=null }">
 	                <c:if test="${sessionScope.id==rvo.id }">
-	                 <span class="btn btn-xs btn-success ups" data-no="${rvo.no }">수정</span>
+	                 <%-- <span class="btn btn-xs btn-success ups" data-no="${rvo.no }">수정</span> --%>
 	                 <a href="../freeboard/reply_delete.do?no=${rvo.no }&bno=${vo.no}" class="btn btn-xs btn-info">삭제</a>
 	                </c:if>
-	                <span class="btn btn-xs btn-warning ins" data-no="${rvo.no }">댓글</a>
+	                <%-- <span class="btn btn-xs btn-warning ins" data-no="${rvo.no }">댓글</a> --%>
 	               </c:if>
 	             </td>
 	           </tr>
@@ -212,9 +214,10 @@ $(function(){
 		      <td>
 		        <form method="post" action="../freeboard/reply_insert.do" class="inline">
 		         <input type=hidden name=bno value="${vo.no}">
-		         <textarea rows="5" cols="60" name="msg" style="float: left"></textarea>
+		         <textarea rows="5" cols="130" name="msg" style="float: left; resize: none;"></textarea>
+	             &nbsp;
 	             <input type=submit value="댓글쓰기" 
-	              style="width: 120px;height: 104px;background-color: green;color:white;">
+	              style="width: 100px;height: 125px;background-color: green;color:white;">
 		        </form>
 		      </td>
 		     </tr>
