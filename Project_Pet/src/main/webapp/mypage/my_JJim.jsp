@@ -28,20 +28,20 @@
 	<div class="col-md-9">
 		<div class="reservation_container">
 			<div class="reservation_header">
-				<h2 class="sectiontitle">${vo.ID}님의찜 목록</h2>
+				<h2 class="sectiontitle">${sessionScope.name }님의찜 목록</h2>
 			</div>
 			<!-- 실제 찜하기 데이터를 반복적으로 표시하는 부분 -->
 			<c:forEach var="vo" items="${list }">
 			<table class="table" style="background-color: #fff">
 			<tr>
-			<td><img src="${vo.p_image }"
-					style="width: 30px; height: 30px"></td>
+			<td style="text-align: center;"><img src="${ vo.pvo.p_image }"
+					style="width: 200px; height: 200px"></td>
 				<td>
-				<p>찜하기번호${vo.no }</p>
-				<p>품목번호${vo.pvo.pno }</p>
-				<p>품명${vo.pvo.p_name }</p>
-				<p>원가${vo.pvo.p_price }</p>
-				<p>할인가${vo.pvo.p_lower_price }</p>
+				<p>찜한 순서 : ${vo.no }</p>
+				<p>품목번호 : ${vo.pvo.pno }</p>
+				<p>품명 : ${vo.pvo.p_name }</p>
+				<p>원가 : ${vo.pvo.p_price }</p>
+				<p>할인가 : ${vo.pvo.p_lower_price }</p>
 				</td>
 		     </tr>
 		     <tr>
