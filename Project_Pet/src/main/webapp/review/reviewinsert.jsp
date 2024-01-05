@@ -4,13 +4,99 @@
 <html>
 <head>
 <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
+<link rel="stylesheet" href="../css/star.css">
+<style type="text/css">
+body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .review-form {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #666;
+        }
+
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input[type="file"] {
+            border: none;
+            padding: 0;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+</style>
 </head>
 <body>
-									<div class="modal fade" id="myModal" role="dialog">
+<div class="review-form">
+    <h2>상품 리뷰</h2>
+
+    <form action="submit_review" method="post">
+      
+		<p>별점을 선택해주세요!</p>
+		<div id="full-stars-example-two" style="margin-top:30px;margin-left:10px">
+			<div class="rating-group">
+				<input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio">
+				<label aria-label="1 star" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+				<input class="rating__input" name="rating3" id="rating3-1" value="1" type="radio">
+				<label aria-label="2 stars" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+				<input class="rating__input" name="rating3" id="rating3-2" value="2" type="radio">
+				<label aria-label="3 stars" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+				<input class="rating__input" name="rating3" id="rating3-3" value="3" type="radio">
+				<label aria-label="4 stars" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+				<input class="rating__input" name="rating3" id="rating3-4" value="4" type="radio">
+				<label aria-label="5 stars" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+				<input class="rating__input" name="rating3" id="rating3-5" value="5" type="radio">
+			</div>
+		</div>
+        <label for="review">리뷰:</label>
+        <textarea name="review" id="review" rows="4" required></textarea>
+
+        <label for="photo">사진 첨부:</label>
+        <input type="file" name="photo" id="photo">
+
+        <button type="submit" class="btn btn-default">저장</button>
+		<button type="button" class="btn btn-default">취소</button>
+    </form>
+</div>
+
+
+									<%-- <div class="modal fade" id="myModal" role="dialog">
 									    <div class="modal-dialog">
 									      <!-- Modal content-->
 									      <div class="modal-content">
@@ -59,6 +145,6 @@
 									      </div>
 									      
 									    </div>
-									  </div>
+									  </div> --%>
 </body>
 </html>

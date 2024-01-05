@@ -23,23 +23,31 @@
     flex-direction: column;
     justify-content: space-between;
 }
+.stayrevrow{
+	display: flex;
+	margin-top: 10px;
+	border: 1px solid red;
+}
+.review-container{
+	display:block;
+}
 </style>
 <script type="text/javascript">
 Shadowbox.init({
 	players:['iframe']
 })
 $(function(){
-		const sno=$('#staynumber').attr('stayno')
+		const sno=$('#staynumber').attr('data-stayno')
 		let revpage='1'
-		let typeno='1'
-		reviewlist(typeno,sno,revpage)
+		let typeno='2'
+		reviewlist(typeno,'94',revpage)
 		/* $('.pageBtn').click(function(){
 			let fds=$(this).attr('value');
 			reviewlist(fds)
 		}) */
 	$("#review_write_Btn").click(function(){
 		Shadowbox.open({
-			content:'../review/insert.do?stayno='+sno,
+			content:'../review/insert.do?sno='+sno,
 			player:'iframe',
 			title:'후기작성',
 			width:700,
@@ -59,7 +67,8 @@ function reviewlist(typeno,objno,revpage){
 			let res=JSON.parse(json);
 			let html='';
 			for(let revo of res){
-				html+='<img src="../img/mainlogo.png" alt="../img/mainlogo.png" class="user-image" />'
+				html+='<div class="stayrevrow">'
+					+'<img src="../img/mainlogo.png" alt="../img/mainlogo.png" class="user-image" />'
 					+'<div class="mid_1">'
 					+'<div class="user-info">'
 					+'<img src="../img/mainlogo.png" alt="../img/mainlogo.png" class="reviewer-avatar" style="float:left">'
@@ -76,9 +85,11 @@ function reviewlist(typeno,objno,revpage){
 					+'<p class="review-text">'+revo.content+'</p>'
 					+'</div>'
 					+'</div>'
+					+'</div>'
+					
 			}
 			console.log(html)
-			$('#reivewprint').html(html)
+			$('#reviewprint').html(html)
 		}
 	})
 }

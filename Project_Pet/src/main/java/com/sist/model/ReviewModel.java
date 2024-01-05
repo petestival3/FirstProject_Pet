@@ -131,7 +131,7 @@ public class ReviewModel {
 	@RequestMapping("review/insert.do")
 	public String review_insert(HttpServletRequest request,HttpServletResponse response) {
 		
-		String sno=request.getParameter("stayno");
+		String sno=request.getParameter("sno");
 		request.setAttribute("sno", sno);
 		return "../review/reviewinsert.jsp";
 	}
