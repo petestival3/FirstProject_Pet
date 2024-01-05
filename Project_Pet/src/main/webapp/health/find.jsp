@@ -18,10 +18,10 @@
 <title>Ogani | Template</title>
 
     
-   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23e8040d553778eeeb77f0900cb92322&libraries=services"></script>
-   <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+ 
+  <!--  <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>--> 
   
 <script type="text/javascript">
 
