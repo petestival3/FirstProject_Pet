@@ -67,14 +67,14 @@ a:hover {
     <!--<c:set var="count" value="${count }"/>-->
     <c:forEach var="vo" items="${list }">
       <tr>
-       <td class="text-center" width=10%>${vo.no }</td>
-       <td width=55%><a href="../notice/detail.do?no=${vo.no }">${vo.subject }</a>
+       <td class="text-center" width=10% style="font-weight: bold;">${vo.no }</td>
+       <td width=55%><a href="../notice/detail.do?no=${vo.no }" style="font-weight: bold;">${vo.subject }</a>
         &nbsp; <c:if test="${today==vo.dbday }">
           <sup><img src="../freeboard/new.gif"></sup>
         </c:if></td>
-       <td class="text-center" width=10%>${vo.name }</td>
-       <td class="text-center" width=15%>${vo.dbday }</td>
-       <td class="text-center" width=10%>${vo.hit }</td>
+       <td class="text-center" width=10% style="font-weight: bold;">${vo.name }</td>
+       <td class="text-center" width=15% style="font-weight: bold;">${vo.dbday }</td>
+       <td class="text-center" width=10% style="font-weight: bold;">${vo.hit }</td>
       </tr>
       <!--<c:set var="count" value="${count-1 }"/>-->
     </c:forEach>
