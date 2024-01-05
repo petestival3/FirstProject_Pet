@@ -70,12 +70,12 @@ public class ReviewModel {
 	}
 	
 	@RequestMapping("review/insert_ok.do")
-	public String review_insertok(HttpServletRequest request,HttpServletResponse response) {
+	public void review_insertok(HttpServletRequest request,HttpServletResponse response) {
 		
 		try {
 			request.setCharacterEncoding("UTF-8");
 		}catch(Exception ex) {}
-		
+		System.out.println("loading...");
 		HttpSession session=request.getSession();
 		String name=(String)session.getAttribute("name");
 		String writer=name;
@@ -83,7 +83,7 @@ public class ReviewModel {
 		String score = "";
 		String content = "";
 		String objno = "";
-		String typeno = "";
+		String typeno = "2";
 		
 		ServletContext context = request.getServletContext();
 		String path = context.getRealPath("/");
@@ -94,13 +94,14 @@ public class ReviewModel {
 		ReviewVO vo=new ReviewVO();
 		MultipartRequest mr;
 	    String imgname="";
+	    
 	    try {
 			mr = new MultipartRequest(request, path, max, "UTF-8", new DefaultFileRenamePolicy());
-			imgname= mr.getFilesystemName("upload");
-			score = mr.getParameter("rating3");
+			imgname= mr.getFilesystemName("image");
+			score = mr.getParameter("score");
 			content = mr.getParameter("content");
 			objno = mr.getParameter("sno");
-			typeno = mr.getParameter("type");
+//			typeno = mr.getParameter("type");
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -124,8 +125,8 @@ public class ReviewModel {
 		
 		ReviewDAO dao=ReviewDAO.newInstance();
 		dao.reviewInsert(vo);
+		System.out.println("success!");
 		
-		return "redirect:../stay/detail_before.do?stayno="+objno;
 	}
 	
 	@RequestMapping("review/insert.do")

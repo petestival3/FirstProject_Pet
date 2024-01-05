@@ -89,12 +89,13 @@ public class ReviewDAO {
 	}
 
 	public void reviewInsert(ReviewVO vo) {
+		
 		try {
 			conn=dbconn.getConnection();
 			String sql="INSERT INTO review(revno,objno,writer,revdate,content,score,typeno,imgname,imgsize) VALUES("
 					+ "review_revno_seq.nextval,?,?,SYSDATE,?,?,?,?,?)";
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, vo.getRevno());
+			ps.setInt(1, vo.getObjno());
 			ps.setString(2, vo.getWriter());
 			ps.setString(3, vo.getContent());
 			ps.setDouble(4, vo.getScore());
@@ -102,6 +103,7 @@ public class ReviewDAO {
 			ps.setString(6, vo.getImgname());
 			ps.setInt(7, vo.getImgsize());
 			ps.executeUpdate();
+			
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}finally {

@@ -38,9 +38,10 @@ Shadowbox.init({
 })
 $(function(){
 		const sno=$('#staynumber').attr('data-stayno')
+		console.log(sno)
 		let revpage='1'
 		let typeno='2'
-		reviewlist(typeno,'94',revpage)
+		reviewlist(typeno,sno,revpage)
 		/* $('.pageBtn').click(function(){
 			let fds=$(this).attr('value');
 			reviewlist(fds)
@@ -50,10 +51,16 @@ $(function(){
 			content:'../review/insert.do?sno='+sno,
 			player:'iframe',
 			title:'후기작성',
-			width:700,
-			height:600
+			width:440,
+			height:450
 		})
 	})
+	
+	window.addEventListener('message', function(event) {//insert_review.jsp에서 등록하기 버튼 클릭시 받는 데이터(메시지)
+	    
+		reviewlist(typeno,sno,revpage)//새로운 리뷰리스트 출력
+	   
+	});
 	
 })
 
@@ -67,9 +74,18 @@ function reviewlist(typeno,objno,revpage){
 			let res=JSON.parse(json);
 			let html='';
 			for(let revo of res){
-				html+='<div class="stayrevrow">'
-					+'<img src="../img/mainlogo.png" alt="../img/mainlogo.png" class="user-image" />'
-					+'<div class="mid_1">'
+				
+				html+='<div class="stayrevrow">';
+				
+					if(revo.imgsize>0){
+						html+='<img src="../reviewImg/'+revo.imgname+'" class="user-image">'
+					 }
+	            	else{
+	            		html+='<img src="../img/mainlogo.png">'
+					 }
+					
+					
+				html+='<div class="mid_1" style="margin-left:40px">'
 					+'<div class="user-info">'
 					+'<img src="../img/mainlogo.png" alt="../img/mainlogo.png" class="reviewer-avatar" style="float:left">'
 					+'<div class="user-name">'+revo.writer+'</div>'
@@ -77,12 +93,24 @@ function reviewlist(typeno,objno,revpage){
 					+'<br />'
 					+'<div class="mid_2">'
 					+'<div class="rating">'
-					+'<span class="star">⭐️</span>'
-					+'</div>'
-					+'<p>'+revo.dbday+'</p>'
+					
+					if(revo.score===1.0){
+						html+='<span class="star">⭐️</span>';
+					}else if(revo.score===2.0){
+						html+='<span class="star">⭐️</span><span class="star">⭐️</span>'
+					}else if(revo.score===3.0){
+						html+='<span class="star">⭐️</span><span class="star">⭐️</span><span class="star">⭐️</span>'
+					}else if(revo.score===4.0){
+						html+='<span class="star">⭐️</span><span class="star">⭐️</span><span class="star">⭐️</span><span class="star">⭐️</span>'
+					}else if(revo.score===5.0){
+						html+='<span class="star">⭐️</span><span class="star">⭐️</span><span class="star">⭐️</span><span class="star">⭐️</span><span class="star">⭐️</span>'
+					}
+					
+				html+='</div>'
+					+'<p style="margin-top:-12px">'+revo.dbday+'</p>'
 					+'</div>'
 					+'<div class="mid_3">'
-					+'<p class="review-text">'+revo.content+'</p>'
+					+'<p class="review-text" style="margin-top:8px">'+revo.content+'</p>'
 					+'</div>'
 					+'</div>'
 					+'</div>'
@@ -401,12 +429,5 @@ function reviewlist(typeno,objno,revpage){
     </section>
     <!-- Product Details Section End -->
 
-    <!-- Related Product Section Begin -->
-    <section class="related-product">
-        <div class="container">
-            
-        </div>
-    </section>
-    <!-- Related Product Section End -->
 </body>
 </html>
