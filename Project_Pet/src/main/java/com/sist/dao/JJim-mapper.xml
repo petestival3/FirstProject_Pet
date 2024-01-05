@@ -2,10 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.dao.JJim-mapper">
 
-	<resultMap type="com.sist.vo.JJimVO" id="memberMap">
-		<result property="mvo.id" column="id" />
-	</resultMap>
-	
 	<resultMap type="com.sist.vo.JJimVO" id="productMap">
 		<result property="pvo.pno" column="pno" />
 		<result property="pvo.p_name" column="p_name" />
@@ -14,9 +10,8 @@
 		<result property="pvo.p_lower_price" column="p_lower_price" />
 	</resultMap>
 
-	<select id="JJimListData" resultMap="productMap,memberMap">
+	<select id="JJimListData" resultMap="productMap">
 		SELECT no,
-		(SELECT ID FROM MEMBER WHERE ID=goods_jjim.ID) as ID,
 		(SELECT pno FROM Product_detail WHERE pno=goods_jjim.pno) as pno,
 		(SELECT p_name FROM Product_detail WHERE pno=goods_jjim.pno) as p_name,
 		(SELECT p_image FROM Product_detail WHERE pno=goods_jjim.pno) as p_image,

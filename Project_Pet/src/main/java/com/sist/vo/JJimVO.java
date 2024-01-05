@@ -48,6 +48,7 @@ public class JJimVO {
     private int pno;
     private String p_name,p_image,p_price,p_lower_price;
     private ProductVO pvo=new ProductVO();
+
     public int getNo() {
 		return no;
 	}
@@ -96,13 +97,4 @@ public class JJimVO {
 	public void setPvo(ProductVO pvo) {
 		this.pvo = pvo;
 	}
-	public MemberVO getMvo() {
-		return mvo;
-	}
-	public void setMvo(MemberVO mvo) {
-		this.mvo = mvo;
-	}
-	private MemberVO mvo=new MemberVO();
-    
-    
 }
