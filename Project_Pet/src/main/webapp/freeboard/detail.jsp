@@ -167,7 +167,7 @@ $(function(){
 	               <c:if test="${sessionScope.id!=null }">
 	                <c:if test="${sessionScope.id==rvo.id }">
 	                 <span class="btn btn-xs btn-success ups" data-no="${rvo.no }">수정</span>
-	                 <a href="../board/reply_delete.do?no=${rvo.no }&bno=${vo.no}" class="btn btn-xs btn-info">삭제</a>
+	                 <a href="../freeboard/reply_delete.do?no=${rvo.no }&bno=${vo.no}" class="btn btn-xs btn-info">삭제</a>
 	                </c:if>
 	                <span class="btn btn-xs btn-warning ins" data-no="${rvo.no }">댓글</a>
 	               </c:if>
@@ -178,19 +178,19 @@ $(function(){
 	           </tr>
 	           <tr style="display:none" class="reins" id="i${rvo.no }">
 			      <td colspan="2">
-			        <form method="post" action="../board/reply_reply_insert.do" class="inline">
+			        <form method="post" action="../freeboard/reply_reply_insert.do" class="inline">
 			         <input type=hidden name=bno value="${vo.no}">
-			         <%-- bno는 다시 detail.do로 이동 --%>
+			         bno는 다시 detail.do로 이동
 			         <input type=hidden name=pno value="${rvo.no }">
 			         <textarea rows="5" cols="55" name="msg" style="float: left"></textarea>
 		             <input type=submit value="댓글쓰기" 
 		              style="width: 100px;height: 104px;background-color: green;color:white;">
 			        </form>
 			      </td>
-			     </tr>
+			    </tr>
 	           <tr style="display: none" class="updates" id="u${rvo.no }">
 			      <td colspan="2">
-			        <form method="post" action="../board/reply_update.do" class="inline">
+			        <form method="post" action="../freeboard/reply_update.do" class="inline">
 			         <input type=hidden name=bno value="${vo.no}">
 			         <%-- bno는 다시 detail.do로 이동 --%>
 			         <input type=hidden name=no value="${rvo.no }">
@@ -205,6 +205,21 @@ $(function(){
 	      </td>
 	     </tr>
 	   </table>
+	   <c:if test="${sessionScope.id!=null }">
+		   <table class="table">
+		     <%-- 새댓글 입력 --%>
+		     <tr>
+		      <td>
+		        <form method="post" action="../freeboard/reply_insert.do" class="inline">
+		         <input type=hidden name=bno value="${vo.no}">
+		         <textarea rows="5" cols="60" name="msg" style="float: left"></textarea>
+	             <input type=submit value="댓글쓰기" 
+	              style="width: 120px;height: 104px;background-color: green;color:white;">
+		        </form>
+		      </td>
+		     </tr>
+		   </table>
+	   </c:if>
     
   </div>
   </main>

@@ -25,10 +25,11 @@ public class FreeBoardReplyDAO {
 		try
 		{
 			conn=dbconn.getConnection();
-			String sql="SELECT no,bno,id,name,msg,TO_CHAR(regdate,'yyyy-MM-dd HH24:MI:SS),group_tab "
-					 + "FROM free_board_reply "
-					 + "WHERE bno=? "
-					 + "ORDER BY group_id DESC,group_step ASC";
+			String sql="SELECT no,bno,id,name,msg,TO_CHAR(regdate,'yyyy-MM-dd HH24:MI:SS'),"
+				     +"group_tab "
+				     +"FROM free_board_reply "
+				     +"WHERE bno=? "
+				     +"ORDER BY group_id DESC,group_step ASC";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, bno);
 			ResultSet rs=ps.executeQuery();
@@ -86,8 +87,8 @@ public class FreeBoardReplyDAO {
 		{
 			conn=dbconn.getConnection();
 			String sql="INSERT INTO free_board_reply(no,bno,id,name,msg,group_id) "
-					 + "VALUES(fbr_no_seq.nextval,?,?,?,?,"
-					 + "(SELECT NVL(MAX(group_id)+1,1) FROM free_board_reply))";
+				     +"VALUES(fbr_no_seq.nextval,?,?,?,?,"
+				     +"(SELECT NVL(MAX(group_id)+1,1) FROM free_board_reply))";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, vo.getBno());
 			ps.setString(2, vo.getId());
@@ -147,7 +148,7 @@ public class FreeBoardReplyDAO {
 					+ "dept=dept-1 "
 					+ "WHERE no=?";
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, no);
+			ps.setInt(1, root);
 			ps.executeUpdate();
 			conn.commit();
 		}catch(Exception ex)

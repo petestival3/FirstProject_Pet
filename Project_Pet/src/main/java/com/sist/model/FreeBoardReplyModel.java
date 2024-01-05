@@ -13,25 +13,25 @@ public class FreeBoardReplyModel {
 	public String reply_insert(HttpServletRequest request,HttpServletResponse response)
 	{
 		try
-		{
-			request.setCharacterEncoding("UTF-8");
-		}catch(Exception ex) {}
-		String bno=request.getParameter("bno");
-		String msg=request.getParameter("msg");
-		HttpSession session=request.getSession();
-		String id=(String)session.getAttribute("id");
-		String name=(String)session.getAttribute("name");
-		
-		FreeBoardReplyVO vo=new FreeBoardReplyVO();
-		vo.setBno(Integer.parseInt(bno));
-		vo.setMsg(msg);
-		vo.setId(id);
-		vo.setName(name);
-		
-		// DAO 로 전송 
-		FreeBoardReplyDAO dao=FreeBoardReplyDAO.newInstance();
-		dao.replyInsert(vo);
-		return "redirect:../freeboard/detail.do?no="+bno;
+		  {
+			 request.setCharacterEncoding("UTF-8");  
+		  }catch(Exception ex) {}
+		  String bno=request.getParameter("bno");
+		  String msg=request.getParameter("msg");
+		  HttpSession session=request.getSession();
+		  String id=(String)session.getAttribute("id");
+		  String name=(String)session.getAttribute("name");
+		  
+		  FreeBoardReplyVO vo=new FreeBoardReplyVO();
+		  vo.setBno(Integer.parseInt(bno));
+		  vo.setMsg(msg);
+		  vo.setId(id);
+		  vo.setName(name);
+		  
+		  // DAO로 전송 
+		  FreeBoardReplyDAO dao=FreeBoardReplyDAO.newInstance();
+		  dao.replyInsert(vo);
+		  return "redirect:../freeboard/detail.do?no="+bno;
 	}
 	@RequestMapping("freeboard/reply_update.do")
 	public String reply_update(HttpServletRequest request,HttpServletResponse response)
