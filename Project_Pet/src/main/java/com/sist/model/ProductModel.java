@@ -27,6 +27,10 @@ import com.sist.vo.ProductVO;
 import com.sist.vo.ReviewVO;
 import com.sist.vo.ProductVO;
 
+//좋아요 부분 (정유나)
+import com.sist.dao.*;
+import com.sist.vo.*;
+
 public class ProductModel {
    
    
@@ -177,6 +181,21 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
             // TODO: handle exception
             e.printStackTrace();
          }
+         
+         //좋아요 부분 (정유나) 시작
+         HttpSession session=request.getSession();
+   	  String id=(String)session.getAttribute("id");
+   	  if(id!=null)
+   	  {
+   		  LikeDAO jdao=LikeDAO.newInstance();
+   		  //int jjim_count=jdao.만들어야함foodJjimCount(id, Integer.parseInt(pno));
+   		  //request.setAttribute("jjim_count", jjim_count);
+   		  int like_count=jdao.LikeOk(Integer.parseInt(pno), id);
+   		  int like_total=jdao.LikeCount(Integer.parseInt(pno));
+   		  request.setAttribute("like_count", like_count);
+   		  request.setAttribute("like_total", like_total);
+   	  }
+         //좋아요 부분 (정유나) 종료
          
          
          return "../main/main.jsp";

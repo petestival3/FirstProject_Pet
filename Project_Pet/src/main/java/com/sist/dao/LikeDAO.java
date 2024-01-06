@@ -89,7 +89,7 @@ public class LikeDAO {
 			   conn=dbconn.getConnection();
 			   String sql="SELECT COUNT(*) "
 					     +"FROM goods_like "
-					     +"WHERE fno=? AND id=?";
+					     +"WHERE pno=? AND id=?";
 			   ps=conn.prepareStatement(sql);
 			   ps.setInt(1, pno);
 			   ps.setString(2, id);

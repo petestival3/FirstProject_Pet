@@ -21,6 +21,6 @@ public class LikeModel {
 		   vo.setId(id);
 		   LikeDAO dao=LikeDAO.newInstance();
 		   dao.LikeInsert(vo);
-		   return "redirect:../food/food_detail.do?pno="+pno;
+		   return "redirect:../product/productDetail.do?pno="+pno;
 	   }
 }
