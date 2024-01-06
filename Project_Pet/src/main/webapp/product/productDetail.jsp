@@ -239,7 +239,8 @@ function requestPay() {
                   
                         <a href="#" class="primary-btn text-center" style="width: 190px;">장바구니</a>
                           <a href="#" class="primary-btn text-center" style="width: 190px;" onclick="requestPay()">구매하기</a>
-                            <button>좋아요 예정</button>
+                            <button>좋아요(${count })</button>
+                            <button>찜하기</button>
                       </div>
                
                     
