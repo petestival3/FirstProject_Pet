@@ -1,19 +1,6 @@
 @charset "UTF-8";
 
-.kyj_selected {
-  background-color: #c0c0c0; /* 약간 흐릿한 회색 배경색 */
-  border-radius: 5px; /* 모서리를 둥글게 */
-  padding: 5px 10px; /* 여백 설정 */
-  color: #333; /* 텍스트 색상 */
-  font-weight: bold; /* 텍스트 굵게 */
-  text-decoration: none; /* 링크 텍스트의 밑줄 제거 */
-  transition: background-color 0.3s ease; /* 부드러운 전환 효과 */
-}
 
-.kyj_selected:hover {
-  background-color: #a9a9a9; /* 호버 시 약간 진한 회색 */
-  color: #fff; /* 호버 시 텍스트 색상을 흰색으로 변경 */
-}
 .ky{
 	 width: 1600px;
 	 margin:0 auto;
@@ -161,10 +148,10 @@ display:none;
 	}
 	
 	 .w_selected-page {
-        /* 선택된 페이지에 대한 스타일을 여기에 추가하세요 */
-        background-color:lightslategray; /* 예시: 배경색을 변경합니다 */
-        font-weight: bold; /* 예시: 폰트를 굵게 변경합니다 */
-        /* 원하는 스타일을 추가하세요 */
+         background-color: #333;
+	    color: #fff;
+	    border-color: #333;
+	  transition: background-color 0.3s ease; /* 부드러운 전환 효과 */
     }
     
     /* 검색어 입력창 스타일 */

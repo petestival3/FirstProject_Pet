@@ -95,7 +95,7 @@ public class ProductQnaModel {
 	           {
 	              response.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
 	              PrintWriter out=response.getWriter();
-	              System.out.println(arr);
+	            
 	              out.write(arr.toJSONString());
 	           }catch(Exception ex) {}
 	         

@@ -294,7 +294,7 @@ function newList(page) {//새로운 리뷰리스트를 출력하는 ajax를 담�
 	$(document).on('click', '.Rnext-btn', function() {
 		
 		let page=$('.product_review_container').attr('data-page')
-		console.log(page)
+	
 		newList(Number(page)+1);
 	});
 	
@@ -382,7 +382,14 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 					}
 					
 					for(let i=startpage; i<=endpage; i++){
-						html+='<li><a class="qnaPageBtn" data-qnaPage="'+i+'">'+i+'</a></li>'
+						
+						if(i===Number(page)){
+								html+='<li><a class="qnaPageBtn kyj_selected" data-qnaPage="'+i+'">'+i+'</a></li>'
+						}
+						else{
+								html+='<li><a class="qnaPageBtn" data-qnaPage="'+i+'">'+i+'</a></li>'
+						}
+					
 					}
 					
 					if(endpage<totalpage){
@@ -407,8 +414,9 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
     
     $(document).on('click', '.qnaPageBtn', function() {
 	let curpage = $(this).attr('data-qnaPage')
-	
+		
 		qnaList(curpage)
+		
 		
 });
 

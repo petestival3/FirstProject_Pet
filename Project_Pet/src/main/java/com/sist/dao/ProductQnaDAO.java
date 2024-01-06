@@ -84,7 +84,7 @@ public class ProductQnaDAO {
 				session=ssf.openSession(true);
 				
 				session.insert("productQnaInsert",vo);
-				System.out.println("실행333");
+			
 				
 			} catch (Exception e) {
 				// TODO: handle exception

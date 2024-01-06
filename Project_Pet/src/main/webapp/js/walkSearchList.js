@@ -22,11 +22,11 @@
 		$('#walkSearchBar').val('')
 		
 		
-		$('.kyj_selected').removeClass('kyj_selected'); // 지역을 변경할때 카테고리 selected 변경
+		$('.kyj_cate_selected').removeClass('kyj_cate_selected'); // 지역을 변경할때 카테고리 selected 변경
 		 let cate = $('.walk_cate > li > a');
     cate.each(function() {
         if ($(this).text() === loc) {
-            $(this).addClass('kyj_selected');
+            $(this).addClass('kyj_cate_selected');
         }
     });
 		
@@ -40,11 +40,11 @@
 	$('#walkSearchBar').keyup(function(){
 		
 	
-		$('.kyj_selected').removeClass('kyj_selected'); // 지역을 변경할때 카테고리 selected 변경
+		$('.kyj_cate_selected').removeClass('kyj_cate_selected'); // 지역을 변경할때 카테고리 selected 변경
 		 let cate = $('.walk_cate > li > a');
     cate.each(function() {
         if ($(this).text() === loc) {
-            $(this).addClass('kyj_selected');
+            $(this).addClass('kyj_cate_selected');
         }
     });
 		
