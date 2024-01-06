@@ -241,3 +241,19 @@ margin-right:5px;
     /* 추가적인 스타일 정의 */
      color: #000; /* 텍스트를 검정색으로 변경 */
 }
+
+.qna_content:hover {
+    background-color: lightgray; /* 마우스 호버 시 배경색 변경 */
+    cursor: pointer; /* 마우스 호버 시 커서 모양 변경 (옵션) */
+}
+
+.qnaPageBtn:hover,#qnaPageNextBtn,#qnaPagePrevBtn{
+	cursor: pointer; /* 마우스 호버 시 커서 모양 변경 (옵션) */
+}
+
+.qna_content td {
+    max-width: 0; /* 최대 너비를 0으로 설정하여 내용이 넘칠 때 처리합니다. */
+    white-space: nowrap; /* 넘치는 텍스트를 한 줄에 표시합니다. */
+    overflow: hidden; /* 넘치는 부분을 숨깁니다. */
+    text-overflow: ellipsis; /* 넘칠 때 ...으로 표시합니다. */
+}

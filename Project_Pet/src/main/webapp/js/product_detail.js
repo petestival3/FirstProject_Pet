@@ -349,23 +349,48 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 		        success: function (json){
 					let res=JSON.parse(json)
 					let qnaSize=res[0].size;
-					let rowsize=res[0].rowsize
+					let rowcount=res[0].rowcount
 					let totalpage=res[0].totalpage
+					let startpage=res[0].startpage
+					let endpage=res[0].endpage
 					let input_qnaData=$('.input_qnaData')
 					
 					
 					let html=''
 					for(vo of res){
-						html+='<tr class="text-align:center;">'
-						html+='<td width:10%>'+rowsize+'</td>'
+						html+='<tr class="qna_content" data-qna="'+vo.qno+'" style="width:200px;">'
+						html+='<td width:10%>'+rowcount+'</td>'
+						if(vo.answercheck==='n'){
+							html+='<td width:10%>답변대기중</td>'
+						}		
+						else{
+							html+='<td width:10%>답변완료</td>'
+						}				
 						html+='<td width:15%>'+vo.qwriter+'</td>'
 						html+='<td width:15%>'+vo.qtitle+'</td>'
-						html+='<td width:45%>'+vo.qcontent+'</td>'
-						html+='<td width:15%>'+vo.dbday+'</td>'
+						html+='<td width:35%>'+vo.qcontent+'</td>'
+						html+='<td width:15% style="font-size:10px;">'+vo.dbday+'</td>'
 						html+='</tr>'
 						
-						rowsize-=1;
+						rowcount-=1;
 					}
+					
+					 
+					html+='<tr><td class="product__pagination prod_page" colspan="6" style="padding-left:400px;"><ul class="pagination">'
+					if(startpage>1){
+					html+='<li><a id="qnaPagePrevBtn" data-startpage="'+startpage+'">&lt;</a></li>'
+					}
+					
+					for(let i=startpage; i<=endpage; i++){
+						html+='<li><a class="qnaPageBtn" data-qnaPage="'+i+'">'+i+'</a></li>'
+					}
+					
+					if(endpage<totalpage){
+
+					html+=' <li><a id="qnaPageNextBtn" data-endpage="'+endpage+'">&gt;</a></li>'
+					}
+					
+					html+='</ul></td></tr>'
 					
 					input_qnaData.html(html);
 				}
@@ -373,6 +398,34 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 		})
 }
     
+    
+    $(document).on('click', '.qna_content', function() {//내용 클릭시
+	let qno = $(this).data('qna');
+		
+		
+});
+    
+    $(document).on('click', '.qnaPageBtn', function() {
+	let curpage = $(this).attr('data-qnaPage')
+	
+		qnaList(curpage)
+		
+});
+
+
+  $(document).on('click', '#qnaPagePrevBtn', function() {
+	let startpage = $(this).attr('data-startpage')
+	
+		qnaList(startpage-1)
+		
+});
+
+ $(document).on('click', '#qnaPageNextBtn', function() {
+	let endpage = $(this).attr('data-endpage')
+	 let nextPage = Number(endpage) + 1; // endpage를 숫자로 변환하고 1을 더합니다.
+		qnaList(nextPage)
+		
+});
     
 });
 

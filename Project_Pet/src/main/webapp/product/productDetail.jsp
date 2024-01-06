@@ -595,19 +595,20 @@ function requestPay() {
 
                                   </div>
                             <div class="tab-pane" id="p_tabs-3" role="tabpanel">
-                                <div class="product__details__tab__desc">
+                                <div class="product__details__tab__desc" id="pQna">
                                       <div class="product_qna_container">
                                          <table class="table text-center" id="qna_wrapper">
                                             <thead class="qna_firstData">
                                             <tr>
                                               <th width=10%>번호</th>
+                                              <th width=10%>답변유무</th>
                                               <th width=15%>작성자</th>
                                               <th width=15%>제목</th>
-                                              <th width=45%>내용</th>
+                                              <th width=35%>내용</th>
                                               <th width=15%>등록일자</th>
                                             </tr>
                                             </thead>
-                                            
+                                         
                                             <tbody class="input_qnaData">
                                             
                                             </tbody>

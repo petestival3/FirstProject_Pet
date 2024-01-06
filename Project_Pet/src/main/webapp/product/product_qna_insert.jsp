@@ -17,16 +17,25 @@
          let checkBox=$('#secretCheck')
           let secretcheck = checkBox.prop('checked') ? 'y' : 'n';
 	   		let qtitle=$('#qna_title').val()
-         	
+         		
            
            
            if(qcontent.trim()===null || qcontent.trim()===''){
+        	   
+        	   alert('내용을 입력하세요')
         	   $('#qna_content').focus();
         	  
               
-              return;
+              return false;
            }
-           
+	   		
+	   		if(qtitle.length>15){
+	   			alert('제목은 15자리 이하여야합니다')
+	   			$('#qna_title').val('')
+	   			$('#qna_title').focus()
+	   			return false;
+	   		}
+	   		
           
            
          

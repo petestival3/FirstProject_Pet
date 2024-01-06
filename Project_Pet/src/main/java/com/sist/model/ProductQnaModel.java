@@ -46,6 +46,13 @@ public class ProductQnaModel {
 			
 			int start=(curpage*rowsize)-(rowsize-1);
 			int end=(curpage*rowsize);
+			
+			final int block=10;
+			   int startpage = ((curpage-1)/block*block)+1;
+			   int endpage = ((curpage-1)/block*block)+10;
+			   if(endpage>totalpage) {
+			      endpage=totalpage;
+			   }
 			   
 			   Map map=new HashMap();
 				map.put("start", start);
@@ -74,6 +81,8 @@ public class ProductQnaModel {
 					obj.put("size", list.size());
 					obj.put("rowcount", rowCount);
 					obj.put("totalpage", totalpage);
+					obj.put("startpage", startpage);
+					obj.put("endpage", endpage);
 					
 				}
 				
@@ -167,13 +176,13 @@ public class ProductQnaModel {
 	          map.put("pno", pno);
 	          int count=ProductQnaDAO.productQnaUserCountCheck(map); 
 	          
-	          if (count>0) {
+	        /*  if (count>0) {
 	             response.setStatus(HttpServletResponse.SC_BAD_REQUEST); //일부로 ajax에게 에러발생을 전달
-	             }else {
+	             }else {*/
 	            	
 	              ProductQnaDAO.productQnaInsert(vo);// count가 0일경우 insert가능
-	              System.out.println("실행123");
-	             }
+	
+					/* } */
 	         
 	        
 	      
