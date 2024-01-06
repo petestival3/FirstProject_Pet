@@ -104,14 +104,14 @@ body {
 <!-- partial:index.partial.html -->
 <div class="login-page">
   <div class="header__logo">
-       <a href="../main/main.do"><h2>PETSTIVAL<img src="../img/mainlogo.png" width="35px" height="35px"></h2></a>
+       <a href="../main/main.do"><h2>PETSTIVAL<img src="../img/mainlogo_w.png" width="35px" height="35px"></h2></a>
   </div>
   <div class="form">
     <form class="login-form">
       <input type="text" placeholder="ID를 입력하세요" name="log_id" id="log_id"/>
       <input type="password" placeholder="비밀번호를 입력하세요" name="log_pwd" id="log_pwd"/>
       <button type="button" id="logBtn">로그인</button>
-      <p class="message"><a href="../member/join.jsp">회원가입</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a>ID찾기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a>비밀번호찾기</a></p>
+      <p class="message"><a href="../member/join.jsp">회원가입</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../member/idfind.do">ID찾기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a>비밀번호찾기</a></p>
     </form>
   </div>
 </div>

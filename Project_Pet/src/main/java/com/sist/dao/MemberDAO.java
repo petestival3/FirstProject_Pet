@@ -196,5 +196,81 @@ public class MemberDAO {
 		   }
 		   return vo;
 	   }
+	   
+	   public String idemailFind(String email) {
+		   String s="";
+		   try {
+			   conn=dbconn.getConnection();
+			   String sql="SELECT COUNT(*) FROM member "
+			   		+ "WHERE email=?";
+			   ps=conn.prepareStatement(sql);
+			   ps.setString(1, email);
+			   ResultSet rs=ps.executeQuery();
+			   rs.next();
+			   int count=rs.getInt(1);
+			   rs.close();
+			   ps.close();
+			   
+			   if(count==0) {
+				   s="NO";
+			   }else {
+				   sql="SELECT RPAD(SUBSTR(id,1,len),LENGTH(id),'*') "
+						+"FROM (SELECT CEIL(LENGTH(id)/2) AS len,id,email FROM MEMBER) "
+						+"WHERE email=?";
+				   // id 절반길이까지 공개 나머지 *
+				   ps=conn.prepareStatement(sql);
+				   ps.setString(1, email);
+				   rs=ps.executeQuery();
+				   rs.next();
+				   s=rs.getString(1);
+				   rs.close();
+			   }
+					   
+		   }catch(Exception ex) {
+			   ex.printStackTrace();
+		   }finally {
+			   dbconn.disConnection(conn, ps);
+		   }
+		   
+		   return s;
+	   }
 	
+	   public String idphoneFind(String phone) {
+		   String s="";
+		   try {
+			   conn=dbconn.getConnection();
+			   String sql="SELECT COUNT(*) FROM member "
+					   + "WHERE phone=?";
+			   ps=conn.prepareStatement(sql);
+			   ps.setString(1, phone);
+			   ResultSet rs=ps.executeQuery();
+			   rs.next();
+			   int count=rs.getInt(1);
+			   rs.close();
+			   ps.close();
+			   
+			   if(count==0) {
+				   s="NO";
+			   }else {
+				   sql="SELECT RPAD(SUBSTR(id,1,len),LENGTH(id),'*') "
+						   +"FROM (SELECT CEIL(LENGTH(id)/2) AS len,id,phone FROM MEMBER) "
+						   +"WHERE phone=?";
+				   // id 절반길이까지 공개 나머지 *
+				   ps=conn.prepareStatement(sql);
+				   ps.setString(1, phone);
+				   rs=ps.executeQuery();
+				   rs.next();
+				   s=rs.getString(1);
+				   rs.close();
+			   }
+			   
+		   }catch(Exception ex) {
+			   ex.printStackTrace();
+		   }finally {
+			   dbconn.disConnection(conn, ps);
+		   }
+		   
+		   return s;
+	   }
+	   
 }

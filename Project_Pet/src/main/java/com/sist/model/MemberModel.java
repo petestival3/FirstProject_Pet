@@ -172,4 +172,41 @@ public class MemberModel {
 		  session.invalidate();
 		  return "redirect:../main/main.do";
 	  }
+	  
+	  @RequestMapping("member/idfind.do")
+	  public String member_idfind(HttpServletRequest request,
+			  HttpServletResponse response) {
+		  
+		  return "../member/idfind.jsp";
+	  }
+	  
+	  @RequestMapping("member/idfindemail_ok.do")
+	  public void member_idfindemailok(HttpServletRequest request,
+			  HttpServletResponse response) {
+		  
+		  String email=request.getParameter("email");
+		  MemberDAO dao=MemberDAO.newInstance();
+		  String res=dao.idemailFind(email);
+		  try {
+			  PrintWriter out=response.getWriter();
+			  out.write(res);
+		  }catch(Exception ex) {
+			  ex.printStackTrace();
+		  }
+	  }
+	  
+	  @RequestMapping("member/idfindphone_ok.do")
+	  public void member_idfindphoneok(HttpServletRequest request,
+			  HttpServletResponse response) {
+		  
+		  String phone=request.getParameter("phoneNumber");
+		  MemberDAO dao=MemberDAO.newInstance();
+		  String res=dao.idphoneFind(phone);
+		  try {
+			  PrintWriter out=response.getWriter();
+			  out.write(res);
+		  }catch(Exception ex) {
+			  ex.printStackTrace();
+		  }
+	  }
 }
