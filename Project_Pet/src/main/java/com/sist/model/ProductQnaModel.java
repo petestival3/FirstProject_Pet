@@ -28,7 +28,7 @@ public class ProductQnaModel {
 
 	final int rowsize=10;
 	@RequestMapping("product/product_qna.do")
-	public void Product_insert_review(HttpServletRequest request, HttpServletResponse response) {
+	public void Product_qna_list(HttpServletRequest request, HttpServletResponse response) {
 			String  pno= request.getParameter("pno");
 			String page=request.getParameter("page");
 			if(page==null) {
@@ -36,7 +36,10 @@ public class ProductQnaModel {
 			}
 			
 			int curpage=Integer.parseInt(page);
-			int totalpage=ProductQnaDAO.productQnaTotalPage(Integer.parseInt(pno));
+			int count=ProductQnaDAO.productQnaCount(Integer.parseInt(pno));
+			int totalpage=(int)Math.ceil(count/10.0);
+			int rowCount=count-((curpage*10)-10);
+			
 			System.out.println("토탈펭지ㅣ"+totalpage);
 			curpage=Integer.parseInt(page);
 			
@@ -47,7 +50,9 @@ public class ProductQnaModel {
 			   Map map=new HashMap();
 				map.put("start", start);
 				map.put("end", end);
-			
+				map.put("pno", pno);
+				map.put("page",curpage );
+				
 			JSONArray arr=new JSONArray();
 			List<QnaBoardVO>list=ProductQnaDAO.productQnaListData(map);
 			
@@ -67,6 +72,9 @@ public class ProductQnaModel {
 				
 				if(i==0) {
 					obj.put("size", list.size());
+					obj.put("rowcount", rowCount);
+					obj.put("totalpage", totalpage);
+					
 				}
 				
 				arr.add(obj);
@@ -157,7 +165,7 @@ public class ProductQnaModel {
 	          Map map=new HashMap();
 	          map.put("qwriter", qwriter);
 	          map.put("pno", pno);
-	          int count=ProductQnaDAO.productQnaCount(map); 
+	          int count=ProductQnaDAO.productQnaUserCountCheck(map); 
 	          
 	          if (count>0) {
 	             response.setStatus(HttpServletResponse.SC_BAD_REQUEST); //일부로 ajax에게 에러발생을 전달

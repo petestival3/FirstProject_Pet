@@ -11,15 +11,15 @@ answercheck, secretcheck, filename, filesize, qwriter,TO_CHAR(qregdate,'YYYY-MM-
 FROM(SELECT qno, qtitle, qcontent,
 answercheck, secretcheck, filename, filesize, qwriter,qregdate,rownum as num
 FROM (SELECT qno, qtitle, qcontent,
-answercheck, secretcheck, filename, filesize, qwriter,qregdate FROM QNABOARD ORDER BY qno DESC))
+answercheck, secretcheck, filename, filesize, qwriter,qregdate FROM QNABOARD WHERE pno=#{pno} ORDER BY qno DESC))
 WHERE num BETWEEN #{start} AND #{end}
 
 
 </select> 
 
 
-<select id="productQnaTotalPage" resultType="int" parameterType="int">
-SELECT CEIL(COUNT(*)/10.0) FROM QNABOARD WHERE pno=#{pno}
+<select id="productQnaCount" resultType="int" parameterType="int">
+SELECT COUNT(*) FROM QNABOARD WHERE pno=#{pno}
 </select>
 
 <insert id="productQnaInsert" parameterType="QnaBoardVO">
@@ -28,7 +28,7 @@ INSERT INTO QNABOARD
 VALUES(qna_qno_seq.nextval,#{qtitle},#{qcontent},#{pno},#{qwriter},#{secretcheck},#{filename},#{filesize})
 </insert>
 
-<select id="productQnaCount"  resultType="int" parameterType="hashmap">
+<select id="productQnaUserCountCheck"  resultType="int" parameterType="hashmap">
 SELECT COUNT(*) FROM QNABOARD where pno=#{pno} AND qwriter=#{qwriter}
 </select>
 

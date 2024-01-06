@@ -37,8 +37,7 @@ public class ProductQnaDAO {
 				
 				session=ssf.openSession();
 				list=session.selectList("productQnaListData",map);
-				System.out.println(list.size());
-				System.out.println();
+				
 				
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -54,13 +53,13 @@ public class ProductQnaDAO {
 		}
 		
 		
-		public static int productQnaTotalPage(int pno) {
-			int totalpage=0;
+		public static int productQnaCount(int pno) {
+			int count=0;
 			SqlSession session =null;
 			
 			try {
 				session=ssf.openSession();
-				totalpage=session.selectOne("productQnaTotalPage",pno);
+				count=session.selectOne("productQnaCount",pno);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -70,7 +69,7 @@ public class ProductQnaDAO {
 					session.close();
 				}
 			}
-			return totalpage;
+			return count;
 		}
 		
 		
@@ -100,13 +99,13 @@ public class ProductQnaDAO {
 			
 		}
 		
-		public static int productQnaCount(Map map) {
+		public static int productQnaUserCountCheck(Map map) {
 			int count=0;
 			SqlSession session =null;
 			
 			try {
 				session=ssf.openSession();
-				count=session.selectOne("productQnaCount",map);
+				count=session.selectOne("productQnaUserCountCheck",map);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();

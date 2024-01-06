@@ -85,7 +85,7 @@ Shadowbox.init({
 	}
 	else if(recData==='sendQna'){
 		console.log('큐엔에이 출력')
-		
+		qnaList(1);
 	}
    
    
@@ -349,18 +349,22 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 		        success: function (json){
 					let res=JSON.parse(json)
 					let qnaSize=res[0].size;
-					
+					let rowsize=res[0].rowsize
+					let totalpage=res[0].totalpage
 					let input_qnaData=$('.input_qnaData')
+					
 					
 					let html=''
 					for(vo of res){
 						html+='<tr class="text-align:center;">'
-						html+='<td width:10%>'+vo.qno+'</td>'
+						html+='<td width:10%>'+rowsize+'</td>'
 						html+='<td width:15%>'+vo.qwriter+'</td>'
 						html+='<td width:15%>'+vo.qtitle+'</td>'
 						html+='<td width:45%>'+vo.qcontent+'</td>'
 						html+='<td width:15%>'+vo.dbday+'</td>'
 						html+='</tr>'
+						
+						rowsize-=1;
 					}
 					
 					input_qnaData.html(html);
