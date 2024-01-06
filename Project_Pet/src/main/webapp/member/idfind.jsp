@@ -111,7 +111,7 @@
             background-color: #5a70e9;
             color: white;
             cursor: pointer;
-            width: 100%;
+            width: 46%;
             padding: 10px;
             font-size: 16px;
             border: 1px solid #fff;
@@ -123,6 +123,19 @@
         
         .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited{
         	background-color: #5a70e9;
+        }
+        
+        .loginLink{
+        	display: inline-block;
+		    padding: 10px 20px;
+		    width: 120px; /* 넓이 지정 */
+		    font-size: 16px;
+		    text-align: center;
+		    text-decoration: none;
+		    cursor: pointer;
+		    border: 1px solid #fff;
+		    margin-left: 20px;
+		    background-color: #5a70e9;
         }
     </style>
 </head>
@@ -144,6 +157,7 @@
                 <label for="email">이메일:</label>
                 <input type="email" name="email" id="findemail">
                 <button type="button" onclick="findId('email')">ID 찾기</button>
+                <a href="../member/login.jsp" class="loginLink" style="color: #fff">로그인</a>
             </form>
             <p id="emailResult"></p>
         </div>
@@ -154,6 +168,7 @@
                 <label for="phoneNumber">전화번호:</label>
                 <input type="tel" name="phoneNumber" id="findphoneNumber">
                 <button type="button" onclick="findId('phoneNumber')">ID 찾기</button>
+                <a href="../member/login.jsp" class="loginLink" style="color: #fff">로그인</a>
             </form>
             <p id="phoneNumberResult"></p>
         </div>
