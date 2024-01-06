@@ -1,37 +1,37 @@
 package com.sist.vo;
 /*
---<좋아요 테이블>
-CREATE TABLE GOODS_LIKE(
- glno NUMBER,
+--<좋아요 테이블(실종강아지)>
+CREATE TABLE DOG_LIKE(
+ dogno NUMBER,
  id VARCHAR2(20) ,
- pno NUMBER ,
- CONSTRAINT gl_glno_pk PRIMARY KEY (glno),
- CONSTRAINT gl_id_fk FOREIGN KEY(id) REFERENCES MEMBER(id),
- CONSTRAINT gl_pno_fk FOREIGN KEY(pno) REFERENCES PRODUCT_DETAIL(pno)
+ ldno NUMBER ,
+ CONSTRAINT dog_dogno_pk PRIMARY KEY (dogno),
+ CONSTRAINT dog_id_fk FOREIGN KEY(id) REFERENCES MEMBER(id),
+ CONSTRAINT dog_ldno_fk FOREIGN KEY(ldno) REFERENCES LOSEANI(ldno)
 );
 
---<좋아요 시퀀스>
-CREATE SEQUENCE gl_glno_seq 
+--<좋아요 시퀀스(강아지)>
+CREATE SEQUENCE dog_dogno_seq 
 START WITH 1
 INCREMENT BY 1
 NOCYCLE
 NOCACHE;
  */
 public class LikeVO {
-	private int glno,pno;
+	private int dogno,ldno;
 	private String id;
 	
-	public int getGlno() {
-		return glno;
+	public int getDogno() {
+		return dogno;
 	}
-	public void setGlno(int glno) {
-		this.glno = glno;
+	public void setDogno(int dogno) {
+		this.dogno = dogno;
 	}
-	public int getPno() {
-		return pno;
+	public int getLdno() {
+		return ldno;
 	}
-	public void setPno(int pno) {
-		this.pno = pno;
+	public void setLdno(int ldno) {
+		this.ldno = ldno;
 	}
 	public String getId() {
 		return id;

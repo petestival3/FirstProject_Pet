@@ -7,22 +7,22 @@ import com.sist.dbcp.*;
 
 public class LikeDAO {
 	/*
-	--<좋아요 테이블>
-	CREATE TABLE GOODS_LIKE(
-	 glno NUMBER,
-	 id VARCHAR2(20) ,
-	 pno NUMBER ,
-	 CONSTRAINT gl_glno_pk PRIMARY KEY (glno),
-	 CONSTRAINT gl_id_fk FOREIGN KEY(id) REFERENCES MEMBER(id),
-	 CONSTRAINT gl_pno_fk FOREIGN KEY(pno) REFERENCES PRODUCT_DETAIL(pno)
-	);
+	--<좋아요 테이블(실종강아지)>
+CREATE TABLE DOG_LIKE(
+ dogno NUMBER,
+ id VARCHAR2(20) ,
+ ldno NUMBER ,
+ CONSTRAINT dog_dogno_pk PRIMARY KEY (dogno),
+ CONSTRAINT dog_id_fk FOREIGN KEY(id) REFERENCES MEMBER(id),
+ CONSTRAINT dog_ldno_fk FOREIGN KEY(ldno) REFERENCES LOSEANI(ldno)
+);
 
-	--<좋아요 시퀀스>
-	CREATE SEQUENCE gl_glno_seq 
-	START WITH 1
-	INCREMENT BY 1
-	NOCYCLE
-	NOCACHE;
+--<좋아요 시퀀스(강아지)>
+CREATE SEQUENCE dog_dogno_seq 
+START WITH 1
+INCREMENT BY 1
+NOCYCLE
+NOCACHE;
 	 */
 	
 	private Connection conn;
@@ -41,10 +41,10 @@ public class LikeDAO {
 	public void LikeInsert(LikeVO vo) {
 		try {
 			conn = dbconn.getConnection();
-			String sql = "INSERT INTO GOODS_LIKE VALUES(gl_glno_seq.nextval,?,?)";
+			String sql = "INSERT INTO DOG_LIKE VALUES(dog_dogno_seq.nextval,?,?)";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, vo.getId());
-			ps.setInt(2, vo.getPno());
+			ps.setInt(2, vo.getLdno());
 			ps.executeUpdate();
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -54,17 +54,17 @@ public class LikeDAO {
 	}
 	
 	// 좋아요 총 갯수 읽기 
-	   public int LikeCount(int pno)
+	   public int LikeCount(int ldno)
 	   {
 		   int count=0;
 		   try
 		   {
 			   conn=dbconn.getConnection();
 			   String sql="SELECT COUNT(*) "
-					     +"FROM GOODS_LIKE "
-					     +"WHERE pno=?";
+					     +"FROM DOG_LIKE "
+					     +"WHERE ldno=?";
 			   ps=conn.prepareStatement(sql);
-			   ps.setInt(1, pno);
+			   ps.setInt(1, ldno);
 			   ResultSet rs=ps.executeQuery();
 			   rs.next();
 			   count=rs.getInt(1);
@@ -81,17 +81,17 @@ public class LikeDAO {
 	   }
 	   
 	   
-	   public int LikeOk(int pno,String id)
+	   public int LikeOk(int ldno,String id)
 	   {
 		   int count=0;
 		   try
 		   {
 			   conn=dbconn.getConnection();
 			   String sql="SELECT COUNT(*) "
-					     +"FROM goods_like "
-					     +"WHERE pno=? AND id=?";
+					     +"FROM DOG_LIKE "
+					     +"WHERE ldno=? AND id=?";
 			   ps=conn.prepareStatement(sql);
-			   ps.setInt(1, pno);
+			   ps.setInt(1, ldno);
 			   ps.setString(2, id);
 			   ResultSet rs=ps.executeQuery();
 			   rs.next();

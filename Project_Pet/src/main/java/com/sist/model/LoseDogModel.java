@@ -4,6 +4,7 @@ import java.util.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
@@ -39,6 +40,7 @@ public class LoseDogModel {
 		request.setAttribute("main_jsp", "../losedog/losedog.jsp");
 		return "../main/main.jsp";
 	}
+	
 	@RequestMapping("losedog/losedogdetail_before.do")
 	public String losedog_detail_before(HttpServletRequest request,HttpServletResponse response)
 	{
@@ -53,6 +55,7 @@ public class LoseDogModel {
 		response.addCookie(cookie);
 		return "redirect:../losedog/losedogdetail.do?ldno="+ldno;
 	}
+	
 	@RequestMapping("losedog/losedogdetail.do")
 	public String losedog_detail(HttpServletRequest request,HttpServletResponse response)
 	{
@@ -60,10 +63,22 @@ public class LoseDogModel {
 		// DAO 연결
 		LoseDogDAO dao=LoseDogDAO.newInstance();
 		LoseDogVO ldvo=dao.loseDogDetailData(Integer.parseInt(ldno));
-		
-		
 		request.setAttribute("ldvo", ldvo);
 		request.setAttribute("main_jsp", "../losedog/losedogdetail.jsp");
+		
+		//좋아요 부분 (정유나) 시작
+        HttpSession session=request.getSession();
+  	    String id=(String)session.getAttribute("id");
+  	    if(id!=null)
+  	    {
+  		  LikeDAO jdao=LikeDAO.newInstance();
+  		  int like_count=jdao.LikeOk(Integer.parseInt(ldno), id);
+  		  int like_total=jdao.LikeCount(Integer.parseInt(ldno));
+  		  request.setAttribute("like_count", like_count);
+  		  request.setAttribute("like_total", like_total);
+  	    }
+        //좋아요 부분 (정유나) 종료
+
 		return "../main/main.jsp";
 	}
 	

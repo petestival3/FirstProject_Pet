@@ -84,11 +84,19 @@
                                 </div>
                             </div>
                         </div>  -->
+                         <c:if test="${sessionScope.id!=null }">
+                             <c:if test="${like_count==0 }">
+                               <a href="../losedog/like_insert.do?ldno=${vo.ldno }" class="btn">좋아요(${like_total })</a>
+                             </c:if>
+                             <c:if test="${like_count!=0 }">
+                               <span class="btn">좋아요(${like_total }) 완료</span>
+                             </c:if>
+                            </c:if>
                         <a href="#" class="heart-icon" style="display: inline-block;"><span class="icon_heart_alt"></span></a>
                         &nbsp;
                         <a href="javascript:history.back()" class="primary-btn" style="font-weight: bold;">목록</a>
                         <ul>
-                            <li><b>작성자</b> <span>뒤 짜르면 쓴다..${ldvo.info }</span></li>
+                            <li><b>작성자</b> <span>${ldvo.info }</span></li>
                             <li><b>실종 장소</b> <span>${ldvo.loseloc } <samp></samp></span></li>
                             <li><b>실종 날짜</b> <span>${ldvo.losedate }</span></li>
                             <li><b>공유하기</b>
