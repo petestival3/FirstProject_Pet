@@ -151,6 +151,10 @@ public class MemberModel {
 			  session.setAttribute("id", vo.getId());
 			  session.setAttribute("name", vo.getName());
 			  session.setAttribute("admin", vo.getAdmin());
+			  session.setAttribute("email", vo.getEmail());
+			  session.setAttribute("phone", vo.getPhone());
+			  session.setAttribute("address", vo.getAddr1()+" "+vo.getAddr2());
+			  session.setAttribute("post", vo.getPost());
 		  }
 		  
 		  // ajax로 전송 

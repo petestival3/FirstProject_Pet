@@ -149,7 +149,7 @@ public class MemberDAO {
 			   }
 			   else
 			   {
-				  sql="SELECT id,name,pwd,phone,admin "
+				  sql="SELECT id,name,pwd,phone,admin,email,addr1,addr2,post "
 					 +"FROM member "
 					 +"WHERE id=?";
 				  ps=conn.prepareStatement(sql);
@@ -161,6 +161,11 @@ public class MemberDAO {
 				  String db_pwd=rs.getString(3);
 				  String phone=rs.getString(4);
 				  String admin=rs.getString(5);
+				  String email=rs.getString(6);
+				  String addr1=rs.getString(7);
+				  String addr2=rs.getString(8);
+				  String post=rs.getString(9);
+						  
 				  rs.close();
 				  
 				  if(db_pwd.equals(pwd))
@@ -169,6 +174,10 @@ public class MemberDAO {
 					  vo.setName(name);
 					  vo.setAdmin(admin);
 					  vo.setPhone(phone);
+					  vo.setEmail(email);
+					  vo.setAddr1(addr1);
+					  vo.setAddr2(addr2);
+					  vo.setPost(post);
 					  vo.setMsg("OK");
 				  }
 				  else
