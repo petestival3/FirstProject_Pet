@@ -239,8 +239,20 @@ function requestPay() {
                   
                         <a href="#" class="primary-btn text-center" style="width: 190px;">장바구니</a>
                           <a href="#" class="primary-btn text-center" style="width: 190px;" onclick="requestPay()">구매하기</a>
-                            <button>좋아요(${p_likeCount })</button>
-                            <button>찜하기</button>
+                            <c:if test="${sessionScope.id!=null }">
+                             <c:if test="${jjim_count==0 }">
+                              <a href="../mypage/jjim_insert.do?pno=${vo.pno }" class="btn">찜하기</a>
+                             </c:if>
+                             <c:if test="${jjim_count!=0 }">
+                               <span class="btn">찜하기 완료</span>
+                             </c:if>
+                             <c:if test="${like_count==0 }">
+                               <a href="../product/like_insert.do?pno=${vo.pno }" class="btn">좋아요(${like_total })</a>
+                             </c:if>
+                             <c:if test="${like_count!=0 }">
+                               <span class="btn">좋아요(${like_total }) 완료</span>
+                             </c:if>
+                            </c:if>
                       </div>
                
                     
