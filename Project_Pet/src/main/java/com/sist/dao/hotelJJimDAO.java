@@ -13,7 +13,8 @@ public class hotelJJimDAO {
 	// 싱글턴
 //		public static hotelJJimDAO newInstance() {
 //			if(dao==null)
-//				dao=new hotelJJimDAO();
+//				dao=new hotelJJimDAO()
+	;
 //			return dao;
 //		}
 //	  
