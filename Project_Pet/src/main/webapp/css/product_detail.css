@@ -243,7 +243,7 @@ margin-right:5px;
 }
 
 .qna_content:hover {
-    background-color: lightgray; /* 마우스 호버 시 배경색 변경 */
+   
     cursor: pointer; /* 마우스 호버 시 커서 모양 변경 (옵션) */
 }
 

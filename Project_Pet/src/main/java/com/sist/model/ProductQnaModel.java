@@ -31,6 +31,8 @@ public class ProductQnaModel {
 	public void Product_qna_list(HttpServletRequest request, HttpServletResponse response) {
 			String  pno= request.getParameter("pno");
 			String page=request.getParameter("page");
+			HttpSession session=request.getSession();
+			String id=(String)session.getAttribute("id");
 			if(page==null) {
 				page="1";
 			}
@@ -40,7 +42,7 @@ public class ProductQnaModel {
 			int totalpage=(int)Math.ceil(count/10.0);
 			int rowCount=count-((curpage*10)-10);
 			
-			System.out.println("토탈펭지ㅣ"+totalpage);
+			
 			curpage=Integer.parseInt(page);
 			
 			
@@ -63,7 +65,13 @@ public class ProductQnaModel {
 			JSONArray arr=new JSONArray();
 			List<QnaBoardVO>list=ProductQnaDAO.productQnaListData(map);
 			
+			if(list.size()==0) {
+				JSONObject obj=new JSONObject();
+				obj.put("totalpage",totalpage);
+				arr.add(obj);
+			}
 			
+			else {
 			int i=0;
 			for(QnaBoardVO vo : list) {
 				JSONObject obj=new JSONObject();
@@ -78,11 +86,12 @@ public class ProductQnaModel {
 				obj.put("qwriter", vo.getQwriter());
 				
 				if(i==0) {
-					obj.put("size", list.size());
+					obj.put("qnasize", list.size());
 					obj.put("rowcount", rowCount);
 					obj.put("totalpage", totalpage);
 					obj.put("startpage", startpage);
 					obj.put("endpage", endpage);
+					obj.put("id", id);
 					
 				}
 				
@@ -90,6 +99,8 @@ public class ProductQnaModel {
 				
 				i++;
 			}
+			
+		}
 			
 			  try
 	           {

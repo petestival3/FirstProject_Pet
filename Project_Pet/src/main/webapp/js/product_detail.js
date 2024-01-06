@@ -348,17 +348,29 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 		        data: { "pno": pno, "page": page},
 		        success: function (json){
 					let res=JSON.parse(json)
-					let qnaSize=res[0].size;
+					
 					let rowcount=res[0].rowcount
 					let totalpage=res[0].totalpage
 					let startpage=res[0].startpage
 					let endpage=res[0].endpage
+					let id=res[0].id
 					let input_qnaData=$('.input_qnaData')
 					
 					
 					let html=''
+					console.log(totalpage)
+					if(totalpage===0){
+						html+='<tr><td colspan=6><h2>작성된 문의가 없습니다.</h2></td></tr>'
+						
+					}
+			
+					else{	
 					for(vo of res){
-						html+='<tr class="qna_content" data-qna="'+vo.qno+'" style="width:200px;">'
+						
+						
+						if(vo.qwriter!==id && vo.secretcheck==='y'){
+							
+							html+='<tr class="qna_content scretContent" data-qna="'+vo.qno+'" style="width:200px;">'
 						html+='<td width:10%>'+rowcount+'</td>'
 						if(vo.answercheck==='n'){
 							html+='<td width:10%>답변대기중</td>'
@@ -368,15 +380,51 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 						}				
 						html+='<td width:15%>'+vo.qwriter+'</td>'
 						html+='<td width:15%>'+vo.qtitle+'</td>'
-						html+='<td width:35%>'+vo.qcontent+'</td>'
+						
+						if(vo.secretcheck==='y'){
+							html+='<td width:35%><img src="../img/key.jpg" width=20px;>작성자만 볼수있는 글입니다.</td>'
+						}
+						else{
+								html+='<td width:35%>'+vo.qcontent+'</td>'
+						}
+					
 						html+='<td width:15% style="font-size:10px;">'+vo.dbday+'</td>'
 						html+='</tr>'
 						
+							
+							
+						}
+						
+						
+						else{
+							
+						html+='<tr class="qna_content normalContent" data-qna="'+vo.qno+'" style="width:200px;">'
+						html+='<td width:10%>'+rowcount+'</td>'
+						if(vo.answercheck==='n'){
+							html+='<td width:10%>답변대기중</td>'
+						}		
+						else{
+							html+='<td width:10%>답변완료</td>'
+						}				
+						html+='<td width:15%>'+vo.qwriter+'</td>'
+						html+='<td width:15%>'+vo.qtitle+'</td>'
+						
+						if(vo.secretcheck==='y'){
+							html+='<td width:35%><img src="../img/key.jpg" width=20px;>'+vo.qcontent+'</td>'
+						}
+						else{
+								html+='<td width:35%>'+vo.qcontent+'</td>'
+						}
+					
+						html+='<td width:15% style="font-size:10px;">'+vo.dbday+'</td>'
+						html+='</tr>'
+						
+						}
 						rowcount-=1;
 					}
 					
 					 
-					html+='<tr><td class="product__pagination prod_page" colspan="6" style="padding-left:400px;"><ul class="pagination">'
+					html+='<tr><td class="product__pagination prod_page" colspan="6" style="padding-left:550px;"><ul class="pagination">'
 					if(startpage>1){
 					html+='<li><a id="qnaPagePrevBtn" data-startpage="'+startpage+'">&lt;</a></li>'
 					}
@@ -399,15 +447,18 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 					
 					html+='</ul></td></tr>'
 					
-					input_qnaData.html(html);
+					$('.selectQnaOption').show()
 				}
+				input_qnaData.html(html);
+			}
 						
 		})
 }
     
     
-    $(document).on('click', '.qna_content', function() {//내용 클릭시
+    $(document).on('click', '.normalContent', function() {//내용 클릭시
 	let qno = $(this).data('qna');
+	console.log(qno)
 		
 		
 });

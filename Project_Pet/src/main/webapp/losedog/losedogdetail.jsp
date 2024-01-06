@@ -86,7 +86,7 @@
                         </div>  -->
                          <c:if test="${sessionScope.id!=null }">
                              <c:if test="${like_count==0 }">
-                               <a href="../losedog/like_insert.do?ldno=${vo.ldno }" class="btn">좋아요(${like_total })</a>
+                               <a href="../losedog/like_insert.do?ldno=${ldvo.ldno }" class="btn">좋아요(${like_total })</a>
                              </c:if>
                              <c:if test="${like_count!=0 }">
                                <span class="btn">좋아요(${like_total }) 완료</span>

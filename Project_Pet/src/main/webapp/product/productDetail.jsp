@@ -584,6 +584,12 @@ function requestPay() {
                             <div class="tab-pane" id="p_tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc" id="pQna">
                                       <div class="product_qna_container">
+                                      	<div class="selectQnaOption" style="margin-bottom:15px; display:none;">
+                                      		<button class="btn btn-info" id="completeQ">답변완료</button>
+                                      		<button class="btn btn-info" id="NotcompleteQ">미답변</button>
+                                      		<button class="btn btn-info" id="latestQ">최신순</button>
+                                      		<button class="btn btn-info" id="oldQ">오래된순</button>
+                                      	</div>
                                          <table class="table text-center" id="qna_wrapper">
                                             <thead class="qna_firstData">
                                             <tr>
