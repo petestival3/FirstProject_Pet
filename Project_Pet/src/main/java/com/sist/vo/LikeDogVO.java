@@ -17,7 +17,7 @@ INCREMENT BY 1
 NOCYCLE
 NOCACHE;
  */
-public class LikeVO {
+public class LikeDogVO {
 	private int dogno,ldno;
 	private String id;
 	

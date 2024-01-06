@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8" import="java.util.*,com.sist.dao.*,com.sist.vo.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-    List<JJimVO> list=JJimDAO.JJimListData();
+List<JJimMapperVO> list=JJimMapperDAO.JJimListData();
     request.setAttribute("list", list);
 %>
 

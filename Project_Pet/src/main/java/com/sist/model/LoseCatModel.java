@@ -3,6 +3,7 @@ import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
@@ -45,6 +46,19 @@ public class LoseCatModel {
 		// DAO 연결
 		LoseCatDAO dao=LoseCatDAO.newInstance();
 		LoseCatVO lcvo=dao.loseCatDetailData(Integer.parseInt(lcno));
+		
+		//공감해요 부분 (정유나) 시작
+        HttpSession session=request.getSession();
+  	    String id=(String)session.getAttribute("id");
+  	    if(id!=null)
+  	    {
+  		  LikeDAO jdao=LikeDAO.newInstance();
+  		  int like_count=jdao.CatLikeOk(Integer.parseInt(lcno), id);
+  		  int like_total=jdao.CatLikeCount(Integer.parseInt(lcno));
+  		  request.setAttribute("like_count", like_count);
+  		  request.setAttribute("like_total", like_total);
+  	    }
+        //공감해요 부분 (정유나) 종료
 		
 		request.setAttribute("lcvo", lcvo);
 		request.setAttribute("main_jsp", "../losecat/losecatdetail.jsp");

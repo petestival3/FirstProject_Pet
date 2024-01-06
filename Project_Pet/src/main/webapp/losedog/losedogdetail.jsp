@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <style>
 .dog_banner_title{
 	margin: 0px auto;
@@ -86,13 +87,12 @@
                         </div>  -->
                          <c:if test="${sessionScope.id!=null }">
                              <c:if test="${like_count==0 }">
-                               <a href="../losedog/like_insert.do?ldno=${ldvo.ldno }" class="btn">좋아요(${like_total })</a>
+                               <a href="../losedog/like_insert.do?ldno=${ldvo.ldno }" class="primary-btn" style="font-weight: bold;"><i class="xi-heart-o"></i> 공감해요(${like_total })</a>
                              </c:if>
                              <c:if test="${like_count!=0 }">
-                               <span class="btn">좋아요(${like_total }) 완료</span>
+                               <span class="primary-btn" style="font-weight: bold;"><i class="xi-heart"></i> 공감해요(${like_total }) 완료</span>
                              </c:if>
                             </c:if>
-                        <a href="#" class="heart-icon" style="display: inline-block;"><span class="icon_heart_alt"></span></a>
                         &nbsp;
                         <a href="javascript:history.back()" class="primary-btn" style="font-weight: bold;">목록</a>
                         <ul>

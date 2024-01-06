@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sist.controller.RequestMapping;
-import com.sist.dao.JJimDAO;
+import com.sist.dao.JJimMapperDAO;
 import com.sist.dao.MemberDAO;
-import com.sist.vo.JJimVO;
+import com.sist.vo.JJimMapperVO;
 import com.sist.vo.MemberVO;
 
 public class JJimModel {
@@ -26,7 +26,7 @@ public class JJimModel {
 	public String mypage_jjim_cancle(HttpServletRequest request, HttpServletResponse response)
 	{
 		String no=request.getParameter("no");
-		JJimDAO dao=new JJimDAO();
+		JJimMapperDAO dao=new JJimMapperDAO();
 		dao.JJimDelete(Integer.parseInt(no));
 		
 		return "../mypage/my_JJim.do";

@@ -66,18 +66,18 @@ public class LoseDogModel {
 		request.setAttribute("ldvo", ldvo);
 		request.setAttribute("main_jsp", "../losedog/losedogdetail.jsp");
 		
-		//좋아요 부분 (정유나) 시작
+		//공감해요 부분 (정유나) 시작
         HttpSession session=request.getSession();
   	    String id=(String)session.getAttribute("id");
   	    if(id!=null)
   	    {
   		  LikeDAO jdao=LikeDAO.newInstance();
-  		  int like_count=jdao.LikeOk(Integer.parseInt(ldno), id);
-  		  int like_total=jdao.LikeCount(Integer.parseInt(ldno));
+  		  int like_count=jdao.DogLikeOk(Integer.parseInt(ldno), id);
+  		  int like_total=jdao.DogLikeCount(Integer.parseInt(ldno));
   		  request.setAttribute("like_count", like_count);
   		  request.setAttribute("like_total", like_total);
   	    }
-        //좋아요 부분 (정유나) 종료
+        //공감해요 부분 (정유나) 종료
 
 		return "../main/main.jsp";
 	}

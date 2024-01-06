@@ -41,7 +41,7 @@ SQL> desc Product_detail;
  P_REGDATE                                          DATE
 */
 
-public class JJimVO {
+public class JJimMapperVO {
     
     private int no;
     private String ID;

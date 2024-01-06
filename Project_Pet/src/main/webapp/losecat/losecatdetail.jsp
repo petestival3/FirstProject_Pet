@@ -81,7 +81,14 @@
                                 </div>
                             </div>
                         </div>  -->
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                            <c:if test="${sessionScope.id!=null }">
+                             <c:if test="${like_count==0 }">
+                               <a href="../losecat/like_insert.do?lcno=${lcvo.lcno }" class="primary-btn" style="font-weight: bold;"><i class="xi-heart-o"></i> 공감해요(${like_total })</a>
+                             </c:if>
+                             <c:if test="${like_count!=0 }">
+                               <span class="primary-btn" style="font-weight: bold;"><i class="xi-heart"></i> 공감해요(${like_total }) 완료</span>
+                             </c:if>
+                            </c:if>
                         &nbsp;
                         <a href="javascript:history.back()" class="primary-btn" style="font-weight: bold;">목록</a>
                         <ul>
