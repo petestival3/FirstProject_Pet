@@ -51,6 +51,7 @@ public class WishModel {
 		   dao.WishInsert(vo);
 		   return "redirect:../animal/animaldetail.do?kano="+kano;
 	   }
+	 
 	   @RequestMapping("mypage/wish_cancel.do")
 	   public String jjim_cancel(HttpServletRequest request,
 			   HttpServletResponse response)

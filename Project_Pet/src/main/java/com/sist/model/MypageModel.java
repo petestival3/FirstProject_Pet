@@ -69,6 +69,16 @@ public String resList(HttpServletRequest request, HttpServletResponse response)
 	
 	return "../main/main.jsp";
 }
+
+@RequestMapping("mypage/my_wish.do")
+public String wishList(HttpServletRequest request, HttpServletResponse response)
+{
+	request.setAttribute("mypage_jsp", "../mypage/my_wish.jsp");
+	request.setAttribute("main_jsp", "../mypage/mypage.jsp");
+	
+	return "../main/main.jsp";
+}
+
 @RequestMapping("mypage/my_petreg.do")
 public String petregData(HttpServletRequest request, HttpServletResponse response) throws IOException
 {
