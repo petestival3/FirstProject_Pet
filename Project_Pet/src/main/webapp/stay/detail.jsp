@@ -39,6 +39,7 @@ Shadowbox.init({
 })
 $(function(){
 		const sno=$('#staynumber').attr('data-stayno')
+		const totalp=$('#reviewprint').attr('data-totalno')
 		console.log(sno)
 		let revpage='1'
 		let typeno='1'
@@ -47,6 +48,32 @@ $(function(){
 			let fds=$(this).attr('value');
 			reviewlist(fds)
 		}) */
+	
+		$(".stayRevPrevBtn").click(function(){
+			console.log(totalp)
+			let cur=$('.stayRevCurpage').attr('data-cur')
+			console.log(cur);
+			if(Number(cur)<2){
+				reviewlist('1',sno,'1')
+			}else{
+				reviewlist('1',sno,Number(cur)-1)
+			}
+			
+		});	
+			
+		$(".stayRevNextBtn").click(function(){
+			console.log(totalp)
+			let cur=$('.stayRevCurpage').attr('data-cur')
+			console.log(cur);
+			if(cur===totalp){
+				reviewlist('1',sno,totalp)
+			}else{
+				reviewlist('1',sno,Number(cur)+1)
+			}
+			
+		});		
+		
+		
 	$("#review_write_Btn").click(function(){
 		Shadowbox.open({
 			content:'../review/insert.do?sno='+sno,
@@ -62,6 +89,9 @@ $(function(){
 		reviewlist(typeno,sno,revpage)//새로운 리뷰리스트 출력
 	   
 	});
+		
+	
+	
 	
 })
 
@@ -74,6 +104,7 @@ function reviewlist(typeno,objno,revpage){
 		success:function(json){
 			let res=JSON.parse(json);
 			let html='';
+			let totalpp=$('#reviewprint').attr('data-totalno');
 			for(let revo of res){
 				
 				html+='<div class="stayrevrow">';
@@ -115,8 +146,19 @@ function reviewlist(typeno,objno,revpage){
 					+'</div>'
 					+'</div>'
 					+'</div>'
-					
+				
 			}
+			html+='<div class="product__pagination">'
+				+'<span><button class="btn btn-sm btn-primary stayRevPrevBtn">&lt;</button></span>'
+				+'<span><div class="text-center"><h5 class="stayRevCurpage" data-cur="'+revpage+'">'+revpage+' page / '+totalpp+' pages</h5></div></span>'
+				+'<span><button class="btn btn-sm btn-primary stayRevNextBtn">&gt;</button></span>'
+				+'</div>'
+				 <%-- <div class="product__pagination">
+		      <span><button class="btn btn-lg btn-primary" id="stayRevPrevBtn">이전</button></span>
+            <div class="text-center"><h2>1 / ${reviewtotal } pages</h2></div>
+            <span><button class="btn btn-lg btn-primary" id="stayRevNextBtn">다음</button></span>
+          </div> --%>
+			
 			console.log(html)
 			$('#reviewprint').html(html)
 		}
@@ -432,9 +474,16 @@ function reviewlist(typeno,objno,revpage){
                             <!--     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="float:right;">리뷰 작성</button>  -->
                                 <button type="button" id="review_write_Btn" class="btn btn-info btn-sm" style="float:right;">리뷰 작성</button> 
                                 </div>
-                                <div class="review-container" id="reviewprint">
+                                <div class="review-container" id="reviewprint" data-totalno="${reviewtotal }">
 							      
 							    </div>
+							    
+							    <%-- <div class="product__pagination">
+							      <span><button class="btn btn-lg btn-primary" id="stayRevPrevBtn">이전</button></span>
+                                  <div class="text-center"><h2>1 / ${reviewtotal } pages</h2></div>
+                                  <span><button class="btn btn-lg btn-primary" id="stayRevNextBtn">다음</button></span>
+			                    </div> --%>
+							    
                                 </div>
                             </div>
                             <!-- Modal -->

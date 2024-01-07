@@ -70,7 +70,10 @@ public class StayModel {
 		dao.stayScoreUpdate(Integer.parseInt(stayno), 1);
 		StayVO vo=dao.stayDetail(Integer.parseInt(stayno));
 		List<RoomVO> rlist=dao.RoomListData(Integer.parseInt(stayno));
+		ReviewDAO rdao=ReviewDAO.newInstance();
+		int reviewtotal=rdao.reviewTotalPage(1, Integer.parseInt(stayno));
 		
+		request.setAttribute("reviewtotal", reviewtotal);
 		request.setAttribute("vo", vo);
 		request.setAttribute("rlist", rlist);
 		request.setAttribute("main_jsp", "../stay/detail.jsp");
