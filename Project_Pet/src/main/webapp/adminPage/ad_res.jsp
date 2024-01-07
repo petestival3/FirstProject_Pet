@@ -53,21 +53,17 @@
 	<div class="col-md-9">
 	<div class="reservation_container">
 		<div class="reservation_header">
-			<h2>예약내역</h2>
-		</div>
-		<!-- 예약 검색부 -->
-		<div>
-		  <h1>예약검색부 출력확인</h1>
+			<h2>회원 예약내역</h2>
 		</div>
 		<!-- 실제 예약내역 데이터를 반복적으로 표시하는 부분 -->
 		<div class="reservation_item">
-			<h3>숙소 예약</h3>
+			<h3>000 사용자 숙소 예약</h3>
 			<p>예약자명 : 심청이</p>
 			<p>예약일: 2023-01-01</p>
 			<p>숙소명: 펫플레이스</p>
 		</div>
 		<div class="reservation_item">
-			<h3>병원 예약</h3>
+			<h3>999 사용자 병원 예약</h3>
 			<p>예약자명 : 홍길동</p>
 			<p>예약일: 2023-02-15</p>
 			<p>병원명: 펫클리닉</p>

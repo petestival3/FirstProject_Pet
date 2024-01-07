@@ -40,12 +40,12 @@
 				<div class="my_menu">
 					<!--list-group : 수직 목록 생성-->
 					<div class="list-group">
-						<a href="../mypage/my_res.do"
-							class="list-group-item list-group-item-action">예약내역</a> <a
-							href="#" class="list-group-item list-group-item-action">결제내역</a>
-						<a href="#" class="list-group-item list-group-item-action">좋아요</a>
-						<a href="#" class="list-group-item list-group-item-action">회원정보관리</a>
-						<a href="#" class="list-group-item list-group-item-action">마이펫관리</a>
+						<a href="../adminPage/ad_res.do"
+							class="list-group-item list-group-item-action">사이트 예약내역</a> <a
+							href="../adminPage/ad_payment.do" class="list-group-item list-group-item-action">사이트 결제내역</a>
+						<a href="../adminPage/ad_page.do" class="list-group-item list-group-item-action">회원정보 관리</a>
+						<a href="#" class="list-group-item list-group-item-action">아직못정함</a>
+						<a href="#" class="list-group-item list-group-item-action">아직못정함</a>
 					</div>
 				</div>
 			</div>

@@ -25,7 +25,7 @@
                         <div class="header__top__right">
                           <c:if test="${sessionScope.admin=='y' }">
                            <div class="header__top__right__auth">
-                            <a href="../adminPage/ad_reserve.do"><i class="fa fa-user"></i> Adminpage</a>
+                            <a href="../adminPage/ad_page.do"><i class="fa fa-user"></i> Adminpage</a>
                             </div>
                           </c:if>
                           <c:if test="${sessionScope.id!=null }">

@@ -51,32 +51,32 @@ td:last-child {
 <div class="col-md-9" style="margin-top: 20px;">
 			<table class="table">
 					<tr>
-						<th colspan="2">Admin Page</th>
+						<th colspan="2">User Info</th>
 					</tr>
 					<tr>
 						<td rowspan="3"><img src="../img/mainlogo.png" class="my_profile"></td>
-						<td>이름</td>
+						<td>사용자 아이디 : </td>
 					</tr>
 					<tr>
-						<td>전화번호</td>
+						<td>사용자 전화번호 : </td>
 					</tr>
 					<tr>
-						<td>주소</td>
+						<td>사용자 주소 : </td>
 					</tr>
 				</table>
 				<table class="table">
 					<tr>
-						<th colspan="2">MyPet Profile</th>
+						<th colspan="2">User Info</th>
 					</tr>
 					<tr>
-						<td rowspan="3"><img src="../img/do.jpg" class="my_profile"></td>
-						<td>이름</td>
+						<td rowspan="3"><img src="../img/mainlogo.png" class="my_profile"></td>
+						<td>사용자 아이디 : </td>
 					</tr>
 					<tr>
-						<td>성별</td>
+						<td>사용자 전화번호 : </td>
 					</tr>
 					<tr>
-						<td>생년월일</td>
+						<td>사용자 주소 : </td>
 					</tr>
 				</table>
 			</div>
