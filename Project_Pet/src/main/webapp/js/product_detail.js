@@ -375,7 +375,8 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 						
 						//
 						
-					
+						  
+                
 						
 						
 						//
@@ -422,7 +423,7 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 						
 						else{
 							
-						html+='<tr class="qna_content normalContent" data-qna="'+vo.qno+'" style="width:200px;">'
+						html+='<tr class="qna_content normalContent" data-qna="'+vo.qno+'" data-answercheck="'+vo.answercheck+'" style="width:200px;">'
 						html+='<td width:10%>'+rowcount+'</td>'
 						if(vo.answercheck==='n'){
 							html+='<td width:10%>답변대기중</td>'
@@ -443,9 +444,11 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 						html+='<td width:15% style="font-size:14px;">'+vo.dbday+'</td>'
 						html+='</tr>'
 						
+					
 						
-						rowcount-=1;
 						}
+						
+							rowcount-=1;
 					}
 					
 					 
@@ -481,7 +484,74 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 		
 }
     
+  
+$(document).on('click', '.normalContent', function() {
+	let qno =$(this).data('qna')
+	let answercheck=$(this).data('answercheck')
+	 console.log(qno)
+	 console.log(answercheck)
+	 
+	 
+	 
+	  		let p_name=''
+	  		let printQwriter = "";
+	  		let qtitle=''
+	  		let filename=''
+	  		let qcontent=''
+	  		let antitle='no'
+	  		let ancontent='no'
+                  $.ajax({
+                               type: 'post',
+                                url: 'product_qna_sendAnswerData.do',
+                                data: { "qno":qno,"answercheck":answercheck},
+                                success: function (json){
+                                 let res2=JSON.parse(json)
+                                 p_name=res2.p_name
+                                 
+                                 qtitle =res2.qtitle
+                                 filename=res2.filename
+                                 qcontent=res2.qcontent
+                                 if(answercheck==='y'){
+                                 antitle=res2.antitle
+                                 ancontent=res2.ancontent
+                                 }
+                                 
+                               
+                                       if (res2.qwriter.length > 3) {
+                                           printQwriter=  res2.qwriter.slice(0, -3) + '***';
+                                       } else if (res2.qwriter.length === 3) {
+                                           printQwriter =  res2qwriter.slice(0, -2) + '**';
+                                       } else if (res2.qwriter.length === 2) {
+                                           printQwriter = '**' + res2qwriter.slice(0, -1) + '*';
+                                       } else {
+                                           printQwriter = res2.qwriter;
+                                       }
+                                       
+                                 
+                                 
+                                 
+                                 		  Shadowbox.open({
+										        content: '../product/product_qna_answer.do?p_name='+p_name+'&qwriter='+printQwriter
+										        			+'&qtitle='+qtitle+'&filename='+filename+'&qcontent='+qcontent+'&antitle='+antitle
+										        			+'&ancontent='+ancontent,
+										        player: 'iframe',
+										        title: '문의하기',
+										        width: 800,
+										        height: 800,
+										    });
+                                 
+                                 
+                                 
+                     
+                                 }
+                                    
+                                 
+                              })
+                
+	
     
+});
+ 
 
  $(document).on('click', '.secretContent', function() {//시크릿 내용클릭시
 
@@ -522,7 +592,7 @@ $('.qop').removeClass('btn-primary')
 $('.qop').addClass('btn-info')
 $('#latestQ').removeClass('btn-info')
 $('#latestQ').addClass('btn-primary')
-		qtype=1
+		qntype=1
 		qnaList(1)
 			
 		
@@ -533,7 +603,7 @@ $('.qop').removeClass('btn-primary')
 $('.qop').addClass('btn-info')
 $('#oldQ').removeClass('btn-info')
 $('#oldQ').addClass('btn-primary')
-		qtype=2
+		qntype=2
 		qnaList(1)
 		
 });
@@ -544,7 +614,7 @@ $('.qop').removeClass('btn-primary')
 $('.qop').addClass('btn-info')
 $('#completeQ').removeClass('btn-info')
 $('#completeQ').addClass('btn-primary')
-		qtype=3
+		qntype=3
 		qnaList(1)
 });
 
@@ -553,7 +623,7 @@ $('.qop').removeClass('btn-primary')
 $('.qop').addClass('btn-info')
 $('#NotcompleteQ').removeClass('btn-info')
 $('#NotcompleteQ').addClass('btn-primary')
-		qtype=4
+		qntype=4
 		qnaList(1)
 		
 });

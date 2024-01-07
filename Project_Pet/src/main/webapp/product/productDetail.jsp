@@ -22,9 +22,7 @@
 
 <style type="text/css">
 
-*{
-border:1px black solid;
-}
+
 
 .review-container {
     box-shadow: none; /* 특정 스타일을 없애고자 할 때, 값을 none으로 설정 */

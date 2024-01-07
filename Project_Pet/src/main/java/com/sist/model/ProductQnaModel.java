@@ -32,7 +32,7 @@ final int rowsize=10;
 	@RequestMapping("product/product_qna.do")
 	public void Product_qna_list(HttpServletRequest request, HttpServletResponse response) {
 		
-		System.out.println("실행");
+		
 			String  pno= request.getParameter("pno");
 			String page=request.getParameter("page");
 			String type=request.getParameter("qtype");
@@ -77,7 +77,7 @@ final int rowsize=10;
 				
 			JSONArray arr=new JSONArray();
 			List<QnaBoardVO>list=ProductQnaDAO.productQnaListData(map);
-			System.out.println(list.size());
+			
 			if(list.size()==0) {
 				JSONObject obj=new JSONObject();
 				obj.put("totalpage",totalpage);
@@ -131,7 +131,7 @@ final int rowsize=10;
 	//jsp로 pno값 전송 (쉐도우박스데이터받기위해)
 	@RequestMapping("product/product_qna_sendData.do")
 	   public String product_qna_sendData(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("실행");
+		
 	         String  pno= request.getParameter("pno");
 	         
 	         request.setAttribute("pno", pno);
@@ -217,7 +217,7 @@ final int rowsize=10;
 	@RequestMapping("product/product_qna_sendAnswerData.do")
 	   public void product_qna_sendAnwerData(HttpServletRequest request, HttpServletResponse response) {
 	      
-		
+			
 			 try {
 				request.setCharacterEncoding("UTF-8");
 			} catch (UnsupportedEncodingException e) {
@@ -225,8 +225,10 @@ final int rowsize=10;
 				e.printStackTrace();
 			}
 			 String  qno= request.getParameter("qno");
+			
 	        
-	         String answercheck=request.getParameter("sendanswercheck");
+	         String answercheck=request.getParameter("answercheck");
+	       
 	         
 	         String p_name=ProductQnaDAO.ProductQnaGetPname(Integer.parseInt(qno));
 	        
@@ -260,7 +262,7 @@ final int rowsize=10;
 				obj.put("ancontent", vo.getQavo().getAncontent());
 			}
 	         
-	       
+	       System.out.println(obj);
 	         
 	         try
 	           {
@@ -275,12 +277,29 @@ final int rowsize=10;
 	       
 	   }
 	
-	@RequestMapping("product/test.do")
-	   public void test(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("실행");
-	      
-	   }
 	
+	@RequestMapping("product/product_qna_answer.do")
+	   public String product_qna_answer(HttpServletRequest request, HttpServletResponse response) {
+		String p_name=request.getParameter("p_name");
+		String qwriter=request.getParameter("qwriter");
+		String qtitle=request.getParameter("qtitle");
+		String filename=request.getParameter("filename");
+		String qcontent=request.getParameter("qcontent");
+		String antitle=request.getParameter("antitle");
+		String ancontent =request.getParameter("ancontent");
+		
+		request.setAttribute("p_name", p_name);
+		request.setAttribute("qwriter", qwriter);
+		request.setAttribute("qtitle", qtitle);
+		request.setAttribute("filename", filename);
+		request.setAttribute("qcontent", qcontent);
+		request.setAttribute("antitle", antitle);
+		request.setAttribute("ancontent", ancontent);
+	      
+	         
+
+	      return "../product/productQnaAnswer.jsp";
+	   }
 	
 	
 	

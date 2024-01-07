@@ -256,4 +256,5 @@ margin-right:5px;
     white-space: nowrap; /* 넘치는 텍스트를 한 줄에 표시합니다. */
     overflow: hidden; /* 넘치는 부분을 숨깁니다. */
     text-overflow: ellipsis; /* 넘칠 때 ...으로 표시합니다. */
+    
 }
