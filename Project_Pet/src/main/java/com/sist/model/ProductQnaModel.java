@@ -3,6 +3,7 @@ package com.sist.model;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,19 +27,30 @@ import com.sist.vo.ReviewVO;
 
 public class ProductQnaModel {
 
-	final int rowsize=10;
+final int rowsize=10;
+	
 	@RequestMapping("product/product_qna.do")
 	public void Product_qna_list(HttpServletRequest request, HttpServletResponse response) {
+		
+		System.out.println("실행");
 			String  pno= request.getParameter("pno");
 			String page=request.getParameter("page");
+			String type=request.getParameter("qtype");
 			HttpSession session=request.getSession();
 			String id=(String)session.getAttribute("id");
 			if(page==null) {
 				page="1";
 			}
 			
+			if(type==null) {
+				type="1";
+			}
+			
+			Map countMap=new HashMap();
+			countMap.put("pno", pno);
+			countMap.put("type", type);
 			int curpage=Integer.parseInt(page);
-			int count=ProductQnaDAO.productQnaCount(Integer.parseInt(pno));
+			int count=ProductQnaDAO.productQnaCount(countMap);
 			int totalpage=(int)Math.ceil(count/10.0);
 			int rowCount=count-((curpage*10)-10);
 			
@@ -61,10 +73,11 @@ public class ProductQnaModel {
 				map.put("end", end);
 				map.put("pno", pno);
 				map.put("page",curpage );
+				map.put("type", type);
 				
 			JSONArray arr=new JSONArray();
 			List<QnaBoardVO>list=ProductQnaDAO.productQnaListData(map);
-			
+			System.out.println(list.size());
 			if(list.size()==0) {
 				JSONObject obj=new JSONObject();
 				obj.put("totalpage",totalpage);
@@ -118,6 +131,7 @@ public class ProductQnaModel {
 	//jsp로 pno값 전송 (쉐도우박스데이터받기위해)
 	@RequestMapping("product/product_qna_sendData.do")
 	   public String product_qna_sendData(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("실행");
 	         String  pno= request.getParameter("pno");
 	         
 	         request.setAttribute("pno", pno);
@@ -198,4 +212,76 @@ public class ProductQnaModel {
 	        
 	      
 	   }
+	
+	
+	@RequestMapping("product/product_qna_sendAnswerData.do")
+	   public void product_qna_sendAnwerData(HttpServletRequest request, HttpServletResponse response) {
+	      
+		
+			 try {
+				request.setCharacterEncoding("UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 String  qno= request.getParameter("qno");
+	        
+	         String answercheck=request.getParameter("sendanswercheck");
+	         
+	         String p_name=ProductQnaDAO.ProductQnaGetPname(Integer.parseInt(qno));
+	        
+	         QnaBoardVO vo=new QnaBoardVO();
+	         if (answercheck.equals("y")) {
+	        	  vo= ProductQnaDAO.productQnaAnswerData(Integer.parseInt(qno));
+	   	      
+			}
+	         else {
+	        	 vo= ProductQnaDAO.productQnaNoAnswerData(Integer.parseInt(qno));
+	         }
+	        
+	         JSONObject obj=new JSONObject();
+	        
+	         obj.put("p_name", p_name);
+	       
+	         obj.put("qwriter", vo.getQwriter());
+	       
+	         obj.put("qtitle",vo.getQtitle());
+	         obj.put("qcontent", vo.getQcontent());
+	       
+	         if(vo.getFilename()==null) {
+	        	 obj.put("filename", "no");
+	         }
+	         else {
+	        	 obj.put("filename", vo.getFilename());
+	         }
+	         
+	         if (answercheck.equals("y")) {
+				obj.put("antitle", vo.getQavo().getAntitle());
+				obj.put("ancontent", vo.getQavo().getAncontent());
+			}
+	         
+	       
+	         
+	         try
+	           {
+	              response.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
+	              PrintWriter out=response.getWriter();
+	            
+	              out.write(obj.toJSONString());
+	           }catch(Exception ex) {
+	        	   ex.printStackTrace();
+	           }
+	         
+	       
+	   }
+	
+	@RequestMapping("product/test.do")
+	   public void test(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("실행");
+	      
+	   }
+	
+	
+	
+	
 }

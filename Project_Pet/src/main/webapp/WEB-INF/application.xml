@@ -17,8 +17,8 @@
    <bean id="review" class="com.sist.model.ReviewModel"></bean>
    <bean id="reserve" class="com.sist.model.ReserveModel"></bean>
    <bean id="like" class="com.sist.model.LikeModel"></bean>
-   <bean id="jjim" class="com.sist.model.JJimModel"></bean>
-    <bean id="productqna" class="com.sist.model.ProductQnaModel"></bean>
+   <bean id="productqna" class="com.sist.model.ProductQnaModel"></bean>
    <bean id="fbr" class="com.sist.model.FreeBoardReplyModel"></bean>
    <bean id="notice" class="com.sist.model.NoticeModel"></bean>
+  
 </beans>

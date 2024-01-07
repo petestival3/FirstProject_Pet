@@ -3,6 +3,7 @@ package com.sist.model;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sist.controller.DispatcherServlet;
 import com.sist.controller.RequestMapping;
 import java.util.*;
 import com.sist.dao.*;
@@ -12,6 +13,7 @@ public class MainModel {
 	@RequestMapping("main/main.do")
 	public String main_main(HttpServletRequest request, HttpServletResponse response)
 	{
+	
 		
 		String ssss="가평";
 		ProductDAO pdao=ProductDAO.newInstace();

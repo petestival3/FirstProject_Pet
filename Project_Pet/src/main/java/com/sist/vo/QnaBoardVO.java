@@ -134,6 +134,20 @@ public class QnaBoardVO {
 		this.qregdate = qregdate;
 	}
 	
-	
+private	QnaAdminReplyVO qavo=new QnaAdminReplyVO();
+private ProductVO  pvo=new ProductVO();
+public ProductVO getPvo() {
+	return pvo;
+}
+public void setPvo(ProductVO pvo) {
+	this.pvo = pvo;
+}
+public QnaAdminReplyVO getQavo() {
+	return qavo;
+}
+public void setQavo(QnaAdminReplyVO qavo) {
+	this.qavo = qavo;
+}
+
 	
 }

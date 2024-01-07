@@ -53,13 +53,13 @@ public class ProductQnaDAO {
 		}
 		
 		
-		public static int productQnaCount(int pno) {
+		public static int productQnaCount(Map map) {
 			int count=0;
 			SqlSession session =null;
 			
 			try {
 				session=ssf.openSession();
-				count=session.selectOne("productQnaCount",pno);
+				count=session.selectOne("productQnaCount",map);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -117,5 +117,66 @@ public class ProductQnaDAO {
 			}
 			return count;
 		}
+		
+		
+		
+		
+		public static String ProductQnaGetPname(int qno) {
+			String p_name="";
+			SqlSession session =null;
+			
+			try {
+				session=ssf.openSession();
+				p_name=session.selectOne("ProductQnaGetPname",qno);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			finally {
+				if(session!=null) {
+					session.close();
+				}
+			}
+			return p_name;
+		}
+		
+		
+		public static QnaBoardVO productQnaAnswerData(int qno) {
+			
+			SqlSession session =null;
+			QnaBoardVO vo=new QnaBoardVO();
+			try {
+				session=ssf.openSession();
+				vo=session.selectOne("productQnaAnswerData",qno);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			finally {
+				if(session!=null) {
+					session.close();
+				}
+			}
+			return vo;
+		}
 	
+		
+public static QnaBoardVO productQnaNoAnswerData(int qno) {
+			
+			SqlSession session =null;
+			QnaBoardVO vo=new QnaBoardVO();
+			try {
+				session=ssf.openSession();
+				vo=session.selectOne("productQnaAnswerNotData",qno);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			finally {
+				if(session!=null) {
+					session.close();
+				}
+			}
+			return vo;
+		}
 }

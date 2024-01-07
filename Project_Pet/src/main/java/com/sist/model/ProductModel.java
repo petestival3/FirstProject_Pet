@@ -410,7 +410,7 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
    //상품 리뷰를 ajax로 새로고침된 리스트를 보내기 위한 모델
    @RequestMapping("product/Product_review_newList.do")
    public void Product_review_newList(HttpServletRequest request, HttpServletResponse response) {
-      
+      System.out.println("실행");
       try {
          request.setCharacterEncoding("UTF-8");
       } catch (Exception e) {
