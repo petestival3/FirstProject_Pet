@@ -116,7 +116,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+.kyj_textarea {
+    border-radius: 10px; /* 테두리 둥글게 설정 */
+    padding: 10px; /* 안쪽 여백 설정 */
+    font-family: Arial, sans-serif; /* 폰트 설정 */
+    font-size: 14px; /* 폰트 크기 설정 */
+    resize: vertical; /* 수직 리사이징 설정 */
+    border: 1px solid #ccc; /* 테두리 스타일 및 색상 설정 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 설정 */
+    outline: none; /* 포커스 시 테두리 제거 */
+     resize: none; /* 길이 조절 비활성화 */
+}
 
+/* 포커스 시 테두리 스타일 설정 */
+.kyj_textarea:focus {
+    border-color: DodgerBlue;
+}
 </style>
 </head>
 <body  style="background-color: #ffffff;">
@@ -132,7 +147,7 @@
    <div class="review_insert_textarea">
    <input type="file" id="review_insert_img_file" name="review_upload" onchange="previewImage(event)" style="margin-right:260px; margin-bottom:20px;">  
    <div class="review_insert_userid" style="margin-right:400px; margin-bottom:10px; opacity:0.7">${sessionScope.id}님의 후기</div>
-   <textarea id="p_review_content" rows="20" cols="70"></textarea>
+   <textarea class="kyj_textarea" id="p_review_content" rows="20" cols="70"></textarea>
    </div>
    
 

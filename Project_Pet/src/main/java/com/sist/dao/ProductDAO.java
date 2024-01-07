@@ -81,9 +81,9 @@ public List<ProductVO> productBystackList(String ct,int page){ //상품 품절�
 	try {
 		
 		conn= dbconn.getConnection();
-		String sql="SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack num "
-					+"FROM (SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack,rownum as num "
-					+"FROM (SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack FROM product_detail "
+		String sql="SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack,p_price,p_grade,p_hit, num "
+					+"FROM (SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack,p_price,p_grade,p_hit,rownum as num "
+					+"FROM (SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack,p_price,p_grade,p_hit FROM product_detail "
 					+ "WHERE P_STACK <3 AND P_STACK>0 "+msg+" ORDER BY p_stack ASC"
 					+")) " +"WHERE num BETWEEN ? and ?";
 		ps=conn.prepareStatement(sql);
@@ -106,6 +106,9 @@ public List<ProductVO> productBystackList(String ct,int page){ //상품 품절�
 			vo.setP_lower_price(rs.getString(5));
 			vo.setP_category(rs.getString(6));
 			vo.setP_stack(rs.getInt(7));
+			vo.setP_price(rs.getString(8));
+			vo.setP_grade(rs.getDouble(9));
+			vo.setP_hit(rs.getInt(10));
 			list.add(vo);
 			
 		}
@@ -142,9 +145,9 @@ public List<ProductVO> productByASCList(String ct,int page,String rt){ //상품 
 		int end= ROW_SIZE*page;
 		
 		conn= dbconn.getConnection();
-		String sql="SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack num "
-					+"FROM (SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack,rownum as num "
-					+"FROM (SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack FROM product_detail "
+		String sql="SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack,p_price,p_grade,p_hit,num "
+					+"FROM (SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack,p_price,p_grade,p_hit,rownum as num "
+					+"FROM (SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack,p_price,p_grade,p_hit FROM product_detail "
 					+ msg+" ORDER BY "+rt+" ASC "
 					+")) " +"WHERE num BETWEEN ? and ? ";
 		ps=conn.prepareStatement(sql);
@@ -166,6 +169,9 @@ public List<ProductVO> productByASCList(String ct,int page,String rt){ //상품 
 			vo.setP_lower_price(rs.getString(5));
 			vo.setP_category(rs.getString(6));
 			vo.setP_stack(rs.getInt(7));
+			vo.setP_price(rs.getString(8));
+			vo.setP_grade(rs.getDouble(9));
+			vo.setP_hit(rs.getInt(10));
 			list.add(vo);
 			
 		}
@@ -203,9 +209,9 @@ public List<ProductVO> productByDescList(String ct,int page,String rt){ //상품
 	try {
 		
 		conn= dbconn.getConnection();
-		String sql="SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack num "
-					+"FROM (SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack,rownum as num "
-					+"FROM (SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack FROM product_detail "
+		String sql="SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack,p_price,p_grade,p_hit,num "
+					+"FROM (SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack,p_price,p_grade,p_hit,rownum as num "
+					+"FROM (SELECT pno,p_name,p_image,p_percent,p_lower_price,p_category,p_stack,p_price,p_grade,p_hit FROM product_detail "
 					+ msg+" ORDER BY "+rt+ " DESC "
 					+")) " +"WHERE num BETWEEN ? and ?";
 		ps=conn.prepareStatement(sql);
@@ -229,6 +235,9 @@ public List<ProductVO> productByDescList(String ct,int page,String rt){ //상품
 			vo.setP_lower_price(rs.getString(5));
 			vo.setP_category(rs.getString(6));
 			vo.setP_stack(rs.getInt(7));
+			vo.setP_price(rs.getString(8));
+			vo.setP_grade(rs.getDouble(9));
+			vo.setP_hit(rs.getInt(10));
 			list.add(vo);
 			
 		}
@@ -379,7 +388,7 @@ public ProductVO productDetail_Before(int pno) { //상품상세보기 클릭시 
 		conn=dbconn.getConnection();
 		
 		
-		String sql="SELECT pno,p_name,p_lower_price,p_image from product_detail where pno="+pno;
+		String sql="SELECT pno,p_name,p_lower_price,p_image,p_grade,p_price,p_percent,p_hit from product_detail where pno="+pno;
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			rs.next();
@@ -387,6 +396,10 @@ public ProductVO productDetail_Before(int pno) { //상품상세보기 클릭시 
 			vo.setP_name(rs.getString(2));
 			vo.setP_lower_price(rs.getString(3));
 			vo.setP_image(rs.getString(4));
+			vo.setP_grade(rs.getDouble(5));
+			vo.setP_price(rs.getString(6));
+			vo.setP_percent(rs.getString(7));
+			vo.setP_hit(rs.getInt(8));
 			rs.close();
 		
 	} catch (Exception e) {
@@ -476,9 +489,9 @@ public List<ProductVO> productRelativeList(int pno){//상품 상세보기의 관
 			rs.close();
 			
 			
-			sql="SELECT pno,p_image,p_name,p_lower_price,num "
-						+"FROM(SELECT pno,p_image,p_name,p_lower_price,ROWNUM as num "
-						+"FROM (SELECT pno,p_image,p_name,p_lower_price FROM product_detail "
+			sql="SELECT pno,p_image,p_name,p_lower_price,p_grade,p_price,p_percent,p_hit,num "
+						+"FROM(SELECT pno,p_image,p_name,p_lower_price,p_grade,p_price,p_percent,p_hit,ROWNUM as num "
+						+"FROM (SELECT pno,p_image,p_name,p_lower_price,p_grade,p_price,p_percent,p_hit FROM product_detail "
 						+"WHERE p_category=? ORDER BY p_hit DESC)) "
 						+"WHERE num BETWEEN 1 AND 5";
 			
@@ -492,6 +505,10 @@ public List<ProductVO> productRelativeList(int pno){//상품 상세보기의 관
 				vo.setP_image(rs.getString(2));
 				vo.setP_name(rs.getString(3));
 				vo.setP_lower_price(rs.getString(4));
+				vo.setP_grade(rs.getDouble(5));
+				vo.setP_price(rs.getString(6));
+				vo.setP_percent(rs.getString(7));
+				vo.setP_hit(rs.getInt(8));
 
 				list.add(vo);	
 				
@@ -560,9 +577,9 @@ public List<ProductVO> productSearchList(String sct,String ss,int page){//상품
 	List<ProductVO>list= new ArrayList<ProductVO>();
 	try {
 		conn=dbconn.getConnection();
-		String sql="SELECT pno,p_name,p_image,p_lower_price,num "
-				   +"FROM (SELECT pno,p_name,p_image,p_lower_price,rownum as num "
-				   +"FROM (SELECT pno,p_name,p_image,p_lower_price "
+		String sql="SELECT pno,p_name,p_image,p_lower_price,p_hit,p_grade,p_price,p_percent,num "
+				   +"FROM (SELECT pno,p_name,p_image,p_lower_price,p_hit,p_grade,p_price,p_percent,rownum as num "
+				   +"FROM (SELECT pno,p_name,p_image,p_lower_price,p_hit,p_grade,p_price,p_percent "
 				   +"FROM PRODUCT_DETAIL "
 				   +msg +")) "
 				   +"WHERE num BETWEEN ? AND ?";
@@ -589,6 +606,10 @@ public List<ProductVO> productSearchList(String sct,String ss,int page){//상품
 			vo.setP_name(rs.getString(2));
 			vo.setP_image(rs.getString(3));
 			vo.setP_lower_price(rs.getString(4));
+			vo.setP_hit(rs.getInt(5));
+			vo.setP_grade(rs.getDouble(6));
+			vo.setP_price(rs.getString(7));
+			vo.setP_percent(rs.getString(8));
 			list.add(vo);
 		}
 		rs.close();

@@ -143,14 +143,7 @@ function requestPay() {
     
           <table class="up_to_image" style="margin-left:20px;">
              
-             <tr>
-             
-             <td>
-                     <span id="kyj_top_link"><a href="${url}"><img src="../img/left.png.svg" alt="">목록</a></span>
-                  
-                   
-                   </td>
-               </tr>
+            
            </table>
         <div class="container">
        
@@ -183,13 +176,78 @@ function requestPay() {
 
                         
                         <div class="product__details__rating ">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                       
-                            <span>(18 reviews)</span>
+                          						
+                          				<c:if test="${vo.p_grade==0}">
+                                            <i class="fa fa-star-half-o"></i>
+                                           </c:if>		
+                          						
+											
+									<c:if test="${vo.p_grade>=0.5 and vo.p_grade<1 }">
+                                            <i class="fa fa-star-half-o"></i>
+                                           </c:if>
+                                           
+                                           <c:if test="${vo.p_grade>=1 and vo.p_grade<1.5 }">
+                                             <i class="fa fa-star"></i>
+                                           </c:if>
+                                           
+                                              <c:if test="${vo.p_grade>=1.5 and vo.p_grade<2 }">
+                                             <i class="fa fa-star"></i>
+                         			   <i class="fa fa-star-half-o"></i>
+                                           </c:if>
+                                           
+                                           <c:if test="${vo.p_grade>=2 and vo.p_grade<2.5 }">
+                                            <i class="fa fa-star"></i>
+                           					 <i class="fa fa-star"></i>
+                                           </c:if>
+                                           
+                                           <c:if test="${vo.p_grade>=2.5 and vo.p_grade<3 }">
+                                           <i class="fa fa-star"></i>
+                         		   		   <i class="fa fa-star"></i>
+                                          <i class="fa fa-star-half-o"></i>
+                                           </c:if>
+                                           
+                                           <c:if test="${vo.p_grade>=3 and vo.p_grade<3.5 }">
+                                           <i class="fa fa-star"></i>
+                         		      		 <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           </c:if>
+                                           
+                                           <c:if test="${vo.p_grade>=3.5 and vo.p_grade<4 }">
+                                         	  <i class="fa fa-star"></i>
+                         			 		  <i class="fa fa-star"></i>
+                       			   			  <i class="fa fa-star"></i>
+                         			 		  <i class="fa fa-star-half-o"></i>
+                                           </c:if>
+                                           
+                                              <c:if test="${vo.p_grade>=4 and vo.p_grade<4.5 }">
+                                           	 <i class="fa fa-star"></i>
+                          			 		 <i class="fa fa-star"></i>
+                         			 		  <i class="fa fa-star"></i>
+                           		   			 <i class="fa fa-star"></i>
+                                                </c:if>
+                                           
+                                           
+                                              <c:if test="${vo.p_grade>=4.5 and vo.p_grade<5 }">
+                                              
+                                              
+                                       		 <i class="fa fa-star"></i>
+                           					 <i class="fa fa-star"></i>
+                            				<i class="fa fa-star"></i>
+                         			        <i class="fa fa-star"></i>
+                            				<i class="fa fa-star-half-o"></i>
+                                                
+                                                
+                                              </c:if>
+
+
+					 					<c:if test="${vo.p_grade>=5 }">
+                                       		 	 <i class="fa fa-star"></i>
+                           			 			<i class="fa fa-star"></i>
+                            					<i class="fa fa-star"></i>
+                         			       	 	<i class="fa fa-star"></i>
+                            			  		<i class="fa fa-star"></i>
+                                              </c:if>
+                            <span>(${reviewamount } reviews)</span>
                              
                         </div>
                        
@@ -224,9 +282,11 @@ function requestPay() {
     <div class="kyj__details__quantity">
         <div class="kyj__quantity">
             <div class="kyj__input-container">
-                <button class="kyj__decreaseBtn">-</button>
+            <button class="kyj__decreaseBtn btn">-</button>
+
+
                 <input type="text" value="1" class="kyj__calculate">
-                <button class="kyj__increaseBtn">+</button>
+                <button class="kyj__increaseBtn btn">+</button>
             </div>
         </div>
          <h2><span id="kyj_total_price"></span></h2><!-- 총액 계싼 -->
@@ -237,9 +297,9 @@ function requestPay() {
 
                <div class="bottom_cate" style=" ">
                   
-                        <a href="#" class="primary-btn text-center" style="width: 190px;">장바구니</a>
-                          <a href="#" class="primary-btn text-center" style="width: 190px;" onclick="requestPay()">구매하기</a>
-                           
+                        <a href="#" class="primary-btn text-center" style="width: 190px; background-color:DodgerBlue;">장바구니</a>
+                          <a href="#" class="primary-btn text-center" style="width: 190px; background-color:DodgerBlue;" onclick="requestPay()">구매하기</a>
+                           <span id="kyj_top_link"><a href="${url}" style="background-color: #FFA500; color:white;">목록으로</a></span>
                       </div>
                
                     
@@ -609,7 +669,13 @@ function requestPay() {
                                             </tbody>
                                          </table>
                                             <div class="qna_firstData" style="margin-bottom:40px;">
-                                               <div><button id="p_qnaBtn" class="btn btn-danger">상품문의하기</button></div>
+                                              <c:if test="${sessionScope.id==null || sessionScope.id=='' }">
+                                             <span>로그인 후 문의등록이 가능합니다.</span>
+                                          </c:if>
+                                            <c:if test="${sessionScope.id!=null }">
+                                              <div><button id="p_qnaBtn" class="btn btn-danger">상품문의하기</button></div>
+                                          </c:if>
+                                             
                                             
                                             </div>
                                             
@@ -646,7 +712,7 @@ function requestPay() {
                           <c:param name="page" value="${page}"/>
                           </c:url>
                     
-                        <div class="product__item__pic set-bg"><a href="<c:out value="${curl}" />"><img class="customimage" src="${cvo.p_image }">
+                        <a href="<c:out value="${curl}" />"><div class="product__item__pic set-bg"><img class="customimage" src="${cvo.p_image }">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -655,10 +721,98 @@ function requestPay() {
                         </div>
                         <div class="product__item__text">
                         
-                            <h6><a href="#">${cvo.p_name }</a></h6>
-                            </a>
-                            <h5>${cvo.p_lower_price }</h5>
+                          	<span style="position: relative;">
+							  <span style="position: absolute; top: -15px; font-size: smaller; font-weight: bold; opacity: 0.7; color: red;">[hit: ${cvo.p_hit}]</span>
+							  <span style="font-weight:bold;">${cvo.p_name}</span>
+							</span>
+									
+							        <center> <div class="rating" style="width:120px; margin-top:5px;">
+                                     
+                                     	 <c:if test="${cvo.p_grade==0 }">
+                                             <span style="margin-left:50px;"class="half-star">⭐️</span>
+                                           </c:if>
+                                     
+                                      <c:if test="${cvo.p_grade>=0.5 and cvo.p_grade<1 }">
+                                             <span style="margin-left:50px;" class="half-star">⭐️</span>
+                                           </c:if>
+                                           
+                                           <c:if test="${cvo.p_grade>=1 and cvo.p_grade<1.5 }">
+                                             <span style="margin-left:50px;" class="star">⭐️</span>
+                                           </c:if>
+                                           
+                                              <c:if test="${cvo.p_grade>=1.5 and cvo.p_grade<2 }">
+                                             <span style="margin-left:25px;"class="star">⭐️</span>
+                                              <span class="half-star">⭐️</span>
+                                           </c:if>
+                                           
+                                           <c:if test="${cvo.p_grade>=2 and cvo.p_grade<2.5 }">
+                                             <span style="margin-left:25px;" class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                           </c:if>
+                                           
+                                           <c:if test="${cvo.p_grade>=2.5 and cvo.p_grade<3 }">
+                                             <span style="margin-left:12px;" class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                             <span class="half-star">⭐️</span>
+                                           </c:if>
+                                           
+                                           <c:if test="${cvo.p_grade>=3 and cvo.p_grade<3.5 }">
+                                             <span style="margin-left:12px;" class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                              <span class="star">⭐️</span>
+                                           </c:if>
+                                           
+                                           <c:if test="${cvo.p_grade>=3.5 and cvo.p_grade<4 }">
+                                             <span style="margin-left:6px;" class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                              <span class="star">⭐️</span>
+                                               <span class="half-star">⭐️</span>
+                                           </c:if>
+                                           
+                                              <c:if test="${cvo.p_grade>=4 and cvo.p_grade<4.5 }">
+                                             <span style="margin-left:6px;" class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                              <span class="star">⭐️</span>
+                                                <span class="star">⭐️</span>
+                                              </c:if>
+                                           
+                                           
+                                              <c:if test="${cvo.p_grade>=4.5 and cvo.p_grade<5 }">
+                                              
+                                              
+                                             <span class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                              <span class="star">⭐️</span>
+                                                <span class="star">⭐️</span>
+                                                 <span class="half-star">⭐️</span>
+                                                
+                                                
+                                              </c:if>
+                                           
+                                           
+                                              <c:if test="${cvo.p_grade>=5 }">
+                                             <span class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                              <span class="star">⭐️</span>
+                                                <span class="star">⭐️</span>
+                                                 <span class="star">⭐️</span>
+                                              </c:if>
+                                       
+                                       
+                                       
+                                       
+                                       
+                                     </div></center>
+							
+
+                            <div>
+                              <h7 class="hs_original-price">${cvo.p_price}</h7>
+                                  <h7 class="hs_discount-rate">${cvo.p_percent}</h7>   
+                                  <h5 class="hs_final-price">${cvo.p_lower_price }</h5>
+                                  </div>
+                             
                         </div>
+                        </a>
                     </div>
                     
                    </div>
@@ -692,7 +846,7 @@ function requestPay() {
                           <c:param name="page" value="${page}"/>
                           </c:url>
                     
-                        <div class="product__item__pic set-bg"><a href="<c:out value="${rurl}" />"><img class="customimage" src="${rvo.p_image }">
+                       <a href="<c:out value="${rurl}" />"> <div class="product__item__pic set-bg"><img class="customimage" src="${rvo.p_image }">
                             <ul class="product__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -700,10 +854,96 @@ function requestPay() {
                             </ul>
                         </div>
                         <div class="product__item__text">
+                        <span style="position: relative;">
+							  <span style="position: absolute; top: -15px; font-size: smaller; font-weight: bold; opacity: 0.7; color: red;">[hit: ${rvo.p_hit}]</span>
+							  <span style="font-weight:bold;">${rvo.p_name}</span>
+							</span>
                         
-                            <h6><a href="#">${rvo.p_name }</a></h6>
+                        		 <center> <div class="rating" style="width:120px; margin-top:5px;">
+                                     
+                                     	 <c:if test="${rvo.p_grade==0 }">
+                                             <span style="margin-left:50px;"class="half-star">⭐️</span>
+                                           </c:if>
+                                     
+                                      <c:if test="${rvo.p_grade>=0.5 and rvo.p_grade<1 }">
+                                             <span style="margin-left:50px;" class="half-star">⭐️</span>
+                                           </c:if>
+                                           
+                                           <c:if test="${rvo.p_grade>=1 and rvo.p_grade<1.5 }">
+                                             <span style="margin-left:50px;" class="star">⭐️</span>
+                                           </c:if>
+                                           
+                                              <c:if test="${rvo.p_grade>=1.5 and rvo.p_grade<2 }">
+                                             <span style="margin-left:25px;"class="star">⭐️</span>
+                                              <span class="half-star">⭐️</span>
+                                           </c:if>
+                                           
+                                           <c:if test="${rvo.p_grade>=2 and rvo.p_grade<2.5 }">
+                                             <span style="margin-left:25px;" class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                           </c:if>
+                                           
+                                           <c:if test="${rvo.p_grade>=2.5 and rvo.p_grade<3 }">
+                                             <span style="margin-left:12px;" class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                             <span class="half-star">⭐️</span>
+                                           </c:if>
+                                           
+                                           <c:if test="${rvo.p_grade>=3 and rvo.p_grade<3.5 }">
+                                             <span style="margin-left:12px;" class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                              <span class="star">⭐️</span>
+                                           </c:if>
+                                           
+                                           <c:if test="${rvo.p_grade>=3.5 and rvo.p_grade<4 }">
+                                             <span style="margin-left:6px;" class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                              <span class="star">⭐️</span>
+                                               <span class="half-star">⭐️</span>
+                                           </c:if>
+                                           
+                                              <c:if test="${rvo.p_grade>=4 and rvo.p_grade<4.5 }">
+                                             <span style="margin-left:6px;" class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                              <span class="star">⭐️</span>
+                                                <span class="star">⭐️</span>
+                                              </c:if>
+                                           
+                                           
+                                              <c:if test="${rvo.p_grade>=4.5 and rvo.p_grade<5 }">
+                                              
+                                              
+                                             <span class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                              <span class="star">⭐️</span>
+                                                <span class="star">⭐️</span>
+                                                 <span class="half-star">⭐️</span>
+                                                
+                                                
+                                              </c:if>
+                                           
+                                           
+                                              <c:if test="${rvo.p_grade>=5 }">
+                                             <span class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                              <span class="star">⭐️</span>
+                                                <span class="star">⭐️</span>
+                                                 <span class="star">⭐️</span>
+                                              </c:if>
+                                       
+                                       
+                                       
+                                       
+                                       
+                                     </div></center>
+							
+                        			  <h7 class="hs_original-price">${rvo.p_price}</h7>
+                                  <h7 class="hs_discount-rate">${rvo.p_percent}</h7>   
+                                  <h5 class="hs_final-price">${rvo.p_lower_price }</h5>
+                        
+                            
                             </a>
-                            <h5>${rvo.p_lower_price }</h5>
+                           
                         </div>
                     </div>
                     

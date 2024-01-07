@@ -47,7 +47,12 @@
 	<c:if test="${ancontent!='no' }">
 	&nbsp;<img src="../img/reply.png" width=20px;>
 	<div class="qcon" style="text-align:left;">
-	<span style="font-weight:bold; font-size:20px;">A:&nbsp;&nbsp;&nbsp;</span><span style="font-weight:bold;">${antitle }</span><div style="margin-left:40px;">${ancontent}</div>
+	<span style="font-weight:bold; font-size:20px;">A:&nbsp;&nbsp;&nbsp;</span><span style="font-weight:bold;">${antitle }(관리자작성)</span><div style="margin-left:40px;">${ancontent}</div>
+	</div>
+	</c:if>
+	<c:if test="${ancontent=='no' }">
+	<div class="qcon" style="text-align:left;">
+	<span style="font-weight:bold; font-size:20px;"></span><span style="font-weight:bold;"></span><div style="margin-left:40px;">아직등록된 답변이 없습니다.</div>
 	</div>
 	</c:if>
 	

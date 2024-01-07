@@ -138,6 +138,30 @@
     #qna_insert_wrapper th {
         text-align: left; /* th의 텍스트 정렬 */
     }
+    .kyj_textarea {
+    border-radius: 10px; /* 테두리 둥글게 설정 */
+    padding: 10px; /* 안쪽 여백 설정 */
+    font-family: Arial, sans-serif; /* 폰트 설정 */
+    font-size: 14px; /* 폰트 크기 설정 */
+    resize: vertical; /* 수직 리사이징 설정 */
+    border: 1px solid #ccc; /* 테두리 스타일 및 색상 설정 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 설정 */
+    outline: none; /* 포커스 시 테두리 제거 */
+     resize: none; /* 길이 조절 비활성화 */
+}
+
+/* 포커스 시 테두리 스타일 설정 */
+.kyj_textarea:focus {
+    border-color: DodgerBlue;
+}
+
+.kyj_text{
+	 padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+}
 
 </style>
 <meta charset="UTF-8">
@@ -155,7 +179,7 @@
 		
 		<tr>
 			<th>제목</th>
-			<td><input type="text" size=40 id="qna_title"> <input id="secretCheck" type="checkbox"
+			<td><input class="kyj_text" type="text" size=40 id="qna_title"> <input id="secretCheck" type="checkbox"
 				name="secret" style="margin-left: 20px;">비밀글
 			</td>
 		</tr>
@@ -164,7 +188,7 @@
 		<tr><td></td></tr>
 		<tr>
 			<th style="vertical-align: top;">내용</th>
-			<td><textarea rows="10" cols="50" id="qna_content"></textarea></td>
+			<td><textarea class="kyj_textarea" rows="10" cols="50" id="qna_content"></textarea></td>
 		</tr>
 		
 		<tr>

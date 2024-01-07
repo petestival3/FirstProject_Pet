@@ -25,12 +25,100 @@
               				<c:param name="page" value="${page}"/>
               				</c:url>
              						 <div class="col-lg-4 col-md-6 col-sm-6 image-container">
-             						 <a href="<c:out value="${url}" />">
+             						 <a href="<c:out value="${url}" />" style="color:black;">
              						  <img src="${vo.p_image }" class="customimage">
                        					 <div class="product__item ">
                     		  	 	  <div class="product__item__text">
-                               			  <h5>${vo.p_name }</h5>
-                                    <h6>${vo.p_lower_price }</h6>
+                               	  <div>
+                                           <span style="position: relative;">
+							  <span style="position: absolute; top: -15px; font-size: smaller; font-weight: bold; opacity: 0.7; color: red;">[hit: ${vo.p_hit}]</span>
+							  <span style="font-weight:bold;">${vo.p_name}</span>
+							</span>
+							</div>
+										 <center> <div class="rating" style="width:120px; margin-top:5px;">
+                                     
+                                     	 <c:if test="${vo.p_grade==0 }">
+                                             <span style="margin-left:50px;"class="half-star">⭐️</span>
+                                           </c:if>
+                                     
+                                      <c:if test="${vo.p_grade>=0.5 and vo.p_grade<1 }">
+                                             <span style="margin-left:50px;" class="half-star">⭐️</span>
+                                           </c:if>
+                                           
+                                           <c:if test="${vo.p_grade>=1 and vo.p_grade<1.5 }">
+                                             <span style="margin-left:50px;" class="star">⭐️</span>
+                                           </c:if>
+                                           
+                                              <c:if test="${vo.p_grade>=1.5 and vo.p_grade<2 }">
+                                             <span style="margin-left:25px;"class="star">⭐️</span>
+                                              <span class="half-star">⭐️</span>
+                                           </c:if>
+                                           
+                                           <c:if test="${vo.p_grade>=2 and vo.p_grade<2.5 }">
+                                             <span style="margin-left:25px;" class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                           </c:if>
+                                           
+                                           <c:if test="${vo.p_grade>=2.5 and vo.p_grade<3 }">
+                                             <span style="margin-left:12px;" class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                             <span class="half-star">⭐️</span>
+                                           </c:if>
+                                           
+                                           <c:if test="${vo.p_grade>=3 and vo.p_grade<3.5 }">
+                                             <span style="margin-left:12px;" class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                              <span class="star">⭐️</span>
+                                           </c:if>
+                                           
+                                           <c:if test="${vo.p_grade>=3.5 and vo.p_grade<4 }">
+                                             <span style="margin-left:6px;" class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                              <span class="star">⭐️</span>
+                                               <span class="half-star">⭐️</span>
+                                           </c:if>
+                                           
+                                              <c:if test="${vo.p_grade>=4 and vo.p_grade<4.5 }">
+                                             <span style="margin-left:6px;" class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                              <span class="star">⭐️</span>
+                                                <span class="star">⭐️</span>
+                                              </c:if>
+                                           
+                                           
+                                              <c:if test="${vo.p_grade>=4.5 and vo.p_grade<5 }">
+                                              
+                                              
+                                             <span class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                              <span class="star">⭐️</span>
+                                                <span class="star">⭐️</span>
+                                                 <span class="half-star">⭐️</span>
+                                                
+                                                
+                                              </c:if>
+                                           
+                                           
+                                              <c:if test="${vo.p_grade>=5 }">
+                                             <span class="star">⭐️</span>
+                                             <span class="star">⭐️</span>
+                                              <span class="star">⭐️</span>
+                                                <span class="star">⭐️</span>
+                                                 <span class="star">⭐️</span>
+                                              </c:if>
+                                       
+                                       
+                                       
+                                       
+                                       
+                                     </div></center>
+											
+											
+											<h7 class="hs_original-price">${vo.p_price}</h7>
+                                  <h7 class="hs_discount-rate">${vo.p_percent}</h7>   
+                                  <h5 class="hs_final-price">${vo.p_lower_price }</h5>
+							
+							
                                 </div>
                                 </div>
    									   </a>
