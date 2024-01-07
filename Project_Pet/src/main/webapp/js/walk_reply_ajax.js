@@ -26,7 +26,7 @@
                 let replyAmount = res[0].replyAmount;
                 let id = res[0].sessionID;
                 let totalpage=res[0].totalpage;
-                let commentListHtml = '<h2 style="margin-bottom:20px;">댓글(' + replyAmount + ')</h2>';
+                let commentListHtml = '<img src="../img/walkRe.png" style="width:40px;">&nbsp;<span style="margin-bottom:20px; font-weight:bold; font-size:25px;">댓글(' + replyAmount + ')</span>';
          
                
                 if (id !== null) {
@@ -79,14 +79,14 @@
                                  
                         }   
                         
-                     commentListHtml+='<span style="color:blue; opacity:0.8;">'
+                     commentListHtml+='<span style=" opacity:0.8; font-weight:bold;"><img src="../img/userIcon.jpg" style="width:20px;">&nbsp;'
                      +vo.userid+'</span><span style="margin-left:10px;"class="dbday">'+vo.dbday+'</span>'
                      +'<div class="comment-actions" style="float:right; height:35px;">'   
                   
                   if(vo.rcontent!=='삭제한 댓글입니다.'){
                if(id===vo.userid){
-                  commentListHtml+='<button class="modifyBtn btn btn-info">수정</button>'
-                              +' <button class="deleteBtn btn btn-info">삭제</button>'
+                  commentListHtml+='<button class="modifyBtn btn btn-sm btn-info">수정</button>'
+                              +' <button class="deleteBtn btn btn-sm btn-info">삭제</button>'
                                  
                }   
                
@@ -142,7 +142,7 @@
                               }
                                  
                         }   
-               commentListHtml+=' <input class="kyj_text" type="password" size="13" name="addpassword" class="addpassword" placeholder="비밀번호" required>'
+               commentListHtml+=' <input type="password" size="13" name="addpassword" class="addpassword kyj_text" placeholder="비밀번호" required>'
                            +'<input type="submit" id="addReplyBtn" value="등록"></div><hr></div>'
                            
                         
@@ -156,7 +156,7 @@
                               }
                                  
                         }   
-               commentListHtml+='<input class="kyj_text" type="password" name="dpassword" placeholder="비밀번호" class="delpassword" required>'   
+               commentListHtml+='<input type="password" name="dpassword" placeholder="비밀번호" class="delpassword kyj_text" required>'   
                            +'<input type="submit" id="ReplyDeleteBtn" value="삭제">'   
                
                            +'</div>'   
@@ -183,7 +183,7 @@
                               }
                                  
                         }
-               commentListHtml+=' <input class="kyj_text" type="password" size="10" name="uppassword" class="uppassword" placeholder="비밀번호" required>'
+               commentListHtml+=' <input type="password" size="10" name="uppassword" class="uppassword kyj_text" placeholder="비밀번호" required>'
                            +'<input type="submit" id="replyUpdateBtn" value="수정"></div><hr></div>'               
                            
          

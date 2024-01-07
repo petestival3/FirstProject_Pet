@@ -712,17 +712,14 @@ function requestPay() {
                           <c:param name="page" value="${page}"/>
                           </c:url>
                     
-                        <a href="<c:out value="${curl}" />"><div class="product__item__pic set-bg"><img class="customimage" src="${cvo.p_image }">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
+                        <a href="<c:out value="${curl}" />" style="color:black"><div class="product__item__pic set-bg"><img class="customimage" src="${cvo.p_image }">
+                            
                         </div>
                         <div class="product__item__text">
                         
                           	<span style="position: relative;">
-							  <span style="position: absolute; top: -15px; font-size: smaller; font-weight: bold; opacity: 0.7; color: red;">[hit: ${cvo.p_hit}]</span>
+							  <span style="position: absolute; top: -15px; font-size: smaller; font-weight: bold; opacity: 0.7; color: red;">
+							  <img src="../img/hit.jpg" style="width:20px;">${cvo.p_hit}</span>
 							  <span style="font-weight:bold;">${cvo.p_name}</span>
 							</span>
 									
@@ -802,7 +799,9 @@ function requestPay() {
                                        
                                        
                                        
-                                     </div></center>
+                                     </div>
+                                      <span style="color: rgb(139, 0, 0); opacity:0.7;">( reviews)</span>
+                                     </center>
 							
 
                             <div>
@@ -846,16 +845,13 @@ function requestPay() {
                           <c:param name="page" value="${page}"/>
                           </c:url>
                     
-                       <a href="<c:out value="${rurl}" />"> <div class="product__item__pic set-bg"><img class="customimage" src="${rvo.p_image }">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
+                       <a href="<c:out value="${rurl}" />" style="color:black;"> <div class="product__item__pic set-bg"><img class="customimage" src="${rvo.p_image }">
+                           
                         </div>
                         <div class="product__item__text">
                         <span style="position: relative;">
-							  <span style="position: absolute; top: -15px; font-size: smaller; font-weight: bold; opacity: 0.7; color: red;">[hit: ${rvo.p_hit}]</span>
+							  <span style="position: absolute; top: -15px; font-size: smaller; font-weight: bold; opacity: 0.7; color: red;">
+							  <img src="../img/hit.jpg" style="width:20px;">${rvo.p_hit}</span>
 							  <span style="font-weight:bold;">${rvo.p_name}</span>
 							</span>
                         
@@ -935,7 +931,9 @@ function requestPay() {
                                        
                                        
                                        
-                                     </div></center>
+                                     </div>
+                                     <span style="color: rgb(139, 0, 0); opacity:0.7;">( reviews)</span>
+                                     </center>
 							
                         			  <h7 class="hs_original-price">${rvo.p_price}</h7>
                                   <h7 class="hs_discount-rate">${rvo.p_percent}</h7>   

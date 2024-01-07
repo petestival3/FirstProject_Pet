@@ -38,15 +38,16 @@
     <section class="blog-details spad">
         <div class="container">
         	
-          <span class="back_walk_list"><a href="javascript:history.back()"><img src="../img/left.png.svg" alt="">목록</a></span>
+         
         
          
             <div class="row">
             	
                 <div class="col-lg-4 col-md-5 order-md-1 order-2">
+                
                     <div class="blog__sidebar kyj_walk"><!--산책로 디테일 왼쪽 사이드메뉴 -->
-                   
-                       <div id="course_detail_inform" style="width:100%; height:95%; margin-top:45px;">
+                   		 <span class="back_walk_list"><img src="../img/left.png.svg" alt=""><a href="javascript:history.back()" class="btn btn-sm">목록</a></span>
+                       <div id="course_detail_inform" style="width:100%; height:85%;">
                        			<div id="defaultInform">
   								  <div style="height:auto;"><img src="../img/산책1.jpg" ></div>
     							  <div style="height:auto;"><img src="../img/산책2.jpg" ></div>

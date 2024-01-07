@@ -31,7 +31,8 @@
                     		  	 	  <div class="product__item__text">
                                	  <div>
                                            <span style="position: relative;">
-							  <span style="position: absolute; top: -15px; font-size: smaller; font-weight: bold; opacity: 0.7; color: red;">[hit: ${vo.p_hit}]</span>
+							  <span style="position: absolute; top: -15px; font-size: smaller; font-weight: bold; opacity: 0.7; color: red;">
+							   <img src="../img/hit.jpg" style="width:20px;">${vo.p_hit}</span>
 							  <span style="font-weight:bold;">${vo.p_name}</span>
 							</span>
 							</div>

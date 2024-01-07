@@ -366,6 +366,8 @@ public ProductVO productDetail(int pno) { //상품상세보기
 			vo.setP_intlowerprice(rs.getInt(15));
 			vo.setP_grade(rs.getDouble(16));
 			rs.close();
+			
+			
 		
 	} catch (Exception e) {
 		// TODO: handle exception
@@ -401,6 +403,8 @@ public ProductVO productDetail_Before(int pno) { //상품상세보기 클릭시 
 			vo.setP_percent(rs.getString(7));
 			vo.setP_hit(rs.getInt(8));
 			rs.close();
+			
+			
 		
 	} catch (Exception e) {
 		// TODO: handle exception
@@ -510,10 +514,14 @@ public List<ProductVO> productRelativeList(int pno){//상품 상세보기의 관
 				vo.setP_percent(rs.getString(7));
 				vo.setP_hit(rs.getInt(8));
 
+				
+				
 				list.add(vo);	
 				
 			}
 			rs.close();
+			
+			
 			
 			
 		} catch (Exception e) {
