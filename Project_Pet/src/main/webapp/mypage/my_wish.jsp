@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*,com.sist.dao.*,com.sist.vo.*"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-List<JJimMapperVO> list=JJimMapperDAO.JJimListData();
-    request.setAttribute("list", list);
-%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,26 +25,24 @@ List<JJimMapperVO> list=JJimMapperDAO.JJimListData();
 	<div class="col-md-9">
 		<div class="reservation_container">
 			<div class="reservation_header">
-				<h2 class="sectiontitle">${sessionScope.name}님의찜 목록</h2>
+				<h2 class="sectiontitle">${sessionScope.name}님의 입양 희망 목록</h2>
 			</div>
 			<!-- 실제 찜하기 데이터를 반복적으로 표시하는 부분 -->
-			<c:forEach var="vo" items="${list }">
+			<c:forEach var="wvo" items="${list }">
 			<table class="table" style="background-color: #fff">
-			<tr>
-			<td style="text-align: center;"><img src="${ vo.pvo.p_image }"
-					style="width: 200px; height: 200px"></td>
-				<td>
-				<p>찜한 순서 : ${vo.no }</p>
-				<p>품목번호 : ${vo.pvo.pno }</p>
-				<p>품명 : ${vo.pvo.p_name }</p>
-				<p>원가 : ${vo.pvo.p_price }</p>
-				<p>할인가 : ${vo.pvo.p_lower_price }</p>
-				</td>
-		     </tr>
-		     <tr>
+			   <tr>
+			      <td><img src="${wvo.KEEPIMAGE }"
+					style="height: 200px"></td>
+			      <td>
+			      <p>희망 순서&nbsp;<span>${wvo.cdno }</span></p>
+			      <p>입양 지역&nbsp;<span>${wvo.KEEPTITLE }</span></p>
+			      <p>작성일&nbsp;<span>${wvo.KEEPWRITER }</span></p>
+			      </td>
+			   </tr>
+			    <tr>
 				<td colspan="2" class="text-right"><a
-					href="../mypage/my_JJim_cancle.do?no=${vo.no }"
-					class="btn btn-sm btn-success">취소</a></td>
+					href="../mypage/my_wish_cancel.do?no=${wvo.cdno }"
+					class="btn btn-sm btn-info">취소</a></td>
 			  </tr>
 			</table>
 			</c:forEach>

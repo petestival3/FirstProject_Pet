@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Base64;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,8 +18,10 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.MyPageDAO;
+import com.sist.dao.WishDAO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.MyPageVO;
+import com.sist.vo.WishVO;
 
 
 public class MypageModel {
@@ -73,8 +76,15 @@ public String resList(HttpServletRequest request, HttpServletResponse response)
 @RequestMapping("mypage/my_wish.do")
 public String wishList(HttpServletRequest request, HttpServletResponse response)
 {
-	request.setAttribute("mypage_jsp", "../mypage/my_wish.jsp");
-	request.setAttribute("main_jsp", "../mypage/mypage.jsp");
+	
+	  HttpSession session=request.getSession();
+	  String id=(String)session.getAttribute("id");
+	  WishDAO dao=WishDAO.newInstance();
+	  List<WishVO> list=dao.wishListData(id);
+	  request.setAttribute("list", list);
+	  request.setAttribute("mypage_jsp", "../mypage/my_wish.jsp");
+	  request.setAttribute("main_jsp", "../mypage/mypage.jsp");
+	  //CommonModel.commonRequestData(request);
 	
 	return "../main/main.jsp";
 }

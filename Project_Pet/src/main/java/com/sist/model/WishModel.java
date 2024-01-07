@@ -56,9 +56,24 @@ public class WishModel {
 	   public String wish_cancel(HttpServletRequest request,
 			   HttpServletResponse response)
 	   {
+		   HttpSession session=request.getSession();
+		   String kano=(String)session.getAttribute("kano");
            String cdno=request.getParameter("cdno");
 		   WishDAO dao=WishDAO.newInstance();
 		   dao.WishCancel(Integer.parseInt(cdno));
-		   return "redirect:../animal/animaldetail.do?cdno="+cdno;
+		   return "redirect:../animal/animaldetail.do?kano="+kano;
+	   }
+	   
+	   @RequestMapping("mypage/my_wish_cancel.do")
+	   public String mypage_wish_cancel(HttpServletRequest request,
+			   HttpServletResponse response)
+	   {
+		   String cdno=request.getParameter("cdno");
+		   WishDAO dao=WishDAO.newInstance();
+		   dao.WishCancel(Integer.parseInt(cdno));
+		   return "redirect:../mypage/my_wish.do";
 	   }
 }
+
+
+
