@@ -3,6 +3,7 @@ import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.*;
@@ -44,10 +45,21 @@ public class AnimalModel {
 		// DAO 연결
 		AnimalDAO dao=AnimalDAO.newInstance();
 		AnimalVO avo=dao.animalDetailData(Integer.parseInt(kano));
-		
-		
 		request.setAttribute("avo", avo);
 		request.setAttribute("main_jsp", "../animal/animaldetail.jsp");
+		
+		  //입양희망 (정유나) 시작
+		  HttpSession session=request.getSession();
+		  String id=(String)session.getAttribute("id");
+		  if(id!=null)
+		  {
+			  WishDAO wdao=WishDAO.newInstance();
+			  int wish_count=wdao.WishCount(id, Integer.parseInt(kano));
+			  request.setAttribute("wish_count", wish_count);
+		  }
+		  //입양희망 (정유나) 종료
+		  
+		
 		return "../main/main.jsp";
 	}
 }

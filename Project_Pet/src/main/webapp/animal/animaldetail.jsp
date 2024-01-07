@@ -129,6 +129,15 @@
                         <p>${avo.keepcontent }</p>
                         <br><br>
                         <a href="javascript:history.back()" class="text-right">목록</a>
+                        
+                         <c:if test="${sessionScope.id!=null }">
+                             <c:if test="${wish_count==0 }">
+                               <a href="../animal/wish_insert.do?kano=${avo.kano }" class="primary-btn" style="font-weight: bold;"><i class="xi-heart-o"></i> 입양희망</a>
+                             </c:if>
+                             <c:if test="${wish_count!=0 }">
+                               <span class="primary-btn" style="font-weight: bold;"><i class="xi-heart"></i> 입양희망 완료</span>
+                             </c:if>
+                            </c:if>
                     </div>
                     
                 </div>

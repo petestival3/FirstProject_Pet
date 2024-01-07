@@ -37,7 +37,7 @@ public class WishModel {
 		return "../main/main.jsp";
 	}
 	*/
-	 @RequestMapping("mypage/wish_insert.do")
+	 @RequestMapping("animal/wish_insert.do")
 	   public String wish_insert(HttpServletRequest request,
 			   HttpServletResponse response)
 	   {
@@ -45,19 +45,19 @@ public class WishModel {
 		   HttpSession session=request.getSession();
 		   String id=(String)session.getAttribute("id");
 		   WishVO vo=new WishVO();
-		   vo.setId(id);
 		   vo.setKano(Integer.parseInt(kano));
+		   vo.setId(id);
 		   WishDAO dao=WishDAO.newInstance();
 		   dao.WishInsert(vo);
-		   return "redirect:../mypage/my_wish.do?kano="+kano;
+		   return "redirect:../animal/animaldetail.do?kano="+kano;
 	   }
-	   @RequestMapping("jjim/jjim_cancel.do")
+	   @RequestMapping("mypage/wish_cancel.do")
 	   public String jjim_cancel(HttpServletRequest request,
 			   HttpServletResponse response)
 	   {
-		   String no=request.getParameter("no");
-		   //FoodJjimLikeDAO dao=FoodJjimLikeDAO.newInstance();
-		   //dao.foodJjjimCancel(Integer.parseInt(no));
-		   return "redirect:../mypage/mypage_jjim_list.do";
+		   String cdno=request.getParameter("cdno");
+		   WishDAO dao=WishDAO.newInstance();
+		   dao.WishCancel(Integer.parseInt(cdno));
+		   return "redirect:../mypage/my_wish.do";
 	   }
 }
