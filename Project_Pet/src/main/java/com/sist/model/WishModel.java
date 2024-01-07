@@ -49,7 +49,7 @@ public class WishModel {
 		   vo.setKano(Integer.parseInt(kano));
 		   WishDAO dao=WishDAO.newInstance();
 		   dao.WishInsert(vo);
-		   return "redirect:../mypage/.do?kano="+kano;
+		   return "redirect:../mypage/my_wish.do?kano="+kano;
 	   }
 	   @RequestMapping("jjim/jjim_cancel.do")
 	   public String jjim_cancel(HttpServletRequest request,
