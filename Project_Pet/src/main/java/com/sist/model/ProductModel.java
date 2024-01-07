@@ -129,8 +129,12 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
          ProductVO vo =dao.productDetail(Integer.parseInt(pno));
          List<ProductVO>subImageList=dao.productSubImage(Integer.parseInt(pno));
          List<ReviewVO>prList=dao.product_reviewHighScoreList(1, Integer.parseInt(pno));
-         
+         int reviewAmount=dao.reviewAmount(Integer.parseInt(pno));
+         int qnaAmount=dao.QnaAmount(Integer.parseInt(pno));
          int reviewTotalPage=dao.product_review_totalPage(Integer.parseInt(pno));
+         
+         request.setAttribute("reviewamount", reviewAmount);
+         request.setAttribute("qnaAmount", qnaAmount);
          request.setAttribute("reviewTotalPage", reviewTotalPage);
          request.setAttribute("subImageList", subImageList);
          request.setAttribute("vo", vo);
@@ -435,7 +439,7 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
          HttpSession session =request.getSession();
          String id=(String)session.getAttribute("id");
          
-         
+         int reviewAmount=dao.reviewAmount(Integer.parseInt(pno));
          JSONArray arr=new JSONArray();
          List<ReviewVO>list=null;
          if(type.equals("1")) {
@@ -478,6 +482,7 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
                obj.put("newGrade", newGrade);
                obj.put("totalpage", totalpage);
                obj.put("id", id);
+               obj.put("reviewAmount", reviewAmount);
             }
             i++;
          }

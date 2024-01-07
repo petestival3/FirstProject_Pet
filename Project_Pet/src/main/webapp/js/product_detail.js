@@ -105,6 +105,7 @@ function newList(page) {//새로운 리뷰리스트를 출력하는 ajax를 담�
             let newGrade = res[0].newGrade;
             let totalpage= res[0].totalpage;
             let id=res[0].id;
+            let reviewamount=res[0].reviewAmount
             
           
         
@@ -280,7 +281,7 @@ function newList(page) {//새로운 리뷰리스트를 출력하는 ajax를 담�
              
             input_list.html(html)
             
-            
+            $('.input_rNum').text('('+reviewamount+')')
 
         }
 
@@ -359,6 +360,11 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 					let endpage=res[0].endpage
 					let id=res[0].id
 					let admin=res[0].admin
+					let qnaAmount=res[0].qnaAmount
+					if(typeof qnaAmount ==='undefined'){
+						qnaAmount='0'
+					}
+					console.log(qnaAmount)
 					let input_qnaData=$('.input_qnaData')
 					
 					
@@ -502,6 +508,8 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 					$('.selectQnaOption').show()
 				}
 				input_qnaData.html(html);
+				console.log(qnaAmount)
+				 $('.input_qNum').text('('+qnaAmount+')')
 			}
 						
 		})

@@ -992,4 +992,58 @@ public int reviewUserCount(int pno,String writer) {
 	
 	return count;
 }
+
+public int reviewAmount(int pno) {
+	int reviewamount=0;
+	
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT COUNT(*) FROM REVIEW WHERE objno=?";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, pno);
+		
+		
+		ResultSet rs=ps.executeQuery();
+		if(rs.next()) {
+			reviewamount=rs.getInt(1);
+		}
+		rs.close();
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return reviewamount;
+	
+}
+
+public int QnaAmount(int pno) {
+	int qnaAmount=0;
+	
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT COUNT(*) FROM Qnaboard WHERE pno=?";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, pno);
+		
+		
+		ResultSet rs=ps.executeQuery();
+		if(rs.next()) {
+			qnaAmount=rs.getInt(1);
+		}
+		rs.close();
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return qnaAmount;
+	
+}
 }

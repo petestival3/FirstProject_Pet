@@ -57,7 +57,8 @@ final int rowsize=10;
 			
 			
 			curpage=Integer.parseInt(page);
-			
+			ProductDAO dao=ProductDAO.newInstace();
+			int qnaAmount=dao.QnaAmount(Integer.parseInt(pno));
 			
 			int start=(curpage*rowsize)-(rowsize-1);
 			int end=(curpage*rowsize);
@@ -107,6 +108,7 @@ final int rowsize=10;
 					obj.put("endpage", endpage);
 					obj.put("id", id);
 					obj.put("admin", admin);
+					obj.put("qnaAmount", qnaAmount);
 					
 				}
 				

@@ -271,11 +271,11 @@ function requestPay() {
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#p_tabs-2" role="tab"
-                                    aria-selected="false">상품후기</a>
+                                    aria-selected="false">상품후기<span class="input_rNum">(${reviewamount })</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#p_tabs-3" role="tab" id="p_qna"
-                                    aria-selected="false">상품문의 <span>(1)</span></a>
+                                    aria-selected="false">상품문의 <span class="input_qNum">(${qnaAmount })</span></a>
                             </li>
                         </ul>
                         
