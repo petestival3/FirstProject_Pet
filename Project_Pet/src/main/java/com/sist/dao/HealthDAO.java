@@ -2,7 +2,10 @@ package com.sist.dao;
 import java.util.*;
 import java.sql.*;
 import com.sist.dbcp.*;
+import com.sist.vo.FreeBoardReplyVO;
 import com.sist.vo.HealthVO;
+import com.sist.vo.WalkReplyVO;
+import com.sist.vo.WalkVO;
 
 public class HealthDAO {
 	private Connection conn;
@@ -370,5 +373,136 @@ public class HealthDAO {
 			dbconn.disConnection(conn, ps);
 		}
 		return vo;
+	}
+	public List<HealthVO> hitnews()
+	{
+		
+		List<HealthVO> list=new ArrayList<HealthVO>();
+		try
+		{
+			conn=dbconn.getConnection();
+			String sql="SELECT pn.pno,news_subject,news_img,newsdate_1 "
+					+ "FROM petnews pn "
+					+ "INNER JOIN petnews_sub pns ON pn.pno=pns.pno "
+					+ "INNER JOIN newsdate ON pn.pno = newsdate.pno "
+					+ "ORDER BY hit DESC";
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				HealthVO vo=new HealthVO();
+				vo.setNo2(rs.getInt(1));
+				vo.setNews_subject(rs.getString(2));
+				vo.setNews_img(rs.getString(3));
+				vo.setNews_date1(rs.getString(4));
+				list.add(vo);
+			}
+			
+			rs.close();
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbconn.disConnection(conn, ps);
+		}
+		
+		return list;
+	}
+	public List<WalkReplyVO> newsReplyShow(int no) // 뉴스 댓글 출력 
+	{
+		List<WalkReplyVO> list=new ArrayList<WalkReplyVO>();
+		try {
+			conn = dbconn.getConnection();
+			String sql = "SELECT rno,userid,rcontent,rdate,bno "
+					+ "FROM board_reply "
+					+ "WHERE typeno='3' AND bno="+no+" "
+					+ "ORDER BY group_id DESC ";
+			ps = conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				WalkReplyVO vo=new WalkReplyVO();
+				vo.setRno(rs.getInt(1));
+				vo.setUserid(rs.getString(2));
+				vo.setRcontent(rs.getString(3));
+				vo.setDbday(rs.getString(4));
+				vo.setBno(rs.getInt(5));
+				list.add(vo);
+			}
+			rs.close();
+			ps.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			dbconn.disConnection(conn, ps);
+		}
+		return list;
+
+	}
+		
+		public void newsReply(WalkReplyVO vo,String pwd,int no) // 뉴스 댓글 인서트
+		{
+			try
+			{
+				conn=dbconn.getConnection();
+				String sql="INSERT INTO board_reply(rno,typeno,group_id,userid,bno,pwd,rcontent) "
+						+"VALUES(board_reply_seq.nextval,"
+						+ "3,(SELECT NVL((MAX(group_id)+1),1) FROM board_reply),"
+						+ "?,?,?,?)";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, vo.getUserid());
+				ps.setInt(2, no);
+				ps.setString(3, pwd);
+				ps.setString(4, vo.getRcontent());
+				ps.executeUpdate();
+				System.out.println("뉴스댓글완료");
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}
+			finally
+			{
+				dbconn.disConnection(conn, ps);
+			}
+		
+	}
+	public String newsReplyDelete(int rno,String pwd) // 뉴스 댓글 삭제
+	{
+		String result="";
+		try {
+			conn = dbconn.getConnection();
+			String sql="SELECT pwd FROM board_reply "
+					 + "WHERE rno="+rno;
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			String db_pwd=rs.getString(1);
+			rs.close();
+			ps.close();
+
+			if(db_pwd.equals(pwd))
+			{
+				result = "yes";
+				sql = "DELETE FROM board_reply WHERE typeno='3' AND rno="+rno;
+				ps=conn.prepareStatement(sql);
+				ps.executeUpdate();
+				System.out.println("뉴스댓글삭제완료");
+				ps.close();
+			}
+			else
+			{
+				result="no";
+			}
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			dbconn.disConnection(conn, ps);
+		}
+		return result;
+
 	}
 }
