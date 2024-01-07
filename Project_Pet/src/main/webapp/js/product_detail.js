@@ -84,7 +84,7 @@ Shadowbox.init({
 			newList(1,1)//새로운 리뷰리스트 출력
 	}
 	else if(recData==='sendQna'){
-		console.log('큐엔에이 출력')
+		
 		qnaList(1);
 	}
    
@@ -344,9 +344,7 @@ $(document).on('click', '#olddate', function() {
 
 let qntype=1;
 function qnaList(page){//ajax로 qna리스트 받아올 함수
-		console.log(page)
-		console.log(qntype)
-		console.log(pno)
+		
 		$.ajax({		
 			    type: 'post',
 		        url: 'product_qna.do',
@@ -360,11 +358,12 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 					let startpage=res[0].startpage
 					let endpage=res[0].endpage
 					let id=res[0].id
+					let admin=res[0].admin
 					let input_qnaData=$('.input_qnaData')
 					
 					
 					let html=''
-					console.log(totalpage)
+					
 					if(totalpage===0){
 						html+='<tr><td colspan=6><h2>작성된 문의가 없습니다.</h2></td></tr>'
 						
@@ -393,7 +392,7 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 							}
 						
 						
-						if(vo.qwriter!==id && vo.secretcheck==='y'){
+						if(vo.qwriter!==id && vo.secretcheck==='y'&& admin!=='y'){
 							
 							html+='<tr class="qna_content secretContent" data-qna="'+vo.qno+'" style="width:200px;">'
 						html+='<td width:10%>'+rowcount+'</td>'
@@ -421,7 +420,7 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 						}
 						
 						
-						else{
+						else if(admin==='y'){
 							
 						html+='<tr class="qna_content normalContent" data-qna="'+vo.qno+'" data-answercheck="'+vo.answercheck+'" style="width:200px;">'
 						html+='<td width:10%>'+rowcount+'</td>'
@@ -446,6 +445,31 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 						
 					
 						
+						}
+						
+						else{
+							html+='<tr class="qna_content normalContent" data-qna="'+vo.qno+'" data-answercheck="'+vo.answercheck+'" style="width:200px;">'
+						html+='<td width:10%>'+rowcount+'</td>'
+						if(vo.answercheck==='n'){
+							html+='<td width:10%>답변대기중</td>'
+						}		
+						else{
+							html+='<td width:10% style="color:blue; font-weight:bold;">답변완료</td>'
+						}				
+						html+='<td width:15%>'+printQwriter+'</td>'
+						html+='<td width:15% style="font-weight:bold;">'+vo.qtitle+'</td>'
+						
+						if(vo.secretcheck==='y'){
+							html+='<td width:35%><img src="../img/key.jpg" width=20px;>&nbsp;&nbsp;&nbsp;'+vo.qcontent+'</td>'
+						}
+						else{
+								html+='<td width:35%>'+vo.qcontent+'</td>'
+						}
+					
+						html+='<td width:15% style="font-size:14px;">'+vo.dbday+'</td>'
+						html+='</tr>'
+							
+							
 						}
 						
 							rowcount-=1;
@@ -488,8 +512,7 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 $(document).on('click', '.normalContent', function() {
 	let qno =$(this).data('qna')
 	let answercheck=$(this).data('answercheck')
-	 console.log(qno)
-	 console.log(answercheck)
+	 
 	 
 	 
 	 

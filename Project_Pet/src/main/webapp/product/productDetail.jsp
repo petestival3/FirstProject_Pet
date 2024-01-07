@@ -609,7 +609,7 @@ function requestPay() {
                                             </tbody>
                                          </table>
                                             <div class="qna_firstData" style="margin-bottom:40px;">
-                                               <div><button id="p_qnaBtn">상품문의하기</button></div>
+                                               <div><button id="p_qnaBtn" class="btn btn-danger">상품문의하기</button></div>
                                             
                                             </div>
                                             

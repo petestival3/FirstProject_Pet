@@ -264,6 +264,9 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
    else if(lcount.equals("3")){
       send="redirect:../main/main.do";
    }
+   else if(lcount.equals("4")) {
+	   send="redirect:../adminPage/ad_productQnaList.do";
+   }
       
       return send;
    }

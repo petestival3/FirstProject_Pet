@@ -38,6 +38,7 @@ final int rowsize=10;
 			String type=request.getParameter("qtype");
 			HttpSession session=request.getSession();
 			String id=(String)session.getAttribute("id");
+			String admin=(String)session.getAttribute("admin");
 			if(page==null) {
 				page="1";
 			}
@@ -105,6 +106,7 @@ final int rowsize=10;
 					obj.put("startpage", startpage);
 					obj.put("endpage", endpage);
 					obj.put("id", id);
+					obj.put("admin", admin);
 					
 				}
 				
@@ -262,7 +264,7 @@ final int rowsize=10;
 				obj.put("ancontent", vo.getQavo().getAncontent());
 			}
 	         
-	       System.out.println(obj);
+	       
 	         
 	         try
 	           {
@@ -300,6 +302,9 @@ final int rowsize=10;
 
 	      return "../product/productQnaAnswer.jsp";
 	   }
+	
+	
+	
 	
 	
 	

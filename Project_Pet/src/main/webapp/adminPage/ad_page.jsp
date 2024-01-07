@@ -44,7 +44,7 @@
 							class="list-group-item list-group-item-action">사이트 예약내역</a> <a
 							href="../adminPage/ad_payment.do" class="list-group-item list-group-item-action">사이트 결제내역</a>
 						<a href="../adminPage/ad_page.do" class="list-group-item list-group-item-action">회원정보 관리</a>
-						<a href="#" class="list-group-item list-group-item-action">아직못정함</a>
+						<a href="../adminPage/ad_productQnaList.do" class="list-group-item list-group-item-action">문의관리</a>
 						<a href="#" class="list-group-item list-group-item-action">아직못정함</a>
 					</div>
 				</div>

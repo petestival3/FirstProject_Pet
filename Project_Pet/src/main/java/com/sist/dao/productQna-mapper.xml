@@ -3,17 +3,17 @@
 <mapper namespace="com.sist.dao.productQna-mapper">
 
 <sql id="qnaList">
-SELECT qno, qtitle, qcontent,
+SELECT qno, qtitle, qcontent,pno,
 answercheck, secretcheck, filename, filesize, qwriter,TO_CHAR(qregdate,'YYYY-MM-DD HH24:MI:SS') as dbday 
-FROM(SELECT qno, qtitle, qcontent,
+FROM(SELECT qno, qtitle, qcontent,pno,
 answercheck, secretcheck, filename, filesize, qwriter,qregdate,rownum as num
-FROM (SELECT qno, qtitle, qcontent,
-answercheck, secretcheck, filename, filesize, qwriter,qregdate FROM QNABOARD WHERE pno=#{pno} 
+FROM (SELECT qno, qtitle, qcontent,pno,
+answercheck, secretcheck, filename, filesize, qwriter,qregdate FROM QNABOARD  
 </sql>
 
 <select id="productQnaListData" resultType="QnaBoardVO" parameterType="hashmap">
 <include refid="qnaList"/>
-
+WHERE pno=#{pno}
 <if test="type==1">
  ORDER BY qregdate DESC))
 </if>
@@ -80,4 +80,46 @@ WHERE qnaboard.qno=#{qno}
 <select id="productQnaAnswerNotData" resultType="QnaBoardVO" parameterType="int">
 select qwriter,qtitle,filename,qcontent,qno FROM QNABOARD WHERE qno=#{qno}
 </select>
+
+<select id="productAdminQnaCount" resultType="int" parameterType="int">
+SELECT COUNT(*) FROM QNABOARD
+<if test="type==1">
+WHERE answercheck='n'
+</if>
+
+<if test="type==2">
+WHERE answercheck='y'
+</if>
+
+</select>
+
+
+<select id="productQnaAdminListData" resultType="QnaBoardVO" parameterType="hashmap">
+<include refid="qnaList"/>
+
+<if test="type==1">
+ WHERE answercheck='n' ORDER BY qregdate DESC))
+</if>
+
+<if test="type==2">
+WHERE answercheck='y' ORDER BY qregdate DESC))
+</if>
+
+
+WHERE num BETWEEN #{start} AND #{end}
+
+
+</select> 
+
+<insert id="productQnaAnswerInsert" parameterType="hashmap">
+INSERT INTO QNA_ADMIN_REPLY
+VALUES(qna_admin_reply_seq.nextval,#{antitle},#{ancontent},#{qno})
+</insert>
+
+<update id="productQnaUpdateAnswerCheck" parameterType="int">
+UPDATE QNABOARD SET
+answercheck='y'
+WHERE qno=#{qno}
+</update>
+
 </mapper>
