@@ -49,6 +49,9 @@ public class AnimalModel {
 		request.setAttribute("main_jsp", "../animal/animaldetail.jsp");
 		
 		  //입양희망 (정유나) 시작
+		 WishVO wvo=dao.animalWishDetailData(Integer.parseInt(kano));
+		 request.setAttribute("wvo", wvo);
+		
 		  HttpSession session=request.getSession();
 		  String id=(String)session.getAttribute("id");
 		  if(id!=null)

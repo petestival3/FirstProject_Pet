@@ -2,7 +2,7 @@ package com.sist.dao;
 import java.util.*;
 
 import com.sist.dbcp.CreateDBCPconnection;
-import com.sist.vo.AnimalVO;
+import com.sist.vo.*;
 
 import java.sql.*;
 public class AnimalDAO {
@@ -162,6 +162,37 @@ public class AnimalDAO {
 		}
 		return vo;
 	}
+	
+	
+	//정유나 찜하기 부분 시작
+	public WishVO animalWishDetailData(int kano)
+	{
+		WishVO vo=new WishVO();
+		try
+		{
+			conn=dbconn.getConnection();
+			String sql="SELECT cdno,id,kano "
+			  + "FROM CD_WISH "
+			  + "WHERE kano="+kano;
+			ps=conn.prepareStatement(sql);
+			ps.executeUpdate();
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setCdno(rs.getInt(1));
+			vo.setId(rs.getString(2));
+			vo.setKano(rs.getInt(3));
+			rs.close();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			dbconn.disConnection(conn, ps);
+		}
+		return vo;
+	}
+	//정유나 찜하기 부분 종료
 
 	
 }

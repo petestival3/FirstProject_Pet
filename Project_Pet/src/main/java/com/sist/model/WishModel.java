@@ -52,13 +52,13 @@ public class WishModel {
 		   return "redirect:../animal/animaldetail.do?kano="+kano;
 	   }
 	 
-	   @RequestMapping("mypage/wish_cancel.do")
-	   public String jjim_cancel(HttpServletRequest request,
+	   @RequestMapping("animal/wish_cancel.do")
+	   public String wish_cancel(HttpServletRequest request,
 			   HttpServletResponse response)
 	   {
-		   String cdno=request.getParameter("cdno");
+           String cdno=request.getParameter("cdno");
 		   WishDAO dao=WishDAO.newInstance();
 		   dao.WishCancel(Integer.parseInt(cdno));
-		   return "redirect:../mypage/my_wish.do";
+		   return "redirect:../animal/animaldetail.do?cdno="+cdno;
 	   }
 }

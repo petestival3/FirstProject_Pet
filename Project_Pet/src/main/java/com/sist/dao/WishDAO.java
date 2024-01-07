@@ -140,7 +140,7 @@ NOCACHE;
 		   {
 			   conn=dbconn.getConnection();
 			   String sql="DELETE FROM CD_WISH "
-					     +"WHERE no=?";
+					     +"WHERE cdno=?";
 			   ps=conn.prepareStatement(sql);
 			   ps.setInt(1, cdno);
 			   ps.executeUpdate();
