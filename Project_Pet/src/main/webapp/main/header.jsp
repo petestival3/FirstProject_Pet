@@ -83,6 +83,7 @@
                                     <li><a href="../product/ProductList.do?ct=식기">식기</a></li>
                                     <li><a href="../product/ProductList.do?ct=산책/이동장">산책/이동장</a></li>
                                     <li><a href="../product/ProductList.do?ct=하우스/울타리">하우스/울타리</a></li>
+                                    <li><a href="../product/ProductList.do?ct=의류/악세서리">의류/악세서리</a></li>
                                 </ul>
                             </li>
                             <li><a href="../main/main.do">HEALTH</a>
