@@ -8,7 +8,7 @@
 <typeAlias type="com.sist.vo.QnaAdminReplyVO" alias="QnaAdminReplyVO"/>
 <typeAlias type="com.sist.vo.QnaBoardVO" alias="QnaBoardVO"/>
 <typeAlias type="com.sist.vo.FuneralListVO" alias="FuneralListVO"/>
-
+<typeAlias type="com.sist.vo.ShoppingVO" alias="ShoppingVO"/>
 <typeAlias type="com.sist.vo.ProductVO" alias="ProductVO"/>
 </typeAliases>
 <environments default="development">
@@ -29,5 +29,6 @@
 	<mapper resource="com/sist/dao/reserve-mapper.xml"/>
 	<mapper resource="com/sist/dao/unreg-mapper.xml"/>
 	 <mapper resource="com/sist/dao/reserve-funeral-mapper.xml"/>
+	 <mapper resource="com/sist/dao/shopping-mapper.xml"/>
 </mappers>
 </configuration>
