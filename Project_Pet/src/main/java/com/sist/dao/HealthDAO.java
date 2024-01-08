@@ -505,4 +505,41 @@ public class HealthDAO {
 		return result;
 
 	}
+	public String newsReplyUpdate(WalkReplyVO vo,String pwd) // 뉴스 댓글 수정
+	{
+		String result="no";
+		try {
+			conn = dbconn.getConnection();
+			String sql="SELECT pwd FROM board_reply "
+					+ "WHERE rno="+vo.getRno();
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			String db_pwd=rs.getString(1);
+			rs.close();
+			ps.close();
+
+
+			if(db_pwd.equals(pwd))
+			{
+				result="yes";
+				sql="UPDATE board_reply SET "
+				  + "rcontent=?,rdate=sysdate "
+				  + "WHERE rno=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, vo.getRcontent());
+				ps.setInt(2, vo.getRno());
+				
+				ps.executeUpdate();
+				ps.close();
+			}
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			dbconn.disConnection(conn, ps);
+		}
+		return result;
+
+	}
 }

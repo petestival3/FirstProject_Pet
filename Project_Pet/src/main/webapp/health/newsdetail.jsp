@@ -85,6 +85,64 @@ $(function(){
 		})
 	})
 });
+$(function(){
+	$('#update').click(function(){
+		if(bCheck === false)
+		{
+			bCheck = true;
+			$('#upd').show('slow');
+			$('#update').text("취소");
+		}
+		else
+		{
+			bCheck = false;
+			$('#upd').hide('slow');
+			$('#update').text("수정");
+		}
+	});
+
+	$('#updBtn').click(function(){
+		let content = $('#upcontent').val();
+		if(content.trim() === "")
+		{
+			$('#upcontent').focus();
+			return;
+		}
+		let pwd = $('#uppwd').val();
+		if(pwd.trim() === "")
+		{
+			$('#uppwd').focus();
+			return;
+		}
+		let rno=$('#updBtn').attr("data-rno");
+		let no =$('#updBtn').attr("data-no");
+		
+	      
+		$.ajax({
+			type: 'post',
+			url: '../health/newsreply_update_ok.do',
+			data: {"no":no,"rno":rno,"upcontent":content,"uppwd":pwd},
+			success: function(result) 
+			{
+				if(result==="yes")
+				{
+					location.href = "../health/newsdetail.do?no="+no
+				}
+				else
+				{
+					alert("비밀번호가 틀립니다!!");
+					$('#uppwd').val("");
+					$('#uppwd').focus();
+				}
+			},
+			error:function(err)
+			{
+				alert(err)
+			}
+			
+		});
+	});
+});
 </script>
 </head>
 
@@ -135,12 +193,12 @@ $(function(){
 															<img src="image/re_icon.png">
 														</c:if> <i class="fa fa-user-circle"></i>&nbsp;${rvo.userid }&nbsp;(${rvo.dbday })
 													</td>
-													<td colspan="4" class="text-right">
+													<td colspan="4" class="text-right" style="white-space: nowrap;">
 													<c:if test="${sessionScope.id!=null }">
 															<c:if test="${sessionScope.id==rvo.userid }">
-															<span class="update-btn">수정</span>
+															<span class="update-btn" id="update" style="cursor: pointer; display: inline-block;" >수정</span>
 															&nbsp;&nbsp;
-															<span class="delete-btn" id="delete" style="cursor: pointer">삭제</span>
+															<span class="delete-btn" id="delete" style="cursor: pointer; display: inline-block;">삭제</span>
 													    </c:if>
 														</c:if> 
 													</td>
@@ -159,6 +217,24 @@ $(function(){
 																placeholder="비밀번호입력" style=" width:150px; float: right">
 															
 																
+													</td>
+													</tr>
+													
+													<tr id="upd" style="display: none">
+													<td colspan="2" class="text-right inline">
+													 <c:if test="${sessionScope.id != null && sessionScope.id eq rvo.userid}">
+															<input type="hidden" name="no" value=${no }>
+																<input type="hidden" name="rno" value=${rvo.rno }>
+																<div style="display: flex; align-items: center;">
+															<textarea id="upcontent" name="upcontent"
+																style="float: left; resize: none; width: 750px;">
+															</textarea>
+															</div>
+															<input type="password" id="uppwd" name="uppwd"
+																placeholder="비밀번호입력" style=" width:140px; float: left">
+														 <input type="button" value="수정" id="updBtn" data-rno="${rvo.rno }" data-no="${vo.no}"
+																style="width: 60px; height: 30px; background-color: #5a70e9; color: white; float: left;">
+												</c:if>
 													</td>
 												</tr>
 											</table>

@@ -218,7 +218,7 @@ public class FreeBoardDAO {
 		// 수정하기 
 		public String boardUpdate(FreeBoardVO vo)
 		{
-			String res="no";
+			String result="no";
 			try
 			{
 				conn=dbconn.getConnection();
@@ -233,7 +233,7 @@ public class FreeBoardDAO {
 				
 				if(db_pwd.equals(vo.getPwd()))
 				{
-					res="yes";
+					result="yes";
 					sql="UPDATE free_board SET "
 					  + "name=?,subject=?,content=? "
 					  + "WHERE no=?";
@@ -254,6 +254,6 @@ public class FreeBoardDAO {
 			{
 				dbconn.disConnection(conn, ps);
 			}
-			return res;
+			return result;
 		}
 }

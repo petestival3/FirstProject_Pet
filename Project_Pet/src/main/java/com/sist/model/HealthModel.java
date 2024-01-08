@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 
 import com.sist.controller.RequestMapping;
+import com.sist.dao.FreeBoardDAO;
 import com.sist.dao.HealthDAO;
 import com.sist.vo.*;
 
@@ -343,7 +344,38 @@ public String newsDetailList(HttpServletRequest request,HttpServletResponse resp
 			PrintWriter out=response.getWriter();
 			out.write(res);
 		}catch(Exception ex) {}
-
+	}
+	@RequestMapping("health/newsreply_update_ok.do")
+	public void newsReply_update_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		
+		String no=request.getParameter("no");
+		String rno=request.getParameter("rno");
+		String upcontent=request.getParameter("upcontent");
+		String pwd=request.getParameter("uppwd");
+		
+		System.out.println(no);
+		System.out.println(pwd);
+		System.out.println(rno);
+		
+		WalkReplyVO vo=new WalkReplyVO();
+		
+		vo.setBno(Integer.parseInt(no));
+		vo.setRno(Integer.parseInt(rno));
+		vo.setRcontent(upcontent);
+		
+		HealthDAO dao=new HealthDAO();
+		String res=dao.newsReplyUpdate(vo, pwd);
+		
+		try
+		{
+			PrintWriter out=response.getWriter();
+			out.write(res);
+		}catch(Exception ex) {}
 	}
 }
 
