@@ -346,7 +346,7 @@ public ProductVO productDetail(int pno) { //상품상세보기
 		ps=conn.prepareStatement(sql);
 		ps.executeUpdate();
 		
-		sql="SELECT pno,p_name,p_lower_price,p_percent,p_category,p_hit,p_image,p_intprice,p_price,p_expire_date,p_shipment,p_stack,p_like,p_detail_image,p_intlowerprice,p_grade from product_detail where pno="+pno;
+		sql="SELECT pno,p_name,p_lower_price,p_percent,p_category,p_hit,p_image,p_intprice,p_price,p_expire_date,p_shipment,p_stack,p_like,p_detail_image,p_intlowerprice,p_grade,p_review_num from product_detail where pno="+pno;
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			rs.next();
@@ -368,6 +368,7 @@ public ProductVO productDetail(int pno) { //상품상세보기
 			vo.setP_detail_image(rs.getString(14));
 			vo.setP_intlowerprice(rs.getInt(15));
 			vo.setP_grade(rs.getDouble(16));
+			vo.setP_review_num(rs.getInt(17));
 			rs.close();
 			
 			

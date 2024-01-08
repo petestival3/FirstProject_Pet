@@ -95,14 +95,23 @@ WHERE answercheck='y'
 
 
 <select id="productQnaAdminListData" resultType="QnaBoardVO" parameterType="hashmap">
-<include refid="qnaList"/>
+
 
 <if test="type==1">
+<include refid="qnaList"/>
  WHERE answercheck='n' ORDER BY qregdate DESC))
 </if>
 
 <if test="type==2">
-WHERE answercheck='y' ORDER BY qregdate DESC))
+
+SELECT qno, qtitle, qcontent,pno,
+answercheck, secretcheck, filename, filesize, qwriter,TO_CHAR(qregdate,'YYYY-MM-DD HH24:MI:SS') as dbday 
+FROM(SELECT qno, qtitle, qcontent,pno,
+answercheck, secretcheck, filename, filesize, qwriter,qregdate,rownum as num
+FROM (SELECT QNABOARD.qno, qtitle, qcontent,pno,
+answercheck, secretcheck, filename, filesize, qwriter,qregdate FROM QNABOARD  
+JOIN QNA_ADMIN_REPLY ON QNABOARD.qno=QNA_ADMIN_REPLY.qno
+WHERE answercheck='y' ORDER BY adno DESC))
 </if>
 
 

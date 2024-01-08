@@ -55,51 +55,51 @@
    								  <div style="height:auto;"><img src="../img/산책4.jpg" ></div>
 								</div>
                        
-                       		<div style="text-align:center; margin-bottom:20px;" class="hidden_title"><h3 id="level"></h3></span>
+                       		<div style="text-align:center; margin-bottom:20px;" class="hidden_title"><h3 id="level"></h3>
                        		<div class="data_place" id="level_image" style="text-align: center;"><img src="../img/levelA.png" height="120" ></div>
                        		</div>
                        		<hr class="hidden_title">
                        		
-                       		<div style="text-align:center;" class="hidden_title"><span class="control_title"><h4>&#128054;코스이름</h4></span>
-                       		<div class="data_place" id="course_name"></div>
+                       		<div style="text-align:center;" class="hidden_title"><span class="control_title" style="font-weight:bold; font-size:30px;"><img src="../img/walkname.png" style="width:35px;">&nbsp;코스이름</span>
+                       		<div class="data_place" id="course_name" style="font-weight:bold; font-size:20px; color:blue;"></div>
                        		</div>
                        		<hr class="hidden_title">
                        		
-                       		<div style="text-align:center;" class="hidden_title"><span class="control_title"><h4>&#128054;경로</h4></span>
+                       		<div style="text-align:center;" class="hidden_title"><span class="control_title" style="font-weight:bold; font-size:30px;"><img src="../img/course.png" style="width:35px;">&nbsp;경로</span>
                        		<div id="course_way" class="data_place"></div>
                        		</div>
                        		<hr class="hidden_title">
                        		
-                       		<div style="text-align:center;" class="hidden_title"><span class="control_title"><h4>&#128054;위치</h4></span>
+                       		<div style="text-align:center;" class="hidden_title"><span class="control_title" style="font-weight:bold; font-size:30px;"><img src="../img/loc.png" style="width:35px;">&nbsp;위치</span>
                        		<div id="detail_address" class="data_place"></div>
                        		</div>
                        		<hr class="hidden_title">
                        		
-                       		<div style="text-align:center;" class="hidden_title"><span class="control_title"><h4>&#128054;코스길이</h4></span>
+                       		<div style="text-align:center;" class="hidden_title"><span class="control_title" style="font-weight:bold; font-size:30px;"><img src="../img/length.png" style="width:35px;">&nbsp;코스길이</span>
                        		
                        		<div id="course_length_detail" class="data_place"></div>
                        		 </div>
                        		 <hr class="hidden_title">
                        		
                        		
-                       			<div style="text-align:center;" class="hidden_title"><span class="control_title"><h4>&#128054;소요시간</h4></span>
+                       			<div style="text-align:center;" class="hidden_title"><span class="control_title" style="font-weight:bold; font-size:30px;"><img src="../img/time.png" style="width:35px;">&nbsp;소요시간</span>
                        		<div id="course_time" class="data_place"></div>
                        		</div>
                        		<hr class="hidden_title">
                        		
                        		
-                       		<div style="text-align:center;" class="hidden_title"><span class="control_title"><h4>&#128054;근처 약수터</h4></span>
-                       		<div id="optn_dc" class="data_place"></div><!--약수터 정보 -->
+                       		<div style="text-align:center;" class="hidden_title"><span class="control_title" style="font-weight:bold; font-size:20px;"><img src="../img/water.png" style="width:35px;">&nbsp;근처 약수터</span>
+                       		<div id="optn_dc" class="data_place" style="opacity:0.8;"></div><!--약수터 정보 -->
                        		</div>
                        		<hr class="hidden_title">
                        		
-                       		<div style="text-align:center;" class="hidden_title"><span class="control_title"><h4>&#128054;근처 화장실</h4></span>
-                       		<div id="toilet_dc" class="data_place"></div>
+                       		<div style="text-align:center;" class="hidden_title"><span class="control_title" style="font-weight:bold; font-size:20px;"><img src="../img/toilet.png" style="width:35px;">&nbsp;근처 화장실</span>
+                       		<div id="toilet_dc" class="data_place" style="opacity:0.8;"></div>
                        		</div>
                        		<hr class="hidden_title">
                        		
-                       		<div style="text-align:center;" class="hidden_title"><span class="control_title"><h4>&#128054;근처 편의시설/문화지</h4></span>
-                       		<div id="conventional_name" class="data_place"></div>
+                       		<div style="text-align:center;" class="hidden_title"><span class="control_title" style="font-weight:bold; font-size:20px;"><img src="../img/conventional.png" style="width:35px;">&nbsp;근처 편의시설/문화지</span>
+                       		<div id="conventional_name" class="data_place" style="opacity:0.8;"></div>
                        		</div>
                        		
                       

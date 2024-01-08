@@ -29,7 +29,7 @@
              						  <img src="${vo.p_image }" class="customimage">
                        					 <div class="product__item ">
                     		  	 	  <div class="product__item__text">
-                               	  <div>
+                               	  <div class="p_listOver">
                                            <span style="position: relative;">
 							  <span style="position: absolute; top: -15px; font-size: smaller; font-weight: bold; opacity: 0.7; color: red;">
 							   <img src="../img/hit.jpg" style="width:20px;">${vo.p_hit}</span>

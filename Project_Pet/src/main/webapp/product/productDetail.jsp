@@ -247,7 +247,7 @@ function requestPay() {
                          			       	 	<i class="fa fa-star"></i>
                             			  		<i class="fa fa-star"></i>
                                               </c:if>
-                            <span>(${reviewamount } reviews)</span>
+                            <span>(${vo.p_review_num } reviews)</span>
                              
                         </div>
                        
@@ -331,7 +331,7 @@ function requestPay() {
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#p_tabs-2" role="tab"
-                                    aria-selected="false">상품후기<span class="input_rNum">(${reviewamount })</span></a>
+                                    aria-selected="false">상품후기<span class="input_rNum">(${vo.p_review_num })</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#p_tabs-3" role="tab" id="p_qna"
