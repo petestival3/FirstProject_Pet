@@ -118,7 +118,7 @@
 													+' <div class="blog__item walk_wrapper">'
 													+'<div class="blog__item__text walk_list_style">'
 													+'<h3 class="name_overflow">'+vo.w_name+'</h3>'
-													+'<p style="color:blue; opacity:0.8;">(reply: '+vo.reply_amount+')</p>'
+													+'<p style="color:blue; opacity:0.8;"><img src="../img/walkRe.png" style="width:20px;">&nbsp;('+vo.reply_amount+')</p>'
 													+' <p class="name_overflow">'+vo.signgu_name+'</p>'
 													+' <p class="name_overflow">'+vo.address+'</p>'
 													+'</div>'
