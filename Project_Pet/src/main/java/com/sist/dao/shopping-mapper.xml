@@ -1,3 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sist.dao.shopping-mapper"></mapper>
+<mapper namespace="com.sist.dao.shopping-mapper">
+
+<select id="shoppingCheck" parameterType="map" resultType="int">
+SELECT COUNT(*) FROM CART_BUY WHERE USERID=#{userid} AND PNO=#{pno} AND BUY_OK='NO'
+</select>
+
+<insert id="addShoppingCart" parameterType="map">
+INSERT INTO CART_BUY (CBNO,PNO,BUY_COUNT,USERID,BUY_INTPRICE)
+VALUES(cart_bay_seq.nextval,#{pno},#{buy_count},#{userid},#{buy_intprice})
+</insert>
+<!-- 재고감소 -->
+</mapper>

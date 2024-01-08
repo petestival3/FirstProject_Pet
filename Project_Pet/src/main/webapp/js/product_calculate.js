@@ -9,6 +9,8 @@
 
     function calculateTotal() {
         let totalprice = price * quantity;
+        $('#kyj_total_price').data('qamount',quantity)
+        $('#kyj_total_price').data('qtotal',totalprice)
         target.text(formatCurrency(totalprice));
         
     }

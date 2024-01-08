@@ -660,7 +660,57 @@ $('#NotcompleteQ').addClass('btn-primary')
 });
 
 
-    
+$(document).on('click', '#addToCartBtn', function() {
+	
+	//에이젝스로 상품 담기 
+	
+	let quantity= $('#kyj_total_price').data('qamount')
+	let total= $('#kyj_total_price').data('qtotal')
+					$.ajax({
+								type:'post',
+								url: '../shopping/shoppingInsert.do',
+                                data: { "pno":pno,"buy_count":quantity,"buy_intprice":total},
+                                success: function (json){
+									let res=JSON.parse(json)
+									let msg=res.msg;
+									
+									if(msg==='NO'){
+										alert('이미 담긴 상품입니다')
+										return;
+									}
+									else{
+										centerModal()
+									}
+									
+								}
+		
+							})
+	
+	
+});
+
+// 모달 창의 닫기 버튼을 클릭할 때 팝업을 숨기는 이벤트 핸들러
+$(document).on('click', '.close', function() {
+    document.getElementById("cartModal").style.display = "none";
+});
+
+$(document).on('click', '#keepshop', function() {
+    document.getElementById("cartModal").style.display = "none";
+});
+
+
+// 모달 창을 화면 중앙에 배치하는 함수
+function centerModal() {
+  var modal = document.getElementById('cartModal');
+  modal.style.display = 'block'; // 모달을 보이게 설정
+  modal.style.top = '50%'; // 화면 상단에서 절반만큼 이동
+  modal.style.left = '50%'; // 화면 왼쪽에서 절반만큼 이동
+  modal.style.transform = 'translate(-50%, -50%)'; // 모달을 정확히 중앙으로 이동
+}
+
+
+// 화면 크기가 변경될 때 모달 창을 중앙에 유지하기 위해 이벤트를 등록합니다.
+
     
     
 });

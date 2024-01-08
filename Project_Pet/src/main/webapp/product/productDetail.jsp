@@ -39,6 +39,34 @@
 
   }
   
+  
+ .pmodal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.pmodal-content {
+    background-color: #f2f2f2; /* 부드러운 회색 배경 */
+    padding: 20px;
+    border-radius: 8px;
+    width: 120%;
+    max-width: 600px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #888; /* 닫기 버튼 색상 변경 */
+}
    
 
   
@@ -289,7 +317,7 @@ function requestPay() {
                 <button class="kyj__increaseBtn btn">+</button>
             </div>
         </div>
-         <h2><span id="kyj_total_price"></span></h2><!-- 총액 계싼 -->
+         <h2><span id="kyj_total_price" data-pamount="" data-ptotal=""></span></h2><!-- 총액 계싼 -->
     </div>
    
 </div>
@@ -297,7 +325,18 @@ function requestPay() {
 
                <div class="bottom_cate" style=" ">
                   
-                        <a href="#" class="primary-btn text-center" style="width: 190px; background-color:DodgerBlue;">장바구니</a>
+                        <a href="#" class="primary-btn text-center" id="addToCartBtn" style="width: 190px; background-color:DodgerBlue;">장바구니</a>
+                       <!-- 테스트부분 -->
+                        <div class="pmodal" id="cartModal">
+						    <div class="pmodal-content">
+						        <span class="close">&times;</span>
+						        <p style="font-weight:bold;">장바구니에 상품이 추가되었습니다!</p>
+						        <a href="#" class="btn btn-sm btn-primary">장바구니로 이동</a>
+						        <a href="#" class="btn btn-sm btn-info" id="keepshop">계속 쇼핑하기</a>
+						    </div>
+						</div>
+
+						<!-- 테스트부분 -->
                           <a href="#" class="primary-btn text-center" style="width: 190px; background-color:DodgerBlue;" onclick="requestPay()">구매하기</a>
                            <span id="kyj_top_link"><a href="${url}" style="background-color: #FFA500; color:white;">목록으로</a></span>
                       </div>
