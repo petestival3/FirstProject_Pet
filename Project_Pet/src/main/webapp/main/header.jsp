@@ -108,7 +108,7 @@
                                     <li><a href="../freeboard/list.do">자유게시판</a></li>
                                     <li><a href="../notice/list.do">공지사항</a></li>
                                     <c:if test="${sessionScope.id!=null }">
-                                    <li><a href="../reserve/reserve_funeral.do">예약하기</a></li>
+                                    <li><a href="../reserve/reserve.do">예약하기</a></li>
                                     </c:if>
                                 </ul>
                             </li>
