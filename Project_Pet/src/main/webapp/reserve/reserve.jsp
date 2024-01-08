@@ -68,15 +68,63 @@
 	<!-- 검색 사이드 매뉴 종료 -->
 
 	<!-- 예약하기 내용 시작 -->
+	<div class="res_button container">
+	   <span class="primary-btn conti_res_btn" data-no="1">호텔</span>
+       <span class="primary-btn conti_res_btn" data-no="2">병원</span>
+       <span class="primary-btn conti_res_btn" data-no="3">장례식장</span>
+    </div>
 	<div class="res_wrap container">
 		<!-- 테이블 날짜시간 1분할 -->
 		<div class="res_t">
-		<h1>장례식장 예약</h1>
+		    <div id="conti_res_list" style="height: 100%;overflow-y:scroll; "></div>
 		</div>
 		<!-- 테이블 상세내용 2분할 -->
-		<div class="res_t"></div>
+		<div class="res_t">
+		  <caption><h3>예약일 정보</h3></caption>
+		      <div id="conti_res_date"></div>
+		  <caption><h3>시간정보</h3></caption>
+		      <div id="times"></div>
+		</div>
+		
 		<!-- 테이블 결정사항 3분할 -->
-		<div class="res_t"></div>
+		<div class="res_t">
+		<caption><h3>인원정보</h3></caption>
+		      <div id="inwons"></div>
+		
+		 <table>
+          <caption><h3>예약정보</h3></caption>
+          <tr>
+           <td>
+            <img src="../reserve/noimage.png" style="width: 100%" id="conti_res_image">
+           </td>
+          </tr>
+          <tr>
+            <td>업체명:<span id="conti_res_name"></span></td>
+          </tr>
+          <tr>
+            <td>예약일:<span id="conti_res_day"></span></td>
+          </tr>
+          <tr>
+            <td>예약시간:<span id="conti_res_time"></span></td>
+          </tr>
+          <tr>
+            <td>인원:<span id="conti_res_inwon"></span></td>
+          </tr>
+          
+          <tr style="display: none" id="ok">
+		      <td class="text-center">
+		       <form method="post" action="../reserve/reserve_ok.do">
+		         <input type=hidden name="fno" id="fno">
+		         <input type=hidden name="rday" id="rday">
+		         <input type=hidden name="rtime" id="rtime">
+		         <input type=hidden name="rinwon" id="rinwon">
+		         <button class="btn btn-sm btn-danger">예약하기</button>
+		       </form>
+		      </td>
+		    </tr>
+         </table>
+		
+		</div>
 	</div>
 	<!-- 예약하기 내용 종료 -->
 </body>
