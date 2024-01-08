@@ -100,11 +100,6 @@ $(function(){
 	<!-- 검색 사이드 매뉴 종료 -->
 
 	<!-- 예약하기 내용 시작 -->
-	<div class="res_button container">
-	   <span class="primary-btn conti_res_btn" data-no="1">호텔</span>
-       <span class="primary-btn conti_res_btn" data-no="2">병원</span>
-       <span class="primary-btn conti_res_btn" data-no="3">장례식장</span>
-    </div>
 	<div class="res_wrap container">
 		<!-- 테이블 날짜시간 1분할 -->
 		<div class="res_t">
@@ -154,7 +149,8 @@ $(function(){
 		         <input type=hidden name="rday" id="rday">
 		         <input type=hidden name="rtime" id="rtime">
 		         <input type=hidden name="rinwon" id="rinwon">
-		         <button class="btn btn-sm btn-danger">예약하기</button>
+		         <button class="primary-btn">예약하기
+		         </button>
 		       </form>
 		      </td>
 		    </tr>

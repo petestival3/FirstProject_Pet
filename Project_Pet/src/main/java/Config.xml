@@ -28,5 +28,6 @@
 	<mapper resource="com/sist/dao/productQna-mapper.xml"/>
 	<mapper resource="com/sist/dao/reserve-mapper.xml"/>
 	<mapper resource="com/sist/dao/unreg-mapper.xml"/>
+	<mapper resource="com/sist/dao/reserve-funeral-mapper.xml"/>	
 </mappers>
 </configuration>
