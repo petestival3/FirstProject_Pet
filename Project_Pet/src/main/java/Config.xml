@@ -10,6 +10,9 @@
 <typeAlias type="com.sist.vo.FuneralListVO" alias="FuneralListVO"/>
 <typeAlias type="com.sist.vo.ShoppingVO" alias="ShoppingVO"/>
 <typeAlias type="com.sist.vo.ProductVO" alias="ProductVO"/>
+<typeAlias type="com.sist.vo.ReserveStayInfoVO" alias="ReserveStayInfoVO"/>
+<typeAlias type="com.sist.vo.StayVO" alias="StayVO"/>
+<typeAlias type="com.sist.vo.RoomVO" alias="RoomVO"/>
 </typeAliases>
 <environments default="development">
 <environment id="development">
@@ -30,5 +33,6 @@
 	<mapper resource="com/sist/dao/unreg-mapper.xml"/>
 	 <mapper resource="com/sist/dao/reserve-funeral-mapper.xml"/>
 	 <mapper resource="com/sist/dao/shopping-mapper.xml"/>
+	 <mapper resource="com/sist/dao/reservestay-mapper.xml"/>
 </mappers>
 </configuration>

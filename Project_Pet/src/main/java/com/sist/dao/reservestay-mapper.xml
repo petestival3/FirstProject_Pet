@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.dao.reservestay-mapper">
+<!-- 선택한 항목 출력 -->
+<select id="reserveStayDetail" resultType="RoomVO" parameterType="int">
+	SELECT room_image,room_name,room_price FROM roominfo
+	WHERE rno=#{rno}
+</select>
+
+</mapper>
