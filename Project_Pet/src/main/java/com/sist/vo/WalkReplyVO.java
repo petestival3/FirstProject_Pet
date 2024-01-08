@@ -4,8 +4,14 @@ import java.sql.Date;
 
 public class WalkReplyVO {
 	private int rno,like_count,group_id,group_step,group_tab,root,depth,bno,typeno;
-	private String rcontent,userid,dbday;
+	private String rcontent,userid,dbday,upcheck;
 	
+	public String getUpcheck() {
+		return upcheck;
+	}
+	public void setUpcheck(String upcheck) {
+		this.upcheck = upcheck;
+	}
 	public String getDbday() {
 		return dbday;
 	}

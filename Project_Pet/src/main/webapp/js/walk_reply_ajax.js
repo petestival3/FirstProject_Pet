@@ -5,8 +5,7 @@
  $(document).ready(function() {
      
    
-   
-      
+  
     
        
     // 댓글 목록을 받아오는 함수
@@ -23,11 +22,13 @@
             data: { "wno": wno ,"page":page},
             success: function(json) {
                 let res = JSON.parse(json);
+               
                 let replyAmount = res[0].replyAmount;
+                
                 let id = res[0].sessionID;
                 let totalpage=res[0].totalpage;
                 let commentListHtml = '<img src="../img/walkRe.png" style="width:40px;">&nbsp;<span style="margin-bottom:20px; font-weight:bold; font-size:25px;">댓글(' + replyAmount + ')</span>';
-         
+         		
                
                 if (id !== null) {
                     commentListHtml += '<div class="input-group">' +
@@ -42,42 +43,80 @@
                commentListHtml+='<h2 class="text-center">댓글이 없습니다.<h2></div>'
             }
             else{
+                 	
+                 	if(page==="1"||page===1){
+					  let vo2=res[0]
+					   commentListHtml+=' <div class="comment" style="margin-top:50px;" id="getRno"  data-rno='+vo2.brno+' data-page='+page+'>'
+                           +'<div style="background-color: #f0f0f0;"> <div class="comment-header" style="height:35px;"><div><img src="../img/bestreply.png" style="width:30px;"></div>'
+                             commentListHtml+='<span style=" opacity:0.8; font-weight:bold;"><img src="../img/userIcon.jpg" style="width:20px;">&nbsp;'
+                     +vo2.buserid+'</span><span style="margin-left:10px;"class="dbday">'+vo2.bdbday+'</span>'
+                     +'<div class="comment-actions" style="float:right; height:35px;">'
+                     
+                       commentListHtml+='</div>'+'</div>'+'<div class="mainContent" style="margin-top:18px;">'
+                     	commentListHtml+='<span class="mc">'+vo2.brcontent+'</span>'
+                          		 +'</div>'   
+                          		 
+                          commentListHtml+='<div style="margin-left:1095px;">'	
+                           		
+                           		if(id !==vo2.buserid && id!==null){
+							    commentListHtml+='<button style="display: inline;" class="user_upBtn" data-uqno="'+vo2.brno+'">'
+							    
+							    if(vo2.bupcheck==='n'){
+							    commentListHtml+='<img src="../img/notup.png" style="width:20px;" class="changeImg">'
+							    }
+							    else if(vo2.bupcheck==='y'){
+									 commentListHtml+='<img src="../img/up.png" style="width:20px;" class="changeImg">'
+								}
+							    commentListHtml+='</button>'
+							    }
+							    else{
+									commentListHtml+='<span style="margin-left:20px;"></span>'
+								}
+						   		commentListHtml+='<span style="margin-left:5px; font-weight:bold; color:blue;" class="change_likeCount">'+vo2.blike_count+'UP</span></div></div>'
+              
+               					commentListHtml+='<hr>'		 
+				  
+                  }
                   
                 for(let i=0; i<res.length; i++){
                let vo =res[i];
+               let upcheck=res[i].upcheck
+               if(upcheck===''||upcheck===null){
+				   upcheck='n'
+			   }
                
-               commentListHtml+=' <div class="comment" id="getRno" data-index='+i+' data-rno='+vo.rno+' data-page='+page+'>'
+               commentListHtml+=' <div class="comment" style="margin-top:50px;" id="getRno" data-index='+i+' data-rno='+vo.rno+' data-page='+page+'>'
                            +' <div class="comment-header" style="height:35px;">'
                            
                            
                      if(vo.group_tab>0){
                         let margin=0;
                      for(let k=1;k<=vo.group_tab;k++){
-                                 margin+=10;
+                                 margin+=15;
                      }
                                        
                      commentListHtml+='<div style="height:10px; margin-bottom:15px; opacity:0.5; font-size:10px;"><img src="../img/reply.png" style="width:20px; margin-left:'+margin+'px;">'
                                     +'&nbsp;&nbsp;('+vo.rootId+'님에 대한 댓글)</div>'
+                                    
+                               
+                               
+                                    
                      }   
                      
                   
                            
                         if(vo.group_tab>0){
-                                    
-                              for(let j=1; j<=vo.group_tab; j++){
-                                 
-                                 
-                                 
-                                 
-                                    commentListHtml+='&nbsp;&nbsp;&nbsp;&nbsp;'
-                                    
+                                   let margin=0;
+                                      for(let k=1;k<=vo.group_tab;k++){
+                                 margin+=15;
+                    				 }
+                                     
+                                    commentListHtml+='<span style="margin-left:'+margin+'px;"></span>'
                                     
                               }
-                              
-                              
-                              
                                  
-                        }   
+                           
+                     
                         
                      commentListHtml+='<span style=" opacity:0.8; font-weight:bold;"><img src="../img/userIcon.jpg" style="width:20px;">&nbsp;'
                      +vo.userid+'</span><span style="margin-left:10px;"class="dbday">'+vo.dbday+'</span>'
@@ -85,30 +124,53 @@
                   
                   if(vo.rcontent!=='삭제한 댓글입니다.'){
                if(id===vo.userid){
-                  commentListHtml+='<button class="modifyBtn btn btn-sm btn-info">수정</button>'
-                              +' <button class="deleteBtn btn btn-sm btn-info">삭제</button>'
+                  commentListHtml+='<button class="modifyBtn btn btn-sm btn-primary">수정</button>'
+                              +' <button class="deleteBtn btn btn-sm btn-danger">삭제</button>'
                                  
                }   
                
                if(id !==vo.userid && id!==null){
-                  commentListHtml+='  <button class="replyBtn btn btn-sm btn-info">답글</button>'
+                  commentListHtml+=' <button class="replyBtn btn btn-sm btn-success">답글</button>'
                }
                   }
                commentListHtml+='</div>'+'</div>'+'<div class="mainContent" style="margin-top:18px;">'
                
                         if(vo.group_tab>0){
-                           
-                              for(let j=1; j<=vo.group_tab; j++){
-                                    commentListHtml+=' &nbsp;&nbsp;&nbsp;'   
-                              }
+							
+							let margin=0;
+                                      for(let k=1;k<=vo.group_tab;k++){
+                                 margin+=15;
+                    				 }
+                           		 commentListHtml+='<span style="margin-left:'+margin+'px;"></span>'
+                              /*for(let j=1; j<=vo.group_tab; j++){
+                                    commentListHtml+=' &nbsp;&nbsp;&nbsp;&nbsp;'   
+                              }*/
                                  
                         }   
                
                commentListHtml+='<span class="mc">'+vo.rcontent+'</span>'
-                           +'<hr></div>'   
+                          		 +'</div>'   
                            
-               
-               commentListHtml+='<div style="display: none;" class="addreply">'
+                           			//up버튼
+                           		commentListHtml+='<div style="margin-left:1095px;">'	
+                           		
+                           		if(id !==vo.userid && id!==null){
+							    commentListHtml+='<button style="display: inline;" class="user_upBtn" data-uqno="'+vo.rno+'">'
+							    
+							    if(upcheck==='n'){
+							    commentListHtml+='<img src="../img/notup.png" style="width:20px;" class="changeImg">'
+							    }
+							    else if(upcheck==='y'){
+									 commentListHtml+='<img src="../img/up.png" style="width:20px;" class="changeImg">'
+								}
+							    commentListHtml+='</button>'
+							    }
+							    else{
+									commentListHtml+='<span style="margin-left:20px;"></span>'
+								}
+						   		commentListHtml+='<span style="margin-left:5px; font-weight:bold; color:blue;" class="change_likeCount">'+vo.like_count+'UP</span></div>'
+              
+               commentListHtml+='<hr><div style="display: none;" class="addreply">'
                
                            
                
@@ -126,38 +188,61 @@
                            
                            
                            if(vo.group_tab>0){
+                           		    let margin=0;
+                  					   for(let k=0;k<=vo.group_tab;k++){
+                                 margin+=15;
+                   					  }
                            
-                              for(let j=1; j<=vo.group_tab; j++){
-                                    commentListHtml+='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'   
-                              }
+                           			commentListHtml+='<span style="margin-left:'+margin+'px;"></span>'
+                              /*for(let j=1; j<=vo.group_tab; j++){
+                                    commentListHtml+='&nbsp;&nbsp;&nbsp;&nbsp;'   
+                              }*/
                                  
                         }   
                commentListHtml+='<textarea class="kyj_textarea" rows="4" cols="70" name="addcontent" id="addcontent" placeholder="답변을 입력해주세요" required></textarea>'   
                             +'<div class="row" style="margin-top:5px; margin-left:400px; margin-bottom:10px;">'         
                                               
-                              if(vo.group_tab>0){
                            
-                              for(let j=1; j<=vo.group_tab; j++){
+                           
+                            if(vo.group_tab>0){
+                           		    let margin=0;
+                  					   for(let k=0;k<=vo.group_tab;k++){
+                                 margin+=15;
+                   					  }
+                           
+                           			commentListHtml+='<span style="margin-left:'+margin+'px;"></span>'
+                           
+                              /*for(let j=1; j<=vo.group_tab; j++){
                                     commentListHtml+='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'   
-                              }
+                              }*/
                                  
                         }   
-               commentListHtml+=' <input type="password" size="13" name="addpassword" class="addpassword kyj_text" placeholder="비밀번호" required>'
-                           +'<input type="submit" id="addReplyBtn" value="등록"></div><hr></div>'
+                        
+                  
+               commentListHtml+=' &nbsp;&nbsp;&nbsp;&nbsp;<input type="password" size="10" name="addpassword" class="addpassword kyj_text" placeholder="비밀번호" required>'
+                           +'<input type="submit" class="btn btn-sm btn-success" id="addReplyBtn" value="등록"></div><hr></div>'
                            
                         
             //댓글삭제
                commentListHtml+='   <div class="dpassword" style="display:none; margin-bottom:20px;">'
-                              
+                              let margin=0;
                      if(vo.group_tab>0){
-                           
-                              for(let j=1; j<=vo.group_tab; j++){
+						 
+									  
+                  					   for(let k=0;k<=vo.group_tab;k++){
+                                 margin+=15;
+                   					  }
+                   					  
+                   					 	commentListHtml+='<span style="margin-left:'+margin+'px;"></span>'
+                             /* for(let j=1; j<=vo.group_tab; j++){
                                     commentListHtml+=' &nbsp;&nbsp;&nbsp;'   
-                              }
+                              }*/
                                  
                         }   
-               commentListHtml+='<input type="password" name="dpassword" placeholder="비밀번호" class="delpassword kyj_text" required>'   
-                           +'<input type="submit" id="ReplyDeleteBtn" value="삭제">'   
+                       
+                          
+               commentListHtml+='<img src="../img/deleteRe.png" style="width:30px;">&nbsp;<input type="password" name="dpassword" placeholder="비밀번호" class="delpassword kyj_text" required>'   
+                           +'<input type="submit" class="btn  btn-danger" id="ReplyDeleteBtn" value="삭제">'   
                
                            +'</div>'   
                            
@@ -166,10 +251,15 @@
                commentListHtml+='<div style="display: none;" class="modifyreply">'
                
                            if(vo.group_tab>0){
-                           
-                              for(let j=1; j<=vo.group_tab; j++){
+							   
+							     let margin=0;
+                  					   for(let k=0;k<=vo.group_tab;k++){
+                                 margin+=15;
+                   					  }
+                           	commentListHtml+='<span style="margin-left:'+margin+'px;"></span>'
+                              /*for(let j=1; j<=vo.group_tab; j++){
                                     commentListHtml+=' &nbsp;&nbsp;&nbsp;'   
-                              }
+                              }*/
                                  
                         }   
                         
@@ -177,16 +267,22 @@
                             +'<div class="row" id="addUpdate" style="margin-top:5px; margin-left:400px; margin-bottom:10px;">'         
                                               
                               if(vo.group_tab>0){
-                           
-                              for(let j=1; j<=vo.group_tab; j++){
+								  
+								   let margin=0;
+                  					   for(let k=0;k<=vo.group_tab;k++){
+                                 margin+=15;
+                   					  }
+                           commentListHtml+='<span style="margin-left:'+margin+'px;"></span>'
+                             /* for(let j=1; j<=vo.group_tab; j++){
                                     commentListHtml+=' &nbsp;&nbsp;&nbsp;'   
-                              }
+                              }*/
                                  
                         }
-               commentListHtml+=' <input type="password" size="10" name="uppassword" class="uppassword kyj_text" placeholder="비밀번호" required>'
-                           +'<input type="submit" id="replyUpdateBtn" value="수정"></div><hr></div>'               
+               commentListHtml+=' &nbsp;&nbsp;&nbsp;&nbsp;<input type="password" size="10" name="uppassword" class="uppassword kyj_text" placeholder="비밀번호" required>'
+                           +'<input type="submit" class="btn btn-sm btn-primary" id="replyUpdateBtn" value="수정"></div><hr></div>'               
                            
-         
+         		
+         		
             }
  
          }
@@ -241,10 +337,12 @@
         });
 
         $('.comment-section').on('click', '.modifyBtn', function() {
+			
             let index = $(this).closest('.comment').data('index');
             $('.modifyreply').eq(index).toggle();
             $('.addreply').eq(index).hide();
             $('.dpassword').eq(index).hide();
+            
         });
         
         $('.comment-section').on('click', '#prevBtn', function() {
@@ -343,6 +441,42 @@
              
           
       });
+         
+        
+          $('.comment-section').on('click', '.user_upBtn', function() {
+			    let $clickedButton = $(this); // 클릭된 버튼을 변수에 저장
+  					let rno=$(this).data('uqno')
+  					
+  						$.ajax({
+						  		  type:'post',
+             					  url:'walkReplyUpButton.do',
+              					  data:{"rno":rno},
+               					  success:function(json){
+				   					let res=JSON.parse(json)
+				   				 let $parentDiv = $clickedButton.closest('div'); // 저장된 버튼으로부터 가장 가까운 div 요소를 찾음
+          			  let $likeCountSpan = $parentDiv.find('.change_likeCount'); // div 내에서 class가 change_likeCount인 요소를 찾음
+          			   let $changeImg = $parentDiv.find('.changeImg'); // div 내에서 class가 change_likeCount인 요소를 찾음
+            
+            $likeCountSpan.text(res.sendLikeCount + 'UP');
+            let upcheck=res.sendUpcheck;
+            
+           
+			console.log(upcheck)
+            if(upcheck==='y'){
+				 $changeImg.attr('src', '../img/up.png');
+			}
+			if(upcheck==='n'){
+				 $changeImg.attr('src', '../img/notup.png');
+			}
+         
+            
+				   						
+				   						
+				   
+			  				}
+					  })
+  					
+         });
          
          let stopGetComments = false; // getComments() 실행 여부를 제어하는 플래그
          

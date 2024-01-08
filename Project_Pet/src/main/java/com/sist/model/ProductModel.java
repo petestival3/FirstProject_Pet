@@ -153,6 +153,9 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
          request.setAttribute("rlist", rlist);
          request.setAttribute("rlistSize", rlist.size());
          request.setAttribute("prTotalpage", prTotalpage);
+         
+         HttpSession session=request.getSession();
+         String id=(String)session.getAttribute("id");
          try {
          
             Cookie[] cookies=request.getCookies();
@@ -161,7 +164,7 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
                int  count =0;
                for(int i=cookies.length-1;i>=0;i--) {
                   
-                  if (cookies[i].getName().startsWith("pno_")) {
+                  if (cookies[i].getName().startsWith(id+"_pno_")) {
                      String cvalue=cookies[i].getValue();
                      int cpno=Integer.parseInt(cvalue);
                      ProductVO cvo =dao.productDetail_Before(cpno);
@@ -223,8 +226,10 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
       } catch (UnsupportedEncodingException e) {
           e.printStackTrace();
       }
-      
-         Cookie cookie=new Cookie("pno_"+pno, pno);
+      	
+      HttpSession session=request.getSession();
+      String id=(String)session.getAttribute("id");
+         Cookie cookie=new Cookie(id+"_pno_"+pno, pno);
          cookie.setPath("/");
          cookie.setMaxAge(60*60*24);
          response.addCookie(cookie);

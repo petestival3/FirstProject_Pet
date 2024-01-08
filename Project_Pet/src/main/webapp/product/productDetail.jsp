@@ -805,7 +805,9 @@ function requestPay() {
 							
 
                             <div>
-                              <h7 class="hs_original-price">${cvo.p_price}</h7>
+                              <c:if test="${cvo.p_percent!=null }">
+                                     <h7 class="hs_original-price">${cvo.p_price}</h7>
+                                     </c:if>
                                   <h7 class="hs_discount-rate">${cvo.p_percent}</h7>   
                                   <h5 class="hs_final-price">${cvo.p_lower_price }</h5>
                                   </div>
@@ -935,7 +937,9 @@ function requestPay() {
                                      <span style="color: rgb(139, 0, 0); opacity:0.7;">(${rvo.p_review_num } reviews)</span>
                                      </center>
 							
-                        			  <h7 class="hs_original-price">${rvo.p_price}</h7>
+                        			  <c:if test="${rvo.p_percent!=null }">
+                                     <h7 class="hs_original-price">${rvo.p_price}</h7>
+                                     </c:if>
                                   <h7 class="hs_discount-rate">${rvo.p_percent}</h7>   
                                   <h5 class="hs_final-price">${rvo.p_lower_price }</h5>
                         

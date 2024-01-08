@@ -4,7 +4,9 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -198,24 +200,36 @@ public class WalkModel {
 		  
 		  
 		 int totalpage=dao.walkReplyTotalPage(Integer.parseInt(wno));
+		
 		  int replyAmount=dao.walkReplyAmount(Integer.parseInt(wno));
+		 
+		  
+		  
 		  HttpSession session =request.getSession();
-		  // JSON변경 
-		  // VO => {} ==> JSONObject
-		  // List => [{},{}...] ==> JSONArray
-		  JSONArray arr=new JSONArray();//[]
-		  //[{count:0},]
+		
+		  
+		  String id=(String)session.getAttribute("id");
+		  
+		  JSONArray arr=new JSONArray();
+		  
 		  if(replyAmount==0)
 		  {
 			  JSONObject obj=new JSONObject();
 			  obj.put("replyAmount", replyAmount);
 			  obj.put("sessionID", session.getAttribute("id"));
 			  arr.add(obj);
+			 
 		  }
 		  else
 		  {
+			 
+			 
 			  int i=0;
-			  List<WalkReplyVO>list=dao.walkReplyListData(Integer.parseInt(wno),curpage);
+			 
+			  List<WalkReplyVO>list=dao.walkReplyListData(Integer.parseInt(wno),curpage,id);
+			 WalkReplyVO vo2=dao.walkReplyBest(Integer.parseInt(wno), id);
+			 System.out.println(vo2.getDbday());
+			  
 			  
 			  for(WalkReplyVO vo:list)
 			  {
@@ -226,6 +240,7 @@ public class WalkModel {
 				  JSONObject obj=new JSONObject();
 				  // {zipcode:111,address:'...',count:2},{}
 				  obj.put("rno", vo.getRno());
+				
 				  obj.put("rcontent", vo.getRcontent());
 				  obj.put("dbday", vo.getDbday());
 				  obj.put("like_count", vo.getLike_count());
@@ -235,21 +250,41 @@ public class WalkModel {
 				  obj.put("rootId", rootId);
 				  obj.put("root", vo.getRoot());
 				  obj.put("group_id", vo.getGroup_id());
-				  
-				
-				  
-
+				  obj.put("upcheck", vo.getUpcheck());
+				  	
 
 
 				  if(i==0)
 				  {
+					 
+					 
 					  obj.put("replyAmount", replyAmount);
 					  obj.put("sessionID", session.getAttribute("id"));
 					  obj.put("totalpage", totalpage);
+					  
+					  obj.put("brno", vo2.getRno());
+						
+					  obj.put("brcontent", vo2.getRcontent());
+					  obj.put("bdbday", vo2.getDbday());
+					  obj.put("blike_count", vo2.getLike_count());
+					 
+					  obj.put("buserid", vo2.getUserid());
+					
+					  
+					  obj.put("bupcheck", vo2.getUpcheck());
+					 
 				  }
+				  
+				
+				  
 				  arr.add(obj);
 				  i++;
+				 
 			  }
+			  
+			  
+	
+			  
 		  }
 		 
 		  try
@@ -462,5 +497,78 @@ public class WalkModel {
 
 	
 }
+	
+	
+	@RequestMapping("walk/walkReplyUpButton.do")
+	public void walkReplyUpButton(HttpServletRequest request, HttpServletResponse response) {
+		
+			//  테이블에 값이 있는지 체크 = > count
+		//없으면 y값으로 인서트 
+		// boardreply - > upcheck 가져옴 
+		//있으면 만약 upcheck=n 이면 y로 업데이트 , boardreply likecount=+1 
+		//없으면 만약 upcheck=y 이면 n으로 업데이트 , boardreply likecount=-1 
+		  
+	
+		//upcheck랑 like count 
+	String rno=	request.getParameter("rno");
+	String upcheck="";
+	String sendUpcheck="";
+	int sendLikeCount=0;
+	
+	Map map= new HashMap();
+	HttpSession session = request.getSession();
+	
+	String id=(String)session.getAttribute("id"); 
+		WalkDAO dao=WalkDAO.newInstance();
+		int count = dao.likeCountCheck(Integer.parseInt(rno),id );
+		System.out.println(count);
+		if(count==0) {
+		map=dao.walkRelativeUserNoData(Integer.parseInt(rno), id);
+			
+		}
+		else {
+			
+			upcheck=dao.getUpcheck(Integer.parseInt(rno), id);
+			
+				
+				if(upcheck.equals("n")) {
+				map=dao.UserUpadateUpcheckToYes(Integer.parseInt(rno), id);
+				
+					
+				}
+				else if (upcheck.equals("y")) {
+				map=dao.UserUpadateUpcheckToNo(Integer.parseInt(rno), id);
+					
+				}
+			
+		}
+		
+		sendLikeCount=(int)map.get("sendLikeCount");
+		sendUpcheck=(String)map.get("sendupCheck");
+		
+		JSONObject obj=new JSONObject();
+		
+		obj.put("sendLikeCount",sendLikeCount);
+		obj.put("sendUpcheck",sendUpcheck);
+		
+		try
+		  {
+			  request.setCharacterEncoding("UTF-8");
+		  }catch(Exception ex) {}
+		  	
+		  
+		 
+			  
+			  try{//변경된 값 , upcheck
+			  response.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
+			  PrintWriter out=response.getWriter();
+			  out.write(obj.toJSONString());
+			  }
+		  catch(Exception ex) {}
+	
+
+	
+}
+	
 	
 }

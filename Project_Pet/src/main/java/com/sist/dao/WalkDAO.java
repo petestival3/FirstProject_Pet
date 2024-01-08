@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.sist.dbcp.CreateDBCPconnection;
 import com.sist.dao.*;
@@ -404,7 +406,7 @@ public  int walkReplyTotalPage(int wno) {//산책로 댓글 토탈페이지
 	
 	try {
 		conn=dbconn.getConnection();
-		String sql="SELECT CEIL(COUNT(*)/10.0) FROM BOARD_REPLY WHERE bno=?";
+		String sql="SELECT CEIL(COUNT(*)/10.0) FROM BOARD_REPLY WHERE bno=? AND typeno=2";
 		ps=conn.prepareStatement(sql);
 		ps.setInt(1, wno);
 		ResultSet rs= ps.executeQuery();
@@ -425,22 +427,24 @@ public  int walkReplyTotalPage(int wno) {//산책로 댓글 토탈페이지
 	
 }
 
-public  List<WalkReplyVO> walkReplyListData(int wno,int page){//산책로 댓글리스트
+public  List<WalkReplyVO> walkReplyListData(int wno,int page,String id){//산책로 댓글리스트
 	List<WalkReplyVO>list=new ArrayList<WalkReplyVO>();
 	try {
+		WalkDAO dao=newInstance();
 		conn=dbconn.getConnection();
-		String sql="SELECT rno,rcontent,TO_CHAR(rdate,'YYYY-MM-dd HH24:MI:SS'),like_count,group_tab,userid,bno,root,group_id,num "
-					+"FROM (SELECT rno,rcontent,rdate,like_count,group_tab,userid,bno,root,group_id,rownum as num "
-					+"FROM (SELECT rno,rcontent,rdate,like_count,group_tab,userid,bno,root,group_id "
+		String sql="SELECT rno,rcontent,TO_CHAR(rdate,'YYYY-MM-dd HH24:MI:SS'),like_count,group_tab,userid,bno,root,group_id,upcheck,num "
+					+"FROM (SELECT rno,rcontent,rdate,like_count,group_tab,userid,bno,root,group_id,upcheck,rownum as num "
+					+"FROM (SELECT rno,rcontent,rdate,like_count,group_tab,userid,bno,root,group_id,(SELECT upcheck FROM WALK_RELATIVEUSER WHERE rno=board_reply.rno AND userid=?) AS upcheck "
 					+"FROM BOARD_REPLY WHERE typeno=2 AND bno=? ORDER BY GROUP_ID DESC,GROUP_STEP ASC)) "
 					+"WHERE num BETWEEN ? AND ?";
 		ps=conn.prepareStatement(sql);
 		int start=(REPLY_ROW_SIZE*page)-(REPLY_ROW_SIZE-1);
 		int end= REPLY_ROW_SIZE*page;
 		
-		ps.setInt(1, wno);
-		ps.setInt(2, start);
-		ps.setInt(3, end);
+		ps.setString(1, id);
+		ps.setInt(2, wno);
+		ps.setInt(3, start);
+		ps.setInt(4, end);
 		ResultSet rs=ps.executeQuery();
 
 		while(rs.next()) {
@@ -454,6 +458,8 @@ public  List<WalkReplyVO> walkReplyListData(int wno,int page){//산책로 댓글
 			vo.setBno(rs.getInt(7));
 			vo.setRoot(rs.getInt(8));
 			vo.setGroup_id(rs.getInt(9));
+			vo.setUpcheck(rs.getString(10));
+			
 			list.add(vo);
 		}
 		
@@ -781,6 +787,310 @@ public String rootId(int root) {//산책로 댓글중 부모댓글의 아이디�
 	return rootId;
 }
 
+
+public int likeCountCheck(int rno,String id) {//up(좋아여) 버튼기능을 구사하기위한 조건을 찾기위해 테이블에 등록이되어있는지 조건체크
+	int count=0;
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT COUNT(*) FROM walk_relativeuser WHERE rno=? AND userid=?";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, rno);
+		ps.setString(2, id);
+		
+		ResultSet rs=ps.executeQuery();
+		if(rs.next()) {
+			count=rs.getInt(1);
+		}
+		rs.close();
+	} catch (Exception e) {
+		// TODO: handle exception
+	e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return count;
+	
+}
+
+public String getUpcheck(int rno,String id) {//upcheck를 y혹은 n으로 바꾸기위한
+	String upcheck="";
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT upcheck FROM walk_relativeuser WHERE rno=? AND userid=?";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, rno);
+		ps.setString(2, id);
+		
+		ResultSet rs=ps.executeQuery();
+		if(rs.next()) {
+			upcheck=rs.getString(1);
+		}
+		rs.close();
+	} catch (Exception e) {
+		// TODO: handle exception
+	e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return upcheck;
+}
+
+public Map walkRelativeUserNoData(int rno,String id) {//count가 0일시 인서트
+	
+	Map map = new HashMap();
+	try {
+		conn=dbconn.getConnection();
+		String sql="INSERT INTO walk_relativeuser "
+					+"VALUES(walk_user_seq.nextval,'y',?,?)";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, rno);
+		ps.setString(2, id);
+		ps.executeUpdate();
+		
+		dbconn.disConnection(conn, ps);
+		conn=dbconn.getConnection();
+		
+		sql="UPDATE BOARD_REPLY SET "
+				+"LIKE_COUNT=LIKE_COUNT+1 "
+				+"WHERE rno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, rno);
+			ps.executeUpdate();
+			
+			dbconn.disConnection(conn, ps);
+			conn=dbconn.getConnection();
+			
+			sql="SELECT LIKE_COUNT FROM BOARD_REPLY WHERE rno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, rno);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()) {
+				map.put("sendLikeCount", rs.getInt(1));
+			}
+			rs.close();
+			dbconn.disConnection(conn, ps);
+			conn=dbconn.getConnection();
+			sql="SELECT upcheck FROM walk_relativeUser WHERE rno=? AND userid=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, rno);
+			ps.setString(2, id);
+			 rs=ps.executeQuery();
+			if(rs.next()) {
+				map.put("sendupCheck", rs.getString(1));
+			}
+			rs.close();
+			dbconn.disConnection(conn, ps);
+			
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+	e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return map;
+
+}
+
+
+public Map UserUpadateUpcheckToNo(int rno,String id) {
+	Map map=new HashMap();
+	try {
+		conn=dbconn.getConnection();
+		
+		int count=0;
+		String sql="SELECT LIKE_COUNT FROM BOARD_REPLY "
+					+"WHERE rno=?";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, rno);
+		
+		ResultSet rs=ps.executeQuery();
+		if(rs.next()) {
+			count=rs.getInt(1);
+		}
+		rs.close();
+		dbconn.disConnection(conn, ps);
+		
+		conn=dbconn.getConnection();
+		
+		
+		sql="UPDATE walk_relativeuser SET "
+					+"upcheck='n' "
+				    +"WHERE rno=? AND userid=?";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, rno);
+		ps.setString(2, id);
+		ps.executeUpdate();
+		
+		dbconn.disConnection(conn, ps);
+		conn=dbconn.getConnection();
+		
+		if(count>0) {
+			sql="UPDATE BOARD_REPLY SET "
+				+"LIKE_COUNT=LIKE_COUNT-1 "
+				+"WHERE rno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, rno);
+			ps.executeUpdate();
+		}
+		dbconn.disConnection(conn, ps);
+		conn=dbconn.getConnection();
+		sql="SELECT LIKE_COUNT FROM BOARD_REPLY WHERE rno=?";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, rno);
+		 rs=ps.executeQuery();
+		if(rs.next()) {
+			map.put("sendLikeCount", rs.getInt(1));
+		}
+		rs.close();
+		dbconn.disConnection(conn, ps);
+		conn=dbconn.getConnection();
+		sql="SELECT upcheck FROM walk_relativeUser WHERE rno=? AND userid=?";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, rno);
+		ps.setString(2, id);
+		 rs=ps.executeQuery();
+		if(rs.next()) {
+			map.put("sendupCheck", rs.getString(1));
+		}
+		rs.close();
+		dbconn.disConnection(conn, ps);
+	
+	} catch (Exception e) {
+		// TODO: handle exception
+	e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return map;
+}
+
+
+
+
+public Map UserUpadateUpcheckToYes(int rno,String id) {
+	
+	Map map=new HashMap();
+	try {
+		conn=dbconn.getConnection();
+		
+		
+		
+		conn=dbconn.getConnection();
+		
+		
+		String sql="UPDATE walk_relativeuser SET "
+					+"upcheck='y' "
+				    +"WHERE rno=? AND userid=?";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, rno);
+		ps.setString(2, id);
+		ps.executeUpdate();
+		
+		dbconn.disConnection(conn, ps);
+		conn=dbconn.getConnection();
+		
+	
+			sql="UPDATE BOARD_REPLY SET "
+				+"LIKE_COUNT=LIKE_COUNT+1 "
+				+"WHERE rno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, rno);
+			ps.executeUpdate();
+			
+		
+		dbconn.disConnection(conn, ps);
+		
+		conn=dbconn.getConnection();
+		sql="SELECT LIKE_COUNT FROM BOARD_REPLY WHERE rno=?";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, rno);
+		ResultSet rs=ps.executeQuery();
+		if(rs.next()) {
+			map.put("sendLikeCount", rs.getInt(1));
+		}
+		rs.close();
+		dbconn.disConnection(conn, ps);
+		conn=dbconn.getConnection();
+		sql="SELECT upcheck FROM walk_relativeUser WHERE rno=? AND userid=?";
+		ps=conn.prepareStatement(sql);
+		ps.setInt(1, rno);
+		ps.setString(2, id);
+		 rs=ps.executeQuery();
+		if(rs.next()) {
+			map.put("sendupCheck", rs.getString(1));
+		}
+		rs.close();
+		dbconn.disConnection(conn, ps);
+	
+	} catch (Exception e) {
+		// TODO: handle exception
+	e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return map;
+}
+
+public WalkReplyVO walkReplyBest (int wno, String id){
+	WalkReplyVO vo=new WalkReplyVO();
+	
+	
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT rno, rcontent, rdate, like_count, group_tab, userid, bno, root, group_id, "
+				+"(SELECT upcheck FROM WALK_RELATIVEUSER WHERE rno = board_reply.rno AND userid = ?) AS upcheck "
+				+"FROM BOARD_REPLY "
+				+"WHERE typeno = 2 AND bno = ? AND like_count = ( "
+				+"SELECT MAX(like_count) "
+				+"FROM BOARD_REPLY "
+				+"WHERE bno = ? "
+				+")AND ROWNUM = 1";
+				
+				
+		
+		
+		ps=conn.prepareStatement(sql);
+		ps.setString(1, id);
+		ps.setInt(2, wno);
+		ps.setInt(3, wno);
+		
+		ResultSet rs=ps.executeQuery();
+		
+			rs.next();
+			vo.setRno(rs.getInt(1));
+			vo.setRcontent(rs.getString(2));
+			vo.setDbday(rs.getString(3));
+			vo.setLike_count(rs.getInt(4));
+			vo.setGroup_tab(rs.getInt(5));
+			vo.setUserid(rs.getString(6));
+			vo.setBno(rs.getInt(7));
+			vo.setRoot(rs.getInt(8));
+			vo.setGroup_id(rs.getInt(9));
+			vo.setUpcheck(rs.getString(10));
+			rs.close();
+		
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return vo;
+	
+}
  
 
 }

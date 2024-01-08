@@ -117,7 +117,9 @@
                                      </center>
 											
 											
-											<h7 class="hs_original-price">${vo.p_price}</h7>
+											<c:if test="${vo.p_percent!=null }">
+                                     <h7 class="hs_original-price">${vo.p_price}</h7>
+                                     </c:if>
                                   <h7 class="hs_discount-rate">${vo.p_percent}</h7>   
                                   <h5 class="hs_final-price">${vo.p_lower_price }</h5>
 							
