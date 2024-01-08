@@ -38,7 +38,39 @@
 	 transition: all 0.4s ease-in-out;
 	 transform: translateY(-25px);
 }
+#conti_res_list tr:hover{
+   cursor: pointer;
+}
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	// 테이블만들고 no값 확인하기
+	
+	$.ajax({
+		type:'post',
+		url:'../reserve/res_list.do',
+		data:{"no":1},
+		success:function(result)
+		{
+			$('#conti_res_list').html(result)
+		}
+	})
+	$('.conti_res_btn').click(function(){
+		let no=$(this).attr("data-no");
+		$.ajax({
+			type:'post',
+			url:'../reserve/res_list.do',
+			data:{"no":no},
+			success:function(result)
+			{
+				$('#conti_res_list').html(result)
+			}
+		})
+	})
+})
+</script>
 </head>
 <body>
 	<!-- Breadcrumb Section Begin -->
@@ -92,7 +124,11 @@
 		      <div id="inwons"></div>
 		
 		 <table>
-          <caption><h3>예약정보</h3></caption>
+		 <tr>
+		  <td>
+          <h3>예약정보</h3>
+          </td>
+          </tr>
           <tr>
            <td>
             <img src="../reserve/noimage.png" style="width: 100%" id="conti_res_image">
