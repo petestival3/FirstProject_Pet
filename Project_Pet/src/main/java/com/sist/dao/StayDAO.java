@@ -10,6 +10,7 @@ public class StayDAO {
 	private CreateDBCPconnection dbconn=new CreateDBCPconnection();
 	private static StayDAO dao;
 	private final int ROW_SIZE=12;
+	private final int ROOM_ROW=5;
 	
 	// 싱글턴
 		public static StayDAO newInstance() {
@@ -243,13 +244,35 @@ public class StayDAO {
 		}
 		
 		// 
-		public List<RoomVO> RoomListData(int stno){
+		/*
+		 *  private int rno,stayno, roomno,price;
+			private String image,name;
+		 */
+		public List<RoomVO> RoomListData(int stno,int page){
 			List<RoomVO> list=new ArrayList<RoomVO>();
+			int start=(ROOM_ROW*page)-(ROOM_ROW-1);
+			int end=ROOM_ROW*page;
 			try {
 				conn=dbconn.getConnection();
-				String sql="SELECT rno,roomno,room_image,room_name,room_price,stayno FROM roominfo "
-						+ "WHERE stayno="+stno+" ORDER BY rno";
+				String sql="SELECT rno,roomno,room_image,room_name,room_price,stayno,num "
+						+ "FROM (SELECT rno,roomno,room_image,room_name,room_price,stayno,rownum as num "
+						+ "FROM (SELECT rno,roomno,room_image,room_name,room_price,stayno "
+						+ "FROM roominfo WHERE stayno=? ORDER BY rno)) "
+						+ "WHERE num BETWEEN ? AND ?";
+				
+				/*
+				 * SELECT stay_no,stype,sname,score,address,price,mainimage,num "
+						+ "FROM STAYIMAGE,(SELECT stay_no,stype,sname,score,address,price,rownum as num "
+						+ "FROM (SELECT stay_no,stype,sname,score,address,price,mainimage "
+						+ "FROM stayinfo,STAYIMAGE WHERE STAYIMAGE.SINO=stayinfo.STAY_NO)) "
+						+ "WHERE (STAYIMAGE.SINO=STAY_NO) "
+						+ "AND (num BETWEEN ? AND ?)
+				 */
+				
 				ps=conn.prepareStatement(sql);
+				ps.setInt(1, stno);
+				ps.setInt(2, start);
+				ps.setInt(3, end);
 				ResultSet rs=ps.executeQuery();
 				while(rs.next()) {
 					RoomVO vo=new RoomVO();
@@ -269,6 +292,27 @@ public class StayDAO {
 			}
 			return list;
 		}
+		
+		public int stayroomtotal(int stayno) {
+			int total=0;
+			try {
+				conn=dbconn.getConnection();
+				String sql="SELECT CEIL(COUNT(*)/5.0) FROM roominfo "
+						+ "WHERE stayno="+stayno;
+				ps=conn.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				total=rs.getInt(1);
+				rs.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				dbconn.disConnection(conn, ps);
+			}
+			return total;
+		}
+		
+		
 		// 타입별 카운트
 		public int stayTypeCount(String type) {
 			int count=0;

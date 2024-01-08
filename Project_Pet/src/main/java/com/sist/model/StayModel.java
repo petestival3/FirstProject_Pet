@@ -69,13 +69,15 @@ public class StayModel {
 		dao.stayRevCountUpdate(Integer.parseInt(stayno), 1);
 		dao.stayScoreUpdate(Integer.parseInt(stayno), 1);
 		StayVO vo=dao.stayDetail(Integer.parseInt(stayno));
-		List<RoomVO> rlist=dao.RoomListData(Integer.parseInt(stayno));
+		List<RoomVO> rlist=dao.RoomListData(Integer.parseInt(stayno),1);
 		ReviewDAO rdao=ReviewDAO.newInstance();
 		int reviewtotal=rdao.reviewTotalPage(1, Integer.parseInt(stayno));
+		int roomtotal=dao.stayroomtotal(Integer.parseInt(stayno));
 		
+		request.setAttribute("roomtotal", roomtotal);
 		request.setAttribute("reviewtotal", reviewtotal);
 		request.setAttribute("vo", vo);
-		request.setAttribute("rlist", rlist);
+//		request.setAttribute("rlist", rlist);
 		request.setAttribute("main_jsp", "../stay/detail.jsp");
 		return "../main/main.jsp";
 	}
@@ -245,4 +247,45 @@ public class StayModel {
 		return "../main/main.jsp";
 	}
 	
+	
+	@RequestMapping("stay/roomlist.do")
+	public void stay_room_list(HttpServletRequest request, HttpServletResponse response) {
+		
+		  String sno=request.getParameter("sno");
+		  if(sno==null) {
+			  sno="1";
+		  }
+		  String roompage=request.getParameter("roompage");
+		  if(roompage==null)
+			  roompage="1";
+		  StayDAO dao=StayDAO.newInstance();
+//		  int roomtotal=dao.stayroomtotal(Integer.parseInt(sno));
+		  // JSON변경 
+		  // VO => {} ==> JSONObject
+		  // List => [{},{}...] ==> JSONArray
+		  JSONArray arr=new JSONArray();//[]
+		  //[{count:0},]
+			  List<RoomVO> list=dao.RoomListData(Integer.parseInt(sno),Integer.parseInt(roompage));
+			  for(RoomVO vo:list)
+			  {
+				  JSONObject obj=new JSONObject();
+				  // {zipcode:111,address:'...',count:2},{}
+				  /*
+				   * private int rno,stayno, roomno,price;
+					 private String image,name;
+				   */
+				  obj.put("rno", vo.getRno());
+				  obj.put("roomno", vo.getRoomno());
+				  obj.put("price", vo.getPrice());
+				  obj.put("image", vo.getImage());
+				  obj.put("name", vo.getName());
+				  arr.add(obj);
+			  }
+		  try
+		  {
+			  response.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
+			  PrintWriter out=response.getWriter();
+			  out.write(arr.toJSONString());
+		  }catch(Exception ex) {}
+	}
 }

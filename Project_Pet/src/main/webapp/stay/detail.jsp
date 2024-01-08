@@ -37,20 +37,25 @@
 Shadowbox.init({
 	players:['iframe']
 })
-$(function(){
+$(document).ready(function(){
 		const sno=$('#staynumber').attr('data-stayno')
 		const totalp=$('#reviewprint').attr('data-totalno')
+		const rtotalp=$('#roomprint').attr('data-roomtotal')
 		console.log(sno)
+		console.log(totalp)
+		console.log(rtotalp)
 		let revpage='1'
 		let typeno='1'
+		let roompage='1'
 		reviewlist(typeno,sno,revpage)
+		roomlist(sno,roompage)
 		/* $('.pageBtn').click(function(){
 			let fds=$(this).attr('value');
 			reviewlist(fds)
 		}) */
-	
-		$(".stayRevPrevBtn").click(function(){
-			console.log(totalp)
+		
+		$(document).on('click', '.stayRevPrevBtn', function() {
+			
 			let cur=$('.stayRevCurpage').attr('data-cur')
 			console.log(cur);
 			if(Number(cur)<2){
@@ -58,11 +63,11 @@ $(function(){
 			}else{
 				reviewlist('1',sno,Number(cur)-1)
 			}
+		});
+		
+		
+		$(document).on('click', '.stayRevNextBtn', function() {
 			
-		});	
-			
-		$(".stayRevNextBtn").click(function(){
-			console.log(totalp)
 			let cur=$('.stayRevCurpage').attr('data-cur')
 			console.log(cur);
 			if(cur===totalp){
@@ -70,8 +75,33 @@ $(function(){
 			}else{
 				reviewlist('1',sno,Number(cur)+1)
 			}
+		});
+		
+		
+		$(document).on('click', '.stayRoomPrevBtn', function() {
 			
-		});		
+			let cur=$('.stayRoomCurpage').attr('data-roomcur')
+			console.log(cur);
+			if(Number(cur)<2){
+				roomlist(sno,'1')
+			}else{
+				roomlist(sno,Number(cur)-1)
+			}
+		});
+		
+		$(document).on('click', '.stayRoomNextBtn', function() {
+			
+			let cur=$('.stayRoomCurpage').attr('data-roomcur')
+			console.log(cur);
+			if(cur===rtotalp){
+				roomlist(sno,rtotalp)
+			}else{
+				roomlist(sno,Number(cur)+1)
+			}
+		});
+		
+		
+		
 		
 		
 	$("#review_write_Btn").click(function(){
@@ -148,9 +178,9 @@ function reviewlist(typeno,objno,revpage){
 					+'</div>'
 				
 			}
-			html+='<div class="product__pagination">'
+			html+='<div class="stayRev__pagination text-center" style="margin-top:20px">'
 				+'<span><button class="btn btn-sm btn-primary stayRevPrevBtn">&lt;</button></span>'
-				+'<span><div class="text-center"><h5 class="stayRevCurpage" data-cur="'+revpage+'">'+revpage+' page / '+totalpp+' pages</h5></div></span>'
+				+'<span class="stayRevCurpage" data-cur="'+revpage+'" style="margin-left:20px; margin-right:20px">'+revpage+' page / '+totalpp+' pages</span>'
 				+'<span><button class="btn btn-sm btn-primary stayRevNextBtn">&gt;</button></span>'
 				+'</div>'
 				 <%-- <div class="product__pagination">
@@ -164,6 +194,64 @@ function reviewlist(typeno,objno,revpage){
 		}
 	})
 }
+
+function roomlist(sno,roompage){
+	$.ajax({
+		type:'post',
+		url:'../stay/roomlist.do',
+		data:{"sno":sno,"roompage":roompage},
+		success:function(json){
+			let res=JSON.parse(json);
+			let html='';
+			let hhh='';
+			let rtotal=$('#roomprint').attr('data-roomtotal');
+			for(let rovo of res){
+				
+				/* <c:forEach var="rvo" items="${rlist }">
+	                <tr>
+	                    <td class="shoping__cart__item">
+	                        <img src="${rvo.image }" alt="" style="width: 150px;height: 150px;border-radius: 10px;overflow: hidden;border: 1px solid #D9D9D9">
+	                        <h5>${rvo.name }</h5>
+	                    </td>
+	                    <td class="shoping__cart__price">
+	                        &#8361;${rvo.price }
+	                    </td>
+	                    <td class="shoping__cart__quantity">
+	                        <div class="quantity">
+	                            <a href="#" class="primary-btn">예약하기</a>
+	                        </div>
+	                    </td>
+	                </tr>
+	              </c:forEach> */
+				html+='<tr>'
+					+'<td class="shoping__cart__item">'
+					+'<img src="'+rovo.image+'" style="width: 150px;height: 150px;border-radius: 10px;overflow: hidden;border: 1px solid #D9D9D9">'
+					+'<h5>'+rovo.name+'</h5>'
+					+'</td>'
+					+'<td class="shoping__cart__price">&#8361;'+rovo.price+'</td>'
+					+'<td class="shoping__cart__quantity">'
+					+'<div class="quantity">'
+					+'<a href="#" class="primary-btn">예약하기</a>'
+					+'</div></td></tr>'
+			}
+			hhh+='<div class="stayroom__pagination text-center" style="margin-top:20px">'
+				+'<span><button class="btn btn-sm btn-primary stayRoomPrevBtn">&lt;</button></span>'
+				+'<span class="stayRoomCurpage" data-roomcur="'+roompage+'" style="margin-left:20px; margin-right:20px">'+roompage+' page / '+rtotal+' pages</span>'
+				+'<span><button class="btn btn-sm btn-primary stayRoomNextBtn">&gt;</button></span>'
+				+'</div>'
+				 <%-- <div class="product__pagination">
+		      <span><button class="btn btn-lg btn-primary" id="stayRevPrevBtn">이전</button></span>
+            <div class="text-center"><h2>1 / ${reviewtotal } pages</h2></div>
+            <span><button class="btn btn-lg btn-primary" id="stayRevNextBtn">다음</button></span>
+          </div> --%>
+			
+			console.log(html)
+			$('#roomprint').html(html)
+			$('#roomPagination').html(hhh)
+		}
+	})
+}
+
 
 </script>
 </head>
@@ -440,8 +528,8 @@ function reviewlist(typeno,objno,revpage){
 									                                    <th>예약버튼</th>
 									                                </tr>
 									                            </thead>
-									                            <tbody>
-									                              <c:forEach var="rvo" items="${rlist }">
+									                            <tbody id="roomprint" data-roomtotal="${roomtotal }">
+									                              <%-- <c:forEach var="rvo" items="${rlist }">
 									                                <tr>
 									                                    <td class="shoping__cart__item">
 									                                        <img src="${rvo.image }" alt="" style="width: 150px;height: 150px;border-radius: 10px;overflow: hidden;border: 1px solid #D9D9D9">
@@ -456,9 +544,14 @@ function reviewlist(typeno,objno,revpage){
 									                                        </div>
 									                                    </td>
 									                                </tr>
-									                              </c:forEach>
+									                              </c:forEach> --%>
+									                              
 									                            </tbody>
+									                             
 									                        </table>
+									                        <div class="Stayroom__pagination" id="roomPagination">
+									                            
+											                 </div>
 									                    </div>
 									                </div>
 									            </div>
