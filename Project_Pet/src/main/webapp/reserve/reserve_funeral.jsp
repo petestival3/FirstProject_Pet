@@ -50,24 +50,12 @@ $(function(){
 	
 	$.ajax({
 		type:'post',
-		url:'../reserve/res_list.do',
-		data:{"no":1},
+		url:'../reserve/res_f_list.do',
+		data:{"rf_no":rf_no},
 		success:function(result)
 		{
 			$('#conti_res_list').html(result)
 		}
-	})
-	$('.conti_res_btn').click(function(){
-		let no=$(this).attr("data-no");
-		$.ajax({
-			type:'post',
-			url:'../reserve/res_list.do',
-			data:{"no":no},
-			success:function(result)
-			{
-				$('#conti_res_list').html(result)
-			}
-		})
 	})
 })
 </script>
@@ -123,11 +111,6 @@ $(function(){
 		  <td>
           <h3>예약정보</h3>
           </td>
-          </tr>
-          <tr>
-           <td>
-            <img src="../reserve/noimage.png" style="width: 100%" id="conti_res_image">
-           </td>
           </tr>
           <tr>
             <td>업체명:<span id="conti_res_name"></span></td>
