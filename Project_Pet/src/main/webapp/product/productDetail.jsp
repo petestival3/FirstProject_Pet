@@ -800,7 +800,7 @@ function requestPay() {
                                        
                                        
                                      </div>
-                                      <span style="color: rgb(139, 0, 0); opacity:0.7;">( reviews)</span>
+                                      <span style="color: rgb(139, 0, 0); opacity:0.7;">(${cvo.p_review_num } reviews)</span>
                                      </center>
 							
 
@@ -932,7 +932,7 @@ function requestPay() {
                                        
                                        
                                      </div>
-                                     <span style="color: rgb(139, 0, 0); opacity:0.7;">( reviews)</span>
+                                     <span style="color: rgb(139, 0, 0); opacity:0.7;">(${rvo.p_review_num } reviews)</span>
                                      </center>
 							
                         			  <h7 class="hs_original-price">${rvo.p_price}</h7>

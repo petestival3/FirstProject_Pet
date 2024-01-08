@@ -165,6 +165,9 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
                      String cvalue=cookies[i].getValue();
                      int cpno=Integer.parseInt(cvalue);
                      ProductVO cvo =dao.productDetail_Before(cpno);
+                     int cvReviewAmount=0;
+                     cvReviewAmount=dao.reviewAmount(cvo.getPno());//최근본상품 리뷰개수
+                     cvo.setP_review_num(cvReviewAmount);
                      clist.add(cvo);
                      count ++;
                      

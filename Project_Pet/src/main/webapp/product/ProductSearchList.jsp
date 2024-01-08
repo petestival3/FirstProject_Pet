@@ -112,7 +112,9 @@
                                        
                                        
                                        
-                                     </div></center>
+                                     </div>
+                                       <span style="color: rgb(139, 0, 0); opacity:0.7;">(${vo.p_review_num } reviews)</span>
+                                     </center>
 											
 											
 											<h7 class="hs_original-price">${vo.p_price}</h7>

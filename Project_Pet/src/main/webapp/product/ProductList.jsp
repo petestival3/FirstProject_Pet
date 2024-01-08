@@ -173,7 +173,9 @@
                                        
                                        
                                        
-                                     </div></center>
+                                     </div>
+                                       <span style="color: rgb(139, 0, 0); opacity:0.7;">(${vo.p_review_num } reviews)</span>
+                                     </center>
 							
 							
 							
