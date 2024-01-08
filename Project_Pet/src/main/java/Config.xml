@@ -26,6 +26,6 @@
 </environments>
 <mappers>
 	<mapper resource="com/sist/dao/productQna-mapper.xml"/>
-	
+	<mapper resource="com/sist/dao/reserve-mapper.xml"/>
 </mappers>
 </configuration>
