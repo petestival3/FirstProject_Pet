@@ -2,6 +2,7 @@ package com.sist.model;
 
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import com.sist.controller.RequestMapping;
 import com.sist.dao.MemberDAO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.ZipcodeVO;
+import com.sist.temp.*;
 
 public class MemberModel {
 	@RequestMapping("member/join.do")
@@ -209,4 +211,39 @@ public class MemberModel {
 			  ex.printStackTrace();
 		  }
 	  }
+	  
+	  @RequestMapping("member/pwdfind.do")
+	  public String member_pwdfind(HttpServletRequest request,
+			  HttpServletResponse response) {
+		  
+		  return "../member/pwdfind.jsp";
+	  }
+	  
+	  @RequestMapping("member/pwdfind_ok.do")
+	  public void member_pwdfindok(HttpServletRequest request,
+			  HttpServletResponse response) {
+
+		  String id=request.getParameter("id");
+		  String email=request.getParameter("email");
+		  // 임시비번 생성
+		  Random rand=new Random();
+		  int x = rand.nextInt(9000) + 1000; // 4자리수 1000~9999
+		  String t=x+"";
+		  MemberDAO dao=MemberDAO.newInstance();
+		  String res=dao.pwdFind(id,email,t);
+		  // id, email 맞으면 임시비번 전송후 변경
+		  if(res.equals("SEND")) {
+			  SendMailer smr=new SendMailer();
+			  smr.naverMailSend(email, t);
+		  }
+		  
+		  
+		  try {
+			  PrintWriter out=response.getWriter();
+			  out.write(res);
+		  }catch(Exception ex) {
+			  ex.printStackTrace();
+		  }
+	  }
+	  
 }

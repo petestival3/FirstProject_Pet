@@ -273,4 +273,54 @@ public class MemberDAO {
 		   return s;
 	   }
 	   
+	   // id와 이메일 확인후 맞으면 임시비번으로 변경, 메일전송은 모델에서
+	   public String pwdFind(String id,String email,String temp) {
+		   String s="";
+		   try {
+			   conn=dbconn.getConnection();
+			   String sql="SELECT COUNT(*) FROM member "
+					   + "WHERE id=?";
+			   ps=conn.prepareStatement(sql);
+			   ps.setString(1, id);
+			   ResultSet rs=ps.executeQuery();
+			   rs.next();
+			   int count=rs.getInt(1);
+			   rs.close();
+			   ps.close();
+			   
+			   if(count==0) {
+				   s="IDNO";  // 아이디없음
+			   }else {
+				   sql="SELECT COUNT(*) FROM member WHERE id=? AND email=?";
+				   // 이메일 확인
+				   ps=conn.prepareStatement(sql);
+				   ps.setString(1, id);
+				   ps.setString(2, email);
+				   rs=ps.executeQuery();
+				   rs.next();
+				   int co=rs.getInt(1);
+				   rs.close();
+				   ps.close();
+				   if(co==1) {
+					   s="SEND";
+					   sql="UPDATE member SET pwd=? "
+					   		+ "WHERE id=?";
+					   ps=conn.prepareStatement(sql);
+					   ps.setString(1, temp);
+					   ps.setString(2, id);
+					   ps.executeUpdate();
+					   ps.close();
+				   }else {
+					   s="EMAILNO";
+				   }
+			   }
+			   
+		   }catch(Exception ex) {
+			   ex.printStackTrace();
+		   }finally {
+			   dbconn.disConnection(conn, ps);
+		   }
+		   
+		   return s;
+	   }
 }

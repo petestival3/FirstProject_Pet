@@ -111,7 +111,7 @@ body {
       <input type="text" placeholder="ID를 입력하세요" name="log_id" id="log_id"/>
       <input type="password" placeholder="비밀번호를 입력하세요" name="log_pwd" id="log_pwd"/>
       <button type="button" id="logBtn">로그인</button>
-      <p class="message"><a href="../member/join.jsp">회원가입</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../member/idfind.do">ID찾기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a>비밀번호찾기</a></p>
+      <p class="message"><a href="../member/join.jsp">회원가입</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../member/idfind.do">ID찾기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../member/pwdfind.do">비밀번호찾기</a></p>
     </form>
   </div>
 </div>
