@@ -93,23 +93,23 @@
                                 </ul>
                             </li>
                             <li><a href="../stay/list.do">HOTEL</a>
-                              <ul class="header__menu__dropdown">
-                                    <li><a href="../stay/list.do">호텔 전체목록</a></li>
-                                    <li><a href="../reserve/reserve_hotel.do">호텔 예약하기</a></li>
-                              </ul>
+                
                             </li>
                             <li><a href="#">FUNERAL</a>
                                <ul class="header__menu__dropdown">
                                     <li><a href="../FuneralDetail/produce.do">장례 절차 안내</a></li>
                                     <li><a href="../FuneralDetail/list_f.do">장례식장 전체목록</a></li>
                                     <li><a href="../FuneralDetail/search_f.do">장례식장 검색하기</a></li>
-                                    <li><a href="../reserve/reserve_funeral.do">장례 예약하기</a></li>
+                                    
                                 </ul>
                             </li>
                             <li><a href="#">COMMUNITY</a>
                                <ul class="header__menu__dropdown">
                                     <li><a href="../freeboard/list.do">자유게시판</a></li>
                                     <li><a href="../notice/list.do">공지사항</a></li>
+                                    <c:if test="${sessionScope.id!=null }">
+                                    <li><a href="../reserve/reserve_funeral.do">예약하기</a></li>
+                                    </c:if>
                                 </ul>
                             </li>
                         </ul>
