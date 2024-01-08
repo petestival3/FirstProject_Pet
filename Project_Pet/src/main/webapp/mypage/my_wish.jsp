@@ -28,20 +28,20 @@
 				<h2 class="sectiontitle">${sessionScope.name}님의 입양 희망 목록</h2>
 			</div>
 			<!-- 실제 찜하기 데이터를 반복적으로 표시하는 부분 -->
-			<c:forEach var="wvo" items="${list }">
+			<c:forEach var="vo" items="${list }">
 			<table class="table" style="background-color: #fff">
 			   <tr>
-			      <td><img src="${wvo.KEEPIMAGE }"
+			      <td><img src="${vo.KEEPIMAGE }"
 					style="height: 200px"></td>
 			      <td>
-			      <p>희망 순서&nbsp;<span>${wvo.cdno }</span></p>
-			      <p>입양 지역&nbsp;<span>${wvo.KEEPTITLE }</span></p>
-			      <p>작성일&nbsp;<span>${wvo.KEEPWRITER }</span></p>
+			      <p>희망 순서&nbsp;<span>${vo.cdno }</span></p>
+			      <p>입양 지역&nbsp;<span>${vo.KEEPTITLE }</span></p>
+			      <p>작성일&nbsp;<span>${vo.KEEPWRITER }</span></p>
 			      </td>
 			   </tr>
 			    <tr>
 				<td colspan="2" class="text-right"><a
-					href="../mypage/my_wish_cancel.do?no=${wvo.cdno }"
+					href="../mypage/my_wish_cancel.do?cdno=${vo.cdno }"
 					class="btn btn-sm btn-info">취소</a></td>
 			  </tr>
 			</table>

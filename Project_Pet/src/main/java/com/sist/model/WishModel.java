@@ -28,15 +28,7 @@ NOCYCLE
 NOCACHE;
 */
 public class WishModel {
-/*
-	@RequestMapping("mypage/my_JJim.do")
-	public String mypage_jjim(HttpServletRequest request, HttpServletResponse response)
-	{
-		request.setAttribute("mypage_jsp", "../mypage/my_JJim.jsp");
-		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
-		return "../main/main.jsp";
-	}
-	*/
+
 	 @RequestMapping("animal/wish_insert.do")
 	   public String wish_insert(HttpServletRequest request,
 			   HttpServletResponse response)
@@ -51,18 +43,8 @@ public class WishModel {
 		   dao.WishInsert(vo);
 		   return "redirect:../animal/animaldetail.do?kano="+kano;
 	   }
-	 
-	   @RequestMapping("animal/wish_cancel.do")
-	   public String wish_cancel(HttpServletRequest request,
-			   HttpServletResponse response)
-	   {
-		   HttpSession session=request.getSession();
-		   String kano=(String)session.getAttribute("kano");
-           String cdno=request.getParameter("cdno");
-		   WishDAO dao=WishDAO.newInstance();
-		   dao.WishCancel(Integer.parseInt(cdno));
-		   return "redirect:../animal/animaldetail.do?kano="+kano;
-	   }
+	   
+
 	   
 	   @RequestMapping("mypage/my_wish_cancel.do")
 	   public String mypage_wish_cancel(HttpServletRequest request,

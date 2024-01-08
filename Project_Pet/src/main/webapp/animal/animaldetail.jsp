@@ -136,7 +136,7 @@
                              </c:if>
                              <c:if test="${wish_count!=0 }">
                                <span class="primary-btn" style="font-weight: bold;"><i class="xi-heart"></i> 입양희망 완료</span>
-                               <a href="../animal/wish_cancel.do?cdno=${wvo.cdno }" class="primary-btn" style="font-weight: bold;">희망 취소</a>
+                               <a href="../mypage/my_wish.do" class="primary-btn" style="font-weight: bold;">마이페이지 취소이동</a>
                              </c:if>
                         </c:if>
                     </div>

@@ -153,31 +153,5 @@ NOCACHE;
 			   dbconn.disConnection(conn, ps);
 		   }
 	   }
-	   /*
-	   //JJim 번호값 저장
-	   public WishVO kanoUpdateData(int kano)
-	   {
-		   WishVO vo=new WishVO();
-		   try
-		   {
-			   conn=dbconn.getConnection();
-			   String sql="SELECT kano "
-					     +"FROM CD_WISH "
-					     +"WHERE kano=?";
-			   ps=conn.prepareStatement(sql);
-			   ps.setInt(1, kano);
-			   ResultSet rs=ps.executeQuery();
-			   rs.next();
-			   vo.setKano(rs.getInt(1));
-			   rs.close();
-		   }catch(Exception ex)
-		   {
-			   ex.printStackTrace();
-		   }
-		   finally
-		   {
-			   dbconn.disConnection(conn, ps);
-		   }
-		   return vo;
-	   }*/
+	   
 }
