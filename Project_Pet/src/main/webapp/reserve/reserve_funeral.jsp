@@ -68,10 +68,10 @@ $(function(){
 			success:function(result)
 			{
 				$('#res_f_list').html(result)
-			}
-		})//
-	})
-})
+			}//success
+		})//ajax
+	})//click
+})//function
 </script>
 </head>
 <body>
@@ -163,7 +163,6 @@ $(function(){
 		      </td>
 		    </tr>
          </table>
-		
 		</div>
 	</div>
 	<!-- 예약하기 내용 종료 -->

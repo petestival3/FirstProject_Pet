@@ -111,7 +111,7 @@ public class ReserveFuneralModel {
 			   request.setCharacterEncoding("UTF-8");  
 		  }catch(Exception ex) {}
 		  
-		  String CR_COM_NO=request.getParameter("CR_COM_NO");
+		  String fno=request.getParameter("fno");
 		  String rday=request.getParameter("rday");
 		  String rtime=request.getParameter("rtime");
 		  String rinwon=request.getParameter("rinwon");
@@ -119,15 +119,26 @@ public class ReserveFuneralModel {
 		  String id=(String)session.getAttribute("id");
 		  
 		  FuneralReserveInfoVO vo=new FuneralReserveInfoVO();
-		  vo.setCr_com_no(Integer.parseInt(CR_COM_NO));
+		  vo.setCr_com_no(Integer.parseInt(fno));
 		  vo.setId(id);
 		  vo.setRf_day(rday);
 		  vo.setRf_time(rtime);
 		  vo.setRf_inwon(rinwon);
 		  
+		  /*
+		  Map map=new HashMap();
+		  map.put("id", id);
+		  map.put("fno", fno);
+		  map.put("day", rday);
+		  map.put("time", rtime);
+		  map.put("inwon", rinwon);
+		  */
+		  
 		  System.out.println(vo);//vo.toString()
-		  // 데이터베이스 전송 
+		  System.out.println(1);
+		  // 데이터베이스 전송
 		  ReserveFuneralDAO.FuneralreserveInsert(vo);
-		  return "redirect:../mypage/mypage_reserve.do";
+		  System.out.println(2);
+		  return "redirect:../mypage/my_res.do";
 	  }
 }

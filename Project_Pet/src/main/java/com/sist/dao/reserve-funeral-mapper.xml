@@ -61,7 +61,7 @@
   <insert id="FuneralreserveInsert" parameterType="FuneralReserveInfoVO">
     INSERT INTO RES_FUNERAL_INFO VALUES(
       (SELECT NVL(MAX(no)+1,1) FROM RES_FUNERAL_INFO),
-      #{id},#{fno},#{day},#{time},#{inwon},
+      #{id},#{cr_com_no},#{rf_day},#{rf_time},#{rf_inwon},
       SYSDATE,0
     )
   </insert>
