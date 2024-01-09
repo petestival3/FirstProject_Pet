@@ -153,7 +153,7 @@ $(function(){
           <tr style="display:" id="ok">
 		      <td class="text-center">
 		       <form method="post" action="../reserve/reserve_ok.do">
-		         <input type=hidden name="fno" id="fno"><!-- 아마리스트에서data-fno로넘어오는듯 -->
+		         <input type=hidden name="fno" id="fno"><!-- 에서data-fno로넘어오는듯 -->
 		         <input type=hidden name="rday" id="rday">
 		         <input type=hidden name="rtime" id="rtime">
 		         <input type=hidden name="rinwon" id="rinwon">

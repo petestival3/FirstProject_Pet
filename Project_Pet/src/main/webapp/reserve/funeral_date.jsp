@@ -15,16 +15,16 @@
 <script type="text/javascript" src="http://code.juqery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('.rdays').click(function(){
+	$('.conti_res_date').click(function(){
 		let year=$(this).attr("data-year");
 		let month=$(this).attr("data-month");
 		let day=$(this).text();
 		let rday=year+"년도 "+month+"월 "+day+"일"
-		$('#food_day').text(rday);
+		$('#res_f_day').text(rday);
 		$('#rday').val(rday);
 		$.ajax({
 			type:'post',
-			url:'../reserve/food_time.do',
+			url:'../reserve/funeral_time.do',
 			data:{"day":day},
 			success:function(result)
 			{
