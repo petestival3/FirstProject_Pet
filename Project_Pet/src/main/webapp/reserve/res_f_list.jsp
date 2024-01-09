@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.trs{
+   height: 100px;
+}
+</style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -13,8 +18,8 @@ $(function(){
 		let name=$(this).attr("data-name");
 		let loc=$(this).attr("data-loc");
 		let fno=$(this).attr("data-fno");
-		$("#food_name").text(name)
-		$("#food_loc").text(loc)
+		$("#res_f_name").text(name)
+		$("#res_f_loc").text(loc)
 		$('#fno').val(fno);
 		$.ajax({
 			type:'post',
@@ -32,14 +37,11 @@ $(function(){
 <body>
  <table>
     <c:forEach var="vo" items="${list }">
-      <tr>
-         <td>test</td>
-      </tr>
-      <tr data-loc="${vo.loc }" data-fno="${vo.fno }" data-name="${vo.name }" class="trs">
+      <tr data-loc="${vo.CR_COM_LOC }" data-fno="${vo.CR_COM_NO }" data-name="${vo.CR_COM_NAME }" class="trs">
        <td class="text-center">
-        <td>${vo.name }</td>
+        <td>${vo.CR_COM_NAME }</td>
        </td>
-       <td>${vo.loc }</td>
+       <td>${vo.CR_COM_LOC }</td>
       </tr>
     </c:forEach>
   </table>

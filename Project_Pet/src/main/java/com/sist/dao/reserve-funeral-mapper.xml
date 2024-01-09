@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.dao.reserve-funeral-mapper">
+	<select id="reserveFuneralListData" resultType="FuneralListVO"
+		parameterType="hashmap">
+		SELECT cr_com_no,CR_COM_NAME,CR_COM_PHONE,CR_COM_LOC,CR_COM_HOMEPAGE
+		FROM FUNERAL_COMPANY_LIST
+		<if test="no==1">
+			WHERE (CR_COM_LOC LIKE '%강원%' OR CR_COM_LOC LIKE '%강원도%')
+		</if>
+		<if test="no==2">
+			WHERE (CR_COM_LOC LIKE '%경기%' OR CR_COM_LOC LIKE '%경기도%')
+		</if>
+		<if test="no==3">
+			WHERE (CR_COM_LOC LIKE '%경남%' OR CR_COM_LOC LIKE '%경상남도%')
+		</if>
+		<if test="no==4">
+			WHERE (CR_COM_LOC LIKE '%경북%' OR CR_COM_LOC LIKE '%경상북도%')
+		</if>
+		<if test="no==5">
+			WHERE (CR_COM_LOC LIKE '%전남%' OR CR_COM_LOC LIKE '%전라남도%')
+		</if>
+		<if test="no==6">
+			WHERE (CR_COM_LOC LIKE '%전북%' OR CR_COM_LOC LIKE '%전라북도%')
+		</if>
+		<if test="no==7">
+			WHERE (CR_COM_LOC LIKE '%충남%' OR CR_COM_LOC LIKE '%충청남도%')
+		</if>
+		<if test="no==8">
+			WHERE (CR_COM_LOC LIKE '%충북%' OR CR_COM_LOC LIKE '%충청북도%')
+		</if>
+	</select>
+
+	<select id="reserveDays" resultType="string" parameterType="int">
+		SELECT rday FROM FUNERAL_COMPANY_LIST
+		WHERE cr_com_no=#{cr_com_no}
+	</select>
+	<select id="reserveTimes" resultType="string"
+		parameterType="int">
+		SELECT rd_time FROM res_f_day
+		WHERE RD_NO=#{RD_NO }
+	</select>
+	<select id="reserveGetTime" resultType="string"
+		parameterType="int">
+		SELECT rt_time FROM res_f_time
+		WHERE RT_NO=#{RT_NO}
+	</select>
+</mapper>

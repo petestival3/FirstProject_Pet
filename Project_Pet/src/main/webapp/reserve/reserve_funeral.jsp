@@ -42,6 +42,10 @@
 #res_f_list tr:hover{
    cursor: pointer;
 }
+
+#res_t_1{
+   width: 365px;
+}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -110,7 +114,7 @@ $(function(){
 	    </div>
 	<div class="res_wrap container">
 		<!-- 테이블 날짜시간 1분할 -->
-		<div class="res_t">
+		<div class="res_t" id="res_t_1">
 		    <div id="res_f_list" style="height: 100%;overflow-y:scroll; "></div>
 		</div>
 		<!-- 테이블 상세내용 2분할 -->
@@ -134,6 +138,9 @@ $(function(){
             <td>업체명:<span id="res_f_name"></span></td>
           </tr>
           <tr>
+            <td>주소:<span id="res_f_loc"></span></td>
+          </tr>
+          <tr>
             <td>예약일:<span id="res_f_day"></span></td>
           </tr>
           <tr>
@@ -146,7 +153,7 @@ $(function(){
           <tr style="display:" id="ok">
 		      <td class="text-center">
 		       <form method="post" action="../reserve/reserve_ok.do">
-		         <input type=hidden name="fno" id="fno">
+		         <input type=hidden name="fno" id="fno"><!-- 아마리스트에서data-fno로넘어오는듯 -->
 		         <input type=hidden name="rday" id="rday">
 		         <input type=hidden name="rtime" id="rtime">
 		         <input type=hidden name="rinwon" id="rinwon">
