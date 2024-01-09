@@ -45,11 +45,24 @@
             else{
                  	
                  	if(page==="1"||page===1){
+						 	
 					  let vo2=res[0]
+					  
+					  let buserid=vo2.buserid
+						 	let printQwriter=''
+									 if (buserid.length > 3) {
+                                           printQwriter=  buserid.slice(0, -3) + '***';
+                                       } else if (buserid.length === 3) {
+                                           printQwriter= buserid.slice(0, -2) + '**';
+                                       } else if (buserid.length === 2) {
+                                           printQwriter= '**' +buserid.slice(0, -1) + '*';
+                                       } else {
+                                           printQwriter= buserid;
+                                       }
 					   commentListHtml+=' <div class="comment" style="margin-top:50px;" id="getRno"  data-rno='+vo2.brno+' data-page='+page+'>'
                            +'<div style="background-color: #f0f0f0;"> <div class="comment-header" style="height:35px;"><div><img src="../img/bestreply.png" style="width:30px;"></div>'
                              commentListHtml+='<span style=" opacity:0.8; font-weight:bold;"><img src="../img/userIcon.jpg" style="width:20px;">&nbsp;'
-                     +vo2.buserid+'</span><span style="margin-left:10px;"class="dbday">'+vo2.bdbday+'</span>'
+                     +printQwriter+'</span><span style="margin-left:10px;"class="dbday">'+vo2.bdbday+'</span>'
                      +'<div class="comment-actions" style="float:right; height:35px;">'
                      
                        commentListHtml+='</div>'+'</div>'+'<div class="mainContent" style="margin-top:18px;">'
@@ -84,6 +97,34 @@
                if(upcheck===''||upcheck===null){
 				   upcheck='n'
 			   }
+			   
+			   
+		
+					  
+					  let userid=vo.userid
+						 	let printQwriter=''
+									 if (userid.length > 3) {
+                                           printQwriter=  userid.slice(0, -3) + '***';
+                                       } else if (userid.length === 3) {
+                                           printQwriter= userid.slice(0, -2) + '**';
+                                       } else if (userid.length === 2) {
+                                           printQwriter= '**' +userid.slice(0, -1) + '*';
+                                       } else {
+                                           printQwriter= userid;
+                                       }
+                                       
+                        let rootid=vo.rootId
+                        
+                           let printRootid=''
+									 if (rootid.length > 3) {
+                                           printRootid=  rootid.slice(0, -3) + '***';
+                                       } else if (rootid.length === 3) {
+                                           printRootid= rootid.slice(0, -2) + '**';
+                                       } else if (rootid.length === 2) {
+                                           printRootid= '**' +rootid.slice(0, -1) + '*';
+                                       } else {
+                                           printRootid= rootid;
+                                       }
                
                commentListHtml+=' <div class="comment" style="margin-top:50px;" id="getRno" data-index='+i+' data-rno='+vo.rno+' data-page='+page+'>'
                            +' <div class="comment-header" style="height:35px;">'
@@ -96,7 +137,7 @@
                      }
                                        
                      commentListHtml+='<div style="height:10px; margin-bottom:15px; opacity:0.5; font-size:10px;"><img src="../img/reply.png" style="width:20px; margin-left:'+margin+'px;">'
-                                    +'&nbsp;&nbsp;('+vo.rootId+'님에 대한 댓글)</div>'
+                                    +'&nbsp;&nbsp;('+printRootid+'님에 대한 댓글)</div>'
                                     
                                
                                
@@ -119,7 +160,7 @@
                      
                         
                      commentListHtml+='<span style=" opacity:0.8; font-weight:bold;"><img src="../img/userIcon.jpg" style="width:20px;">&nbsp;'
-                     +vo.userid+'</span><span style="margin-left:10px;"class="dbday">'+vo.dbday+'</span>'
+                     +printQwriter+'</span><span style="margin-left:10px;"class="dbday">'+vo.dbday+'</span>'
                      +'<div class="comment-actions" style="float:right; height:35px;">'   
                   
                   if(vo.rcontent!=='삭제한 댓글입니다.'){

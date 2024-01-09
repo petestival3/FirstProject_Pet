@@ -6,9 +6,44 @@
 SELECT COUNT(*) FROM CART_BUY WHERE USERID=#{userid} AND PNO=#{pno} AND BUY_OK='NO'
 </select>
 
+
+
+<select id="shoppingStackCheck" parameterType="map" resultType="int">
+SELECT p_stack FROM PRODUCT_DETAIL WHERE pno=#{pno}
+</select>
+
 <insert id="addShoppingCart" parameterType="map">
-INSERT INTO CART_BUY (CBNO,PNO,BUY_COUNT,USERID,BUY_INTPRICE)
-VALUES(cart_bay_seq.nextval,#{pno},#{buy_count},#{userid},#{buy_intprice})
+INSERT INTO CART_BUY (CBNO,PNO,BUY_COUNT,USERID,BUY_INTPRICE,BUY_PRICE)
+VALUES(cart_bay_seq.nextval,#{pno},#{buy_count},#{userid},#{buy_intprice},#{buy_price})
 </insert>
-<!-- 재고감소 -->
+
+<resultMap type="com.sist.vo.ShoppingVO" id="shoppingCartListData">
+<result property="pvo.p_name" column="p_name"/>
+<result property="pvo.p_image" column="p_image"/>
+<result property="pvo.p_intprice" column="p_intprice"/>
+<result property="pvo.p_price" column="p_price"/>
+</resultMap>
+
+<select id="shoppingCartList" parameterType="string" resultMap="shoppingCartListData">
+SELECT b.pno,p_name,p_image,p_intprice,p_price,cbno,buy_ok,buy_count,userid,buy_intprice,buy_price
+FROM CART_BUY b JOIN PRODUCT_DETAIL a ON a.pno=b.pno
+WHERE USERID=#{userid} AND BUY_OK='NO' 
+ORDER BY CBNO DESC
+ 
+</select>
+
+
+<!-- 결제시 -->
+
+<update id="shoppingHandleProduct" parameterType="map">
+UPDATE PRODUCT_DETAIL SET
+p_stack=p_stack-1,
+p_buyamount=p_buyamount+1
+WHERE pno=#{pno}
+</update>
+
+<!-- <update id="shoppingFormatBuy_ok">
+UPDATE CART_BUY SET
+
+</update> -->
 </mapper>

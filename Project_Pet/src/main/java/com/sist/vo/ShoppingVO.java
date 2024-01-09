@@ -67,4 +67,13 @@ public void setBuy_date(Date buy_date) {
 	this.buy_date = buy_date;
 }
 
+private ProductVO pvo =new ProductVO();
+public ProductVO getPvo() {
+	return pvo;
+}
+public void setPvo(ProductVO pvo) {
+	this.pvo = pvo;
+}
+
+
 }

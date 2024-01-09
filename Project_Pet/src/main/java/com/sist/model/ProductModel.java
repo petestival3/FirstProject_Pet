@@ -125,10 +125,29 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
       String lcount=request.getParameter("count");
       String ss=request.getParameter("ss");
       
+      
+      
          ProductDAO dao=ProductDAO.newInstace();
          ProductVO vo =dao.productDetail(Integer.parseInt(pno));
          List<ProductVO>subImageList=dao.productSubImage(Integer.parseInt(pno));
          List<ReviewVO>prList=dao.product_reviewHighScoreList(1, Integer.parseInt(pno));
+         
+         for (ReviewVO vo2 : prList) {
+        	 String qwriter=vo2.getWriter();
+        	  String printQwriter = "";
+			
+			 if (qwriter.length() > 3) {
+		            printQwriter = qwriter.substring(0, qwriter.length() - 3) + "***";
+		        } else if (qwriter.length() == 3) {
+		            printQwriter = qwriter.substring(0, qwriter.length() - 2) + "**";
+		        } else if (qwriter.length() == 2) {
+		            printQwriter = "**" + qwriter.substring(0, qwriter.length() - 1) + "*";
+		        } else {
+		            printQwriter = qwriter;
+		        }
+			 
+			 vo2.setWriter(printQwriter);
+		}
          
          int qnaAmount=dao.QnaAmount(Integer.parseInt(pno));
          int reviewTotalPage=dao.product_review_totalPage(Integer.parseInt(pno));

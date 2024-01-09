@@ -107,6 +107,8 @@ function newList(page) {//새로운 리뷰리스트를 출력하는 ajax를 담�
             let id=res[0].id;
             let reviewamount=res[0].reviewAmount
             
+          								
+          
           
         
             let html = '<div class="product__details__tab__desc">';
@@ -196,6 +198,21 @@ function newList(page) {//새로운 리뷰리스트를 출력하는 ajax를 담�
            
 
             for (vo of res) {
+				
+				let qwriter=vo.writer
+				
+				let printQwriter=''
+									 if (qwriter.length > 3) {
+                                           printQwriter=  qwriter.slice(0, -3) + '***';
+                                       } else if (qwriter.length === 3) {
+                                           printQwriter = qwriter.slice(0, -2) + '**';
+                                       } else if (qwriter.length === 2) {
+                                           printQwriter = '**' +qwriter.slice(0, -1) + '*';
+                                       } else {
+                                           printQwriter = qwriter;
+                                       }
+                                       
+				
              html+=' <div class="row product_review_container" data-page="'+page+'"> <div class="col-md-4" style="width:200px; height:200px ;">'
              	+'<div class="p_review_image" style="width:100%; height:100%;">'
              	if(vo.imgsize>0){
@@ -207,15 +224,14 @@ function newList(page) {//새로운 리뷰리스트를 출력하는 ajax를 담�
             	html+='</div></div>'
             	+'<div class="col-md-8">'
             	+'<div class="review-container">'
-            	+'<img src="../img/mainlogo.png" alt="User Avatar" class="user-image" />'
             	+'<div class="mid_1">'
             	+'<div class="user-info" style="display: flex;align-items: center;margin-top: 10px;">'
-            	+'<img'
-            	+'src="../img/mainlogo.png"'
+            	+'<img '
+            	+'src="../img/userIcon.jpg"'
             	+'alt="Reviewer Avatar"'
             	+'class="reviewer-avatar"'
             	+'style="float:left"/>'
-            	+'<div class="user-name" style="width:1000px;">'+vo.writer+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:10px;opacity:0.5;">'+vo.dbday+'</span></div> '
+            	+'<div class="user-name" style="width:1000px;">'+printQwriter+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:10px;opacity:0.5;">'+vo.dbday+'</span></div> '
             	+'</div>'
             	+'<br />'
             	+'<div class="mid_2">'
@@ -673,9 +689,22 @@ $(document).on('click', '#addToCartBtn', function() {
                                 success: function (json){
 									let res=JSON.parse(json)
 									let msg=res.msg;
+									let id=res.id;
 									
-									if(msg==='NO'){
-										alert('이미 담긴 상품입니다')
+									if(id===null || typeof id==='undefined'||id===''){
+										alert('로그인후 이용해주세요.')
+										return;
+									}
+									if(msg==='NOSTACK'){
+										alert('품절된 상품입니다.')
+										return;
+									}
+									else if(msg==='FULLSTACK'){
+										alert('남은재고가 희망수량보다 적습니다.')
+										return;
+									}
+									else if(msg==='NO'){
+										alert('이미 장바구니에 담긴 상품입니다')
 										return;
 									}
 									else{

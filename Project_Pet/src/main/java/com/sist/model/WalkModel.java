@@ -228,7 +228,7 @@ public class WalkModel {
 			 
 			  List<WalkReplyVO>list=dao.walkReplyListData(Integer.parseInt(wno),curpage,id);
 			 WalkReplyVO vo2=dao.walkReplyBest(Integer.parseInt(wno), id);
-			 System.out.println(vo2.getDbday());
+			
 			  
 			  
 			  for(WalkReplyVO vo:list)
@@ -521,7 +521,7 @@ public class WalkModel {
 	String id=(String)session.getAttribute("id"); 
 		WalkDAO dao=WalkDAO.newInstance();
 		int count = dao.likeCountCheck(Integer.parseInt(rno),id );
-		System.out.println(count);
+		
 		if(count==0) {
 		map=dao.walkRelativeUserNoData(Integer.parseInt(rno), id);
 			

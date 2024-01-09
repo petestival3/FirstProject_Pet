@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.sist.vo.QnaBoardVO;
+import com.sist.vo.ShoppingVO;
 
 public class ShoppingDAO {
 private static SqlSessionFactory ssf;
@@ -30,18 +31,29 @@ private static SqlSessionFactory ssf;
 	
 	public static String shoppingInsert(Map map) {
 		SqlSession session =null;
-		String msg="YES";
-		
+		String msg="";
+		int quantity=(int)map.get("buy_count");
 	
 		try {
 			
 			
-			
+			if(map.get("userid")!=null) {
 			session=ssf.openSession();
 			int count=session.selectOne("shoppingCheck",map);
 			session.close();
-			System.out.println(count);
-			if(count>0) {
+			
+			session=ssf.openSession();
+			int p_stackCheckCount=session.selectOne("shoppingStackCheck",map);
+			session.close();
+			
+			if(p_stackCheckCount==0) {
+				msg="NOSTACK";
+			}
+			else if(p_stackCheckCount<quantity) {
+				msg="FULLSTACK";
+			}
+			
+			else if(count>0) {
 				msg="NO";
 				
 			}
@@ -49,7 +61,39 @@ private static SqlSessionFactory ssf;
 				
 				session=ssf.openSession(true);
 				session.insert("addShoppingCart",map);
+				session.close();
+				msg="YES";
 			}
+			
+			}	
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+		}
+		return msg;
+		
+	}
+	
+	
+	
+	
+	public static List<ShoppingVO> shoppingCartList(String userid) {
+		SqlSession session =null;
+		List<ShoppingVO>list=new ArrayList<ShoppingVO>();
+		
+	
+		try {
+			
+			
+			
+			session=ssf.openSession();
+			System.out.println(userid);
+			list= session.selectList("shoppingCartList",userid);
 			
 			
 		} catch (Exception e) {
@@ -61,7 +105,7 @@ private static SqlSessionFactory ssf;
 				session.close();
 			}
 		}
-		return msg;
+		return list;
 		
 	}
 }

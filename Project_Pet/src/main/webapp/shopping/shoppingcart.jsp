@@ -1,8 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.shoppingItemImage{
+width:100px;
+}
+
+
+.kyj_shoppingQuantity {
+ display: flex; 
+ justify-content: center;
+  align-items: center;
+}
+
+.kyj__ShopInput-container {
+  display: flex;
+  align-items: center;
+}
+
+.kyj_shoppingCal {
+  width: 60px; /* Adjust width as needed */
+  height: 50px; /* Adjust height as needed */
+  padding: 10px;
+  text-align: center;
+  margin: 0 5px; /* Adjust margin for spacing */
+  border: 1px solid #ccc;
+  font-size: 18px; /* Adjust font size */
+  order: 2; /* Change order to place input in the middle */
+}
+
+.kyj_shoppingIncreseBtn,
+.kyj_shoppingDecreseBtn {
+  padding: 14px; /* Adjust padding for button size */
+  background-color: #ccc;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  order: 1; /* Change order to place buttons at the sides */
+}
+
+.kyj_shoppingIncreseBtn {
+  order: 3; /* Change order to place + button at the right */
+}
+
+.kyj_shoppingDecreseBtn:hover,
+.kyj_shoppingIncreseBtn:hover {
+  background-color: #aaa;
+}
+
+
+
+
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -42,72 +95,37 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <c:forEach var="vo" items="${list }">
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <img src="../img/cart/cart-1.jpg" alt="">
-                                        <h5>Vegetable’s Package</h5>
+                                        <img src="${vo.pvo.p_image }" alt="" class="shoppingItemImage">
+                                        <h5 style="display:inline; font-weight:bold;">${vo.pvo.p_name }</h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        $55.00
+                                        1000000--원
                                     </td>
                                     <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
+                                      <div class="kyj_shoppingQuantity" >
+                                        <div class="kyj__ShopInput-container">
+								            <button class="kyj_shoppingDecreseBtn">-</button>
+								
+								
+								            <input type="text" value="1" class="kyj_shoppingCal">
+								            <button class="kyj_shoppingIncreseBtn">+</button>
+								        </div>
+            						 </div>
                                     </td>
                                     <td class="shoping__cart__total">
-                                        $110.00
+                                        1,000,000원
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close"></span>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="../img/cart/cart-2.jpg" alt="">
-                                        <h5>Fresh Garden Vegetable</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $39.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $39.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="../img/cart/cart-3.jpg" alt="">
-                                        <h5>Organic Bananas</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $69.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $69.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
+                                
+                               </c:forEach>
+                                
+                                
                             </tbody>
                         </table>
                     </div>

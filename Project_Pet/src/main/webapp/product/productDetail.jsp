@@ -558,12 +558,12 @@ function requestPay() {
                                   
                                   <div class="col-md-8">
                                    <div class="review-container">
-                              <img src="../img/mainlogo.png" alt="User Avatar" class="user-image" />
+                             
 
                                  <div class="mid_1">
                                    <div class="user-info">
                                      <img
-                                       src="../img/mainlogo.png"
+                                       src="../img/userIcon.jpg"
                                        alt="Reviewer Avatar"
                                        class="reviewer-avatar"
                                        style="float: left"
