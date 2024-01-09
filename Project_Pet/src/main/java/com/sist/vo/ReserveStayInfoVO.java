@@ -2,21 +2,36 @@ package com.sist.vo;
 import java.util.Date;
 
 public class ReserveStayInfoVO {
-	private int no,stayno,ok;
+	private int no,stay_no,ok;
 	private String id,checkin,checkout,inwon;
 	private Date regdate;
-	private StayVO svo=new StayVO();
+	
+	private String roomname,roomimage;
+	
+	
+	public String getRoomname() {
+		return roomname;
+	}
+	public void setRoomname(String roomname) {
+		this.roomname = roomname;
+	}
+	public String getRoomimage() {
+		return roomimage;
+	}
+	public void setRoomimage(String roomimage) {
+		this.roomimage = roomimage;
+	}
 	public int getNo() {
 		return no;
 	}
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public int getStayno() {
-		return stayno;
+	public int getStay_no() {
+		return stay_no;
 	}
-	public void setStayno(int stayno) {
-		this.stayno = stayno;
+	public void setStay_no(int stay_no) {
+		this.stay_no = stay_no;
 	}
 	public int getOk() {
 		return ok;
@@ -53,12 +68,6 @@ public class ReserveStayInfoVO {
 	}
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
-	}
-	public StayVO getSvo() {
-		return svo;
-	}
-	public void setSvo(StayVO svo) {
-		this.svo = svo;
 	}
 	
 	

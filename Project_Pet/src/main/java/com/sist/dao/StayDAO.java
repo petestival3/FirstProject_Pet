@@ -293,6 +293,29 @@ public class StayDAO {
 			return list;
 		}
 		
+		// 룸번호받고 룸하나정보만
+		public RoomVO roomdetail(int rno) {
+			RoomVO vo=new RoomVO();
+			try {
+				conn=dbconn.getConnection();
+				String sql="SELECT room_image,room_name,room_price,stayno "
+						+ "FROM roominfo WHERE rno="+rno;
+				ps=conn.prepareStatement(sql);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				vo.setImage(rs.getString(1));
+				vo.setName(rs.getString(2));
+				vo.setPrice(rs.getInt(3));
+				vo.setStayno(rs.getInt(4));
+				rs.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				dbconn.disConnection(conn, ps);
+			}
+			return vo;
+		}
+		
 		public int stayroomtotal(int stayno) {
 			int total=0;
 			try {

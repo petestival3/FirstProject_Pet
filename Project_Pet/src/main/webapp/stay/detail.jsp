@@ -231,7 +231,7 @@ function roomlist(sno,roompage){
 					+'<td class="shoping__cart__price">&#8361;'+rovo.price+'</td>'
 					+'<td class="shoping__cart__quantity">'
 					+'<div class="quantity">'
-					+'<a href="#" class="primary-btn">예약하기</a>'
+					+'<a href="../stayreserve/stayreserve_main.do?rno='+rovo.rno+'" class="primary-btn">예약하기</a>'
 					+'</div></td></tr>'
 			}
 			hhh+='<div class="stayroom__pagination text-center" style="margin-top:20px">'

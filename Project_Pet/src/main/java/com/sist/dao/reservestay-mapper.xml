@@ -7,8 +7,8 @@
 	WHERE rno=#{rno}
 </select>
 <!-- 예약 정보 저장 -->
-<insert id="reserveInsert" parameterType="ReserveStayInfoVO">
-	INSERT INTO reserve_info VALUES(
+<insert id="stayreserveInsert" parameterType="ReserveStayInfoVO">
+	INSERT INTO reserve_stay_info VALUES(
     	(SELECT NVL(MAX(no)+1,1) FROM reservestay_info),
     	#{id},#{stay_no},#{checkin},#{checkout},#{inwon},SYSDATE,0
     )
