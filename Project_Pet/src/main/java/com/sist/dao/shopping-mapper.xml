@@ -22,6 +22,7 @@ VALUES(cart_bay_seq.nextval,#{pno},#{buy_count},#{userid},#{buy_intprice},#{buy_
 <result property="pvo.p_image" column="p_image"/>
 <result property="pvo.p_intprice" column="p_intprice"/>
 <result property="pvo.p_price" column="p_price"/>
+<result property="pvo.p_lower_price" column="p_lower_price"/>
 </resultMap>
 
 <select id="shoppingCartList" parameterType="string" resultMap="shoppingCartListData">

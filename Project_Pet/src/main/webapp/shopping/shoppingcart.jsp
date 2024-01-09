@@ -35,7 +35,7 @@ width:100px;
 
 .kyj_shoppingIncreseBtn,
 .kyj_shoppingDecreseBtn {
-  padding: 14px; /* Adjust padding for button size */
+  padding: 13px; /* Adjust padding for button size */
   background-color: #ccc;
   border: none;
   cursor: pointer;
@@ -102,7 +102,7 @@ width:100px;
                                         <h5 style="display:inline; font-weight:bold;">${vo.pvo.p_name }</h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        1000000--원
+                                        ${vo.pvo.p_price }
                                     </td>
                                     <td class="shoping__cart__quantity">
                                       <div class="kyj_shoppingQuantity" >
@@ -110,13 +110,13 @@ width:100px;
 								            <button class="kyj_shoppingDecreseBtn">-</button>
 								
 								
-								            <input type="text" value="1" class="kyj_shoppingCal">
+								            <input type="text" value="${vo.buy_count }" class="kyj_shoppingCal">
 								            <button class="kyj_shoppingIncreseBtn">+</button>
 								        </div>
             						 </div>
                                     </td>
                                     <td class="shoping__cart__total">
-                                        1,000,000원
+                                        ${vo.buy_price }
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close"></span>
