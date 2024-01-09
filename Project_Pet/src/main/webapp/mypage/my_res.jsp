@@ -19,24 +19,28 @@
 </style>
 </head>
 <body>
-
-	<div class="col-md-9">
-	<div class="reservation_container">
-		<div class="reservation_header">
-			<h2>예약내역</h2>
-		</div>
-		<!-- 실제 예약내역 데이터를 반복적으로 표시하는 부분 -->
-		<div class="reservation_item">
-			<h3>숙소 예약</h3>
-			<p>예약일: 2023-01-01</p>
-			<p>숙소명: 펫플레이스</p>
-		</div>
-		<div class="reservation_item">
-			<h3>병원 예약</h3>
-			<p>예약일: 2023-02-15</p>
-			<p>병원명: 펫클리닉</p>
-		</div>
-	</div>
-	</div>
+ <h3 class="text-center">상품 구매 목록</h3>
+ <table class="table">
+   <tr>
+    <th class="text-center">번호</th>
+    <th class="text-center"></th>
+    <th class="text-center">상품명</th>
+    <th class="text-center">가격</th>
+    <th class="text-center">수량</th>
+    <th class="text-center">총구매가격</th>
+   </tr>
+   <c:forEach var="vo" items="${list }">
+   <tr>
+    <td class="text-center">${vo.cart_no }</td>
+    <td class="text-center">
+     <img src="${vo.gvo.goods_poster }" style="width: 30px;height: 30px">
+    </td>
+    <td>${vo.gvo.goods_name }</td>
+    <td class="text-center">${vo.gvo.goods_price }</td>
+    <td class="text-center">${vo.amount }</td>
+    <td class="text-center">${vo.price * vo.amount }</td>
+   </tr>
+   </c:forEach>
+ </table>
 </body>
 </html>

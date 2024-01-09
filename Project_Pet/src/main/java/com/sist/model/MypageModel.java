@@ -332,5 +332,28 @@ public void myunreg_ok(HttpServletRequest request, HttpServletResponse response)
 	
     
 }
+//@RequestMapping("mypage/my_res.do")
+//public void my_res(HttpServletRequest request, HttpServletResponse response) {
+//	try {
+//        request.setCharacterEncoding("UTF-8");
+//    } catch (Exception ex) {}
+//    
+//    HttpSession session=request.getSession();
+//	String id=(String)session.getAttribute("id");
+//	String pwd=request.getParameter("pwd");
+//	
+//	
+//	
+//	String res=UnregDAO.delete_AllTables(map);
+//	
+//	try
+//	{
+//		PrintWriter out=response.getWriter();
+//		out.write(res);
+//		System.out.println("model:"+res);
+//	}catch(Exception ex) {}
+//	
+//    
+//}
 
 }

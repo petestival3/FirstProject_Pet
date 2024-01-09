@@ -1,5 +1,11 @@
 package com.sist.dao;
 import java.util.*;
+
+import javax.mail.Session;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import java.sql.*;
 import com.sist.dbcp.*;
 import com.sist.vo.*;
@@ -8,6 +14,7 @@ public class MyPageDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private CreateDBCPconnection dbconn=new CreateDBCPconnection();
+	private static SqlSessionFactory ssf=CommonsDataBase.getSsf();
 	private static MyPageDAO dao;
 	
 	public static MyPageDAO newInstance()
@@ -177,6 +184,25 @@ public class MyPageDAO {
 	    {
 	        dbconn.disConnection(conn, ps);
 	    }
+	}
+	public static RoomVO goodsDetailData(int rno)
+	{
+		RoomVO vo=new RoomVO();
+		SqlSession session=null;
+		try
+		{
+			session=ssf.openSession();
+			vo=session.selectOne("reserveStayDetail",rno);
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		return vo;
 	}
 
 	

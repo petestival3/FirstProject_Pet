@@ -34,5 +34,6 @@
 	 <mapper resource="com/sist/dao/reserve-funeral-mapper.xml"/>
 	 <mapper resource="com/sist/dao/shopping-mapper.xml"/>
 	 <mapper resource="com/sist/dao/reservestay-mapper.xml"/>
+	  <mapper resource="com/sist/dao/myres-mapper.xml"/>
 </mappers>
 </configuration>
