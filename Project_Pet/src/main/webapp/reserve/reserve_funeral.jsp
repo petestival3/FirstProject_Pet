@@ -119,19 +119,19 @@ $(function(){
 		</div>
 		<!-- 테이블 상세내용 2분할 -->
 		<div class="res_t">
-		  <h6>예약일 정보</h6>
-		      <div id="res_f_date"></div>
-		  <h6>인원정보</h6>
+		  <h5 class="text-center" style="margin-top:10px;">예약일 정보</h5>
+		      <div id="res_f_date" style="height:350px; margin-top:10px;"></div>
+		  <h5 class="text-center"style="margin-top:10px;">인원정보</h5>
 		      <div id="res_f_inwons"></div>
 		</div>
 		<!-- 테이블 결정사항 3분할 -->
 		<div class="res_t">
-		  <h6>시간정보</h6>
-		      <div id="res_f_times"></div>
+		  <h5 class="text-center" style="margin-top:10px;">시간정보</h5>
+		      <div id="res_f_times" style="height:150px;" ></div>
 		 <table>
 		 <tr>
 		  <td>
-          <h3>예약정보</h3>
+          <h5 class="text-center" style="margin-bottom: 10px;">예약정보</h5>
           </td>
           </tr>
           <tr>
@@ -150,7 +150,7 @@ $(function(){
             <td>인원:<span id="res_f_inwon"></span></td>
           </tr>
           
-          <tr style="display:none;" id="ok">
+          <tr style="display:none; margin-top: 10px;" id="ok">
 		      <td class="text-center">
 		       <form method="post" action="../reserve/reserve_ok.do">
 		         <input type=hidden name="fno" id="fno"><!-- res_f_list에서data-fno로넘어오는듯 -->

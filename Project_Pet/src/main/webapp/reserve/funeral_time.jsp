@@ -12,7 +12,7 @@ $(function(){
 	$('.tspans').click(function(){
 		let time=$(this).text()
 		$('#res_f_time').text(time);
-		$('#res_f_inwon').val(time)
+		$('#rtime').val(time)
 		$.ajax({
 			type:'post',
 			url:'../reserve/reserve_inwon.do',
@@ -31,7 +31,7 @@ $(function(){
    <tr>
      <td>
       <c:forEach var="time" items="${list }">
-        <span class="btn btn-xs btn-info tspans">${time }</span>
+        <span class="btn btn-xs tspans">${time }</span>
       </c:forEach>
      </td>
    </tr>

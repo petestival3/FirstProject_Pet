@@ -66,7 +66,11 @@ public class ReserveFuneralDAO {
 	  public static void FuneralreserveInsert(FuneralReserveInfoVO vo)
 	  {
 		  SqlSession session=ssf.openSession(true);
-		  session.insert("FuneralreserveInsert",vo);
+		  try {
+			  session.insert("FuneralreserveInsert",vo);
+		  }catch(Exception ex) {
+			  ex.printStackTrace();
+		  }
 		  session.close();
 	  }
 	  

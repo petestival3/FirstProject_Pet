@@ -23,9 +23,9 @@ $(function(){
     <tr>
      <td>
        <c:forEach var="i" begin="1" end="5">
-        <span class="btn btn-xs btn-info inwon">${i }</span>
+        <span class="btn btn-xs inwon">${i }</span>
        </c:forEach>
-       <span class="btn btn-xs btn-info inwon">단체</span>
+       <span class="btn btn-xs inwon">단체</span>
      </td>
     </tr>
     
