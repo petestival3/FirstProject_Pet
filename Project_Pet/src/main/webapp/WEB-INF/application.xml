@@ -22,4 +22,5 @@
    <bean id="like" class="com.sist.model.LikeModel"></bean>
    <bean id="wish" class="com.sist.model.WishModel"></bean>
    <bean id="shopping" class="com.sist.model.ShoppingModel"></bean>
+   <bean id="reserve_f" class="com.sist.model.ReserveFuneralModel"></bean>
 </beans>

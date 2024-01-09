@@ -10,8 +10,8 @@
 <script type="text/javascript">
 $(function(){
 	$('.trs').click(function(){
-		let loc=$(this).attr("data-loc");
 		let name=$(this).attr("data-name");
+		let loc=$(this).attr("data-loc");
 		let fno=$(this).attr("data-fno");
 		$("#food_name").text(name)
 		$("#food_loc").text(loc)
@@ -35,11 +35,11 @@ $(function(){
       <tr>
          <td>test</td>
       </tr>
-      <tr data-loc="${vo.CR_COM_LOC }" data-fno="${vo.CR_COM_NO }" data-name="${vo.CR_COM_NAME }" class="trs">
+      <tr data-loc="${vo.loc }" data-fno="${vo.fno }" data-name="${vo.name }" class="trs">
        <td class="text-center">
-        <td>${vo.CR_COM_NAME }</td>
+        <td>${vo.name }</td>
        </td>
-       <td>${vo.CR_COM_LOC }</td>
+       <td>${vo.loc }</td>
       </tr>
     </c:forEach>
   </table>

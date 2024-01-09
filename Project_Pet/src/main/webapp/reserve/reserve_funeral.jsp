@@ -38,7 +38,8 @@
 	 transition: all 0.4s ease-in-out;
 	 transform: translateY(-25px);
 }
-#conti_res_list tr:hover{
+.locs:hover,
+#res_f_list tr:hover{
    cursor: pointer;
 }
 </style>
@@ -48,13 +49,25 @@ $(function(){
 	$.ajax({
 		type:'post',
 		url:'../reserve/res_f_list.do',
-		data:{"rf_no":rf_no},
+		data:{"no":1},
 		success:function(result)
 		{
 			$('#res_f_list').html(result)
-		}//success
-	})//ajax
-})//function
+		}
+	})
+	$('.locs').click(function(){
+		let no=$(this).attr("data-no");
+		$.ajax({
+			type:'post',
+			url:'../reserve/res_f_list.do',
+			data:{"no":no},
+			success:function(result)
+			{
+				$('#res_f_list').html(result)
+			}
+		})//
+	})
+})
 </script>
 </head>
 <body>
@@ -85,6 +98,16 @@ $(function(){
 	<!-- 검색 사이드 매뉴 종료 -->
 
 	<!-- 예약하기 내용 시작 -->
+	<div class="container">
+	         <span class="primary-btn locs" data-no="1">강원</span>
+             <span class="primary-btn locs" data-no="2">경기</span>
+             <span class="primary-btn locs" data-no="3">경남</span>
+             <span class="primary-btn locs" data-no="4">경북</span><br>
+             <span class="primary-btn locs" data-no="5">전남</span>
+             <span class="primary-btn locs" data-no="6">전북</span>
+             <span class="primary-btn locs" data-no="7">충남</span>
+             <span class="primary-btn locs" data-no="8">충북</span>
+	    </div>
 	<div class="res_wrap container">
 		<!-- 테이블 날짜시간 1분할 -->
 		<div class="res_t">

@@ -12,13 +12,12 @@ public class ReserveFuneralDAO {
 	  private static SqlSessionFactory ssf=CommonsDataBase.getSsf();
 	  private static ReserveFuneralDAO dao;
 	  
-	  public static List<FuneralListVO> reserveFuneralListData(int rf_no)
+	  public static List<FuneralListVO> reserveFuneralListData(int no)
 	  {
 		  SqlSession session=ssf.openSession();
 		  Map map=new HashMap();
-		  map.put("rf_no", rf_no);
-		  List<FuneralListVO> list=
-				  session.selectList("reserveFuneralListData",map);
+		  map.put("no", no);
+		  List<FuneralListVO> list=session.selectList("reserveFuneralListData",map);
 		  session.close();
 		  return list;
 	  }
