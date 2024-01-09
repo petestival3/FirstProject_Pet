@@ -298,6 +298,9 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
    else if(lcount.equals("4")) {
 	   send="redirect:../adminPage/ad_productQnaList.do";
    }
+   else if(lcount.equals("5")) {
+	   send="redirect:../shopping/shoppingCart.do";
+   }
       
       return send;
    }

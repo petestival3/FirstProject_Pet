@@ -25,6 +25,7 @@ public class ShoppingModel {
 			
 			List<ShoppingVO>list=ShoppingDAO.shoppingCartList(userid);
 			request.setAttribute("list", list);
+			request.setAttribute("size", list.size());
 		
 	      request.setAttribute("main_jsp", "../shopping/shoppingcart.jsp");
 		
@@ -74,6 +75,56 @@ public class ShoppingModel {
 	      
 	   }
 	
+	
+	@RequestMapping("shopping/shoppingCartUpdate.do")
+	   public void shoppingCartUpdate(HttpServletRequest request, HttpServletResponse response) {
+			String buy_count =request.getParameter("buy_count");
+			String buy_intprice=request.getParameter("buy_intprice");
+		
+			String cbno=request.getParameter("cbno");
+			
+			DecimalFormat decimalFormat = new DecimalFormat("###,###원");
+			String buy_price = decimalFormat.format(Integer.parseInt(buy_intprice)); // buy_intprice는 숫자 변수
+			Map map=new HashMap();
+			map.put("buy_count", buy_count);
+			map.put("buy_intprice",buy_intprice);
+			map.put("cbno",cbno);
+			map.put("buy_price", buy_price);
+			
+			ShoppingDAO.ShoppingCartUpdate(map);
+			
+	     
+	   }
+	
+	
+	@RequestMapping("shopping/shoppingCartDelete.do")
+	   public void shoppingCartDelet(HttpServletRequest request, HttpServletResponse response) {
+			
+		
+			String cbno=request.getParameter("cbno");
+			
+			System.out.println(cbno);
+			ShoppingDAO.ShoppingCartDelete(Integer.parseInt(cbno));
+			
+			
+	     
+	   }
+	
+	
+	
+	@RequestMapping("shopping/shoppingCartReset.do")
+	   public void shoppingCartReset(HttpServletRequest request, HttpServletResponse response) {
+			
+		
+				HttpSession session= request.getSession();
+				String userid=(String)session.getAttribute("id");
+				
+			
+					ShoppingDAO.ShoppingCartReset(userid);
+			
+			
+	     
+	   }
 	
 	
 }

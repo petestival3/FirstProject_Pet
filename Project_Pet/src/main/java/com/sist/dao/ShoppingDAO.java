@@ -92,7 +92,7 @@ private static SqlSessionFactory ssf;
 			
 			
 			session=ssf.openSession();
-			System.out.println(userid);
+			
 			list= session.selectList("shoppingCartList",userid);
 			
 			
@@ -108,4 +108,85 @@ private static SqlSessionFactory ssf;
 		return list;
 		
 	}
+	
+	public static void ShoppingCartUpdate(Map map) {
+		
+		SqlSession session =null;
+		
+	
+		try {
+			
+			
+			
+			session=ssf.openSession(true);
+			
+			session.update("ShoppingCartUpdate",map);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+		}
+	}
+	
+	
+	
+public static void ShoppingCartDelete(int cbno) {
+		
+		SqlSession session =null;
+		
+	
+		try {
+			
+			
+			
+			session=ssf.openSession(true);
+			
+			session.delete("ShoppingCartDelete",cbno);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+		}
+	}
+
+
+public static void ShoppingCartReset(String userid) {
+	
+	SqlSession session =null;
+	
+
+	try {
+		
+		
+		
+		session=ssf.openSession(true);
+		
+		session.delete("ShoppingCartReset",userid);
+		
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	finally {
+		if(session!=null) {
+			session.close();
+		}
+	}
+}
+
+
+
 }

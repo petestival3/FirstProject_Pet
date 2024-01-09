@@ -1,37 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.dao.shopping-mapper">
-
+<!-- 이미장바구니에 있는지 체크 -->
 <select id="shoppingCheck" parameterType="map" resultType="int">
 SELECT COUNT(*) FROM CART_BUY WHERE USERID=#{userid} AND PNO=#{pno} AND BUY_OK='NO'
 </select>
+<!-- 이미장바구니에 있는지 체크 -->
 
-
-
+<!-- 재고체크 -->
 <select id="shoppingStackCheck" parameterType="map" resultType="int">
 SELECT p_stack FROM PRODUCT_DETAIL WHERE pno=#{pno}
 </select>
+<!-- 재고체크 -->
 
+<!-- 장바구니 담기 -->
 <insert id="addShoppingCart" parameterType="map">
 INSERT INTO CART_BUY (CBNO,PNO,BUY_COUNT,USERID,BUY_INTPRICE,BUY_PRICE)
 VALUES(cart_bay_seq.nextval,#{pno},#{buy_count},#{userid},#{buy_intprice},#{buy_price})
 </insert>
+<!-- 장바구니 담기 -->
 
+<!--장바구니 리스트 -->
 <resultMap type="com.sist.vo.ShoppingVO" id="shoppingCartListData">
 <result property="pvo.p_name" column="p_name"/>
 <result property="pvo.p_image" column="p_image"/>
 <result property="pvo.p_intprice" column="p_intprice"/>
 <result property="pvo.p_price" column="p_price"/>
 <result property="pvo.p_lower_price" column="p_lower_price"/>
+<result property="pvo.p_percent" column="p_percent"/>
+<result property="pvo.p_intlowerprice" column="p_intlowerprice"/>
 </resultMap>
 
+
 <select id="shoppingCartList" parameterType="string" resultMap="shoppingCartListData">
-SELECT b.pno,p_name,p_image,p_intprice,p_price,cbno,buy_ok,buy_count,userid,buy_intprice,buy_price
+SELECT b.pno,p_name,p_image,p_intprice,p_price,cbno,buy_ok,buy_count,userid,buy_intprice,buy_price,p_lower_price,p_percent,p_intlowerprice
 FROM CART_BUY b JOIN PRODUCT_DETAIL a ON a.pno=b.pno
 WHERE USERID=#{userid} AND BUY_OK='NO' 
 ORDER BY CBNO DESC
- 
 </select>
+<!--장바구니 리스트 -->
+
+<!--각각아이템 +,- -->
+<update id="ShoppingCartUpdate" parameterType="map">
+
+UPDATE CART_BUY SET 
+BUY_COUNT=#{buy_count},
+BUY_INTPRICE=#{buy_intprice},
+buy_price=#{buy_price}
+WHERE cbno=#{cbno}
+<!--각각아이템 +,- -->
+
+</update>
+
+<!--각각아이템 삭제 -->
+<delete id="ShoppingCartDelete" parameterType="int">
+DELETE FROM CART_BUY
+WHERE cbno=#{cbno}
+</delete>
+<!--각각아이템 삭제 -->
+
+<!-- 장바구니 비우기 -->
+<delete id="ShoppingCartReset" parameterType="string">
+DELETE FROM CART_BUY
+WHERE USERID=#{USERIC} AND BUY_OK='NO'
+</delete>
+
+<!-- 장바구니 비우기 -->
 
 
 <!-- 결제시 -->

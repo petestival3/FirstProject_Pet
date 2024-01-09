@@ -331,7 +331,7 @@ function requestPay() {
 						    <div class="pmodal-content">
 						        <span class="close">&times;</span>
 						        <p style="font-weight:bold;">장바구니에 상품이 추가되었습니다!</p>
-						        <a href="#" class="btn btn-sm btn-primary">장바구니로 이동</a>
+						        <a href="../shopping/shoppingCart.do" class="btn btn-sm btn-primary">장바구니로 이동</a>
 						        <a href="#" class="btn btn-sm btn-info" id="keepshop">계속 쇼핑하기</a>
 						    </div>
 						</div>
