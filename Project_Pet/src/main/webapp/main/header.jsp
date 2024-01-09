@@ -95,9 +95,9 @@ function noId(){
                                <ul class="header__menu__dropdown">
                                     <li><a href="../health/hsptmain.do">병원 검색하기</a></li>
                                     <li><a href="../health/newsmain.do">펫케어 콘텐츠</a></li>
-                                    <c:if test="${sessionScope.id!=null }">
+                                    <%-- <c:if test="${sessionScope.id!=null }">
                                     <li><a href="../reserve/reserve_care.do">병원 예약하기</a></li>
-                                    </c:if>
+                                    </c:if> --%>
                                 </ul>
                             </li>
                             <li><a href="../stay/list.do">HOTEL</a>

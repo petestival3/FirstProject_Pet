@@ -24,11 +24,11 @@
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-$(function() {
+/* $(function() {
 	$('#cancel').click(function(){
 		let rno=$(this).data('data-rno');
 		 $.ajax({
-		        type: 'POST', 
+		        type: 'post', 
 		        url: '../mypage/my_res_cancel.do', 
 		        data: {'rno':rno },
 		        success: function(result) {
@@ -39,7 +39,7 @@ $(function() {
 		        }
 		      });
 		    });
-		  });
+		  }); */
 </script>
 </head>
 <body>

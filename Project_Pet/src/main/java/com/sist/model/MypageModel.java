@@ -41,7 +41,7 @@ public class MypageModel {
 	    MyPageDAO dao = MyPageDAO.newInstance();
 	    MyPageVO vo = dao.mypagePet(id);
 	    MemberVO myvo=dao.mypageMy(id);
-
+	    
 	    String filename = vo.getPet_filename();
 	    String path = "c://download";
 	    File file = new File(path + "\\" + filename);
@@ -62,7 +62,6 @@ public class MypageModel {
 	            request.setAttribute("petimg", petimg);
 	        } 
 	    } catch (Exception ex) {}
-
 	    request.setAttribute("vo", vo);
 	    request.setAttribute("myvo", myvo);
 	    request.setAttribute("mypage_jsp", "../mypage/my_main.jsp");
@@ -169,7 +168,6 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 	    String id = (String) session.getAttribute("id");
 	    MyPageDAO dao = MyPageDAO.newInstance();
 	    MyPageVO vo = dao.mypagePet(id);
-
 	    String filename = vo.getPet_filename();
 	    String path = "c://download";
 	    File file = new File(path + "\\" + filename);
@@ -190,7 +188,6 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 	            request.setAttribute("petimg", petimg);
 	        } 
 	    } catch (Exception ex) {}
-
 	    request.setAttribute("vo", vo);
 	    request.setAttribute("main_jsp", "../mypage/my_petinfo.jsp");
 	    return "../main/main.jsp";
@@ -342,6 +339,7 @@ public String my_res(HttpServletRequest request, HttpServletResponse response) {
 	 HttpSession session=request.getSession();
 	 String id=(String)session.getAttribute("id");
 	 List<ReserveStayInfoVO> list=MyPageDAO.myStayResList(id);
+	    System.out.println("예약내역 호출");
 	 System.out.println(list.size());
 	 request.setAttribute("list", list);
 	 request.setAttribute("mypage_jsp", "../mypage/my_res.jsp");
@@ -349,21 +347,21 @@ public String my_res(HttpServletRequest request, HttpServletResponse response) {
 	return "../main/main.jsp";
   
 }
-@RequestMapping("mypage/my_res_cancel.do")
-public void my_res_cancel(HttpServletRequest request, HttpServletResponse response) {
-	
-	
-	 HttpSession session=request.getSession();
-	 String id=(String)session.getAttribute("id");
-	 String rno=request.getParameter("rno");
-	 Map map=new HashMap();
-	 map.put("id", id);
-	 map.put("rno", rno);
-	 System.out.println(id);
-	 System.out.println(rno);
-	 MyPageDAO.myStayResListDelete(map);
-  
-}
+//@RequestMapping("mypage/my_res_cancel.do")
+//public void my_res_cancel(HttpServletRequest request, HttpServletResponse response) {
+//	
+//	
+//	 HttpSession session=request.getSession();
+//	 String id=(String)session.getAttribute("id");
+//	 String rno=request.getParameter("rno");
+//	 Map map=new HashMap();
+//	 map.put("id", id);
+//	 map.put("rno", rno);
+//	 System.out.println(id);
+//	 System.out.println(rno);
+//	 MyPageDAO.myStayResListDelete(map);
+//  
+//}
 
 
 }

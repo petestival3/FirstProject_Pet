@@ -3,7 +3,7 @@
 <mapper namespace="com.sist.dao.myres-mapper">
 <!-- 숙소 예약 내역 -->
 <select id="myStayResList" resultType="ReserveStayInfoVO" parameterType="string">
-SELECT roomimage,roomname,checkin,checkout FROM RESERVE_STAY_INFO
+SELECT roomimage,roomname,checkin,checkout,rno FROM RESERVE_STAY_INFO
 WHERE id=#{id}
 </select>
 <select id="myStayResListDelete" parameterType="hashmap">
