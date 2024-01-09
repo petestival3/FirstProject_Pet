@@ -2,37 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sist.dao.unreg-mapper">
 <!-- 비밀번호 일치 여부 확인 위함 -->
-<select id="getPassword" resultType="String">
+<select id="getPassword" resultType="string" parameterType="hashmap">
   SELECT pwd FROM MEMBER WHERE id = #{id}
 </select>
 
-
-  
 <!-- id 포함 테이블 삭제 -->
-<select id="delete_Pet_reg">
+<delete id="delete_Pet_reg" parameterType="hashmap">
   DELETE FROM PET_REG WHERE user_id = #{id}
-</select>
-<select id="delete_Cat_like">
+</delete>
+<delete id="delete_Cat_like" parameterType="hashmap">
   DELETE FROM CAT_LIKE WHERE id = #{id}
-</select>
-<select id="delete_Dog_like">
+</delete>
+<delete id="delete_Dog_like" parameterType="hashmap">
   DELETE FROM DOG_LIKE WHERE id = #{id}
-</select>
-<select id="delete_Cd_wish">
+</delete>
+<delete id="delete_Cd_wish" parameterType="hashmap">
   DELETE FROM CD_WISH WHERE id = #{id}
-</select>
-<select id="delete_Board_reply">
+</delete>
+<delete id="delete_Board_reply" parameterType="hashmap">
   DELETE FROM BOARD_REPLY WHERE userid = #{id}
-</select> 
-<select id="delete_Qnaboard">
+</delete> 
+<delete id="delete_Qnaboard" parameterType="hashmap">
   DELETE FROM QNABOARD WHERE qwriter = #{id}
-</select>
-<select id="delete_review">
+</delete>
+<delete id="delete_review" parameterType="hashmap">
   DELETE FROM REVIEW WHERE writer = #{id}
-</select>
-<select id="delete_member">
+</delete>
+<delete id="delete_member" parameterType="hashmap">
   DELETE FROM MEMBER WHERE id = #{id}
-</select>
+</delete>
 
 </mapper>
 

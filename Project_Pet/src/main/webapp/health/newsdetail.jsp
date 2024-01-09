@@ -219,10 +219,9 @@ $(function(){
 																
 													</td>
 													</tr>
-													
 													<tr id="upd" style="display: none">
 													<td colspan="2" class="text-right inline">
-													 <c:if test="${sessionScope.id != null && sessionScope.id eq rvo.userid}">
+													 
 															<input type="hidden" name="no" value=${no }>
 																<input type="hidden" name="rno" value=${rvo.rno }>
 																<div style="display: flex; align-items: center;">
@@ -234,9 +233,10 @@ $(function(){
 																placeholder="비밀번호입력" style=" width:140px; float: left">
 														 <input type="button" value="수정" id="updBtn" data-rno="${rvo.rno }" data-no="${vo.no}"
 																style="width: 60px; height: 30px; background-color: #5a70e9; color: white; float: left;">
-												</c:if>
+											
 													</td>
 												</tr>
+
 											</table>
 
 										</c:forEach>

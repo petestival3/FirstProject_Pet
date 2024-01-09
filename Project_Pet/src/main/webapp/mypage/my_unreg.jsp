@@ -13,7 +13,8 @@
 	margin: 0 0 100px 300px;
 }
 </style>
-<script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script type="text/javascript">
 function unregOk() {
 var password = document.getElementById("pwd").value;
 $.ajax({
@@ -21,9 +22,13 @@ $.ajax({
     type : "post",
     data : {"pwd" : password},
     success : function(res) {
-       if (res === "yes") {
-          alert("회원 탈퇴가 완료되었습니다.");
-       } else {
+    	if (res === "yes")
+       {
+    	   alert("회원 탈퇴가 완료되었습니다.");
+    	   location.href="../main/main.do";
+       } 
+       else 
+       {
           alert("비밀번호가 일치하지 않습니다.");
        }
     },
@@ -42,7 +47,7 @@ $.ajax({
     <p>회원 탈퇴를 진행하시겠습니까?</p>
     <p>진행을 원하시면 비밀번호 입력 후, 탈퇴 버튼을 클릭해주세요</p>
     <input type="password" id="pwd" placeholder="비밀번호">
-    <button  onclick="unregOk()">탈퇴</button>
+    <button onclick="unregOk()">탈퇴</button>
 </div>
 </div>
 </div>

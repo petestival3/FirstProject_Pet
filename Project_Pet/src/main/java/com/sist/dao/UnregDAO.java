@@ -20,20 +20,53 @@ public class UnregDAO {
 		} catch (Exception e) {e.printStackTrace();}
 	}
 	
-	public static String delete_AllTables(String pwd,String id)
+	public static String delete_AllTables(Map map)
 	{
 		SqlSession session=null;
 		String res="no";
 		try 
 		{
 			session=ssf.openSession(true);
-			String db_pwd=session.selectOne("getPassword", id);
+			String db_pwd=session.selectOne("getPassword", map);
+			System.out.println("db_PWD:"+db_pwd);
 			
-			if (db_pwd!=null && db_pwd.equals(pwd))
+			
+			if (db_pwd.equals((String)map.get("pwd")))
 			{
 	            res="yes";
-				session.delete("delete_AllTables", id);
+				session.delete("delete_Pet_reg", map);
+				session.close();
+				
+				session=ssf.openSession(true);
+				session.delete("delete_Cat_like", map);
+				session.close();
+
+				session=ssf.openSession(true);
+				session.delete("delete_Dog_like", map);
+				session.close();
+				
+				session=ssf.openSession(true);
+				session.delete("delete_Cd_wish", map);
+				session.close();
+
+				session=ssf.openSession(true);
+				session.delete("delete_Board_reply", map);
+				session.close();
+				
+				session=ssf.openSession(true);
+				session.delete("delete_Qnaboard", map);
+				session.close();
+				
+				session=ssf.openSession(true);
+				session.delete("delete_review", map);
+				session.close();
+				
+				session=ssf.openSession(true);
+				session.delete("delete_member", map);
+				session.close();
+	
 	        } 
+			System.out.println(res);
 		}
 		catch (Exception e) 
 		{
@@ -46,187 +79,4 @@ public class UnregDAO {
 		}
 		return res;
 	}
-//	public static String delete_Cat_like(String pwd,String id)
-//	{
-//		SqlSession session=null;
-//		String res="no";
-//		try 
-//		{
-//			session=ssf.openSession(true);
-//			String db_pwd=session.selectOne("getPassword", id);
-//			
-//			if (db_pwd!=null && db_pwd.equals(pwd))
-//			{
-//	            res="yes";
-//				session.delete("delete_Cat_like", id);
-//	        } 
-//		}
-//		catch (Exception e) 
-//		{
-//			e.printStackTrace();
-//		}
-//		finally 
-//		{
-//			if(session!=null) 
-//				session.close();
-//		}
-//		return res;
-//	}
-//	public static String delete_Dog_like(String pwd,String id)
-//	{
-//		SqlSession session=null;
-//		String res="no";
-//		try 
-//		{
-//			session=ssf.openSession(true);
-//			String db_pwd=session.selectOne("getPassword", id);
-//			
-//			if (db_pwd!=null && db_pwd.equals(pwd))
-//			{
-//	            res="yes";
-//				session.delete("delete_Dog_like", id);
-//	        } 
-//		}
-//		catch (Exception e) 
-//		{
-//			e.printStackTrace();
-//		}
-//		finally 
-//		{
-//			if(session!=null) 
-//				session.close();
-//		}
-//		return res;
-//	}
-//	public static String delete_Cd_wish(String pwd,String id)
-//	{
-//		SqlSession session=null;
-//		String res="no";
-//		try 
-//		{
-//			session=ssf.openSession(true);
-//			String db_pwd=session.selectOne("getPassword", id);
-//			
-//			if (db_pwd!=null && db_pwd.equals(pwd))
-//			{
-//	            res="yes";
-//				session.delete("delete_Cd_wish", id);
-//	        } 
-//		}
-//		catch (Exception e) 
-//		{
-//			e.printStackTrace();
-//		}
-//		finally 
-//		{
-//			if(session!=null) 
-//				session.close();
-//		}
-//		return res;
-//	}
-//	public static String delete_Board_reply(String pwd,String id)
-//	{
-//		SqlSession session=null;
-//		String res="no";
-//		try 
-//		{
-//			session=ssf.openSession(true);
-//			String db_pwd=session.selectOne("getPassword", id);
-//			
-//			if (db_pwd!=null && db_pwd.equals(pwd))
-//			{
-//	            res="yes";
-//				session.delete("delete_Board_reply", id);
-//	        } 
-//		}
-//		catch (Exception e) 
-//		{
-//			e.printStackTrace();
-//		}
-//		finally 
-//		{
-//			if(session!=null) 
-//				session.close();
-//		}
-//		return res;
-//	}
-//	public static String delete_Qnaboard(String pwd,String id)
-//	{
-//		SqlSession session=null;
-//		String res="no";
-//		try 
-//		{
-//			session=ssf.openSession(true);
-//			String db_pwd=session.selectOne("getPassword", id);
-//			
-//			if (db_pwd!=null && db_pwd.equals(pwd))
-//			{
-//	            res="yes";
-//				session.delete("delete_Qnaboard", id);
-//	        } 
-//		}
-//		catch (Exception e) 
-//		{
-//			e.printStackTrace();
-//		}
-//		finally 
-//		{
-//			if(session!=null) 
-//				session.close();
-//		}
-//		return res;
-//	}
-//	public static String delete_review(String pwd,String id)
-//	{
-//		SqlSession session=null;
-//		String res="no";
-//		try 
-//		{
-//			session=ssf.openSession(true);
-//			String db_pwd=session.selectOne("getPassword", id);
-//			
-//			if (db_pwd!=null && db_pwd.equals(pwd))
-//			{
-//	            res="yes";
-//				session.delete("delete_review", id);
-//	        } 
-//		}
-//		catch (Exception e) 
-//		{
-//			e.printStackTrace();
-//		}
-//		finally 
-//		{
-//			if(session!=null) 
-//				session.close();
-//		}
-//		return res;
-//	}
-//	public static String delete_member(String pwd,String id)
-//	{
-//		SqlSession session=null;
-//		String res="no";
-//		try 
-//		{
-//			session=ssf.openSession(true);
-//			String db_pwd=session.selectOne("getPassword", id);
-//			
-//			if (db_pwd!=null && db_pwd.equals(pwd))
-//			{
-//	            res="yes";
-//				session.delete("delete_member", id);
-//	        } 
-//		}
-//		catch (Exception e) 
-//		{
-//			e.printStackTrace();
-//		}
-//		finally 
-//		{
-//			if(session!=null) 
-//				session.close();
-//		}
-//		return res;
-//	}
-
 }

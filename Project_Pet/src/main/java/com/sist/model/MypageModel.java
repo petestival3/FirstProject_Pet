@@ -6,7 +6,9 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -305,8 +307,7 @@ public String myunreg(HttpServletRequest request, HttpServletResponse response) 
     
 }
 @RequestMapping("mypage/my_unreg_ok.do")
-public String myunreg_ok(HttpServletRequest request, HttpServletResponse response) {
-    String[] type= {"","","",""};
+public void myunreg_ok(HttpServletRequest request, HttpServletResponse response) {
 	try {
         request.setCharacterEncoding("UTF-8");
     } catch (Exception ex) {}
@@ -314,17 +315,21 @@ public String myunreg_ok(HttpServletRequest request, HttpServletResponse respons
     HttpSession session=request.getSession();
 	String id=(String)session.getAttribute("id");
 	String pwd=request.getParameter("pwd");
-	String res=UnregDAO.delete_AllTables(pwd, id);
 	
-	
+	Map map=new HashMap();
+	map.put("id", id);
+	map.put("pwd", pwd);
 	System.out.println(pwd);
+	
+	String res=UnregDAO.delete_AllTables(map);
+	
 	try
 	{
 		PrintWriter out=response.getWriter();
 		out.write(res);
+		System.out.println("model:"+res);
 	}catch(Exception ex) {}
 	
-	return "redirect:../mypage/my_unreg.do";
     
 }
 
