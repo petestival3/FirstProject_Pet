@@ -2,6 +2,7 @@ package com.sist.model;
 
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.json.simple.JSONObject;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.ShoppingDAO;
+import com.sist.vo.ProductVO;
 import com.sist.vo.ShoppingVO;
 
 public class ShoppingModel {
@@ -128,19 +130,31 @@ public class ShoppingModel {
 	
 	
 	@RequestMapping("shopping/shoppingMoveBuy.do")
-	   public void shoppingMoveBuy(HttpServletRequest request, HttpServletResponse response) {
+	   public String shoppingMoveBuy(HttpServletRequest request, HttpServletResponse response) {
 			
 		
 				HttpSession session= request.getSession();
 				String userid=(String)session.getAttribute("id");
 				String getTotal=request.getParameter("getTotal");
 				
+				DecimalFormat decimalFormat = new DecimalFormat("###,###원");
+				String buy_price = decimalFormat.format(Integer.parseInt(getTotal)); // buy_intprice는 숫자 변수
 				
-				System.out.println(getTotal);
+				request.setAttribute("buy_intprice", Integer.parseInt(getTotal));
+				request.setAttribute("buy_price", buy_price);
+				
+				List<ShoppingVO>list=new ArrayList<ShoppingVO>();
+				list=ShoppingDAO.shoppingCartList(userid);
+				int size=ShoppingDAO.buyListCount(userid);
+				
+				request.setAttribute("list", list);
+				request.setAttribute("size", size-1);
+				request.setAttribute("main_jsp", "../shopping/ProductBuy.jsp");
+				
 				
 			
 				
-			
+				 return "../main/main.jsp";
 			
 	     
 	   }
@@ -172,5 +186,13 @@ public class ShoppingModel {
 			
 	     
 	   }
+	
+	@RequestMapping("shopping/ShoppingPostfind.do")
+	public String member_postfind(HttpServletRequest request,
+			  HttpServletResponse response) {
+		
+		System.out.println("실행");
+		return "../shopping/shoppingPost.jsp";
+	}
 	
 }

@@ -5,52 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <link rel="stylesheet" href="../css/shopping.css">
 <style type="text/css">
-.shoppingItemImage{
-width:100px;
-}
 
-
-.kyj_shoppingQuantity {
- display: flex; 
- justify-content: center;
-  align-items: center;
-}
-
-.kyj__ShopInput-container {
-  display: flex;
-  align-items: center;
-}
-
-.kyj_shoppingCal {
-  width: 60px; /* Adjust width as needed */
-  height: 50px; /* Adjust height as needed */
-  padding: 10px;
-  text-align: center;
-  margin: 0 5px; /* Adjust margin for spacing */
-  border: 1px solid #ccc;
-  font-size: 18px; /* Adjust font size */
-  order: 2; /* Change order to place input in the middle */
-}
-
-.kyj_shoppingIncreseBtn,
-.kyj_shoppingDecreseBtn {
-  padding: 13px; /* Adjust padding for button size */
-  background-color: #ccc;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  order: 1; /* Change order to place buttons at the sides */
-}
-
-.kyj_shoppingIncreseBtn {
-  order: 3; /* Change order to place + button at the right */
-}
-
-.kyj_shoppingDecreseBtn:hover,
-.kyj_shoppingIncreseBtn:hover {
-  background-color: #aaa;
-}
 
 
 
@@ -113,10 +70,16 @@ $(document).ready(function() {
 	
 	$(".kyj_shoppingIncreseBtn").click(function() {
 		
+			let pstack=$('.shoping__cart__item').attr('data-pstack')
 			const cbno=$(this).attr('data-cbno')
 			
 		  let price = $(this).attr('data-ShopPrice');
         	let count=$(this).siblings('.kyj_shoppingCal').val()
+        	
+        	if(count===pstack){
+        		alert('재고보다 많을 수 없습니다.')
+        		return;
+        	}
         	count++;
         	$(this).siblings('.kyj_shoppingCal').val(count)
            let total = $(this).closest('tr').find('.shoping__cart__total');
@@ -317,6 +280,7 @@ $(".cart-btn-right").click(function() {
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
+                    <div style="text-align:center;"><img src="../img/shoppingcart.png" style="width:200px;"></div>
                         <table>
                             <thead>
                             
@@ -335,7 +299,7 @@ $(".cart-btn-right").click(function() {
                             <c:forEach var="vo" items="${list }">
                             
                                 <tr class="hideAndShow">
-                                    <td class="shoping__cart__item" data-pno="${vo.pno }">
+                                    <td class="shoping__cart__item" data-pno="${vo.pno }" data-pstack="${vo.pvo.p_stack }">
                                         <a href="../product/DetailBefore.do?count=5&pno=${vo.pno }"><img src="${vo.pvo.p_image }" alt="" class="shoppingItemImage"></a>
                                         <h5 style="display:inline; font-weight:bold;">${vo.pvo.p_name }</h5>
                                     </td>

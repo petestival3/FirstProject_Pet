@@ -20,6 +20,10 @@ VALUES(cart_bay_seq.nextval,#{pno},#{buy_count},#{userid},#{buy_intprice},#{buy_
 </insert>
 <!-- 장바구니 담기 -->
 
+
+
+
+
 <!--장바구니 리스트 -->
 <resultMap type="com.sist.vo.ShoppingVO" id="shoppingCartListData">
 <result property="pvo.p_name" column="p_name"/>
@@ -29,11 +33,12 @@ VALUES(cart_bay_seq.nextval,#{pno},#{buy_count},#{userid},#{buy_intprice},#{buy_
 <result property="pvo.p_lower_price" column="p_lower_price"/>
 <result property="pvo.p_percent" column="p_percent"/>
 <result property="pvo.p_intlowerprice" column="p_intlowerprice"/>
+<result property="pvo.p_stack" column="p_stack"/>
 </resultMap>
 
 
 <select id="shoppingCartList" parameterType="string" resultMap="shoppingCartListData">
-SELECT b.pno,p_name,p_image,p_intprice,p_price,cbno,buy_ok,buy_count,userid,buy_intprice,buy_price,p_lower_price,p_percent,p_intlowerprice
+SELECT b.pno,p_name,p_image,p_intprice,p_price,cbno,buy_ok,buy_count,userid,buy_intprice,buy_price,p_lower_price,p_percent,p_intlowerprice,p_stack
 FROM CART_BUY b JOIN PRODUCT_DETAIL a ON a.pno=b.pno
 WHERE USERID=#{userid} AND BUY_OK='NO' 
 ORDER BY CBNO DESC
@@ -72,7 +77,7 @@ WHERE USERID=#{USERIC} AND BUY_OK='NO'
 <select id="checkStarkGetPnum" resultType="Integer" parameterType="string">
 Select pno FROM CART_BUY WHERE USERID=#{userid} AND BUY_OK='NO'
 </select>
-
+<!-- 장바구니에 옛날에 담았지만 창에서 결제 넘어갈때 재고가없는것 처리 -->
 <select id="nowStack" resultType="int" parameterType="java.util.List">
     SELECT COUNT(*) FROM product_detail WHERE pno IN
     <foreach collection="list" item="item" open="(" separator="," close=")">
@@ -82,12 +87,21 @@ Select pno FROM CART_BUY WHERE USERID=#{userid} AND BUY_OK='NO'
 </select>
 
 
+
+
+
 <select id="CartNum" resultType="int" parameterType="string">
 SELECT COUNT(*) FROM CART_BUY WHERE USERID=#{userid} AND BUY_OK='NO'
 
 </select>
 
+
+<select id="buyListCount" parameterType="string" resultType="int">
+SELECT COUNT(*) FROM CART_BUY WHERE USERID=#{userid} AND BUY_OK='NO'
+</select>
 <!-- 결제시 -->
+
+
 
 <update id="shoppingHandleProduct" parameterType="map">
 UPDATE PRODUCT_DETAIL SET

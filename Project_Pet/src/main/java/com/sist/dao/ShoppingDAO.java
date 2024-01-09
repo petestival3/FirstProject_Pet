@@ -234,4 +234,36 @@ public static String BeforeBuy(String userid) {
 
 
 
+
+
+
+public static int buyListCount(String userid) {
+	SqlSession session =null;
+	
+	
+	int size=0;
+	try {
+		
+		
+		
+		session=ssf.openSession();
+		
+		size=  session.selectOne("buyListCount",userid);
+		
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	finally {
+		if(session!=null) {
+			session.close();
+		}
+	}
+	return size;
+	
+}
+
+
+
 }
