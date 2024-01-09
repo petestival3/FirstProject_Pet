@@ -33,9 +33,10 @@ $(function(){
 			height:350
 		})
 	})
-})
+	})
 </script>
 <style type="text/css">
+
 #unreg {
     margin-top: 20px;
 }
@@ -43,10 +44,15 @@ $(function(){
 #unreg span {
     font-size: 15px;
     color: gray; 
+    margin-left: 40px;
     
 }
-#unreg a {
-    font-size: 15px;
+#unregBtn {
+    margin-top: 10px;
+    border: 1px solid black;
+    background-color: white;
+    color: grey;
+     float: right;
 }
 </style>
 </head>
@@ -120,13 +126,14 @@ $(function(){
 					<button class="can" name="cancel" type="button" id="contact-cancel"
 						style="float: left;" onclick="javascript:history.back()">취소</button>
 				</fieldset>
-				<fieldset  id="unreg">
-					<i class="fa fa-frown-o" aria-hidden="true"></i>&nbsp;
-					<span>회원탈퇴를 원하시면 </span><a href="../mypage/my_unreg.do">"탈퇴하기"</a><span>를 눌러주세요 !
-					</span>
-				</fieldset>
+				
 			</form>
-			
+			<fieldset id="unreg">
+					<span>회원탈퇴를 원하시면 탈퇴 버튼을 눌러주세요 !</span>
+					<button class="btn btn-sm" id="unregBtn">
+					<a href="../mypage/my_unreg.do">탈퇴</a></button>
+					<input type="hidden">
+			</fieldset>
 		</div>
 	</div>
 </body>

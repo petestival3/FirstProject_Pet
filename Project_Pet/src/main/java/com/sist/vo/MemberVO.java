@@ -2,6 +2,14 @@ package com.sist.vo;
 
 public class MemberVO {
 	private String id,pwd,name,sex,birth,email,post,addr1,addr2,phone,content,admin,msg;
+	
+//	private MyPageVO mvo=new MyPageVO();
+//	private LikeCatVO lcvo=new LikeCatVO();
+//	private LikeDogVO ldvo=new LikeDogVO();
+//	private WishVO cwvo=new WishVO();
+//	private WalkReplyVO wrvo=new WalkReplyVO();
+//	private QnaBoardVO qbvo=new QnaBoardVO();
+//	private ReviewVO rvo=new ReviewVO();
 
 	public String getMsg() {
 		return msg;

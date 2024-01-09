@@ -4,8 +4,16 @@ public class MyPageVO {
 	private int petno, pet_filesize;
 	private String pet_image, pet_name, pet_bday, pet_gender, pet_weight, pet_filename, user_id
 	,pet_check;
+	private String pwd;
 	
+	private MemberVO mv;
 	
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
 	public String getPet_check() {
 		return pet_check;
 	}

@@ -18,6 +18,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.MyPageDAO;
+import com.sist.dao.UnregDAO;
 import com.sist.dao.WishDAO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.MyPageVO;
@@ -296,6 +297,33 @@ public String myUpdate(HttpServletRequest request, HttpServletResponse response)
     request.setAttribute("main_jsp", "../mypage/my_info.jsp");
     return "../main/main.jsp";
 }
-
+@RequestMapping("mypage/my_unreg.do")
+public String myunreg(HttpServletRequest request, HttpServletResponse response) {
+    
+	request.setAttribute("main_jsp", "../mypage/my_unreg.jsp");
+    return "../main/main.jsp";
+    
+}
+@RequestMapping("mypage/my_unreg_ok.do")
+public String myunreg_ok(HttpServletRequest request, HttpServletResponse response) {
+    try {
+        request.setCharacterEncoding("UTF-8");
+    } catch (Exception ex) {}
+    
+    HttpSession session=request.getSession();
+	String id=(String)session.getAttribute("id");
+	String pwd=request.getParameter("pwd");
+	String res=UnregDAO.delete_AllTables(pwd, id);
+	
+	System.out.println(pwd);
+	try
+	{
+		PrintWriter out=response.getWriter();
+		out.write(res);
+	}catch(Exception ex) {}
+	
+	return "redirect:../mypage/my_unreg.do";
+    
+}
 
 }

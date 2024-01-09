@@ -1,3 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sist.dao.unreg-mapper"></mapper>
+<mapper namespace="com.sist.dao.unreg-mapper">
+<!-- 비밀번호 일치 여부 확인 위함 -->
+<select id="getPassword" resultType="String">
+  SELECT pwd FROM MEMBER WHERE id = #{id}
+</select>
+
+<!-- map으로 묶어줌 -->
+<!--  <resultMap type="com.sist.vo.MemberVO" id="memberMap">
+  <result property="mvo.user_id" column="user_id"/>
+  <result property="lcvo.id" column="id"/>
+  <result property="ldvo.id" column="id"/>
+  <result property="cwvo.id" column="id"/>
+  <result property="wrvo.userid" column="id"/>
+  </resultMap>  -->
+  
+<!-- id 포함 테이블 삭제 -->
+<select id="delete_Pet_reg">
+  DELETE FROM PET_REG WHERE user_id = #{id}
+</select>
+<select id="delete_Cat_like">
+  DELETE FROM CAT_LIKE WHERE id = #{id}
+</select>
+<select id="delete_Dog_like">
+  DELETE FROM DOG_LIKE WHERE id = #{id}
+</select>
+<select id="delete_Cd_wish">
+  DELETE FROM CD_WISH WHERE id = #{id}
+</select>
+<select id="delete_Board_reply">
+  DELETE FROM BOARD_REPLY WHERE userid = #{id}
+</select> 
+<select id="delete_Qnaboard">
+  DELETE FROM QNABOARD WHERE qwriter = #{id}
+</select>
+<select id="delete_review">
+  DELETE FROM REVIEW WHERE writer = #{id}
+</select>
+<select id="delete_member">
+  DELETE FROM MEMBER WHERE id = #{id}
+</select>
+
+</mapper>
+
