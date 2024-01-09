@@ -24,6 +24,8 @@ import com.sist.dao.UnregDAO;
 import com.sist.dao.WishDAO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.MyPageVO;
+import com.sist.vo.ReserveStayInfoVO;
+import com.sist.vo.RoomVO;
 import com.sist.vo.WishVO;
 
 
@@ -329,31 +331,39 @@ public void myunreg_ok(HttpServletRequest request, HttpServletResponse response)
 		out.write(res);
 		System.out.println("model:"+res);
 	}catch(Exception ex) {}
+	session.invalidate();
 	
     
 }
-//@RequestMapping("mypage/my_res.do")
-//public void my_res(HttpServletRequest request, HttpServletResponse response) {
-//	try {
-//        request.setCharacterEncoding("UTF-8");
-//    } catch (Exception ex) {}
-//    
-//    HttpSession session=request.getSession();
-//	String id=(String)session.getAttribute("id");
-//	String pwd=request.getParameter("pwd");
-//	
-//	
-//	
-//	String res=UnregDAO.delete_AllTables(map);
-//	
-//	try
-//	{
-//		PrintWriter out=response.getWriter();
-//		out.write(res);
-//		System.out.println("model:"+res);
-//	}catch(Exception ex) {}
-//	
-//    
-//}
+@RequestMapping("mypage/my_res.do")
+public String my_res(HttpServletRequest request, HttpServletResponse response) {
+	
+	
+	 HttpSession session=request.getSession();
+	 String id=(String)session.getAttribute("id");
+	 List<ReserveStayInfoVO> list=MyPageDAO.myStayResList(id);
+	 System.out.println(list.size());
+	 request.setAttribute("list", list);
+	 request.setAttribute("mypage_jsp", "../mypage/my_res.jsp");
+	  request.setAttribute("main_jsp", "../mypage/mypage.jsp");
+	return "../main/main.jsp";
+  
+}
+@RequestMapping("mypage/my_res_cancel.do")
+public void my_res_cancel(HttpServletRequest request, HttpServletResponse response) {
+	
+	
+	 HttpSession session=request.getSession();
+	 String id=(String)session.getAttribute("id");
+	 String rno=request.getParameter("rno");
+	 Map map=new HashMap();
+	 map.put("id", id);
+	 map.put("rno", rno);
+	 System.out.println(id);
+	 System.out.println(rno);
+	 MyPageDAO.myStayResListDelete(map);
+  
+}
+
 
 }

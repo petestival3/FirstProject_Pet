@@ -185,14 +185,14 @@ public class MyPageDAO {
 	        dbconn.disConnection(conn, ps);
 	    }
 	}
-	public static RoomVO goodsDetailData(int rno)
+	public static List<ReserveStayInfoVO> myStayResList(String id)
 	{
-		RoomVO vo=new RoomVO();
+		List<ReserveStayInfoVO> list=new ArrayList<ReserveStayInfoVO>();
 		SqlSession session=null;
 		try
 		{
 			session=ssf.openSession();
-			vo=session.selectOne("reserveStayDetail",rno);
+			list=session.selectList("myStayResList",id);
 		}catch(Exception ex) 
 		{
 			ex.printStackTrace();
@@ -202,8 +202,25 @@ public class MyPageDAO {
 			if(session!=null)
 				session.close();
 		}
-		return vo;
+		return list;
 	}
-
+	public static void myStayResListDelete(Map map)
+	{
+		SqlSession session=null;
+		try 
+		{
+				session=ssf.openSession(true);
+				session.delete("myStayResListDelete", map);
+	    } 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		finally 
+		{
+			if(session!=null) 
+				session.close();
+		}
+	}
 	
 }

@@ -1,3 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sist.dao.myres-mapper"></mapper>
+<mapper namespace="com.sist.dao.myres-mapper">
+<!-- 숙소 예약 내역 -->
+<select id="myStayResList" resultType="ReserveStayInfoVO" parameterType="string">
+SELECT roomimage,roomname,checkin,checkout FROM RESERVE_STAY_INFO
+WHERE id=#{id}
+</select>
+<select id="myStayResListDelete" parameterType="hashmap">
+DELETE FROM RESERVE_STAY_INFO
+WHERE id=#{id} AND rno=#{rno}
+</select>
+</mapper>
