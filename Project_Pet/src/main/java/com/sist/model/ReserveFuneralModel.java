@@ -32,8 +32,8 @@ public class ReserveFuneralModel {
 	  public String funeral_date(HttpServletRequest request,HttpServletResponse response)
 	  {
 		  // 예약 가능한 날 
-		  String CR_COM_NO=request.getParameter("CR_COM_NO");
-		  System.out.println("CR_COM_NO:"+CR_COM_NO);
+		  String fno=request.getParameter("fno");
+		  System.out.println("fno:"+fno);
 		  SimpleDateFormat sdf=new SimpleDateFormat("yyyy-M-d");
 		  String today=sdf.format(new Date());
 		  StringTokenizer st=new StringTokenizer(today,"-");
@@ -63,7 +63,7 @@ public class ReserveFuneralModel {
 		  request.setAttribute("lastday", lastday);
 		  request.setAttribute("strWeek", strWeek);
 		  // 예약 가능한 날 => DB연동 
-		  String rdays=ReserveFuneralDAO.reserveDays(Integer.parseInt(CR_COM_NO));
+		  String rdays=ReserveFuneralDAO.reserveDays(Integer.parseInt(fno));
 		  int[] rday=new int[32];
 		  System.out.println("rdays:"+rdays);
 		  st=new StringTokenizer(rdays,",");
@@ -80,6 +80,7 @@ public class ReserveFuneralModel {
 		  request.setAttribute("rday", rday);
 		  return "../reserve/funeral_date.jsp";
 	  }
+	  
 	  @RequestMapping("reserve/funeral_time.do")
 	  public String funeral_time(HttpServletRequest request,HttpServletResponse response)
 	  {

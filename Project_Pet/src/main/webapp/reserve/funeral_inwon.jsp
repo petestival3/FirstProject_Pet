@@ -1,12 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+$(function(){
+	$('.inwon').click(function(){
+		let inwon=$(this).text();
+		$('#res_f_inwon').text(inwon);
+		$('#ok').show();
+		$('#rinwon').val(inwon);
+	})
+})
+</script>
 </head>
 <body>
-
+<table class="table">
+    <tr>
+     <td>
+       <c:forEach var="i" begin="1" end="5">
+        <span class="btn btn-xs btn-info inwon">${i }</span>
+       </c:forEach>
+       <span class="btn btn-xs btn-info inwon">단체</span>
+     </td>
+    </tr>
+    
+  </table>
 </body>
 </html>

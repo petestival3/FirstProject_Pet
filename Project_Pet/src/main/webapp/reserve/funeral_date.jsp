@@ -15,7 +15,7 @@
 <script type="text/javascript" src="http://code.juqery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('.conti_res_date').click(function(){
+	$('.rdays').click(function(){
 		let year=$(this).attr("data-year");
 		let month=$(this).attr("data-month");
 		let day=$(this).text();
@@ -28,7 +28,8 @@ $(function(){
 			data:{"day":day},
 			success:function(result)
 			{
-				$('#times').html(result)
+				//alert(result);
+				$('#res_f_times').html(result)
 			}
 		})
 	});
@@ -37,7 +38,7 @@ $(function(){
 </head>
 <body>
  <table class="table">
-    <caption class="text-center"><h3>${year }년도 ${month }월</h3></caption>
+    <h4 class="text-center">${year }년도 ${month }월</h4>
     <tr>
       <c:forEach var="strWeek" items="${strWeek }">
         <td class="text-center">${strWeek }</td>

@@ -119,15 +119,15 @@ $(function(){
 		</div>
 		<!-- 테이블 상세내용 2분할 -->
 		<div class="res_t">
-		  <caption><h3>예약일 정보</h3></caption>
+		  <h6>예약일 정보</h6>
 		      <div id="res_f_date"></div>
-		  <caption><h3>시간정보</h3></caption>
-		      <div id="res_f_times"></div>
+		  <h6>인원정보</h6>
+		      <div id="res_f_inwons"></div>
 		</div>
 		<!-- 테이블 결정사항 3분할 -->
 		<div class="res_t">
-		<caption><h3>인원정보</h3></caption>
-		      <div id="res_f_inwons"></div>
+		  <h6>시간정보</h6>
+		      <div id="res_f_times"></div>
 		 <table>
 		 <tr>
 		  <td>
@@ -144,16 +144,16 @@ $(function(){
             <td>예약일:<span id="res_f_day"></span></td>
           </tr>
           <tr>
-            <td>예약시간:<span id="res_t_time"></span></td>
+            <td>예약시간:<span id="res_f_time"></span></td>
           </tr>
           <tr>
             <td>인원:<span id="res_f_inwon"></span></td>
           </tr>
           
-          <tr style="display:" id="ok">
+          <tr style="display:none;" id="ok">
 		      <td class="text-center">
 		       <form method="post" action="../reserve/reserve_ok.do">
-		         <input type=hidden name="fno" id="fno"><!-- 에서data-fno로넘어오는듯 -->
+		         <input type=hidden name="fno" id="fno"><!-- res_f_list에서data-fno로넘어오는듯 -->
 		         <input type=hidden name="rday" id="rday">
 		         <input type=hidden name="rtime" id="rtime">
 		         <input type=hidden name="rinwon" id="rinwon">

@@ -24,10 +24,11 @@ $(function(){
 		$.ajax({
 			type:'post',
 			url:'../reserve/funeral_date.do',
-			data:{"CR_COM_NO":CR_COM_NO},
+			data:{"fno":fno},
 			success:function(result)
 			{
-				$('#conti_res_date').html(result);
+				//alert(result); //html값이 안나오면 모델에서 값을 안보내주는거임
+				$('#res_f_date').html(result);
 			}
 		})
 	})
