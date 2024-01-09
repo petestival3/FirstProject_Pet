@@ -45,4 +45,24 @@
 		SELECT rt_time FROM res_f_time
 		WHERE RT_NO=#{RT_NO}
 	</select>
+	<!--  예약 정보 저장 -->
+	<!-- 
+	SQL> desc RES_FUNERAL_INFO;
+ 이름                                      널?      유형
+ RF_NO                                     NOT NULL NUMBER
+ ID                                                 VARCHAR2(20)
+ CR_COM_NO                                          NUMBER
+ RF_DAY                                    NOT NULL VARCHAR2(100)
+ RF_TIME                                   NOT NULL VARCHAR2(100)
+ RF_INWON                                  NOT NULL VARCHAR2(20)
+ RF_REGDATE                                         DATE
+ RF_OK                                              NUMBER
+	 -->
+  <insert id="FuneralreserveInsert" parameterType="FuneralReserveInfoVO">
+    INSERT INTO RES_FUNERAL_INFO VALUES(
+      (SELECT NVL(MAX(no)+1,1) FROM RES_FUNERAL_INFO),
+      #{id},#{fno},#{day},#{time},#{inwon},
+      SYSDATE,0
+    )
+  </insert>
 </mapper>

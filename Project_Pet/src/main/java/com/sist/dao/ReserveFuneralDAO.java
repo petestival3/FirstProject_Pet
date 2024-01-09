@@ -63,10 +63,10 @@ public class ReserveFuneralDAO {
 		  return rt_time;
 	  }
 	  //예약 데이터 추가
-	  public static void reserveInsert(FuneralReserveInfoVO vo)
+	  public static void FuneralreserveInsert(FuneralReserveInfoVO vo)
 	  {
 		  SqlSession session=ssf.openSession(true);
-		  session.insert("reserveInsert",vo);
+		  session.insert("FuneralreserveInsert",vo);
 		  session.close();
 	  }
 	  
