@@ -12,14 +12,14 @@ $(function(){
 	$('.tspans').click(function(){
 		let time=$(this).text()
 		$('#res_f_time').text(time);
-		$('#rtime').val(time)
+		$('#res_f_inwon').val(time)
 		$.ajax({
 			type:'post',
 			url:'../reserve/reserve_inwon.do',
 			success:function(result)
 			{
-				alert(result);
-				$('#inwons').html(result)
+				//alert(result);
+				$('#res_f_inwons').html(result)
 			}
 		})
 	});
