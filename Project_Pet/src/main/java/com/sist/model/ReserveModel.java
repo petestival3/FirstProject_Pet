@@ -7,6 +7,9 @@ import com.sist.controller.RequestMapping;
 
 public class ReserveModel {
 	
+	//여긴 header에서 각각 reserve jsp로 이동용 model
+	//각자 모델 필요하면 따로 파일 만들어서 쓰기
+	
 	@RequestMapping("reserve/reserve_funeral.do")
 	public String reserve_funeral(HttpServletRequest request, HttpServletResponse response)
 	{
