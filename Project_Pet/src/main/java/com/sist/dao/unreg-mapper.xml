@@ -6,14 +6,7 @@
   SELECT pwd FROM MEMBER WHERE id = #{id}
 </select>
 
-<!-- map으로 묶어줌 -->
-<!--  <resultMap type="com.sist.vo.MemberVO" id="memberMap">
-  <result property="mvo.user_id" column="user_id"/>
-  <result property="lcvo.id" column="id"/>
-  <result property="ldvo.id" column="id"/>
-  <result property="cwvo.id" column="id"/>
-  <result property="wrvo.userid" column="id"/>
-  </resultMap>  -->
+
   
 <!-- id 포함 테이블 삭제 -->
 <select id="delete_Pet_reg">

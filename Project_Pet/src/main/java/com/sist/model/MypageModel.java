@@ -306,7 +306,8 @@ public String myunreg(HttpServletRequest request, HttpServletResponse response) 
 }
 @RequestMapping("mypage/my_unreg_ok.do")
 public String myunreg_ok(HttpServletRequest request, HttpServletResponse response) {
-    try {
+    String[] type= {"","","",""};
+	try {
         request.setCharacterEncoding("UTF-8");
     } catch (Exception ex) {}
     
@@ -314,6 +315,7 @@ public String myunreg_ok(HttpServletRequest request, HttpServletResponse respons
 	String id=(String)session.getAttribute("id");
 	String pwd=request.getParameter("pwd");
 	String res=UnregDAO.delete_AllTables(pwd, id);
+	
 	
 	System.out.println(pwd);
 	try
