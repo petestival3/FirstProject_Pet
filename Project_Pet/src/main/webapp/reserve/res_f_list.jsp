@@ -10,19 +10,19 @@
 <script type="text/javascript">
 $(function(){
 	$('.trs').click(function(){
-		let poster=$(this).attr("data-poster");
+		let loc=$(this).attr("data-loc");
 		let name=$(this).attr("data-name");
 		let fno=$(this).attr("data-fno");
-		$('#food_image').attr("src",poster);
 		$("#food_name").text(name)
+		$("#food_loc").text(loc)
 		$('#fno').val(fno);
 		$.ajax({
 			type:'post',
-			url:'../reserve/food_date.do',
-			data:{"fno":fno},
+			url:'../reserve/funeral_date.do',
+			data:{"CR_COM_NO":CR_COM_NO},
 			success:function(result)
 			{
-				$('#food_date').html(result);
+				$('#conti_res_date').html(result);
 			}
 		})
 	})
@@ -32,11 +32,14 @@ $(function(){
 <body>
  <table>
     <c:forEach var="vo" items="${list }">
-      <tr data-poster="${vo.poster }" data-fno="${vo.fno }" data-name="${vo.name }" class="trs">
+      <tr>
+         <td>test</td>
+      </tr>
+      <tr data-loc="${vo.CR_COM_LOC }" data-fno="${vo.CR_COM_NO }" data-name="${vo.CR_COM_NAME }" class="trs">
        <td class="text-center">
-        <img src="${vo.poster }" style="width: 30px;height: 30px">
+        <td>${vo.CR_COM_NAME }</td>
        </td>
-       <td>${vo.name }</td>
+       <td>${vo.CR_COM_LOC }</td>
       </tr>
     </c:forEach>
   </table>

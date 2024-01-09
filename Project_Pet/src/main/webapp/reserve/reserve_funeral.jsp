@@ -45,19 +45,16 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	
-	// 테이블만들고 no값 확인하기
-	
 	$.ajax({
 		type:'post',
 		url:'../reserve/res_f_list.do',
 		data:{"rf_no":rf_no},
 		success:function(result)
 		{
-			$('#conti_res_list').html(result)
-		}
-	})
-})
+			$('#res_f_list').html(result)
+		}//success
+	})//ajax
+})//function
 </script>
 </head>
 <body>
@@ -91,21 +88,19 @@ $(function(){
 	<div class="res_wrap container">
 		<!-- 테이블 날짜시간 1분할 -->
 		<div class="res_t">
-		    <div id="conti_res_list" style="height: 100%;overflow-y:scroll; "></div>
+		    <div id="res_f_list" style="height: 100%;overflow-y:scroll; "></div>
 		</div>
 		<!-- 테이블 상세내용 2분할 -->
 		<div class="res_t">
 		  <caption><h3>예약일 정보</h3></caption>
-		      <div id="conti_res_date"></div>
+		      <div id="res_f_date"></div>
 		  <caption><h3>시간정보</h3></caption>
-		      <div id="times"></div>
+		      <div id="res_f_times"></div>
 		</div>
-		
 		<!-- 테이블 결정사항 3분할 -->
 		<div class="res_t">
 		<caption><h3>인원정보</h3></caption>
-		      <div id="inwons"></div>
-		
+		      <div id="res_f_inwons"></div>
 		 <table>
 		 <tr>
 		  <td>
@@ -113,26 +108,26 @@ $(function(){
           </td>
           </tr>
           <tr>
-            <td>업체명:<span id="conti_res_name"></span></td>
+            <td>업체명:<span id="res_f_name"></span></td>
           </tr>
           <tr>
-            <td>예약일:<span id="conti_res_day"></span></td>
+            <td>예약일:<span id="res_f_day"></span></td>
           </tr>
           <tr>
-            <td>예약시간:<span id="conti_res_time"></span></td>
+            <td>예약시간:<span id="res_t_time"></span></td>
           </tr>
           <tr>
-            <td>인원:<span id="conti_res_inwon"></span></td>
+            <td>인원:<span id="res_f_inwon"></span></td>
           </tr>
           
-          <tr style="display: none" id="ok">
+          <tr style="display:" id="ok">
 		      <td class="text-center">
 		       <form method="post" action="../reserve/reserve_ok.do">
 		         <input type=hidden name="fno" id="fno">
 		         <input type=hidden name="rday" id="rday">
 		         <input type=hidden name="rtime" id="rtime">
 		         <input type=hidden name="rinwon" id="rinwon">
-		         <button class="primary-btn">예약하기
+		         <button class="primary-btn" style="border: none;">예약하기
 		         </button>
 		       </form>
 		      </td>
