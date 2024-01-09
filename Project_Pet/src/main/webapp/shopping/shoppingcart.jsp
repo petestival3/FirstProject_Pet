@@ -64,13 +64,40 @@ width:100px;
 
 
 $(document).ready(function() {
-
+	document.getElementById('sendBuy').addEventListener('submit', function(event) {
+        event.preventDefault(); // 폼의 기본 동작 중단
+        console.log('클릭')
+    	
+    	$.ajax({
+    		   type: 'post',
+           url: 'shoppingBeforeCheck.do',
+           data: {},
+           success: function (json){
+        	let res=JSON.parse(json)
+        	console.log(res.msg)
+        	if(res.msg==='NOCART'){
+        		alert('장바구니가 비었습니다.')
+        	}
+        	else if(res.msg==='NOSTACK'){
+        		alert('품절된 상품이 포함되어 있습니다')
+        	}
+        	else{
+        		document.getElementById('sendBuy').submit();
+        	}
+        	
+         	  
+        	}
+    	
+    	})
+      
+    });
 	
 	allTotalPrice()
+
 	let size=$('.getSize').attr('data-size')	
 	let noItemCheck=false;
 	
-	
+	 
 	
 	function updateShop(buy_count,buy_intprice,cbno){
 		$.ajax({
@@ -198,7 +225,9 @@ $(".cart-btn-right").click(function() {
 	
   });
 	
+
 	
+
 	
 
 	 function calculateTotal(price,quantity,total,intTotal) {
@@ -209,6 +238,7 @@ $(".cart-btn-right").click(function() {
 	       	intTotal.attr('data-buy_price',totalprice)       	
 	       	let result=	intTotal.attr('data-buy_price')       
 	        total.text(formatCurrency(totalprice));
+	       	
 	       	
 	       	return result;
 	        
@@ -223,6 +253,8 @@ $(".cart-btn-right").click(function() {
 		totalText.attr('data-allTotalPrice',totalprice)
 		totalText.text(formatCurrency(totalprice))
 		 
+		$('#inputTotal').val(totalprice)
+		  
 	 }
 	 
 	 function ResetTotal(){
@@ -250,7 +282,7 @@ $(".cart-btn-right").click(function() {
 		    let textAllTotalPrice=$('.allTotalPrice').attr('data-allTotalPrice')
 		    
 		    $('.allTotalPrice').text( formatCurrency(textAllTotalPrice))
-		 
+		 $('#inputTotal').val(dataprice)
 	 }
 	
 	
@@ -367,9 +399,13 @@ $(".cart-btn-right").click(function() {
                         <h5>Cart Total</h5>
                         <ul>
                             
-                            <li>총액<span class="allTotalPrice" data-allTotalPrice=""></span></li>
+                            <li>총액<span class="allTotalPrice" data-allTotalPrice="" ></span></li>
                         </ul>
-                        <a href="#" class="primary-btn">결제하기</a>
+                        <form action="../shopping/shoppingMoveBuy.do" method="post" id="sendBuy"> 
+                        <button class="primary-btn"  id="moveToBuy" style="width:500px;">결제이동하기</button>
+                        <input type="hidden" name="getTotal" id="inputTotal" value="">
+                          <input type="hidden" name="getStringTotal" id="inputStringTotal" value="">
+                        </form>
                     </div>
                 </div>
             </div>

@@ -189,4 +189,49 @@ public static void ShoppingCartReset(String userid) {
 
 
 
+public static String BeforeBuy(String userid) {
+	
+	SqlSession session =null;
+	String msg="";
+
+	try {
+		
+		
+		
+		session=ssf.openSession(true);
+		
+		List<Integer>list =session.selectList("checkStarkGetPnum",userid);
+		session.close();
+		session=ssf.openSession();
+		if(list.size()==0) {
+			msg="NOCART";
+		}
+		
+		else {
+			int nowStack=session.selectOne("nowStack",list);
+			
+			if(nowStack>0) {
+				msg="NOSTACK";
+			}
+		}
+			
+		
+		
+		
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	finally {
+		if(session!=null) {
+			session.close();
+		}
+	}
+	
+	return msg; 
+}
+
+
+
 }

@@ -127,4 +127,50 @@ public class ShoppingModel {
 	   }
 	
 	
+	@RequestMapping("shopping/shoppingMoveBuy.do")
+	   public void shoppingMoveBuy(HttpServletRequest request, HttpServletResponse response) {
+			
+		
+				HttpSession session= request.getSession();
+				String userid=(String)session.getAttribute("id");
+				String getTotal=request.getParameter("getTotal");
+				
+				
+				System.out.println(getTotal);
+				
+			
+				
+			
+			
+	     
+	   }
+	
+	
+	@RequestMapping("shopping/shoppingBeforeCheck.do")
+	   public void shoppingBeforeCheck(HttpServletRequest request, HttpServletResponse response) {
+			
+		
+				HttpSession session= request.getSession();
+				String userid=(String)session.getAttribute("id");
+				
+				
+				String msg=ShoppingDAO.BeforeBuy(userid);
+				
+				JSONObject obj=new JSONObject();
+				obj.put("msg", msg);
+				  try
+		           {
+		              response.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
+		              PrintWriter out=response.getWriter();
+		            
+		              out.write(obj.toJSONString());
+		           }catch(Exception ex) {
+		        	   ex.printStackTrace();
+		           }
+				
+			
+			
+	     
+	   }
+	
 }

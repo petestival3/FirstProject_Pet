@@ -68,6 +68,25 @@ WHERE USERID=#{USERIC} AND BUY_OK='NO'
 <!-- 장바구니 비우기 -->
 
 
+<!--  장바구니에서 결제이동시 재고체크를 위한 것 -->
+<select id="checkStarkGetPnum" resultType="Integer" parameterType="string">
+Select pno FROM CART_BUY WHERE USERID=#{userid} AND BUY_OK='NO'
+</select>
+
+<select id="nowStack" resultType="int" parameterType="java.util.List">
+    SELECT COUNT(*) FROM product_detail WHERE pno IN
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+        #{item} 
+    </foreach>
+    AND p_stack=0
+</select>
+
+
+<select id="CartNum" resultType="int" parameterType="string">
+SELECT COUNT(*) FROM CART_BUY WHERE USERID=#{userid} AND BUY_OK='NO'
+
+</select>
+
 <!-- 결제시 -->
 
 <update id="shoppingHandleProduct" parameterType="map">
