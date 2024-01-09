@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="../shadow/css/shadowbox.css">
 <script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script src="https://kit.fontawesome.com/3f828a1af5.js" crossorigin="anonymous"></script>
 <style type="text/css">
 .stayintro {
     height: 200px;
@@ -375,7 +376,7 @@ function roomlist(sno,roompage){
                         <div style="height: 15px"></div>
                         <a href="#" class="primary-btn">예약하기</a>
                         <a href="#" class="primary-btn">찜하기</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        <button class="heart-icon" style="border-style: none;" id="heartBtn"><i class="fa-solid fa-heart" style="color: red; font-size:22px"></i></button>
                         <div style="height: 30px"></div>
                         <div class="stayintro">
                           <h6 style="margin-bottom: 20px;color: #666"><b>숙소 소개</b></h6>
