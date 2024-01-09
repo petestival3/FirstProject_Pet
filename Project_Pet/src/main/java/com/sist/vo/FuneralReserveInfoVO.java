@@ -1,6 +1,17 @@
 package com.sist.vo;
 import java.util.*;
 /*
+ *   NO                                        NOT NULL NUMBER
+ ID                                                 VARCHAR2(20)
+ FNO                                                NUMBER
+ DAY                                       NOT NULL VARCHAR2(100)
+ TIME                                      NOT NULL VARCHAR2(100)
+ INWON                                     NOT NULL VARCHAR2(50)
+ REGDATE                                            DATE
+ OK                                                 NUMBER
+ */
+
+/*
  rf_no                                        NOT NULL NUMBER
  ID                                                 VARCHAR2(20)
  cr_com_no                                                NUMBER

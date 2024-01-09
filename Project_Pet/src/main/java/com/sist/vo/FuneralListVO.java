@@ -3,6 +3,15 @@ package com.sist.vo;
 public class FuneralListVO {
 	private int CR_COM_NO;
 	private String CR_COM_SECTOR,CR_COM_NAME,CR_COM_PHONE,CR_COM_LOC,CR_COM_HOMEPAGE;
+	private String rday;
+	
+	
+	public String getRday() {
+		return rday;
+	}
+	public void setRday(String rday) {
+		this.rday = rday;
+	}
 	public int getCR_COM_NO() {
 		return CR_COM_NO;
 	}
