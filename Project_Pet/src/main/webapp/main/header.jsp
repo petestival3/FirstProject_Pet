@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+function noId(){
+	alert('로그인 후 이용가능합니다.')
+}
+</script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -126,7 +131,13 @@
                     <div class="header__cart">
                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                            <c:if test="${sessionScope.id!=null }">
                             <li><a href="../shopping/shoppingCart.do"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            </c:if>
+                            
+                            <c:if test="${sessionScope.id==null }">
+                            <li><a href="#" onclick="noId()"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            </c:if>
                         </ul>
                         <div class="header__cart__price">item: <span>0&#8361;</span></div>
                     </div>
