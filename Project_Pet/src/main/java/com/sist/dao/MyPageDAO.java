@@ -241,13 +241,13 @@ public class MyPageDAO {
 		}
 		return list;
 	}
-	public static void mybuyListDelete(Map map)
+	public static void mybuyCancel(Map map)
 	{
 		SqlSession session=null;
 		try 
 		{
 				session=ssf.openSession(true);
-				session.delete("mybuyListDelete", map);
+				session.update("mybuyCancel", map);
 	    } 
 		catch (Exception e) 
 		{

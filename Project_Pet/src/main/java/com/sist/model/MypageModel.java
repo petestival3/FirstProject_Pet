@@ -395,7 +395,7 @@ public void my_buy_delete(HttpServletRequest request, HttpServletResponse respon
 	 map.put("cbno", cbno);
 	 System.out.println(id);
 	 System.out.println(cbno);
-	 MyPageDAO.mybuyListDelete(map);
+	 MyPageDAO.mybuyCancel(map);
   
 }
 

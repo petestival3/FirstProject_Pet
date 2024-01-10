@@ -9,9 +9,14 @@
 SELECT cbno,p_name,buy_price,buy_date,p_state,p_image,reciepient,phone,buy_address,request_content,buy_count
 FROM cart_buy c JOIN PRODUCT_DETAIL pd 
 ON c.pNO = pd.PNO 
-WHERE userid=#{id} AND buy_ok='YES'
+WHERE userid=#{id} 
+<choose>
+<otherwise>
+AND (buy_ok='YES' OR buy_ok='CANCELWAIT')
+</otherwise>
+</choose>
 </select>
-<delete id="mybuyListDelete" parameterType="hashmap">
-DELETE FROM cart_buy WHERE userid=#{id} AND cbno=#{cbno}
-</delete>
+<update id="mybuyCancel" parameterType="hashmap">
+UPDATE cart_buy SET buy_ok='CANCELWAIT', p_state='결제취소대기' WHERE userid=#{id} AND cbno=#{cbno}
+</update>
 </mapper>
