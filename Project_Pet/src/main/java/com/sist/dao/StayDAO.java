@@ -528,4 +528,20 @@ public class StayDAO {
 				dbconn.disConnection(conn, ps);
 			}
 		}
+		
+		public void stayLikeOn(int sno) {
+			try {
+				conn=dbconn.getConnection();
+				String sql="UPDATE stayinfo SET likecount=likecount+1 "
+						+ "WHERE stay_no="+sno;
+				ps=conn.prepareStatement(sql);
+				ps.executeUpdate();
+				
+				// ID별 like한 항목 추가 = 마이페이지에 해당 id가 좋아한 항목 출력
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				dbconn.disConnection(conn, ps);
+			}
+		}
 }

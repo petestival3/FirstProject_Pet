@@ -14,6 +14,7 @@
 <typeAlias type="com.sist.vo.StayVO" alias="StayVO"/>
 <typeAlias type="com.sist.vo.RoomVO" alias="RoomVO"/>
 <typeAlias type="com.sist.vo.FuneralReserveInfoVO" alias="FuneralReserveInfoVO"/>
+<typeAlias type="com.sist.vo.StayLikeVO" alias="StayLikeVO"/>
 </typeAliases>
 <environments default="development">
 <environment id="development">
@@ -35,5 +36,6 @@
 	 <mapper resource="com/sist/dao/shopping-mapper.xml"/>
 	 <mapper resource="com/sist/dao/reservestay-mapper.xml"/>
 	  <mapper resource="com/sist/dao/myres-mapper.xml"/>
+	  <mapper resource="com/sist/dao/staylike-mapper.xml"/>
 </mappers>
 </configuration>

@@ -102,7 +102,25 @@ $(document).ready(function(){
 		});
 		
 		
+		$(document).on('click','#heartBtnOff',function(){
+			$("#heartBtnOff").hide();
+			$("#heartBtnOn").show();
+			$.ajax({
+				type:'post',
+				url:'../stay/staylikeon.do',
+				data:{"sno":sno},
+				success:function(res){
+					
+				}
+				
+			})
+		});
 		
+		
+		$(document).on('click','#heartBtnOn',function(){
+			$("#heartBtnOn").hide();
+			$("#heartBtnOff").show();
+		});
 		
 		
 	$("#review_write_Btn").click(function(){
@@ -376,7 +394,8 @@ function roomlist(sno,roompage){
                         <div style="height: 15px"></div>
                         <a href="#" class="primary-btn">예약하기</a>
                         <a href="#" class="primary-btn">찜하기</a>
-                        <button class="heart-icon" style="border-style: none;" id="heartBtn"><i class="fa-solid fa-heart" style="color: red; font-size:22px"></i></button>
+                        <button class="heart-icon" style="border-style: none;" id="heartBtnOff"><i class="fa-solid fa-heart" style="color: #696969; font-size:22px"></i></button>
+                        <button class="heart-icon" style="border-style: none; display:none" id="heartBtnOn"><i class="fa-solid fa-heart" style="color: #ff0000; font-size:22px;"></i></button>
                         <div style="height: 30px"></div>
                         <div class="stayintro">
                           <h6 style="margin-bottom: 20px;color: #666"><b>숙소 소개</b></h6>
