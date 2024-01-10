@@ -38,6 +38,15 @@ public class AdminPageModel {
 		return "../main/main.jsp";
 	}
 	
+	@RequestMapping("adminPage/ad_res_f.do")
+	public String admin_res_f(HttpServletRequest request, HttpServletResponse response)
+	{
+		request.setAttribute("main_jsp", "../adminPage/ad_page.jsp");
+		request.setAttribute("ad_page_jsp", "../adminPage/ad_res_f.jsp");
+		
+		return "../main/main.jsp";
+	}
+	
 	@RequestMapping("adminPage/ad_payment.do")
 	public String admin_payment(HttpServletRequest request, HttpServletResponse response)
 	{

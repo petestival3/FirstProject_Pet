@@ -53,7 +53,7 @@
 	<div class="col-md-9">
 	<div class="reservation_container">
 		<div class="reservation_header">
-			<h2>${sessionScope.name }회원 호텔 예약내역</h2>
+			<h2>${sessionScope.name }회원 장례식장 예약내역</h2>
 		</div>
 		<!-- 실제 예약내역 데이터를 반복적으로 표시하는 부분 -->
 		<div class="reservation_item">
