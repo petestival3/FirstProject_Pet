@@ -59,6 +59,7 @@ public class StayModel {
 		request.setAttribute("count", stcList.size());
 		
 		request.setAttribute("main_jsp", "../stay/list.jsp");
+		commonsModel.commonsHeaderData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -80,6 +81,7 @@ public class StayModel {
 		request.setAttribute("vo", vo);
 //		request.setAttribute("rlist", rlist);
 		request.setAttribute("main_jsp", "../stay/detail.jsp");
+		commonsModel.commonsHeaderData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -180,6 +182,7 @@ public class StayModel {
 		
 		
 		request.setAttribute("main_jsp", "../stay/stypelist.jsp");
+		commonsModel.commonsHeaderData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -187,6 +190,7 @@ public class StayModel {
 	public String stay_location(HttpServletRequest request, HttpServletResponse response) {
 		
 		request.setAttribute("main_jsp", "../stay/location.jsp");
+		commonsModel.commonsHeaderData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -245,6 +249,7 @@ public class StayModel {
 		
 		
 		request.setAttribute("main_jsp", "../stay/stypeSortlist.jsp");
+		commonsModel.commonsHeaderData(request);
 		return "../main/main.jsp";
 	}
 	
