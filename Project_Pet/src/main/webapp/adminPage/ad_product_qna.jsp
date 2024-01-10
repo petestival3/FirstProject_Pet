@@ -8,7 +8,10 @@
 <script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
  <script src="../js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-
+Shadowbox.init({
+    players: ['iframe'],
+    
+});
 
 $(document).ready(function() {
 	

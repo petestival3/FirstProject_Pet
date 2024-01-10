@@ -23,6 +23,9 @@ $(function(){
 	var IMP = window.IMP; // 생략 가능
 	IMP.init("imp36070644"); // 예: imp00000000
 	function requestPay(recipient,buy_post,phone,request_content,buy_address,pname,allTotalPrice) {
+		let size=$('.shoping__cart__item').attr('data-size')
+		console.log(size)
+		console.log(typeof size)
 	   console.log('clicked');
 	  // IMP.request_pay(param, callback) 결제창 호출
 	   IMP.request_pay({
@@ -53,15 +56,31 @@ $(function(){
 	           msg += '결제 금액 : ' + rsp.paid_amount;
 	           msg += '카드 승인번호 : ' + rsp.apply_num;
 	       } else {
+	    		if(size!=='0'){
+	    			console.log('실행1')
+	    			 $.ajax({
+	  	    		   type: 'post',
+	  	               url: 'shoppingPayment.do',
+	  	               data: {"buy_address":buy_address,"recipient":recipient,"phone":phone,"request_content":request_content,"buy_post":buy_post},
+	  	               success: function (json){
+	  	            	   window.location.href = '../shopping/shoppingComplete.do';
+	  	               }
+	  	    	   })
+	    		}
 	    		
-	    	   $.ajax({
-	    		   type: 'post',
-	               url: 'shoppingPayment.do',
-	               data: {"buy_address":buy_address,"recipient":recipient,"phone":phone,"request_content":request_content,"buy_post":buy_post},
-	               success: function (json){
-	            	   window.location.href = '../shopping/shoppingComplete.do';
-	               }
-	    	   })
+	    		else if(size==='0'){
+	    			console.log('실행')
+	    			let cbno=$('.shoping__cart__item').attr('data-cbno')  		
+	    			$.ajax({
+		  	    		   type: 'post',
+		  	               url: 'shoppingPaymentOne.do',
+		  	               data: {"buy_address":buy_address,"recipient":recipient,"phone":phone,"request_content":request_content,"buy_post":buy_post,"cbno":cbno},
+		  	               success: function (json){
+		  	            	   window.location.href = '../shopping/shoppingComplete.do';
+		  	               }
+		  	    	   })
+	    		}
+	    	  
 	          
 	           
 	       }
@@ -92,7 +111,14 @@ $('#contact-buypost').click(function(){
 	let request_content=$('#requestContent').val()
 	let allTotalPrice=$('.allTotalPrice').attr('data-allTotalPrice')
 	let pname=$('.real_name').attr('data-pname')+' 외'+$('.shoping__cart__item').attr('data-size')+'건'
+	let lsize=$('.shoping__cart__item').attr('data-size')
 	
+	
+	
+	
+	if(lsize===0 || lsize==='0'){
+		pname=$('.real_name').attr('data-pname')
+	}
 	
 	
 if(recipient===''||typeof recipient ==='undefined'){
@@ -202,7 +228,7 @@ if(request_content==='' || typeof request_content==='undefined'){
                             	<div class="real_name" style="display:none;" data-pname="${vo.pvo.p_name }"></div>
                             	</c:if>
                                 <tr class="hideAndShow">
-                                    <td class="shoping__cart__item" data-pno="${vo.pno }" data-pstack="${vo.pvo.p_stack }" data-size="${size}" }>
+                                    <td class="shoping__cart__item" data-pno="${vo.pno }" data-pstack="${vo.pvo.p_stack }" data-size="${size}" data-cbno="${vo.cbno}"}>
                                        <img src="${vo.pvo.p_image }" alt="" class="shoppingItemImage">
                                         <h5 style="display:inline; font-weight:bold;">${vo.pvo.p_name }</h5>
                                     </td>
@@ -243,7 +269,7 @@ if(request_content==='' || typeof request_content==='undefined'){
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
-                       <a href="#" class="primary-btn cart-btn cart-btn-right">돌아가기</a>
+                       <a href="../shopping/shoppingCart.do" class="primary-btn cart-btn cart-btn-right">돌아가기</a>
                             
                         
                     </div>

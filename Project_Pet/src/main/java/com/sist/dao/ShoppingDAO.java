@@ -295,4 +295,31 @@ public static void handleProductPay(Map map) {
 }
 
 
+public static void handleProductPayOne(Map map) {
+	SqlSession session =null;
+	
+	
+	
+	try {
+		
+		
+		
+		session=ssf.openSession();
+		
+		session.selectOne("handleProductPayOne",map);
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	finally {
+		if(session!=null) {
+			session.close();
+		}
+	}
+
+	
+}
+
+
 }

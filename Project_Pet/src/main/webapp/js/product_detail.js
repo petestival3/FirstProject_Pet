@@ -680,6 +680,15 @@ $(document).on('click', '#addToCartBtn', function() {
 	
 	//에이젝스로 상품 담기 
 	
+	insertShopping(1)
+	
+	
+});
+
+
+function insertShopping(type){
+	
+	
 	let quantity= $('#kyj_total_price').data('qamount')
 	let total= $('#kyj_total_price').data('qtotal')
 					$.ajax({
@@ -707,16 +716,19 @@ $(document).on('click', '#addToCartBtn', function() {
 										alert('이미 장바구니에 담긴 상품입니다')
 										return;
 									}
-									else{
+									else if(type==1){
 										centerModal()
+									}
+									
+									else if(type==2){
+										
 									}
 									
 								}
 		
 							})
 	
-	
-});
+}
 
 // 모달 창의 닫기 버튼을 클릭할 때 팝업을 숨기는 이벤트 핸들러
 $(document).on('click', '.close', function() {

@@ -124,6 +124,19 @@ WHERE pno=#{pno}
 </select>
 <!-- 결제시 프로시져로 재고,누적구매량 등 결제내역 업데이트 관리 -->
 
+<select id="handleProductPayOne" statementType="CALLABLE">
+  {call handleProductPayOne(
+    #{userid, mode=IN, jdbcType=VARCHAR},
+    #{buy_address, mode=IN, jdbcType=VARCHAR},
+    #{recipient, mode=IN, jdbcType=VARCHAR},
+    #{phone, mode=IN, jdbcType=VARCHAR},
+    #{buy_post, mode=IN, jdbcType=VARCHAR},
+    #{request_content, mode=IN, jdbcType=CLOB},
+     #{cbno, mode=IN, jdbcType=NUMERIC}
+  )}
+</select>
+
+
 
 <!-- 결제시 -->
 </mapper>

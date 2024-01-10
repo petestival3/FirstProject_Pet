@@ -688,11 +688,24 @@ $('#NotcompleteQ').addClass('btn-primary')
 		qnaList(1)
 		
 });
-
+$(document).on('click', '#directBuy', function() {
+	
+	
+	insertShopping(2)
+});
 
 $(document).on('click', '#addToCartBtn', function() {
 	
-	//에이젝스로 상품 담기 
+	
+	insertShopping(1)
+});
+
+
+
+
+
+function insertShopping(type){
+	
 	
 	let quantity= $('#kyj_total_price').data('qamount')
 	let total= $('#kyj_total_price').data('qtotal')
@@ -721,16 +734,19 @@ $(document).on('click', '#addToCartBtn', function() {
 										alert('이미 장바구니에 담긴 상품입니다')
 										return;
 									}
-									else{
+									else if(type==1){
 										centerModal()
+									}
+									
+									else if(type==2){
+										window.location.href="../shopping/shoppingMoveOneBuy.do?getTotal="+total;
 									}
 									
 								}
 		
 							})
 	
-	
-});
+}
 
 // 모달 창의 닫기 버튼을 클릭할 때 팝업을 숨기는 이벤트 핸들러
 $(document).on('click', '.close', function() {
@@ -1031,7 +1047,7 @@ function centerModal() {
 
                <div class="bottom_cate" style=" ">
                   
-                        <a href="#" class="primary-btn text-center" id="addToCartBtn" style="width: 190px; background-color:DodgerBlue;">장바구니</a>
+                        <a href="#" class="primary-btn text-center" id="addToCartBtn" style="width: 190px; background-color:DodgerBlue;">장바구니에담기</a>
                        <!-- 테스트부분 -->
                         <div class="pmodal" id="cartModal">
 						    <div class="pmodal-content">
@@ -1043,7 +1059,7 @@ function centerModal() {
 						</div>
 
 						<!-- 테스트부분 -->
-                          <a href="#" class="primary-btn text-center" style="width: 190px; background-color:DodgerBlue;" onclick="requestPay()">구매하기</a>
+                          <a href="#" class="primary-btn text-center" id="directBuy" style="width: 190px; background-color:DodgerBlue;">바로구매하기</a>
                            <span id="kyj_top_link"><a href="${url}" style="background-color: #FFA500; color:white;">목록으로</a></span>
                       </div>
                
