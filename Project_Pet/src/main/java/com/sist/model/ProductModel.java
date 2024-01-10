@@ -80,9 +80,11 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
    
    List<Integer>catenumList=dao.ProductCateNum();   
    List<ProductVO>highSaleList=dao.highSaleList();
+   List<ProductVO>newProductList=dao.newProductList();
+   List<ProductVO>hotPriceList=dao.hotpriceList();
    
-   
-
+   	  request.setAttribute("hotpriceList", hotPriceList);
+   	  request.setAttribute("newProductList", newProductList);
       request.setAttribute("highSaleList", highSaleList);
       request.setAttribute("product_jsp", "../product/ProductList.jsp");
       request.setAttribute("main_jsp", "../product/ProductMain.jsp");
@@ -526,6 +528,9 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
          
       
    }
+   
+
+  
    
    
    

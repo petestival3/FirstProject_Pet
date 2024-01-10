@@ -25,7 +25,7 @@
 }
 
 .p_text {
-    width: 165px; /* Adjust the width to your preference */
+    width: 100%; /* Adjust the width to your preference */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

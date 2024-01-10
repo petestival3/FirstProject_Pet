@@ -1081,4 +1081,83 @@ public int QnaAmount(int pno) {
 	return qnaAmount;
 	
 }
+
+
+public List<ProductVO> newProductList() {
+	List<ProductVO>list=new ArrayList<ProductVO>();
+	
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT pno,p_image,p_name,p_price,p_lower_price,p_percent,num "
+				+"FROM(SELECT pno,p_image,p_name,p_price,p_lower_price,p_percent,ROWNUM as num "
+				+"FROM (SELECT pno,p_image,p_name,p_price,p_lower_price,p_percent "
+				+"FROM product_detail WHERE p_REGDATE >=SYSDATE-30" 
+				+"ORDER BY p_regdate DESC))"
+				+"WHERE num BETWEEN 1 AND 3";
+		ps=conn.prepareStatement(sql);
+	
+		ResultSet rs=ps.executeQuery();
+		while(rs.next()) {
+			ProductVO vo=new ProductVO();
+			vo.setPno(rs.getInt(1));
+			vo.setP_image(rs.getString(2));
+			vo.setP_name(rs.getString(3));
+			vo.setP_price(rs.getString(4));
+			vo.setP_lower_price(rs.getString(5));
+			vo.setP_percent(rs.getString(6));
+			list.add(vo);
+		}
+		
+		
+		rs.close();
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return list;
+	
+}
+
+public List<ProductVO> hotpriceList() {
+	List<ProductVO>list=new ArrayList<ProductVO>();
+	
+	try {
+		conn=dbconn.getConnection();
+		String sql="SELECT pno,p_image,p_name,p_price,p_lower_price,p_percent,num "
+				+"FROM(SELECT pno,p_image,p_name,p_price,p_lower_price,p_percent,ROWNUM as num "
+				+"FROM (SELECT pno,p_image,p_name,p_price,p_lower_price,p_percent "
+				+"FROM product_detail WHERE p_REGDATE >=SYSDATE-30" 
+				+"ORDER BY p_price ASC))"
+				+"WHERE num BETWEEN 1 AND 3";
+		ps=conn.prepareStatement(sql);
+	
+		ResultSet rs=ps.executeQuery();
+		while(rs.next()) {
+			ProductVO vo=new ProductVO();
+			vo.setPno(rs.getInt(1));
+			vo.setP_image(rs.getString(2));
+			vo.setP_name(rs.getString(3));
+			vo.setP_price(rs.getString(4));
+			vo.setP_lower_price(rs.getString(5));
+			vo.setP_percent(rs.getString(6));
+			list.add(vo);
+		}
+		
+		
+		rs.close();
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	finally {
+		dbconn.disConnection(conn, ps);
+	}
+	
+	return list;
+	
+}
 }

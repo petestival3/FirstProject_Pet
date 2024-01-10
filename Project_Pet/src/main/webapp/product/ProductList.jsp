@@ -42,10 +42,16 @@
     color: #fff;
     border-color: #333;
         }
-        *{
-        border:1px black solid;
-        }
-        
+     
+     .cons{
+     
+  border-left: 2px solid rgba(0, 0, 0, 0.1); /* 왼쪽 테두리 */
+  border-right: 2px solid rgba(0, 0, 0, 0.1); /* 오른쪽 테두리 */
+
+ 
+ 
+}
+     }
       
    
     </style>
@@ -65,7 +71,8 @@
            
                 <div class="cust">
         <ul class="nav nav-pills p_rank">
-          <li><a href="ProductList.do?ct=${ct }&rt=p_buyamount" class="${rt eq 'p_buyamount'?'kyj_cate_selected':'' }">베스트</a></li>
+         <li><img src="../img/bettsell.png" style="width:20px;"></li>
+          <li id="bestid"><a href="ProductList.do?ct=${ct }&rt=p_buyamount" class="${rt eq 'p_buyamount'?'kyj_cate_selected':'' }">베스트</a></li>
           <li><a href="ProductList.do?ct=${ct }&rt=p_grade" class="${rt eq 'p_grade'?'kyj_cate_selected':'' }">평점순</a></li>
        <li ><a href="ProductList.do?ct=${ct }&rt=p_intprice" class="${rt eq 'p_intprice'?'kyj_cate_selected':'' }">가격순</a></li>
       <li><a href="ProductList.do?ct=${ct }&rt=p_hit" class="${rt eq 'p_hit'?'kyj_cate_selected':'' }">조회수</a></li>
@@ -76,7 +83,7 @@
        
         </div>
                
-              <div class="col-lg-9 col-md-7">
+              <div class="col-lg-9 col-md-7 cons">
               			
                     <div class="row">
                           <c:forEach var="vo" items="${list }">

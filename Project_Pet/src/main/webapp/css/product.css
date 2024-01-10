@@ -57,7 +57,10 @@
     
   }
   
-  
+  #bestid a{
+	  color:red;
+	  font-weight: bold;
+  }
 
   .p_rank li a:hover {
     background-color: #333;
@@ -82,7 +85,7 @@
 	  margin-left:0px;
 	  margin-top:0px;
 	  height:1600px;
-	  width:210px;
+	  width:160px;
 	
 	
 	  }
