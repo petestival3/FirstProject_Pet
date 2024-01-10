@@ -47,7 +47,7 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
    }
    if(rt==null) {
       
-      rt="p_grade";
+      rt="p_buyamount";
    }
 
    int curpage=Integer.parseInt(strpage);

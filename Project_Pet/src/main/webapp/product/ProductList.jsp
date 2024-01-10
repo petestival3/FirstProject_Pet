@@ -42,6 +42,9 @@
     color: #fff;
     border-color: #333;
         }
+        *{
+        border:1px black solid;
+        }
         
       
    
@@ -62,7 +65,7 @@
            
                 <div class="cust">
         <ul class="nav nav-pills p_rank">
-          <li><a href="#" class="">베스트</a></li>
+          <li><a href="ProductList.do?ct=${ct }&rt=p_buyamount" class="${rt eq 'p_buyamount'?'kyj_cate_selected':'' }">베스트</a></li>
           <li><a href="ProductList.do?ct=${ct }&rt=p_grade" class="${rt eq 'p_grade'?'kyj_cate_selected':'' }">평점순</a></li>
        <li ><a href="ProductList.do?ct=${ct }&rt=p_intprice" class="${rt eq 'p_intprice'?'kyj_cate_selected':'' }">가격순</a></li>
       <li><a href="ProductList.do?ct=${ct }&rt=p_hit" class="${rt eq 'p_hit'?'kyj_cate_selected':'' }">조회수</a></li>
@@ -83,21 +86,22 @@
                           <c:param name="rt" value="${rt}"/>
                           <c:param name="page" value="${page}"/>
                           </c:url>
-                        
+                        		
                                 <div class="col-lg-4 col-md-6 col-sm-6 image-container">
+                                	<c:if test="${rt=='p_buyamount' && page==1 }">
+                                  <div class="product__discount__percent"><img src="../img/bestsale.png" style="width:40px;"></div>
+                                  </c:if>
                                 <a href="<c:out value="${url}" />" style="color: black;">
                                  <img src="${vo.p_image }" class="customimage">
-                                       <div class="product__item">
+                                       <div class="product__item" >
                                      <div class="product__item__text">
                                      <div class="p_listOver">
-                                           <span style="position: relative;">
-							    <span style="position: absolute; top: -15px; font-size: smaller; font-weight: bold; opacity: 0.7; color: red;">
-							   	<img src="../img/hit.jpg" style="width:20px;">
-							     ${vo.p_hit} </span>
+                                       
+							 
 							   
 							  <span style="font-weight:bold;">${vo.p_name}</span>
 							  
-							</span>
+							
 							</div>
 										 <center> <div class="rating" style="width:120px; margin-top:5px;">
                                      
