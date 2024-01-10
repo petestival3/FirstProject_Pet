@@ -20,8 +20,10 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.MyPageDAO;
+import com.sist.dao.ReserveFuneralDAO;
 import com.sist.dao.UnregDAO;
 import com.sist.dao.WishDAO;
+import com.sist.vo.FuneralReserveInfoVO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.MyPageVO;
 import com.sist.vo.ReserveStayInfoVO;
@@ -80,6 +82,11 @@ public String resList(HttpServletRequest request, HttpServletResponse response)
 @RequestMapping("mypage/my_res_f.do")
 public String resList_f(HttpServletRequest request, HttpServletResponse response)
 {
+	HttpSession session=request.getSession();
+	String id=(String)session.getAttribute("id");
+    List<FuneralReserveInfoVO> list=
+			     ReserveFuneralDAO.mypageReserveListData(id);
+    request.setAttribute("list", list);
 	request.setAttribute("mypage_jsp", "../mypage/my_res_f.jsp");
 	request.setAttribute("main_jsp", "../mypage/mypage.jsp");
 	
