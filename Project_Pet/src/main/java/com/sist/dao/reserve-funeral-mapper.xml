@@ -65,4 +65,12 @@
       SYSDATE,0
     )
   </insert>
+  
+  <!-- 예약데이터 마이페이지 출력 -->
+  <select id="mypageReserveListData" resultType="FuneralReserveInfoVO" parameterType="String">
+     SELECT RF_NO, RF_DAY, RF_TIME, RF_INWON
+     FROM RES_FUNERAL_INFO
+     WHERE id=#{id}
+     ORDER BY RF_NO DESC
+  </select>
 </mapper>

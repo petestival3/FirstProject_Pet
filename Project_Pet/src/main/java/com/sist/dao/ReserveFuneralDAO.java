@@ -67,12 +67,27 @@ public class ReserveFuneralDAO {
 	  {
 		  SqlSession session=ssf.openSession(true);
 		  try {
+			  System.out.println("test1");
 			  session.insert("FuneralreserveInsert",vo);
+			  System.out.println("test2");
 		  }catch(Exception ex) {
 			  ex.printStackTrace();
 		  }
 		  session.close();
 	  }
 	  
-	  
+	  //예약 데이터 마이페이지 출력
+	  public static List<FuneralReserveInfoVO> mypageReserveListData(String id)
+	  {
+		  SqlSession session=ssf.openSession();
+		  System.out.println("mypage test1");
+		  List<FuneralReserveInfoVO> list=new ArrayList<FuneralReserveInfoVO>();
+		  try {
+			  list=session.selectList("mypageReserveListData",id);
+			  session.close();
+		  }catch(Exception ex) {
+			  ex.printStackTrace();
+		  }
+		  return list;
+	  }
 }
