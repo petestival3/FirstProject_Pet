@@ -73,6 +73,12 @@ public class MypageModel {
 @RequestMapping("mypage/my_res.do")
 public String resList(HttpServletRequest request, HttpServletResponse response)
 {
+	 HttpSession session=request.getSession();
+	 String id=(String)session.getAttribute("id");
+	 List<ReserveStayInfoVO> list=MyPageDAO.myStayResList(id);
+	    System.out.println("예약내역 호출");
+	 System.out.println(list.size());
+	 request.setAttribute("list", list);
 	request.setAttribute("mypage_jsp", "../mypage/my_res.jsp");
 	request.setAttribute("main_jsp", "../mypage/mypage.jsp");
 	
@@ -348,21 +354,21 @@ public void myunreg_ok(HttpServletRequest request, HttpServletResponse response)
 	
     
 }
-@RequestMapping("mypage/my_res.do")
-public String my_res(HttpServletRequest request, HttpServletResponse response) {
-	
-	
-	 HttpSession session=request.getSession();
-	 String id=(String)session.getAttribute("id");
-	 List<ReserveStayInfoVO> list=MyPageDAO.myStayResList(id);
-	    System.out.println("예약내역 호출");
-	 System.out.println(list.size());
-	 request.setAttribute("list", list);
-	 request.setAttribute("mypage_jsp", "../mypage/my_res.jsp");
-	  request.setAttribute("main_jsp", "../mypage/mypage.jsp");
-	return "../main/main.jsp";
-  
-}
+//@RequestMapping("mypage/my_res_Insert.do")
+//public String my_res(HttpServletRequest request, HttpServletResponse response) {
+//	
+//	
+//	 HttpSession session=request.getSession();
+//	 String id=(String)session.getAttribute("id");
+//	 List<ReserveStayInfoVO> list=MyPageDAO.myStayResList(id);
+//	    System.out.println("예약내역 호출");
+//	 System.out.println(list.size());
+//	 request.setAttribute("list", list);
+//	 request.setAttribute("mypage_jsp", "../mypage/my_res.jsp");
+//	  request.setAttribute("main_jsp", "../mypage/mypage.jsp");
+//	return "../main/main.jsp";
+//  
+//}
 //@RequestMapping("mypage/my_res_cancel.do")
 //public void my_res_cancel(HttpServletRequest request, HttpServletResponse response) {
 //	
