@@ -262,4 +262,20 @@ public class ShoppingModel {
 	   }
 	
 	
+	
+	
+	@RequestMapping("shopping/shoppingComplete.do")
+	   public String shoppingComplete(HttpServletRequest request, HttpServletResponse response) {
+			
+		  request.setAttribute("main_jsp", "../shopping/shoppingComplete.jsp");
+			
+			
+			
+			
+			
+			return "../main/main.jsp";
+	     
+	   }
+	
+	
 }

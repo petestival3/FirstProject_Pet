@@ -59,7 +59,7 @@ $(function(){
 	               url: 'shoppingPayment.do',
 	               data: {"buy_address":buy_address,"recipient":recipient,"phone":phone,"request_content":request_content,"buy_post":buy_post},
 	               success: function (json){
-	            	   
+	            	   window.location.href = '../shopping/shoppingComplete.do';
 	               }
 	    	   })
 	          

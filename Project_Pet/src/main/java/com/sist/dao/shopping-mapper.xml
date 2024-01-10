@@ -111,7 +111,7 @@ WHERE pno=#{pno}
 </update>
 
 
-<!-- 결제시 -->
+<!-- 결제시 프로시져로 재고,누적구매량 등 결제내역 업데이트 관리 -->
 <select id="handleProductPay" statementType="CALLABLE">
   {call handleProductPay(
     #{userid, mode=IN, jdbcType=VARCHAR},
@@ -122,7 +122,7 @@ WHERE pno=#{pno}
     #{request_content, mode=IN, jdbcType=CLOB}
   )}
 </select>
-
+<!-- 결제시 프로시져로 재고,누적구매량 등 결제내역 업데이트 관리 -->
 
 
 <!-- 결제시 -->
