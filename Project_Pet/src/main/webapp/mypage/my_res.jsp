@@ -24,7 +24,7 @@
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-/* $(function() {
+/*  $(function() {
 	$('#cancel').click(function(){
 		let rno=$(this).data('data-rno');
 		 $.ajax({
@@ -39,7 +39,7 @@
 		        }
 		      });
 		    });
-		  }); */
+		  });   */
 </script>
 </head>
 <body>
