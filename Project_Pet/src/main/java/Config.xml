@@ -37,5 +37,6 @@
 	 <mapper resource="com/sist/dao/reservestay-mapper.xml"/>
 	  <mapper resource="com/sist/dao/myres-mapper.xml"/>
 	  <mapper resource="com/sist/dao/staylike-mapper.xml"/>
+	  <mapper resource="com/sist/dao/mybuy-mapper.xml"/>
 </mappers>
 </configuration>

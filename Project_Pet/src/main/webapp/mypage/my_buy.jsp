@@ -31,23 +31,7 @@ height: 150px;
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-  $(function() {
-	$('#cancel').click(function(){
-		let rno=$(this).data('rno');
-		 $.ajax({
-		        type: 'post', 
-		        url: '../mypage/my_res_cancel.do', 
-		        data: {'rno':rno },
-		        success: function(result) {
-		          alert('예약이 취소되었습니다.');
-		          location.href="../mypage/my_res.do";
-		        },
-		        error: function() {
-		          alert('취소에 실패하였습니다.');
-		        }
-		      });
-		    });
-		  });   
+  
 </script>
 </head>
 <body>
