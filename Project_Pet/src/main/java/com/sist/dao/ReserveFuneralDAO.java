@@ -67,9 +67,7 @@ public class ReserveFuneralDAO {
 	  {
 		  SqlSession session=ssf.openSession(true);
 		  try {
-			  System.out.println("test1");
 			  session.insert("FuneralreserveInsert",vo);
-			  System.out.println("test2");
 		  }catch(Exception ex) {
 			  ex.printStackTrace();
 		  }
@@ -80,7 +78,6 @@ public class ReserveFuneralDAO {
 	  public static List<FuneralReserveInfoVO> mypageReserveListData(String id)
 	  {
 		  SqlSession session=ssf.openSession();
-		  System.out.println("mypage test1");
 		  List<FuneralReserveInfoVO> list=new ArrayList<FuneralReserveInfoVO>();
 		  try {
 			  list=session.selectList("mypageReserveListData",id);
@@ -96,9 +93,7 @@ public class ReserveFuneralDAO {
 	  {
 		  SqlSession session=ssf.openSession(true);
 		  try {
-			  System.out.println("delete test1");
 			  session.insert("Funeralreservedelete",rf_no);
-			  System.out.println("delete test2");
 		  }catch(Exception ex) {
 			  ex.printStackTrace();
 		  }
