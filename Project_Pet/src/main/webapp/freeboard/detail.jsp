@@ -186,7 +186,7 @@ $(function(){
 			         <input type=hidden name=pno value="${rvo.no }">
 			         <textarea rows="5" cols="55" name="msg" style="float: left"></textarea>
 		             <input type=submit value="댓글쓰기" 
-		              style="width: 100px;height: 104px;background-color: green;color:white;">
+		              style="width: 100px;height: 104px;background-color: blue;color:white;">
 			        </form>
 			      </td>
 			    </tr>

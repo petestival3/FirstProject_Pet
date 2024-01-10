@@ -5,11 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-.row1{
-	margin: 0px auto;
-}
-</style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -67,12 +62,25 @@ $(function(){
 	})
 })
 </script>
+<style type="text/css">
+.this2{
+    margin: 50px auto; 
+}
+.row1{
+	margin: 0px auto;
+}
+.this{
+    display: flex;
+    justify-content: center;
+    text-align: left;
+}
+</style>
 </head>
 <body>
 <div class="wrapper row3">
-  <main class="container clear"> 
-  <br><h2 class="sectiontitle">수정하기</h2><br>
-  <div class="row row1" style="height: 500px">
+  <main class="container clear this2"> 
+  <br><h2 class="sectiontitle" style="text-align: center;">수정하기</h2><br>
+  <div class="row row1 this" style="height: 500px">
   <form method="post" id="board_frm">
    <table class="table">
     <tr>

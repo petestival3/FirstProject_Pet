@@ -46,10 +46,10 @@
     <td class="text-center">${vo.rf_time }</td>
     <td class="text-center">${vo.rf_inwon }</td>
     <td colspan="4" class="text-center">
-      <c:if test="${rf_ok==1 }">
+      <c:if test="${vo.rf_ok==1 }">
         <span class="primary-btn">예약완료</span>
       </c:if>
-      <c:if test="${rf_ok==0 }">
+      <c:if test="${vo.rf_ok==0 }">
         <span class="primary-btn">예약대기</span>
       </c:if>
       <a href="../mypage/my_res_f_cancel.do?rf_no=${vo.rf_no }" class="primary-btn">취소</a>
