@@ -90,7 +90,7 @@ Select pno FROM CART_BUY WHERE USERID=#{userid} AND BUY_OK='NO'
 
 
 
-<select id="CartNum" resultType="int" parameterType="string">
+<select id="CartNum" resultType="java.lang.Integer" parameterType="string">
 SELECT COUNT(*) FROM CART_BUY WHERE USERID=#{userid} AND BUY_OK='NO'
 
 </select>
@@ -137,6 +137,12 @@ WHERE pno=#{pno}
 </select>
 
 
+<select id="" parameterType="string" resultType="int">
+SELECT COUNT(*) FROM CART_BUY FROM CART_BUY  
+</select>
 
+<select id="sumPrice" resultType="int" parameterType="string">
+select SUM(buy_intprice) FROM CART_BUY WHERE USERID=#{userid} AND BUY_OK='NO' 
+</select>
 <!-- 결제시 -->
 </mapper>

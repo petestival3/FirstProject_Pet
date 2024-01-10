@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
-    
+  
+  
+  
     <style>
 .list-group {
 	margin-top: 20px;
@@ -27,7 +29,12 @@
 	height: 600px;
 }
 
+.subMenu{
+font-size:10px;
+opacity:0.7;
 
+
+}
 
 </style>
  
@@ -46,7 +53,15 @@
 							class="list-group-item list-group-item-action">사이트 내부 장례식장 예약내역</a> <a
 							href="../adminPage/ad_payment.do" class="list-group-item list-group-item-action">사이트 결제내역</a>
 						<a href="../adminPage/ad_page.do" class="list-group-item list-group-item-action">회원정보 관리</a>
-						<a href="../adminPage/ad_productQnaList.do" class="list-group-item list-group-item-action">문의관리</a>
+						
+						<a href="" class="list-group-item list-group-item-action" id="productAdmin">상품관리</a>
+						<!-- 상품관리 -->
+						<a href="../adminPage/ad_productQnaList.do" class="list-group-item list-group-item-action subMenu">&nbsp;&nbsp;- 상품문의관리</a>
+						<a href="#" class="list-group-item list-group-item-action subMenu">&nbsp;&nbsp;- 상품 입/출고 관리</a>
+						<a href="#" class="list-group-item list-group-item-action subMenu">&nbsp;&nbsp;- 상품등록</a>
+						<a href="#" class="list-group-item list-group-item-action subMenu">&nbsp;&nbsp;- 상품주문상태 관리</a>
+						<a href="#" class="list-group-item list-group-item-action subMenu">&nbsp;&nbsp;- 매출관리</a>
+						<!-- 상품관리 -->
 					</div>
 				</div>
 			</div>

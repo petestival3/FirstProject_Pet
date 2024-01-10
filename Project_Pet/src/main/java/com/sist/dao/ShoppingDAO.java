@@ -1,6 +1,7 @@
 package com.sist.dao;
 
 import java.io.Reader;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -321,5 +322,71 @@ public static void handleProductPayOne(Map map) {
 	
 }
 
+
+
+public static int CartNum(String userid) {
+	SqlSession session =null;
+	
+	int cartNum=0;
+	
+	try {
+		
+		
+		
+		session=ssf.openSession();
+		
+		cartNum=session.selectOne("CartNum",userid);
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	finally {
+		if(session!=null) {
+			session.close();
+		}
+	}
+
+	return cartNum;
+}
+
+
+public static String homePrice(String userid) {
+	SqlSession session =null;
+	
+	int homePrice=0;
+	String sHomePrice="";
+	
+	try {
+		
+		
+		
+		session=ssf.openSession();
+		
+		homePrice=session.selectOne("sumPrice",userid);
+		
+		if(homePrice!=0) {
+			
+			DecimalFormat decimalFormat = new DecimalFormat("###,###원");
+			sHomePrice = decimalFormat.format(homePrice); // buy_intprice는 숫자 변수
+		}
+		else {
+			sHomePrice="0원";
+		}
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	finally {
+		if(session!=null) {
+			session.close();
+		}
+	}
+
+		
+	
+	return sHomePrice;
+}
 
 }
