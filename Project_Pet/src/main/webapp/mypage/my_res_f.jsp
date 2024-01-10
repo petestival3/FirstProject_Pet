@@ -37,7 +37,7 @@
     <th class="text-center">예약일</th>
     <th class="text-center">예약시간</th>
     <th class="text-center">예약인원</th>
-    <th class="text-center"></th>
+    <th class="text-center">예약상태</th>
    </tr>
    <c:forEach var="vo" items="${list }">
    <tr>

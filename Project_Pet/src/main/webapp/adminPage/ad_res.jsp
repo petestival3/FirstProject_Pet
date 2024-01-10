@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,21 +54,38 @@
 	<div class="col-md-9">
 	<div class="reservation_container">
 		<div class="reservation_header">
-			<h2>${sessionScope.name }회원 호텔 예약내역</h2>
+			<h2>호텔 예약내역</h2>
 		</div>
 		<!-- 실제 예약내역 데이터를 반복적으로 표시하는 부분 -->
-		<div class="reservation_item">
-			<h3>000 사용자 숙소 예약</h3>
-			<p>예약자명 : 심청이</p>
-			<p>예약일: 2023-01-01</p>
-			<p>숙소명: 펫플레이스</p>
-		</div>
-		<div class="reservation_item">
-			<h3>999 사용자 병원 예약</h3>
-			<p>예약자명 : 홍길동</p>
-			<p>예약일: 2023-02-15</p>
-			<p>병원명: 펫클리닉</p>
-		</div>
+		<table class="table" style="margin-top: 20px;">
+   <tr>
+    <th class="text-center">아이디</th>
+    <th class="text-center">예약번호</th>
+    <th class="text-center">체크인</th>
+    <th class="text-center">체크아웃</th>
+    <th class="text-center">숙박위치</th>
+    <th class="text-center"></th>
+   </tr>
+   <c:forEach var="vo" items="${list }">
+   <tr>
+    <td class="text-center">${vo.id }</td>
+    <td class="text-center">${vo.no }</td>
+    <td class="text-center" width="80px;">${vo.checkin }</td>
+    <td class="text-center" width="80px;">${vo.checkout }</td>
+    <td>${vo.roomname }</td>
+    <td colspan="4" class="text-center">
+      <c:if test="${vo.ok==1 }">
+        <span class="primary-btn">예약완료</span>
+        <a href="../mypage/my_res_cancel.do?rno=${vo.rno }" class="primary-btn">반려</a>
+      </c:if>
+      <c:if test="${vo.ok==0 }">
+        <a href="../.do?rno=${vo.rno }" class="primary-btn">승인</a>
+        <a href="../mypage/my_res_cancel.do?rno=${vo.rno }" class="primary-btn">반려</a>
+      </c:if>
+    </td>
+   </tr>
+   </c:forEach>
+ </table>
 		<!-- 추가 예약내역 아이템들 -->
 	</div>
 	<!-- 여기까지 -->
