@@ -18,10 +18,19 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="../css/mymain.css">
 <style type="text/css">
+.wish_info_list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height:220px;
+}
+.reservation_container{
+    margin-bottom: 50px;
+    width: 850px;
+}
 </style>
 </head>
 <body>
-  
 	<div class="col-md-9">
 		<div class="reservation_container">
 			<div class="reservation_header">
@@ -31,9 +40,9 @@
 			<c:forEach var="vo" items="${list }">
 			<table class="table" style="background-color: #fff">
 			   <tr>
-			      <td><img src="${vo.KEEPIMAGE }"
-					style="height: 200px"></td>
-			      <td>
+			      <td style="text-align: center;"><img src="${vo.KEEPIMAGE }"
+					style="height: 200px; width: 200px;"></td>
+			      <td class="wish_info_list">
 			      <p>희망 순서&nbsp;<span>${vo.cdno }</span></p>
 			      <p>입양 지역&nbsp;<span>${vo.KEEPTITLE }</span></p>
 			      <p>작성일&nbsp;<span>${vo.KEEPWRITER }</span></p>
@@ -42,7 +51,7 @@
 			    <tr>
 				<td colspan="2" class="text-right"><a
 					href="../mypage/my_wish_cancel.do?cdno=${vo.cdno }"
-					class="btn btn-sm btn-info">취소</a></td>
+					class="primary-btn">취소</a></td>
 			  </tr>
 			</table>
 			</c:forEach>

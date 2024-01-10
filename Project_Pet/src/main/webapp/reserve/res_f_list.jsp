@@ -40,7 +40,7 @@ $(function(){
     <c:forEach var="vo" items="${list }">
       <tr data-loc="${vo.CR_COM_LOC }" data-fno="${vo.CR_COM_NO }" data-name="${vo.CR_COM_NAME }" class="trs">
        <td class="text-center">
-        <td>${vo.CR_COM_NAME }</td>
+        <td style="font-weight: 600;">${vo.CR_COM_NAME }</td>
        </td>
        <td>${vo.CR_COM_LOC }</td>
       </tr>
