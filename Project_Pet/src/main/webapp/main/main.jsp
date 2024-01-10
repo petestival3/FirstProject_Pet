@@ -157,14 +157,14 @@
     <script src="../js/jquery.slicknav.js"></script>
     <script src="../js/mixitup.min.js"></script>
     <script src="../js/owl.carousel.min.js"></script>
-     
     <script src="../js/main.js"></script>
-   <script src="../js/product_detail.js"></script>
+  	<script src="../js/walkCourse.js"></script>
+    <script src="../js/walkSearchList.js"></script>
     <script src="../js/productCategory.js"></script>
-   <script src="../js/product_calculate.js"></script>
-   	 <script src="../js/walk_reply_ajax.js"></script>
-    <script src="../js/walkCourse.js"></script>
-     <script src="../js/walkSearchList.js"></script>
+    <script src="../js/product_calculate.js"></script>
+ 
+   	
+   
    		  
    
    

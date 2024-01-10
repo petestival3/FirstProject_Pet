@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  
+<!--  <script src="../js/walk_reply_ajax.js"></script>-->
+   
 <meta charset="UTF-8">
 <title>Insert title here</title>
  
