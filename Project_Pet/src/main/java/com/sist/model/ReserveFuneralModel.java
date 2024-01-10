@@ -139,6 +139,6 @@ public class ReserveFuneralModel {
 		  // 데이터베이스 전송
 		  ReserveFuneralDAO.FuneralreserveInsert(vo);
 		  System.out.println(2);
-		  return "redirect:../mypage/my_res.do";
+		  return "redirect:../mypage/my_res_f.do";
 	  }
 }

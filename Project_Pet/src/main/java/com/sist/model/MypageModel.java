@@ -77,6 +77,15 @@ public String resList(HttpServletRequest request, HttpServletResponse response)
 	return "../main/main.jsp";
 }
 
+@RequestMapping("mypage/my_res_f.do")
+public String resList_f(HttpServletRequest request, HttpServletResponse response)
+{
+	request.setAttribute("mypage_jsp", "../mypage/my_res_f.jsp");
+	request.setAttribute("main_jsp", "../mypage/mypage.jsp");
+	
+	return "../main/main.jsp";
+}
+
 @RequestMapping("mypage/my_wish.do")
 public String wishList(HttpServletRequest request, HttpServletResponse response)
 {

@@ -42,7 +42,9 @@
 					<!--list-group : 수직 목록 생성-->
 					<div class="list-group">
 						<a href="../mypage/my_res.do"
-							class="list-group-item list-group-item-action">예약내역</a> <a
+							class="list-group-item list-group-item-action">호텔 예약내역</a>
+					   <a href="../mypage/my_res_f.do"
+							class="list-group-item list-group-item-action">장례식장 예약내역</a> <a
 							href="#" class="list-group-item list-group-item-action">결제내역</a>
 						<a href="../mypage/my_wish.do" class="list-group-item list-group-item-action">입양희망목록</a>
 							<a href="../mypage/my_info.do" class="list-group-item list-group-item-action">개인정보관리</a>
