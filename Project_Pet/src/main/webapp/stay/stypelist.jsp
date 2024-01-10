@@ -27,6 +27,32 @@
 	font-weight: bold;
 	color: blue;
 }
+.stay__star__percent {
+	height: 20px;
+	width: 50px;
+	background-color: #FFAF0A;
+	border-radius: 10px;
+	font-size: 14px;
+	color: #333333;
+	line-height: 20px;
+	text-align: center;
+	position: absolute;
+	left: 13px;
+	top: 15px;
+}
+.stay__heart__percent {
+	height: 20px;
+	width: 50px;
+	background-color: #FF6464;
+	border-radius: 10px;
+	font-size: 14px;
+	color: #333333;
+	line-height: 20px;
+	text-align: center;
+	position: absolute;
+	right: 13px;
+	top: 15px;
+}
 </style>
 </head>
 <body>
@@ -155,22 +181,19 @@
                             <div class="product__discount__slider owl-carousel">
                               <c:forEach var="tvo" items="${toplist }">
                                 <div class="col-lg-4">
+                                	<a href="../stay/detail_before.do?stayno=${tvo.stayno }">
                                     <div class="product__discount__item">
                                         <div class="product__discount__item__pic set-bg"
                                             data-setbg="${tvo.image }" style="border-radius: 10px;overflow: hidden;">
                                             <div class="product__discount__percent">HOT</div>
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
                                         </div>
                                         <div class="product__discount__item__text">
-                                            <span>${tvo.type }</span>
-                                            <h5 class="stayname"><a href="../stay/detail_before.do?stayno=${tvo.stayno }">${tvo.name }</a></h5>
+                                            <%-- <span>${tvo.type }</span> --%>
+                                            <h5 class="stayname">${tvo.name }</h5>
                                             <div class="product__item__price">&#8361;${tvo.price }~</div>
                                         </div>
                                     </div>
+                                    </a>
                                 </div>
                                </c:forEach>
                             </div>
@@ -192,19 +215,18 @@
                     <div class="row">
                       <c:forEach var="vo" items="${list }">
                         <div class="col-lg-4 col-md-6 col-sm-6">
+                        <a href="../stay/detail_before.do?stayno=${vo.stayno }">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="${vo.image }" style="border-radius: 10px;overflow: hidden;">
-                                    <ul class="product__item__pic__hover">
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
+                                  <div class="stay__star__percent">★ ${vo.score}</div>
+                                  <div class="stay__heart__percent">LIKE ${vo.like }</div>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6 class="stayname"><a href="../stay/detail_before.do?stayno=${vo.stayno }">${vo.name }</a></h6>
+                                    <h6 class="stayname">${vo.name }</h6>
                                     <h5>&#8361;${vo.price }~</h5>
                                 </div>
                             </div>
+                            </a>
                         </div>
                       </c:forEach>
                     </div>

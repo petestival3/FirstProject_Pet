@@ -33,9 +33,9 @@ public class StayDAO {
 				//							... 
 				int start=(ROW_SIZE*page)-(ROW_SIZE-1);
 				int end=ROW_SIZE*page;
-				String sql="SELECT stay_no,stype,sname,score,address,price,mainimage,num "
-						+ "FROM STAYIMAGE,(SELECT stay_no,stype,sname,score,address,price,rownum as num "
-						+ "FROM (SELECT /*+ INDEX_ASC(stayinfo stayinfo_stay_no_pk)*/stay_no,stype,sname,score,address,price,mainimage "
+				String sql="SELECT stay_no,stype,sname,score,address,price,mainimage,likecount,review_count,hit,num "
+						+ "FROM STAYIMAGE,(SELECT stay_no,stype,sname,score,address,price,likecount,review_count,hit,rownum as num "
+						+ "FROM (SELECT /*+ INDEX_ASC(stayinfo stayinfo_stay_no_pk)*/stay_no,stype,sname,score,address,price,likecount,review_count,hit,mainimage "
 						+ "FROM stayinfo,STAYIMAGE WHERE STAYIMAGE.SINO=stayinfo.STAY_NO)) "
 						+ "WHERE (STAYIMAGE.SINO=STAY_NO) "
 						+ "AND (num BETWEEN ? AND ?)";
@@ -54,7 +54,9 @@ public class StayDAO {
 					vo.setAddress(rs.getString(5));
 					vo.setPrice(rs.getInt(6));
 					vo.setImage(rs.getString(7));
-					
+					vo.setLike(rs.getInt(8));
+					vo.setRevcount(rs.getInt(9));
+					vo.setHit(rs.getInt(10));
 					list.add(vo);
 					// 직접구현 => 80%
 					// 20% => 정보,이미지
@@ -367,9 +369,9 @@ public class StayDAO {
 			List<StayVO> list=new ArrayList<StayVO>();
 			try {
 				conn=dbconn.getConnection();
-				String sql="SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage,num "
-						+ "FROM (SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage,rownum as num "
-						+ "FROM (SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage "
+				String sql="SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage,likecount,review_count,hit,num "
+						+ "FROM (SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage,likecount,review_count,hit,rownum as num "
+						+ "FROM (SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage,likecount,review_count,hit "
 						+ "FROM stayinfo,stayimage WHERE stayinfo.STAY_NO=stayimage.SINO AND stype LIKE '%'||?||'%')) "
 						+ "WHERE num BETWEEN ? AND ?";
 				
@@ -390,6 +392,9 @@ public class StayDAO {
 					vo.setDetailaddr(rs.getString(6));
 					vo.setPrice(rs.getInt(7));
 					vo.setImage(rs.getString(8));
+					vo.setLike(rs.getInt(9));
+					vo.setRevcount(rs.getInt(10));
+					vo.setHit(rs.getInt(11));
 					list.add(vo);
 				}
 				rs.close();
@@ -444,9 +449,9 @@ public class StayDAO {
 			List<StayVO> list=new ArrayList<StayVO>();
 			try {
 				conn=dbconn.getConnection();
-				String sql="SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage,num "
-						+ "FROM (SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage,rownum as num "
-						+ "FROM (SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage "
+				String sql="SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage,likecount,review_count,hit,num "
+						+ "FROM (SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage,likecount,review_count,hit,rownum as num "
+						+ "FROM (SELECT stay_no,stype,sname,score,address,detail_address,price,mainimage,likecount,review_count,hit "
 						+ "FROM stayinfo,stayimage WHERE stayinfo.STAY_NO=stayimage.SINO AND stype LIKE '%'||?||'%'"
 						+ " ORDER BY "+sb+" DESC )) "
 						+ "WHERE num BETWEEN ? AND ?";
@@ -468,6 +473,9 @@ public class StayDAO {
 					vo.setDetailaddr(rs.getString(6));
 					vo.setPrice(rs.getInt(7));
 					vo.setImage(rs.getString(8));
+					vo.setLike(rs.getInt(9));
+					vo.setRevcount(rs.getInt(10));
+					vo.setHit(rs.getInt(11));
 					list.add(vo);
 				}
 				rs.close();

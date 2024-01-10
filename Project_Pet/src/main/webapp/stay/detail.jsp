@@ -33,6 +33,16 @@
 .review-container{
 	display:block;
 }
+button .someBtn{
+            background-color: #5a70e9;
+            color: white;
+            cursor: pointer;
+            width: 50px;
+            height: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #fff;
+        }
 </style>
 <script type="text/javascript">
 Shadowbox.init({
@@ -418,9 +428,10 @@ function roomlist(sno,roompage){
                         <div style="height: 15px"></div>
                         <div class="product__details__price">&#8361;${vo.price }~</div>
                         <div style="height: 15px"></div>
-                        <a href="#" class="primary-btn">예약하기</a>
+                        <button class="someBtn">예약하기</button>
                         <button class="heart-icon" style="border-style: none; display:none" id="heartBtnOff"><i class="fa-solid fa-heart" style="color: #696969; font-size:22px"></i></button>
                         <button class="heart-icon" style="border-style: none; display:none" id="heartBtnOn"><i class="fa-solid fa-heart" style="color: #ff0000; font-size:22px;"></i></button>
+                        <button class="someBtn" onclick="javascript:history.back()">목록으로</button>
                         <div style="height: 30px"></div>
                         <div class="stayintro">
                           <h6 style="margin-bottom: 20px;color: #666"><b>숙소 소개</b></h6>
