@@ -37,6 +37,7 @@ public class LoseCatModel {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("main_jsp", "../losecat/losecat.jsp");
+		commonsModel.commonsHeaderData(request);
 		return "../main/main.jsp";
 	}
 	@RequestMapping("losecat/losecatdetail.do")
@@ -62,6 +63,7 @@ public class LoseCatModel {
 		
 		request.setAttribute("lcvo", lcvo);
 		request.setAttribute("main_jsp", "../losecat/losecatdetail.jsp");
+		commonsModel.commonsHeaderData(request);
 		return "../main/main.jsp";
 	}
 }

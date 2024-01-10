@@ -59,6 +59,7 @@ public class StayReserveModel {
 		request.setAttribute("rno", Integer.parseInt(rno));
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../reserve/reservestay_main.jsp");
+		commonsModel.commonsHeaderData(request);
 		return "../main/main.jsp";
 	}
 	

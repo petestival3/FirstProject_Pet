@@ -22,6 +22,7 @@ public class MemberModel {
 	public String member_join(HttpServletRequest request, HttpServletResponse response) {
 		
 		request.setAttribute("main_jsp", "../member/join.jsp");
+		commonsModel.commonsHeaderData(request);
 		return "../main/main.jsp";
 	}
 	

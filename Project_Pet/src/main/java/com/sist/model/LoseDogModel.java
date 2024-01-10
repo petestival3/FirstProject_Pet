@@ -38,6 +38,7 @@ public class LoseDogModel {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("main_jsp", "../losedog/losedog.jsp");
+		commonsModel.commonsHeaderData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -78,7 +79,7 @@ public class LoseDogModel {
   		  request.setAttribute("like_total", like_total);
   	    }
         //공감해요 부분 (정유나) 종료
-
+  	  commonsModel.commonsHeaderData(request);
 		return "../main/main.jsp";
 	}
 	

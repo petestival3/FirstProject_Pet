@@ -40,6 +40,7 @@ public class FreeBoardModel {
 		request.setAttribute("list", list);
 		request.setAttribute("today", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		request.setAttribute("main_jsp", "../freeboard/list.jsp");
+		commonsModel.commonsHeaderData(request);
 		return "../main/main.jsp";
 	}
 	@RequestMapping("freeboard/insert.do")
@@ -47,6 +48,7 @@ public class FreeBoardModel {
 	{
 		
 		request.setAttribute("main_jsp", "../freeboard/insert.jsp");
+		commonsModel.commonsHeaderData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -89,7 +91,7 @@ public class FreeBoardModel {
 		FreeBoardReplyDAO fdao=FreeBoardReplyDAO.newInstance();
 		List<FreeBoardReplyVO> list=fdao.replyListData(Integer.parseInt(no));
 		request.setAttribute("list", list);
-		
+		commonsModel.commonsHeaderData(request);
 		return "../main/main.jsp";
 	}
 	
