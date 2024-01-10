@@ -53,12 +53,14 @@
             <div class="row">
                 <div class="col-lg-4 col-md-5 order-md-1 order-2">
                     <div class="blog__sidebar">
+                        <!-- 
                         <div class="blog__sidebar__search">
                             <form action="#">
                                 <input type="text" placeholder="Search...">
                                 <button type="submit"><span class="icon_search"></span></button>
                             </form>
                         </div>
+                         -->
                         <div class="blog__sidebar__item">
                             <h4>유기동물 보호센터</h4>
                             <ul>
@@ -67,7 +69,8 @@
                                 <li style="font-weight: bold;"><a href="../animal/animal.do"><i class="fa fa-caret-right"></i>&nbsp;&nbsp;보호중인 유기동물</a></li>
                             </ul>
                         </div>
-                        <div class="blog__sidebar__item">
+
+                        <div class="blog__sidebar__item" style="display: none;">
                             <h4>Recent News</h4>
                             <div class="blog__sidebar__recent">
                                 <a href="#" class="blog__sidebar__recent__item">
@@ -99,7 +102,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="blog__sidebar__item">
+                        <div class="blog__sidebar__item" style="display: none;">
                             <h4>Search By</h4>
                             <div class="blog__sidebar__item__tags">
                                 <a href="#">Apple</a>
@@ -146,8 +149,9 @@
     </section>
     <!-- Blog Details Section End -->
 
+     
     <!-- Related Blog Section Begin -->
-    <section class="related-blog spad">
+    <section class="related-blog spad" style="display: none;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

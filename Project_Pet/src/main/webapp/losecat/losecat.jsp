@@ -91,6 +91,7 @@ a:hover {
                         </div>
                         
                         <!-- 쿠키 -->
+                        <!-- 
                         <div class="sidebar__item">
                             <div class="latest-product__text">
                                 <h4>Latest Products</h4>
@@ -156,6 +157,7 @@ a:hover {
                                 </div>
                             </div>
                         </div>
+                        -->
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-7">

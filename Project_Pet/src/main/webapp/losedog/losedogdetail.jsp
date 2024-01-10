@@ -96,17 +96,8 @@
                         &nbsp;
                         <a href="javascript:history.back()" class="primary-btn" style="font-weight: bold;">목록</a>
                         <ul>
-                            <li><b>작성자</b> <span>${ldvo.info }</span></li>
-                            <li><b>실종 장소</b> <span>${ldvo.loseloc } <samp></samp></span></li>
+                            <li><span>${ldvo.info }</span></li>
                             <li><b>실종 날짜</b> <span>${ldvo.losedate }</span></li>
-                            <li><b>공유하기</b>
-                                <div class="share">
-                                    <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
-                                    <a href="https://twitter.com/?lang=ko"><i class="fa fa-twitter"></i></a>
-                                    <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
-                                    <a href="https://www.pinterest.co.kr/"><i class="fa fa-pinterest"></i></a>
-                                </div>
-                            </li>
                         </ul>
                     </div>
                 </div>
