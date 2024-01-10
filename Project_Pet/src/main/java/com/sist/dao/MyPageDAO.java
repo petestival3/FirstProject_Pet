@@ -210,8 +210,6 @@ public class MyPageDAO {
 		try 
 		{
 				session=ssf.openSession(true);
-				
-				
 				session.delete("myStayResListDelete", map);
 	    } 
 		catch (Exception e) 

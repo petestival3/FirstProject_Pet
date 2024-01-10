@@ -62,6 +62,17 @@
     <td>${vo.roomname }</td>
     <td class="text-center">${vo.checkin }</td>
     <td class="text-center">${vo.checkout }</td>
+    
+    <c:if test="${vo.ok==0 }">
+     <td>
+    <button class="btn btn-sm btn-info" id="cancel">예약대기</button>
+    </td>
+    </c:if>
+     <c:if test="${vo.ok==1 }">
+     <td>
+    <button class="btn btn-sm btn-info" id="cancel">예약확정</button>
+    </td>
+    </c:if>
     <td>
     <button class="btn btn-sm btn-info" id="cancel" data-rno=${vo.stay_no }>예약취소</button>
     </td>

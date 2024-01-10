@@ -6,7 +6,7 @@
     <result column="rno" property="stay_no" />
 </resultMap>
 <select id="myStayResList" resultType="ReserveStayInfoVO" parameterType="string">
-SELECT roomimage,roomname,checkin,checkout,rno AS stay_no FROM RESERVE_STAY_INFO
+SELECT roomimage,roomname,checkin,checkout,rno AS stay_no,ok FROM RESERVE_STAY_INFO
 WHERE id=#{id}
 </select>
 <delete id="myStayResListDelete" parameterType="hashmap">
