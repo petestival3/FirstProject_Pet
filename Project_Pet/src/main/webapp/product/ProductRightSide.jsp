@@ -43,7 +43,7 @@
                     
                     </div>
                     <div style="margin-bottom:10px;">
-                    <span style="font-weight:bold; color:blue; font-size:20px; margin-left:10px;">핫프라이스</span>
+                    <span style="font-weight:bold; color:blue; font-size:25px; margin-left:40px;">핫딜</span>
                     </div>
                  
                    <c:forEach var="hpvo" items="${hotpriceList }">
