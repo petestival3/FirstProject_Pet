@@ -222,5 +222,42 @@ public class MyPageDAO {
 				session.close();
 		}
 	}
+	public static List<ShoppingVO> mybuyList(String id)
+	{
+		List<ShoppingVO> list=new ArrayList<ShoppingVO>();
+		SqlSession session=null;
+		try
+		{
+			session=ssf.openSession();
+			list=session.selectList("mybuyList",id);
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if(session!=null)
+				session.close();
+		}
+		return list;
+	}
+	public static void mybuyListDelete(Map map)
+	{
+		SqlSession session=null;
+		try 
+		{
+				session=ssf.openSession(true);
+				session.delete("mybuyListDelete", map);
+	    } 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		finally 
+		{
+			if(session!=null) 
+				session.close();
+		}
+	}
 	
 }

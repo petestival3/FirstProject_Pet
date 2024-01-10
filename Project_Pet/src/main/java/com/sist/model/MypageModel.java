@@ -28,6 +28,7 @@ import com.sist.vo.MemberVO;
 import com.sist.vo.MyPageVO;
 import com.sist.vo.ReserveStayInfoVO;
 import com.sist.vo.RoomVO;
+import com.sist.vo.ShoppingVO;
 import com.sist.vo.WishVO;
 
 
@@ -346,7 +347,7 @@ public String resList(HttpServletRequest request, HttpServletResponse response)
 	 HttpSession session=request.getSession();
 	 String id=(String)session.getAttribute("id");
 	 List<ReserveStayInfoVO> list=MyPageDAO.myStayResList(id);
-	    System.out.println("예약내역 호출");
+//	    System.out.println("예약내역 호출");
 	 request.setAttribute("list", list);
 	request.setAttribute("mypage_jsp", "../mypage/my_res.jsp");
 	request.setAttribute("main_jsp", "../mypage/mypage.jsp");
@@ -367,6 +368,34 @@ public void my_res_cancel(HttpServletRequest request, HttpServletResponse respon
 	 System.out.println(id);
 	 System.out.println(rno);
 	 MyPageDAO.myStayResListDelete(map);
+  
+}
+@RequestMapping("mypage/my_buy.do")
+public String buyList(HttpServletRequest request, HttpServletResponse response)
+{
+	 HttpSession session=request.getSession();
+	 String id=(String)session.getAttribute("id");
+	 List<ShoppingVO> bList=MyPageDAO.mybuyList(id);
+//	    System.out.println("결제내역 호출");
+	 request.setAttribute("bList", bList);
+	request.setAttribute("mypage_jsp", "../mypage/my_buy.jsp");
+	request.setAttribute("main_jsp", "../mypage/mypage.jsp");
+	
+	return "../main/main.jsp";
+}
+@RequestMapping("mypage/my_buy_delete.do")
+public void my_buy_delete(HttpServletRequest request, HttpServletResponse response) {
+	
+	
+	 HttpSession session=request.getSession();
+	 String id=(String)session.getAttribute("id");
+	 String cbno=request.getParameter("cbno");
+	 Map map=new HashMap();
+	 map.put("id", id);
+	 map.put("cbno", cbno);
+	 System.out.println(id);
+	 System.out.println(cbno);
+	 MyPageDAO.mybuyListDelete(map);
   
 }
 

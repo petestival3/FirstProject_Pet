@@ -32,7 +32,7 @@ height: 150px;
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
   $(function() {
-	$('#cancel').click(function(){
+	$('.cancel').click(function(){
 		let rno=$(this).data('rno');
 		 $.ajax({
 		        type: 'post', 
@@ -83,7 +83,7 @@ height: 150px;
     </td>
     </c:if>
     <td>
-    <button class="btn btn-sm btn-info" id="cancel" data-rno=${vo.stay_no } style="width: 80px; height: 40px;">예약취소</button>
+    <button class="btn btn-sm btn-info cancel" data-rno=${vo.stay_no } style="width: 80px; height: 40px;">예약취소</button>
     </td>
    </tr>
    </c:forEach>

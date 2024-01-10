@@ -1,3 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sist.dao.mybuy-mapper"></mapper>
+<mapper namespace="com.sist.dao.mybuy-mapper">
+<resultMap type="com.sist.vo.ShoppingVO" id="svo">
+    <result property="pvo.p_image" column="p_image"/>
+    <result property="pvo.p_name" column="p_name"/>
+</resultMap>
+<select id="mybuyList" resultMap="svo" parameterType="string">
+SELECT cbno,p_name,buy_price,buy_date,p_state,p_image
+FROM cart_buy c JOIN PRODUCT_DETAIL pd 
+ON c.pNO = pd.PNO 
+WHERE userid=#{id} AND buy_ok='YES'
+</select>
+<delete id="mybuyListDelete" parameterType="hashmap">
+DELETE FROM cart_buy WHERE userid=#{id} AND cbno=#{cbno}
+</delete>
+</mapper>

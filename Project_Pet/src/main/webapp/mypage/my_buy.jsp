@@ -31,44 +31,53 @@ height: 150px;
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-  
+$(function() {
+	$('.cancel').click(function(){
+	<!--	let cbno=$(this).data('cbno');-->
+		
+		let cbno=$(this).attr('data-cbno');
+		
+		 $.ajax({
+		        type: 'post', 
+		        url: '../mypage/my_buy_delete.do', 
+		        data: {'cbno':cbno },
+		        success: function(result) {
+		          alert('결제가 취소되었습니다.');
+		          location.href="../mypage/my_buy.do";
+		        },
+		        error: function() {
+		          alert('취소에 실패하였습니다.');
+		        }
+		      });
+		    });
+		  });   
 </script>
 </head>
 <body>
 <div class="conatiner">
 <div class="row my_res">
-  <h4 class="text-center">호텔 예약내역</h4>
+  <h4 class="text-center">상품 결제내역</h4>
  <table class="myres_table">
    <tr>
     <th class="text-center"></th>
-    <th class="text-center">호텔명</th>
-    <th class="text-center">체크인</th>
-    <th class="text-center">체크아웃</th>
-    <th class="text-center">예약상태</th>
-    <th class="text-center">예약취소</th>
+    <th class="text-center">상품명</th>
+    <th class="text-center">결제금액</th>
+    <th class="text-center">결제일시</th>
+    <th class="text-center">배송상태</th>
+    <th class="text-center">결제취소</th>
    </tr>
-   <c:forEach var="vo" items="${list }">
+   <c:forEach var="vo" items="${bList }">
    <tr>
     <td class="text-center">
-     <a href="#"><img src="${vo.roomimage }" style="width: 90px; height: 70px"></a>
+     <a href="#"><img src="${vo.pvo.p_image }" style="width: 90px; height: 70px"></a>
     </td>
-    <td>${vo.roomname }</td>
-    <td class="text-center" width="80px;">${vo.checkin }</td>
-    <td class="text-center" width="80px;">${vo.checkout }</td>
-    
-    <c:if test="${vo.ok==0 }">
+    <td>${vo.pvo.p_name }</td>
+    <td class="text-center" width="80px;">${vo.buy_price }</td>
+    <td class="text-center" width="80px;">${vo.buy_date }</td>
+     <td class="text-center" width="80px;">${vo.p_state }</td>
      <td>
-    <button class="btn btn-sm btn-info" style="width: 80px; height: 40px;">예약대기</button>
-    </td>
-    </c:if>
-     <c:if test="${vo.ok==1 }">
-     <td>
-    <button class="btn btn-sm btn-info" style="width: 80px; height: 40px;">예약확정</button>
-    </td>
-    </c:if>
-    <td>
-    <button class="btn btn-sm btn-info" id="cancel" data-rno=${vo.stay_no } style="width: 80px; height: 40px;">예약취소</button>
-    </td>
+    <button class="btn btn-sm btn-info cancel" data-cbno=${vo.cbno } style="width: 80px; height: 40px;">결제취소</button>
+   </td>
    </tr>
    </c:forEach>
  </table>

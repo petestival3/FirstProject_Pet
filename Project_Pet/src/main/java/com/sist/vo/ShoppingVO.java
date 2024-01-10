@@ -10,7 +10,13 @@ public int getBuy_intprice() {
 public void setBuy_intprice(int buy_intprice) {
 	this.buy_intprice = buy_intprice;
 }
-private String buy_ok,buy_price,userid,dbday,msg;
+private String buy_ok,buy_price,userid,dbday,msg,p_state;
+public String getP_state() {
+	return p_state;
+}
+public void setP_state(String p_state) {
+	this.p_state = p_state;
+}
 private Date buy_date;
 public int getCbno() {
 	return cbno;
