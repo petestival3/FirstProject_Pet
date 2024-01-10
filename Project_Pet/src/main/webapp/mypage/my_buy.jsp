@@ -105,7 +105,7 @@ width: 890px;
    <td class="text-left" width="30%;">${vo.phone }&nbsp;</td>
  </tr>
  <tr>
-   <td class="text-left" "colspan="4">${vo.request_content eq null?"요청사항없음":"" }&nbsp;</td>
+   <td class="text-left" "colspan="4">${vo.request_content eq null?"요청사항없음":vo.request_content }&nbsp;</td>
  </tr>
  </table>
  </c:forEach>
