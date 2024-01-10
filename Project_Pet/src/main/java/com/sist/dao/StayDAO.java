@@ -514,6 +514,26 @@ public class StayDAO {
 			}
 		}
 		
+		// 좋아요수 헤더출력용
+		public int likeCountHeader(String id) {
+			int count=0;
+			try{
+				conn=dbconn.getConnection();
+				String sql="SELECT COUNT(*) FROM id_like WHERE id=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, id);
+				ResultSet rs=ps.executeQuery();
+				rs.next();
+				count=rs.getInt(1);
+				rs.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}finally {
+				dbconn.disConnection(conn, ps);
+			}
+			return count;
+		}
+		
 		
 		// 후기 점수 업데이트
 		public void stayScoreUpdate(int stayno,int typeno) {

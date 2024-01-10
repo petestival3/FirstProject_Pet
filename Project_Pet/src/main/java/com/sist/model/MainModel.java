@@ -21,6 +21,14 @@ public class MainModel {
 			 cartNum=ShoppingDAO.CartNum(userid);
 		}
 		
+		StayDAO sdao=StayDAO.newInstance();
+		int likeNum=0;
+		if(userid!=null) {
+			likeNum=sdao.likeCountHeader(userid);
+		}else {
+			likeNum=0;
+		}
+		
 		
 		//String homePrice=ShoppingDAO.homePrice(userid);
 		
@@ -31,6 +39,7 @@ public class MainModel {
 		AnimalDAO adao=AnimalDAO.newInstance();
 		List<AnimalVO> alist=adao.animalBlogList();
 		//request.setAttribute("homePrice",homePrice);
+		request.setAttribute("likeNum", likeNum);
 		request.setAttribute("cartNum",cartNum);
 		request.setAttribute("fds", ssss);
 		request.setAttribute("plist", plist);
