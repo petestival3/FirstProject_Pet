@@ -41,7 +41,7 @@
 	
 	<div>
 	<span style="margin-right:10px;"><a href="../product/ProductList.do" class="btn btn-info">계속 쇼핑하기</a></span>
-	<span><a href="#" class="btn btn-primary">결재내역 보기</a></span>
+	<span><a href="../mypage/my_buy.do" class="btn btn-primary">결제내역 보기</a></span>
 	</div>	
 </div>
 </body>
