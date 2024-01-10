@@ -99,7 +99,7 @@ SELECT COUNT(*) FROM CART_BUY WHERE USERID=#{userid} AND BUY_OK='NO'
 <select id="buyListCount" parameterType="string" resultType="int">
 SELECT COUNT(*) FROM CART_BUY WHERE USERID=#{userid} AND BUY_OK='NO'
 </select>
-<!-- 결제시 -->
+
 
 
 
@@ -110,8 +110,20 @@ p_buyamount=p_buyamount+1
 WHERE pno=#{pno}
 </update>
 
-<!-- <update id="shoppingFormatBuy_ok">
-UPDATE CART_BUY SET
 
-</update> -->
+<!-- 결제시 -->
+<select id="handleProductPay" statementType="CALLABLE">
+  {call handleProductPay(
+    #{userid, mode=IN, jdbcType=VARCHAR},
+    #{buy_address, mode=IN, jdbcType=VARCHAR},
+    #{recipient, mode=IN, jdbcType=VARCHAR},
+    #{phone, mode=IN, jdbcType=VARCHAR},
+    #{buy_post, mode=IN, jdbcType=VARCHAR},
+    #{request_content, mode=IN, jdbcType=CLOB}
+  )}
+</select>
+
+
+
+<!-- 결제시 -->
 </mapper>

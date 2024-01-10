@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -191,8 +192,74 @@ public class ShoppingModel {
 	public String member_postfind(HttpServletRequest request,
 			  HttpServletResponse response) {
 		
-		System.out.println("실행");
+	
 		return "../shopping/shoppingPost.jsp";
 	}
+	
+	
+	
+	@RequestMapping("shopping/getSUs.do")
+	public void getSUsid(HttpServletRequest request,
+			  HttpServletResponse response) {
+		
+		try {
+			response.setCharacterEncoding("UTF-8");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		HttpSession session =request.getSession();
+		String id=(String)session.getAttribute("id");
+	
+		JSONObject obj= new JSONObject();
+		
+		obj.put("get", id);
+		
+		 try
+         {
+            response.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
+            PrintWriter out=response.getWriter();
+          
+            out.write(obj.toJSONString());
+         }catch(Exception ex) {
+      	   ex.printStackTrace();
+         }
+
+		
+		
+	}
+	
+	
+	
+	@RequestMapping("shopping/shoppingPayment.do")
+	   public void shoppingPayment(HttpServletRequest request, HttpServletResponse response) {
+			
+		String buy_address =request.getParameter("buy_address");
+		String recipient=request.getParameter("recipient");
+		String phone=request.getParameter("phone");
+		String request_content =request.getParameter("request_content");
+			String buy_post =request.getParameter("buy_post");
+		HttpSession session=request.getSession();
+		String userid=(String)session.getAttribute("id");
+		
+			
+			List<Map> list= new ArrayList<Map>();
+			
+			
+			Map map=new HashMap();
+			map.put("buy_address", buy_address);
+			map.put("userid", userid);
+			map.put("recipient", recipient);
+			map.put("phone", phone);
+			map.put("buy_post", buy_post);
+			map.put("request_content", request_content);
+			
+			ShoppingDAO.handleProductPay(map);
+			
+			
+			
+			
+	     
+	   }
+	
 	
 }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -264,6 +266,33 @@ public static int buyListCount(String userid) {
 	
 }
 
+
+
+public static void handleProductPay(Map map) {
+	SqlSession session =null;
+	
+	
+	
+	try {
+		
+		
+		
+		session=ssf.openSession();
+		
+		session.selectOne("handleProductPay",map);
+		
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	finally {
+		if(session!=null) {
+			session.close();
+		}
+	}
+
+	
+}
 
 
 }
