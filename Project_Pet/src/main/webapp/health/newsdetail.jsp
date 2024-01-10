@@ -42,27 +42,31 @@
 <script type="text/javascript">
 let bCheck=false;
 $(function(){
-	$('#delete').click(function(){
+	$('.delete').click(function(){
+		
 		if(bCheck===false)
 		{
 			bCheck=true;
-			$('#del').show('slow')
-			$('#delete').text("취소")
+			 let del = $(this).closest('tr').next('.del');
+			 console.log(del)
+		     $(this).closest('.del').show('slow');
+			$('.delete').text("취소")
 		}
 		else
 		{
 			bCheck=false;
-			$('#del').hide('slow')
-			$('#delete').text("삭제")
+			 let del = $(this).closest('tr').next('.del');
+		     $(del).hide('slow');
+			$('.delete').text("삭제")
 		}
 	});
-	$('#delBtn').on('click',function(){
-		let rno=$('#delBtn').attr("data-rno");
-		let no =$('#delBtn').attr("data-no");
-		let pwd=$('#pwd').val()
+	$('.delBtn').on('click',function(){
+		let rno=$('.delBtn').attr("data-rno");
+		let no =$('.delBtn').attr("data-no");
+		let pwd=$('.pwd').val()
 		if(pwd.trim()==="")
 		{
-			$('#pwd').focus();
+			$('.pwd').focus();
 			return;
 		}
 		$.ajax({
@@ -78,44 +82,47 @@ $(function(){
 				else
 				{
 					alert("틀린 비밀번호입니다")
-					$('#pwd').val("")
-					$('#pwd').focus();
+					$('.pwd').val("")
+					$('.pwd').focus();
 				}
 			}
 		})
 	})
 });
 $(function(){
-	$('#update').click(function(){
+	$('.update').click(function(){
 		if(bCheck === false)
 		{
 			bCheck = true;
-			$('#upd').show('slow');
-			$('#update').text("취소");
+			$('.upd').show('slow');
+			$('.update').text("취소");
 		}
 		else
 		{
 			bCheck = false;
-			$('#upd').hide('slow');
-			$('#update').text("수정");
+			$('.upd').hide('slow');
+			$('.update').text("수정");
 		}
 	});
 
-	$('#updBtn').click(function(){
-		let content = $('#upcontent').val();
-		if(content.trim() === "")
+	$('.updBtn').click(function(){
+		
+		let content = $(this).closest('tr').find('.upcontent');
+	    let realcontent = content.val();
+		console.log(realcontent)
+		if(realcontent.trim() === "")
 		{
-			$('#upcontent').focus();
+			$(this).closest('.upcontent').focus();
 			return;
 		}
-		let pwd = $('#uppwd').val();
+		let pwd = $('.uppwd').val();
 		if(pwd.trim() === "")
 		{
-			$('#uppwd').focus();
+			$('.uppwd').focus();
 			return;
 		}
-		let rno=$('#updBtn').attr("data-rno");
-		let no =$('#updBtn').attr("data-no");
+		let rno=$('.updBtn').attr("data-rno");
+		let no =$('.updBtn').attr("data-no");
 		
 	      
 		$.ajax({
@@ -131,8 +138,8 @@ $(function(){
 				else
 				{
 					alert("비밀번호가 틀립니다!!");
-					$('#uppwd').val("");
-					$('#uppwd').focus();
+					$('.uppwd').val("");
+					$('.uppwd').focus();
 				}
 			},
 			error:function(err)
@@ -196,9 +203,9 @@ $(function(){
 													<td colspan="4" class="text-right" style="white-space: nowrap;">
 													<c:if test="${sessionScope.id!=null }">
 															<c:if test="${sessionScope.id==rvo.userid }">
-															<span class="update-btn" id="update" style="cursor: pointer; display: inline-block;" >수정</span>
+															<span class="update-btn update"  style="cursor: pointer; display: inline-block;" >수정</span>
 															&nbsp;&nbsp;
-															<span class="delete-btn" id="delete" style="cursor: pointer; display: inline-block;">삭제</span>
+															<span class="delete-btn delete"  style="cursor: pointer; display: inline-block;">삭제</span>
 													    </c:if>
 														</c:if> 
 													</td>
@@ -209,29 +216,29 @@ $(function(){
 														
 												</tr>
 												
-												<tr id="del" style="display: none">
+												<tr class="del" style="display: none">
 													<td colspan="2" class="text-right inline">
-													<input type="submit" value="삭제" id="delBtn" data-rno="${rvo.rno }" data-no="${vo.no}" class="btn btn-sm" 
+													<input type="submit" value="삭제" class="delBtn" data-rno="${rvo.rno }" data-no="${vo.no}" class="btn btn-sm" 
 																style="width: 50px; height: 30px; background-color: #5a70e9; color: white; float: right">
-															<input type="password" id="pwd" name="pwd"
+															<input type="password" class="pwd" name="pwd"
 																placeholder="비밀번호입력" style=" width:150px; float: right">
 															
 																
 													</td>
 													</tr>
-													<tr id="upd" style="display: none">
+													<tr class="upd" style="display: none">
 													<td colspan="2" class="text-right inline">
 													 
 															<input type="hidden" name="no" value=${no }>
 																<input type="hidden" name="rno" value=${rvo.rno }>
-																<div style="display: flex; align-items: center;">
-															<textarea id="upcontent" name="upcontent"
+																<div style="display: flex; align-items: center;" class="">
+															<textarea class="upcontent" name="upcontent"
 																style="float: left; resize: none; width: 750px;">
 															</textarea>
 															</div>
-															<input type="password" id="uppwd" name="uppwd"
+															<input type="password" class="uppwd" name="uppwd"
 																placeholder="비밀번호입력" style=" width:140px; float: left">
-														 <input type="button" value="수정" id="updBtn" data-rno="${rvo.rno }" data-no="${vo.no}"
+														 <input type="button" value="수정" class="updBtn" data-rno="${rvo.rno }" data-no="${vo.no}"
 																style="width: 60px; height: 30px; background-color: #5a70e9; color: white; float: left;">
 											
 													</td>

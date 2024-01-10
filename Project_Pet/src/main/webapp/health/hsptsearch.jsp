@@ -12,11 +12,20 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="../css/health.css">
 <style type="text/css">
-
+.hspfBtn{
+margin-left: 80px;
+width: 300px;
+font-weight: bold;
+margin-top: 20px;
+}
+.name{
+font-weight: bold;
+}
 
 </style>
 <title>Ogani | Template</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+ <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23e8040d553778eeeb77f0900cb92322&libraries=services"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script type="text/javascript">
 
@@ -72,7 +81,7 @@ $(function() {
 										// 인포윈도우로 장소에 대한 설명을 표시합니다
 										var infowindow = new kakao.maps.InfoWindow(
 												{
-													content : '<div class="name" style="width:150px;text-align:center;padding:6px 0;" ></div>'
+													content : '<div class="name" style="width:330px;height:35px; text-align:center;padding:6px 0;" ></div>'
 												});
 										infowindow.open(map, marker);
 
@@ -188,7 +197,7 @@ $(function() {
 										<h4>Reservation</h4> <a href="#">예약하기</a></td>
 								</tr>
 							</table>
-							<a href="javascript:history.back()" class="primary-btn">목 록</a>
+							<a href="hsptsearch.do?page=${curpage}&st=${st }&fd=${fd }" class="btn btn-sm btn-info hspfBtn">병원 검색</a>
 						</div>
 						<!-- 오른쪽에 지도 -->
 						<div class="col-sm-7">

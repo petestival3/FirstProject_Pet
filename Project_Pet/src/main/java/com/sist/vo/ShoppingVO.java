@@ -10,9 +10,39 @@ public int getBuy_intprice() {
 public void setBuy_intprice(int buy_intprice) {
 	this.buy_intprice = buy_intprice;
 }
-private String buy_ok,buy_price,userid,dbday,msg,p_state;
+private String buy_ok,buy_price,userid,dbday,msg,p_state,reciepient,phone,buy_address,buy_post,request_content;
 public String getP_state() {
 	return p_state;
+}
+public String getReciepient() {
+	return reciepient;
+}
+public void setReciepient(String reciepient) {
+	this.reciepient = reciepient;
+}
+public String getPhone() {
+	return phone;
+}
+public void setPhone(String phone) {
+	this.phone = phone;
+}
+public String getBuy_address() {
+	return buy_address;
+}
+public void setBuy_address(String buy_address) {
+	this.buy_address = buy_address;
+}
+public String getBuy_post() {
+	return buy_post;
+}
+public void setBuy_post(String buy_post) {
+	this.buy_post = buy_post;
+}
+public String getRequest_content() {
+	return request_content;
+}
+public void setRequest_content(String request_content) {
+	this.request_content = request_content;
 }
 public void setP_state(String p_state) {
 	this.p_state = p_state;

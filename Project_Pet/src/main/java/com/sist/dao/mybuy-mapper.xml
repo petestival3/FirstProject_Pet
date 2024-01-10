@@ -6,7 +6,7 @@
     <result property="pvo.p_name" column="p_name"/>
 </resultMap>
 <select id="mybuyList" resultMap="svo" parameterType="string">
-SELECT cbno,p_name,buy_price,buy_date,p_state,p_image
+SELECT cbno,p_name,buy_price,buy_date,p_state,p_image,reciepient,phone,buy_address
 FROM cart_buy c JOIN PRODUCT_DETAIL pd 
 ON c.pNO = pd.PNO 
 WHERE userid=#{id} AND buy_ok='YES'

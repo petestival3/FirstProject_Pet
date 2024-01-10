@@ -15,9 +15,7 @@
 
 </head>
 <body>
-<div id="preloder">
-		<div class="loader"></div>
-	</div>
+
 	<div class="hspt_main">
 	<section class="breadcrumb-section set-bg" data-setbg="../img/banner_2.jpg">
         <div class="container">

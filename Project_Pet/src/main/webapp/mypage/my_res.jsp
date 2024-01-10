@@ -16,17 +16,21 @@
 	rel="stylesheet">
 
 <style type="text/css">
-
 .row .my_res{
 	width: 850px;
 	margin: 0px auto;
-	margin: 30px 0 0 20px;
+	margin: 35px 0 0 20px;
 }
 .myres_table {
+width: 890px;
 margin-top: 10px;
 }
+
 .myres_table td{
-height: 150px;
+height: 130px;
+}
+.myres_table tr {
+    border-bottom: 1px solid #f2f2f2;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -53,8 +57,8 @@ height: 150px;
 <body>
 <div class="conatiner">
 <div class="row my_res">
-  <h4 class="text-center">호텔 예약내역</h4>
  <table class="myres_table">
+  <h4 class="text-center">호텔 예약내역</h4>
    <tr>
     <th class="text-center"></th>
     <th class="text-center">호텔명</th>
@@ -66,7 +70,7 @@ height: 150px;
    <c:forEach var="vo" items="${list }">
    <tr>
     <td class="text-center">
-     <a href="#"><img src="${vo.roomimage }" style="width: 90px; height: 70px"></a>
+     <a href="#"><img src="${vo.roomimage }" style="width: 170px; height: 150px"></a>
     </td>
     <td>${vo.roomname }</td>
     <td class="text-center" width="80px;">${vo.checkin }</td>
@@ -74,16 +78,16 @@ height: 150px;
     
     <c:if test="${vo.ok==0 }">
      <td>
-    <button class="btn btn-sm btn-info" style="width: 80px; height: 40px;">예약대기</button>
+    <button class="btn btn-sm btn-info" style="width: 80px; height: 40px; margin-left: 10px;">예약대기</button>
     </td>
     </c:if>
      <c:if test="${vo.ok==1 }">
      <td>
-    <button class="btn btn-sm btn-info" style="width: 80px; height: 40px;">예약확정</button>
+    <button class="btn btn-sm btn-info" style="width: 80px; height: 40px; margin-left: 10px;">예약확정</button>
     </td>
     </c:if>
     <td>
-    <button class="btn btn-sm btn-info cancel" data-rno=${vo.stay_no } style="width: 80px; height: 40px;">예약취소</button>
+    <button class="btn btn-sm btn-info cancel" data-rno=${vo.stay_no } style="width: 80px; height: 40px; margin-left: 10px;">예약취소</button>
     </td>
    </tr>
    </c:forEach>
