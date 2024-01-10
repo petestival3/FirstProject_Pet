@@ -1,5 +1,9 @@
 package com.sist.dao;
 import java.util.*;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import java.sql.*;
 import com.sist.vo.*;
 import com.sist.dbcp.*;
@@ -8,6 +12,7 @@ public class StayDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private CreateDBCPconnection dbconn=new CreateDBCPconnection();
+	private static SqlSessionFactory ssf=CommonsDataBase.getSsf();
 	private static StayDAO dao;
 	private final int ROW_SIZE=12;
 	private final int ROOM_ROW=5;
@@ -543,5 +548,75 @@ public class StayDAO {
 			}finally {
 				dbconn.disConnection(conn, ps);
 			}
+		}
+		/*
+				public static void reserveInsert(ReserveInfoVO vo) {
+				SqlSession session=ssf.openSession(true);
+				// true => Commit => insert,update,delete는 true 해주기
+				session.insert("reserveInsert",vo);
+				session.close();
+	}
+		 */
+		
+		// 숙소 like count 증가
+		public static void stayLikeUpdate(int sno) {
+			SqlSession session=ssf.openSession(true);
+			session.update("stayLikeUpdate",sno);
+			session.close();
+		}
+		
+		
+		// idlike db에 저장
+		public static void idLikeInsert(StayLikeVO vo) {
+			SqlSession session=ssf.openSession(true);
+			session.insert("idLikeInsert",vo);
+			session.close();
+		}
+		/*
+		 	public static List<ReserveInfoVO> reserveMyPageListData(String id){
+			SqlSession session=ssf.openSession();
+			List<ReserveInfoVO> list=session.selectList("reserveMyPageListData",id);
+			session.close();
+			
+			return list;
+	}
+		 */
+		
+		// id별 좋아요한 리스트 출력
+		public static List<StayLikeVO> idLikeList(String id) {
+			SqlSession session=ssf.openSession();
+			List<StayLikeVO> list=session.selectList("idLikeList",id);
+			session.close();
+			
+			return list;
+		}
+		
+		// 좋아요 취소시 숙소정보에서 likecount-1 , idlikedb에서 제거
+		public static void idLikeDelete(Map map) {
+			SqlSession session=ssf.openSession(true);
+			session.delete("idLikeDelete",map);
+			session.close();
+		}
+		
+		public static void stayLikeCancel(int sno) {
+			SqlSession session=ssf.openSession(true);
+			session.update("stayLikeCancel",sno);
+			session.close();
+		}
+		
+		public static int stayLikeTotal(String id) {
+			SqlSession session=ssf.openSession();
+			int total=0;
+			total=session.selectOne("stayLikeTotal",id);
+			session.close();
+			return total;
+		}
+		
+		public static int idStayLikeCount(Map map) {
+			SqlSession session=ssf.openSession();
+			int count=0;
+			count=session.selectOne("idStayLikeCount",map);
+			session.close();
+			return count;
 		}
 }

@@ -9,6 +9,7 @@ import java.util.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -287,5 +288,82 @@ public class StayModel {
 			  PrintWriter out=response.getWriter();
 			  out.write(arr.toJSONString());
 		  }catch(Exception ex) {}
+	}
+	
+	@RequestMapping("stay/staylikeon.do")
+	public void stay_like_on(HttpServletRequest request, HttpServletResponse response) {
+		String sno=request.getParameter("sno");
+		if(sno==null) {
+			  sno="1";
+		  }
+		// 숙소리스트 likecount 증가
+		StayDAO.stayLikeUpdate(Integer.parseInt(sno));
+		
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		
+		StayDAO dao=StayDAO.newInstance();
+		StayVO vo=dao.stayDetail(Integer.parseInt(sno));
+		String image=vo.getImage();
+		String name=vo.getName();
+		Double score=vo.getScore();
+		
+		StayLikeVO slvo=new StayLikeVO();
+		slvo.setId(id);
+		slvo.setImage(image);
+		slvo.setName(name);
+		slvo.setScore(score);
+		slvo.setSno(Integer.parseInt(sno));
+		System.out.println("likeon");
+		StayDAO.idLikeInsert(slvo);
+		System.out.println("likeon");
+	}
+	
+	@RequestMapping("stay/staylikeoff.do")
+	public void stay_like_off(HttpServletRequest request, HttpServletResponse response) {
+		String sno=request.getParameter("sno");
+		if(sno==null) {
+			  sno="1";
+		  }
+		// 숙소리스트 likecount 감소
+		StayDAO.stayLikeCancel(Integer.parseInt(sno));
+		
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		
+		Map map=new HashMap();
+		map.put("id", id);
+		map.put("sno", sno);
+		System.out.println("likeoff");
+		StayDAO.idLikeDelete(map);
+		
+	}
+	
+	@RequestMapping("stay/idstayLikeCount.do")
+	public void idstay_like_count(HttpServletRequest request, HttpServletResponse response) {
+		String sno=request.getParameter("sno");
+		if(sno==null) {
+			  sno="1";
+		  }
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		
+		Map map=new HashMap();
+		map.put("id", id);
+		map.put("sno", sno);
+		
+		int count=StayDAO.idStayLikeCount(map);
+		String ss="";
+		System.out.println("likecounttest");
+		if(count==0) {
+			ss="nolike";
+		}else {
+			ss="yeslike";
+		}
+		
+		try {
+			PrintWriter out=response.getWriter();
+			out.write(ss);
+		}catch(Exception ex) {}
 	}
 }

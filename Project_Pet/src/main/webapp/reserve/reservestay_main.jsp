@@ -6,8 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 
 <link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
 <style type="text/css">
 .row {
    margin: 0px auto;
@@ -48,22 +49,38 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="container">
-<h1 class="text-center">숙소 예약</h1>
+<!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="../img/bread.jpg" style="margin-top: 20px">
+        <div class="container" style="margin-top: 20px;">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Reservation</h2>
+                        <div class="breadcrumb__option">
+                            <a href="../main/main.do">Home</a>
+                            <span>Reserve</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+<div class="container" style="margin-top: 20px">
 <div class="row">
 <table class="table" height="450">
 <tr>
    <td width=25% height="350" class="success">
    <table class="table">
-   <h3 class="text-center">CHECK-IN</h3>
+   <h3 class="text-center" style="background-color: #5a70e9; color:#ffffff">CHECK-IN</h3>
    <tr>
      <td>
        <div id="stay_checkin">
        <table class="table">
-	  <h3 class="text-center">${year }년도 ${month }월</h3>
+	  <h3 class="text-center" style="margin-bottom: 10px;">${year }년도 ${month }월</h3>
 	  <tr class="danger">
 	    <c:forEach var="strWeek" items="${strWeek }">
-	      <td class="text-center">${strWeek }</td>
+	      <td class="text-center" style="background-color: #c8c8c8;">${strWeek }</td>
 	    </c:forEach>
 	    <c:set var="week" value="${week }"/>
 	    <c:forEach var="i" begin="1" end="${lastday }">
@@ -72,7 +89,7 @@ $(function(){
 	          <td class="text-center">&nbsp;</td>
 	      </c:if>
 	        <c:if test="${rday[i]==1}">
-	          <td class="text-center info rdays" data-year="${year }" data-month="${month }">${i }</td>
+	          <td class="text-center info rdays" style="background-color: #FFFF8C" data-year="${year }" data-month="${month }">${i }</td>
 	        </c:if>
 	        <c:if test="${rday[i]==0}">
 	          <td class="text-center">${i }</td>
@@ -94,7 +111,7 @@ $(function(){
    </td>
    <td width="25%" height="350" class="warning">
    <table class="table">
-   <h3 class="text-center">CHECK-OUT</h3>
+   <h3 class="text-center" style="background-color: #5a70e9; color:#ffffff">CHECK-OUT</h3>
    <tr>
      <td>
        <div id="stay_checkout"></div>
@@ -104,10 +121,10 @@ $(function(){
    </td>
    <td width=30% rowspan="2" class="info">
    <table class="table">
-   <h3 class="text-center">예약정보</h3>
+    <h3 class="text-center" style="background-color: #5a70e9; color:#ffffff">예약정보</h3>
    <tr>
      <td>
-       <img src="${vo.image }" style="width: 100%" id="res_room_image"> 
+       <img src="${vo.image }" style="width: 100%; border-radius: 10px;" id="res_room_image"> 
      </td>
    </tr>
    <tr>

@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- <link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
 <style type="text/css">
 .row {
    margin: 0px auto;
@@ -36,10 +36,10 @@ $(function(){
 </head>
 <body>
 <table class="table">
-	  <h3 class="text-center">${year }년도 ${month }월</h3>
+	  <h3 class="text-center" style="margin-bottom: 10px;">${year }년도 ${month }월</h3>
 	  <tr class="danger">
 	    <c:forEach var="strWeek" items="${strWeek }">
-	      <td class="text-center">${strWeek }</td>
+	      <td class="text-center" style="background-color: #c8c8c8;">${strWeek }</td>
 	    </c:forEach>
 	    <c:set var="week" value="${week }"/>
 	    <c:forEach var="i" begin="1" end="${lastday }">
@@ -48,7 +48,7 @@ $(function(){
 	          <td class="text-center">&nbsp;</td>
 	      </c:if>
 	        <c:if test="${rdayout[i]==1}">
-	          <td class="text-center info rdaysout" data-year="${year }" data-month="${month }">${i }</td>
+	          <td class="text-center info rdaysout" style="background-color: #FFFF8C" data-year="${year }" data-month="${month }">${i }</td>
 	        </c:if>
 	        <c:if test="${rdayout[i]==0}">
 	          <td class="text-center">${i }</td>

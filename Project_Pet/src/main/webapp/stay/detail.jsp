@@ -50,6 +50,7 @@ $(document).ready(function(){
 		let roompage='1'
 		reviewlist(typeno,sno,revpage)
 		roomlist(sno,roompage)
+		idlikecount(sno)
 		/* $('.pageBtn').click(function(){
 			let fds=$(this).attr('value');
 			reviewlist(fds)
@@ -109,8 +110,8 @@ $(document).ready(function(){
 				type:'post',
 				url:'../stay/staylikeon.do',
 				data:{"sno":sno},
-				success:function(res){
-					
+				success:function(){
+					alert("마이페이지에서 좋아요를 확인할 수 있습니다!")
 				}
 				
 			})
@@ -120,6 +121,14 @@ $(document).ready(function(){
 		$(document).on('click','#heartBtnOn',function(){
 			$("#heartBtnOn").hide();
 			$("#heartBtnOff").show();
+			$.ajax({
+				type:'post',
+				url:'../stay/staylikeoff.do',
+				data:{"sno":sno},
+				success:function(){
+					alert("좋아요가 취소되었습니다.")
+				}
+			})
 		});
 		
 		
@@ -144,6 +153,23 @@ $(document).ready(function(){
 	
 })
 
+function idlikecount(sno){
+	$.ajax({
+		type:'post',
+		url:'../stay/idstayLikeCount.do',
+		data:{"sno":sno},
+		success:function(res){
+			let sss=res;
+			console.log(sss);
+			if(sss==='yeslike'){
+				$("#heartBtnOn").show();
+			}else{
+				$("#heartBtnOff").show();
+			}
+			
+		}
+	})
+}
 
 function reviewlist(typeno,objno,revpage){
 	$.ajax({
@@ -320,7 +346,7 @@ function roomlist(sno,roompage){
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3 id="staynumber" data-stayno="${vo.stayno }">${vo.name }</h3>
+                        <h3 id="staynumber" data-stayno="${vo.stayno }" data-count="0">${vo.name }</h3>
                         <p style="margin-bottom: 15px">${vo.detailaddr }</p>
                         <div class="product__details__rating">
                         <c:if test="${vo.score<1.3 }">
@@ -393,8 +419,7 @@ function roomlist(sno,roompage){
                         <div class="product__details__price">&#8361;${vo.price }~</div>
                         <div style="height: 15px"></div>
                         <a href="#" class="primary-btn">예약하기</a>
-                        <a href="#" class="primary-btn">찜하기</a>
-                        <button class="heart-icon" style="border-style: none;" id="heartBtnOff"><i class="fa-solid fa-heart" style="color: #696969; font-size:22px"></i></button>
+                        <button class="heart-icon" style="border-style: none; display:none" id="heartBtnOff"><i class="fa-solid fa-heart" style="color: #696969; font-size:22px"></i></button>
                         <button class="heart-icon" style="border-style: none; display:none" id="heartBtnOn"><i class="fa-solid fa-heart" style="color: #ff0000; font-size:22px;"></i></button>
                         <div style="height: 30px"></div>
                         <div class="stayintro">
