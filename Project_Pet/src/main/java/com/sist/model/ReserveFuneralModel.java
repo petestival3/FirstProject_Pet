@@ -14,6 +14,7 @@ public class ReserveFuneralModel {
 	{
 	      // 3. 결과값 모아서 request에 저장
 		  request.setAttribute("main_jsp", "../reserve/reserve_funeral.jsp");
+		  commonsModel.commonsHeaderData(request);
 		  return "../main/main.jsp";
 	}
 	 

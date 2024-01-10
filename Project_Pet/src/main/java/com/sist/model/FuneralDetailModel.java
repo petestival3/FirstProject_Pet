@@ -27,6 +27,7 @@ public class FuneralDetailModel {
 	      // 3. 결과값 모아서 request에 저장
 	      request.setAttribute("list", list);
 		  request.setAttribute("main_jsp", "../funeralDetail/produce.jsp");
+		  commonsModel.commonsHeaderData(request);
 		  return "../main/main.jsp";
 	}
 	
@@ -35,6 +36,7 @@ public class FuneralDetailModel {
 	{
 	      // 3. 결과값 모아서 request에 저장
 		  request.setAttribute("main_jsp", "../funeralDetail/reserve.jsp");
+		  commonsModel.commonsHeaderData(request);
 		  return "../main/main.jsp";
 	}
 	
@@ -43,6 +45,7 @@ public class FuneralDetailModel {
 	{
 	      // 3. 결과값 모아서 request에 저장
 		  request.setAttribute("main_jsp", "../funeralDetail/search_f.jsp");
+		  commonsModel.commonsHeaderData(request);
 		  return "../main/main.jsp";
 	}
 	
@@ -73,6 +76,7 @@ public class FuneralDetailModel {
 		
 	      // 3. 결과값 모아서 request에 저장
 		  request.setAttribute("main_jsp", "../funeralDetail/list_f.jsp");
+		  commonsModel.commonsHeaderData(request);
 		  return "../main/main.jsp";
 	}
 	
@@ -82,6 +86,7 @@ public class FuneralDetailModel {
 	{
 	      // 3. 결과값 모아서 request에 저장
 		  request.setAttribute("main_jsp", "../funeralDetail/detail_f.jsp");
+		  commonsModel.commonsHeaderData(request);
 		  return "../main/main.jsp";
 	}
 	
