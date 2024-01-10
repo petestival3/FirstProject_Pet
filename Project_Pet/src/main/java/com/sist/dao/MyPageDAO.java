@@ -193,7 +193,6 @@ public class MyPageDAO {
 		{
 			session=ssf.openSession();
 			list=session.selectList("myStayResList",id);
-			System.out.println("DAO:"+list.size());
 		}catch(Exception ex) 
 		{
 			ex.printStackTrace();
@@ -211,6 +210,8 @@ public class MyPageDAO {
 		try 
 		{
 				session=ssf.openSession(true);
+				
+				
 				session.delete("myStayResListDelete", map);
 	    } 
 		catch (Exception e) 

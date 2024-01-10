@@ -3,7 +3,7 @@
 <mapper namespace="com.sist.dao.reservestay-mapper">
 <!-- 선택한 항목 출력 -->
 <select id="reserveStayDetail" resultType="RoomVO" parameterType="int">
-	SELECT room_image,room_name,room_price FROM roominfo
+	SELECT room_image,room_name,room_price,rno FROM roominfo
 	WHERE rno=#{rno}
 </select>
 <!-- 예약 정보 저장 -->
