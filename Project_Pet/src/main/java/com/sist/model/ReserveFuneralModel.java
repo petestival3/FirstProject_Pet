@@ -126,6 +126,7 @@ public class ReserveFuneralModel {
 		  vo.setRf_inwon(rinwon);
 		  
 		  /*
+		  //이건 나현이가 예시로 알려준거
 		  Map map=new HashMap();
 		  map.put("id", id);
 		  map.put("fno", fno);
@@ -139,6 +140,28 @@ public class ReserveFuneralModel {
 		  // 데이터베이스 전송
 		  ReserveFuneralDAO.FuneralreserveInsert(vo);
 		  System.out.println(2);
+		  return "redirect:../mypage/my_res_f.do";
+	  }
+	  /*
+	  //이건 참고하려고 가져온 찜하기 취소
+	  @RequestMapping("mypage/my_wish_cancel.do")
+	   public String mypage_wish_cancel(HttpServletRequest request,
+			   HttpServletResponse response)
+	   {
+		   String cdno=request.getParameter("cdno");
+		   WishDAO dao=WishDAO.newInstance();
+		   dao.WishCancel(Integer.parseInt(cdno));
+		   return "redirect:../mypage/my_wish.do";
+	   }
+	  */
+	  //예약 취소
+	  @RequestMapping("mypage/my_res_f_cancel.do")
+	  public String myres_f_cancel(HttpServletRequest request,
+			   HttpServletResponse response)
+	  {
+		  String rf_no=request.getParameter("rf_no");
+		  ReserveFuneralDAO dao=new ReserveFuneralDAO();
+		  dao.Funeralreservedelete(Integer.parseInt(rf_no));
 		  return "redirect:../mypage/my_res_f.do";
 	  }
 }

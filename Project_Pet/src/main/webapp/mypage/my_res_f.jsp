@@ -31,7 +31,7 @@
 <div class="conatiner">
 <div class="row my_res">
   <h4 class="text-center">&nbsp;${sessionScope.name }님의 장례식장 예약내역</h4>
- <table class="table">
+ <table class="table" style="margin-top: 20px;">
    <tr>
     <th class="text-center">예약번호</th>
     <th class="text-center">예약일</th>
@@ -47,12 +47,12 @@
     <td class="text-center">${vo.rf_inwon }</td>
     <td colspan="4" class="text-center">
       <c:if test="${rf_ok==1 }">
-        <span class="btn btn-sm">예약완료</span>
+        <span class="primary-btn">예약완료</span>
       </c:if>
       <c:if test="${rf_ok==0 }">
-        <span class="btn btn-sm">예약대기</span>
+        <span class="primary-btn">예약대기</span>
       </c:if>
-      <a href="#" class="btn btn-sm">취소</a>
+      <a href="../mypage/my_res_f_cancel.do?rf_no=${vo.rf_no }" class="primary-btn">취소</a>
     </td>
    </tr>
    </c:forEach>

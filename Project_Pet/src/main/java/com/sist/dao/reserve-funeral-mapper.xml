@@ -68,9 +68,15 @@
   
   <!-- 예약데이터 마이페이지 출력 -->
   <select id="mypageReserveListData" resultType="FuneralReserveInfoVO" parameterType="String">
-     SELECT RF_NO, RF_DAY, RF_TIME, RF_INWON
+     SELECT RF_NO, RF_DAY, RF_TIME, RF_INWON, RF_OK
      FROM RES_FUNERAL_INFO
      WHERE id=#{id}
      ORDER BY RF_NO DESC
   </select>
+  
+  <!-- 예약데이터 취소(삭제) -->
+  <delete id="Funeralreservedelete" parameterType="int">
+     DELETE FROM RES_FUNERAL_INFO
+     WHERE rf_no=#{rf_no}
+  </delete>
 </mapper>

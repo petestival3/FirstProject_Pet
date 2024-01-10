@@ -90,4 +90,18 @@ public class ReserveFuneralDAO {
 		  }
 		  return list;
 	  }
+	  
+	//예약 데이터 삭제(취소)
+	  public static void Funeralreservedelete(int rf_no)
+	  {
+		  SqlSession session=ssf.openSession(true);
+		  try {
+			  System.out.println("delete test1");
+			  session.insert("Funeralreservedelete",rf_no);
+			  System.out.println("delete test2");
+		  }catch(Exception ex) {
+			  ex.printStackTrace();
+		  }
+		  session.close();
+	  }
 }
