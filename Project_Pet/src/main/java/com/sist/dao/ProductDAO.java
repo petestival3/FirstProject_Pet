@@ -30,9 +30,9 @@ public List<ProductVO> homeProduct(){ //메인 화면 상품인기순위
 	List<ProductVO>list=new ArrayList<>();
 	try {
 		conn=dbconn.getConnection();
-		String sql="SELECT p_image,p_name,pno,p_lower_price,num "
-					+"FROM (SELECT p_image,p_name,pno,p_lower_price,rownum as num "
-					+"FROM (SELECT p_image,p_name,pno,p_lower_price FROM product_detail ORDER BY p_hit DESC)) "
+		String sql="SELECT p_image,p_name,pno,p_lower_price,p_price,p_percent,num "
+					+"FROM (SELECT p_image,p_name,pno,p_lower_price,p_price,p_percent,rownum as num "
+					+"FROM (SELECT p_image,p_name,pno,p_lower_price,p_price,p_percent FROM product_detail ORDER BY p_hit DESC)) "
 					+"WHERE num BETWEEN 1 AND 5";
 		ps=conn.prepareStatement(sql);
 		ResultSet rs=ps.executeQuery();
@@ -48,6 +48,8 @@ public List<ProductVO> homeProduct(){ //메인 화면 상품인기순위
 		vo.setP_name(p_name);
 		vo.setPno(pno);;
 		vo.setP_lower_price(p_lower_price);
+		vo.setP_price(rs.getString(5));
+		vo.setP_percent(rs.getString(6));
 		list.add(vo);
 		
 		
