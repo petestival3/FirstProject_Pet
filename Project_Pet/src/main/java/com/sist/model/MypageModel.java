@@ -175,7 +175,7 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 	    dao.petRegInsert(vo);
 	 
 
-	    return "redirect:../mypage/my_petreg.do";
+	    return "redirect:../mypage/mypage.do";
 	
 }
 	

@@ -59,6 +59,9 @@ $(function(){
     color: grey;
      float: right;
 }
+.unregBtn{
+	margin-top: -20px;
+}
 </style>
 </head>
 <body>
@@ -133,12 +136,19 @@ $(function(){
 				</fieldset>
 				
 			</form>
-			<fieldset id="unreg" style="flex: right">
-					<span>회원탈퇴를 원하시면 탈퇴 버튼을 눌러주세요 !</span>
-					<button class="btn btn-sm" id="unregBtn">
-					<a href="../mypage/my_unreg.do">탈퇴</a></button>
-					<input type="hidden">
+			
+			<fieldset id="unreg" style="flex: right; margin-top: -80px;">
+			<div class=row>
+			 <span style="text-center; margin-top: 12px;">회원탈퇴를 원하시면 버튼을 눌러주세요 !</span>
+				&nbsp;&nbsp;&nbsp;
+				<button class="btn btn-sm" id="unregBtn">
+					<a href="../mypage/my_unreg.do">탈퇴</a>
+				</button>
+				<input type="hidden">
+			</div>
 			</fieldset>
+			
+
 		</div>
 	</div>
 </body>

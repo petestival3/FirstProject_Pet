@@ -46,11 +46,7 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-    $(function() {
-		$('#prBtn').click(function(){
-			alert("마이펫 등록이 완료되었습니다")
-		})
-	})
+
 </script>
 <style type="text/css">
 
