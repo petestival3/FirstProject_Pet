@@ -25,4 +25,5 @@
    <bean id="reserve_f" class="com.sist.model.ReserveFuneralModel"></bean>
    <bean id="stayreserve" class="com.sist.model.StayReserveModel"></bean>
    <bean id="commons" class="com.sist.model.commonsModel"></bean>
+  
 </beans>

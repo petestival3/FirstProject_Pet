@@ -18,11 +18,11 @@ vertical-align: middle;
 <body>
 <div style="margin-top:25px;">
 <div style="margin-bottom:10px;">
-<a href="../adminPage/ad_productQnaList.do?type=1" class="btn-sm ">결제완료</a>
-<a href="../adminPage/ad_productQnaList.do?type=2" class="btn-sm ">결제취소 대기중</a>
-<a href="../adminPage/ad_productQnaList.do?type=2" class="btn-sm ">결제취소완료</a>
-<a href="../adminPage/ad_productQnaList.do?type=2" class="btn-sm ">배송중</a>
-<a href="../adminPage/ad_productQnaList.do?type=2" class="btn-sm ">배송완료</a>
+<a href="../admin/ad_product_stateHandleList.do?type=1" class="btn-sm ">결제완료</a>
+<a href="../admin/ad_product_stateHandleList.do?type=2" class="btn-sm ">결제취소 대기중</a>
+<a href="../admin/ad_product_stateHandleList.do?type=3" class="btn-sm ">결제취소완료</a>
+<a href="../admin/ad_product_stateHandleList.do?type=4" class="btn-sm ">배송중</a>
+<a href="../admin/ad_product_stateHandleList.do?type=5" class="btn-sm ">배송완료</a>
 </div>
 <table class="table text-center" style="width:870px;">
 		<thead class="qna_firstData">
@@ -36,15 +36,15 @@ vertical-align: middle;
 			</tr>
 		</thead>
 		      
-<c:forEach var="vo" items="">
+<c:forEach var="vo" items="${list }">
 
 <tr class="qna_content" >
 <td width=10% class="middle" style="text-align: center; vertical-align: middle;">아이디</td>
 
-<td width=20%><img src="../img/noImg.png"></td>
+<td width=20%><img src="${vo.pvo.p_image }"></td>
 
 
-<td width=15% class="middle"  style="text-align: center; vertical-align: middle;">상품이릉ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</td>
+<td width=15% class="middle"  style="text-align: center; vertical-align: middle;">${vo.pvo.p_name }</td>
 
 <td width=15% style="font-size:10px; text-align: center; vertical-align: middle;" class="middle">2020-1231-123</td>
 

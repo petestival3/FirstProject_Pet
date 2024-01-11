@@ -3,16 +3,38 @@
 <mapper namespace="com.sist.dao.productAdmin-mapper">
 
 
-<!-- <resultMap type="com.sist.ShoppingVO" id="cartData">
+ <resultMap type="com.sist.vo.ShoppingVO" id="cartData">
 
-<result property="pvo.p_imgage" column="p_image"/>
+<result property="pvo.p_image" column="p_image"/>
 <result property="pvo.p_name" column="p_name"/>
 
-
 </resultMap>
-<select id="productStateList" parameterType="map" resultMap="cartData">
- SELECT pno,p_image,p_name,userid,TO_CHAR(buy_date,'YYYY-MM-DD M),buy_state
+<select id="productStateList" resultMap="cartData">
+SELECT pno,p_image,p_name,userid,TO_CHAR(buy_date,'YYYY-MM-DD'),buy_state,cbno
+ FROM CART_BUY a
+ JOIN PRODUCT_DETAIL b ON a.pno=b.pno
+ WHERE BUY_OK=
+
+<if test="type==1">
+'YES'
+</if>
+
+<if test="type==2">
+'CANCELWAIT'
+</if>
+ 
+ <if test="type==3">
+'CANCEL'
+</if>
+
+<if test="type==4">
+'SHIPPING'
+</if>
+
+<if test="type==5">
+'SHIPPINGCOMPLETE'
+</if>
 
 </select>
--->
+
 </mapper>

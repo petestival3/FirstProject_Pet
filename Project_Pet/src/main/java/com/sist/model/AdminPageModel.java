@@ -13,12 +13,14 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.sist.controller.RequestMapping;
+import com.sist.dao.ProductAdminDAO;
 import com.sist.dao.ProductQnaDAO;
 import com.sist.dao.ReserveFuneralDAO;
 import com.sist.dao.StayReserveDAO;
 import com.sist.vo.FuneralReserveInfoVO;
 import com.sist.vo.QnaBoardVO;
 import com.sist.vo.ReserveStayInfoVO;
+import com.sist.vo.ShoppingVO;
 
 public class AdminPageModel {
 	
@@ -134,7 +136,7 @@ public class AdminPageModel {
 	
 	@RequestMapping("adminPage/ad_productQnaList.do")
 	public String ad_productQnaList(HttpServletRequest request, HttpServletResponse response) {
-			
+			System.out.println("실행");
 		
 
 			String page=request.getParameter("page");
@@ -231,17 +233,23 @@ public class AdminPageModel {
 	@RequestMapping("admin/ad_product_stateHandleList.do")
 	   public String ad_product_stateHandle(HttpServletRequest request, HttpServletResponse response) {
 	
-		
+		String type=request.getParameter("type");
+		if(type==null) {
+			type="1";
+		}
 	    //p_image,p_name
 		//userid,buy_date,buy_state,cbno
-		
-		
+		List<ShoppingVO>list=ProductAdminDAO.productStateList(Integer.parseInt(type));
+		request.setAttribute("list", list);
 		request.setAttribute("main_jsp", "../adminPage/ad_page.jsp");
 		request.setAttribute("ad_page_jsp", "../adminPage/ad_productState.jsp");
 		
 		return "../main/main.jsp";
 		
 	   }
+	
+	
+	
 	
 
 }
