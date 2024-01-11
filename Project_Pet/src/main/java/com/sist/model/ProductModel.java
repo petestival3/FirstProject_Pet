@@ -193,7 +193,7 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
          request.setAttribute("rlistSize", rlist.size());
          request.setAttribute("prTotalpage", prTotalpage);
          
-         HttpSession session=request.getSession();
+        HttpSession session=request.getSession();
          String id=(String)session.getAttribute("id");
          
      
@@ -211,6 +211,8 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
  			likeNum=0;
  		}
  		request.setAttribute("likeNum", likeNum);
+ 		
+ 		
          
          try {
          
@@ -222,6 +224,7 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
                   
                   if (cookies[i].getName().startsWith(id+"_pno_")) {
                      String cvalue=cookies[i].getValue();
+                     
                      int cpno=Integer.parseInt(cvalue);
                      ProductVO cvo =dao.productDetail_Before(cpno);
                      int cvReviewAmount=0;
@@ -285,12 +288,16 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
       	
       HttpSession session=request.getSession();
       String id=(String)session.getAttribute("id");
+      
+      if(id!=null) {
+    	  
+    
          Cookie cookie=new Cookie(id+"_pno_"+pno, pno);
          cookie.setPath("/");
          cookie.setMaxAge(60*60*24);
          response.addCookie(cookie);
          
-            
+      }
       
       return "redirect:../product/productDetail.do?pno="+pno+"&rt="+rt+"&page="+strpage+"&ct="+ct+"&count="+count+"&ss="+ss;
    }

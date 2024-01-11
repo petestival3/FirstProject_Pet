@@ -28,16 +28,16 @@ public class ProductAdminDAO {
 	
 	
 	
-	public static List<ShoppingVO> productStateList(int type) {
+	public static List<ShoppingVO> productStateList(Map map) {
 		SqlSession session =null;
 		List<ShoppingVO> list=new ArrayList<ShoppingVO>();
-	
+	System.out.println("실행");
 		try {
 			
 			
 			
 			session=ssf.openSession();
-			list=session.selectList("productStateList",type);
+			list=session.selectList("productStateList",map);
 			
 			
 		} catch (Exception e) {
@@ -52,5 +52,61 @@ public class ProductAdminDAO {
 		return list;
 		
 	}
+	
+	
+	
+	public static void productStateUpdatet(Map map) {
+		SqlSession session =null;
+	
+	
+		try {
+			
+			
+			
+			session=ssf.openSession(true);
+		    session.selectList("stateUpdate",map);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+		}
+	
+		
+	}
+	
+	
+	
+	public static int productStateTotal(Map map) {
+		SqlSession session =null;
+	
+		int total=0;
+		try {
+			
+			
+			
+			session=ssf.openSession();
+		   total= session.selectOne("stateTotalpage",map);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+		}
+	
+		return total;
+	}
+	
+	
 
 }

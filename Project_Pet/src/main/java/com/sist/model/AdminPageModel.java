@@ -239,12 +239,58 @@ public class AdminPageModel {
 		}
 	    //p_image,p_name
 		//userid,buy_date,buy_state,cbno
-		List<ShoppingVO>list=ProductAdminDAO.productStateList(Integer.parseInt(type));
+		
+		String page="1";
+		int curpage=Integer.parseInt(page);
+		 Map map= new HashMap();
+			map.put("type", type);
+			map.put("page", page);
+		int totalpage=ProductAdminDAO.productStateTotal(map);
+		System.out.println(totalpage);
+		int start=(curpage*ROWSIZE)-(ROWSIZE-1);
+		int end=(curpage*ROWSIZE);
+		
+		final int block=10;
+		   int startpage = ((curpage-1)/block*block)+1;
+		   int endpage = ((curpage-1)/block*block)+10;
+		   if(endpage>totalpage) {
+		      endpage=totalpage;
+		   }
+		
+		  
+			map.put("start", start);
+			map.put("end", end);
+		
+		List<ShoppingVO>list=ProductAdminDAO.productStateList(map);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startpage", startpage);
+		request.setAttribute("endpage", endpage);
+		request.setAttribute("type", type);
 		request.setAttribute("list", list);
 		request.setAttribute("main_jsp", "../adminPage/ad_page.jsp");
 		request.setAttribute("ad_page_jsp", "../adminPage/ad_productState.jsp");
 		
 		return "../main/main.jsp";
+		
+	   }
+	
+	
+	
+	@RequestMapping("admin/ad_product_stateHandleUpdate.do")
+	   public String ad_product_stateHandleUpdate(HttpServletRequest request, HttpServletResponse response) {
+	
+		String utype=request.getParameter("utype");
+		String cbno=request.getParameter("cbno");
+		Map map= new HashMap();
+		
+		map.put("cbno", cbno);
+		map.put("utype", utype);
+		
+		ProductAdminDAO.productStateUpdatet(map);
+	
+		
+		
+		return "ad_product_stateHandleList.do";
 		
 	   }
 	

@@ -9,8 +9,14 @@
 <result property="pvo.p_name" column="p_name"/>
 
 </resultMap>
-<select id="productStateList" resultMap="cartData">
-SELECT pno,p_image,p_name,userid,TO_CHAR(buy_date,'YYYY-MM-DD'),buy_state,cbno
+<select id="productStateList" resultMap="cartData" parameterType="map">
+
+
+SELECT pno,p_image,p_name,userid,TO_CHAR(buy_date,'YYYY-MM-DD HH24:MI:SS') as dbday,P_state,cbno,num
+ FROM
+ (SELECT  pno,p_image,p_name,userid,buy_date,P_state,cbno,rownum as num
+ FROM 
+ (SELECT  a.pno,p_image,p_name,userid,buy_date,P_state,cbno
  FROM CART_BUY a
  JOIN PRODUCT_DETAIL b ON a.pno=b.pno
  WHERE BUY_OK=
@@ -34,7 +40,59 @@ SELECT pno,p_image,p_name,userid,TO_CHAR(buy_date,'YYYY-MM-DD'),buy_state,cbno
 <if test="type==5">
 'SHIPPINGCOMPLETE'
 </if>
+ ORDER BY cbno DESC
+ ))
+ 
+  WHERE num BETWEEN #{start} AND #{end}
+ 
 
 </select>
 
+
+<update id="stateUpdate" parameterType="map">
+
+UPDATE CART_BUY SET 
+BUY_OK
+
+<if test="utype==1">
+='SHIPPING',p_state='배송중'
+</if>
+<if test="utype==2">
+='CANCEL',p_state='결제취소완료'
+</if>
+<if test="utype==3">
+='SHIPPINGCOMPLETE',p_state='배송완료'
+</if>
+
+WHERE CBNO=#{cbno}
+</update>
+
+
+
+<select id="stateTotalpage" parameterType="map" resultType="int">
+SELECT CEIL(COUNT(*)/10.0) FROM CART_BUY 
+WHERE buy_ok=
+<if test="type==1">
+'YES'
+</if>
+
+<if test="type==2">
+'CANCELWAIT'
+</if>
+ 
+ <if test="type==3">
+'CANCEL'
+</if>
+
+<if test="type==4">
+'SHIPPING'
+</if>
+
+<if test="type==5">
+'SHIPPINGCOMPLETE'
+</if>
+ 
+</select>
 </mapper>
+
+
