@@ -162,34 +162,43 @@ $(function () {
 	      $(this).prev('.detail_li').first().hide('slow');
 	   });
 	});
+
 */
-
-
+/*
 $(function () {
    $('.detail_li').hide()
    
    $('.detail_open_btn').click(function () {
 	  let funeralno=$(this).attr('data-funno')
+	  console.log(no)
 	  $('.detail_li').show('slow')
    });
    $('.detail_hide_btn').click(function () {
       $('.detail_li').hide('slow')
    });
 });
-
-/*
-$(function () {
-    $('.detail_li').hide(); // ID 선택자 대신 클래스 선택자 사용
-    $('.detail_open_btn').click(function () {
-        var index = $(this).next('li').index(); // 클릭한 버튼의 부모 <li> 엘리먼트의 인덱스 가져오기
-        $('.detail_li').eq(index).show('slow'); // 특정 세부 섹션을 지정하기 위해 eq() 사용
-    });
-    $('.detail_hide_btn').click(function () {
-        var index = $(this).next('li').index(); // 클릭한 버튼의 부모 <li> 엘리먼트의 인덱스 가져오기
-        $('.detail_li').eq(index).hide('slow'); // 특정 세부 섹션을 지정하기 위해 eq() 사용
-    });
-});
 */
+
+let bCheck=false;
+$(function () {
+	   $('.detail_li').hide()
+	   
+	   $('.detail_open_btn').click(function () {
+		  let funeralno=$(this).attr('data-funno')
+		  console.log(funeralno)
+		  if(bCheck==false)
+		  {
+			  bCheck=true;
+			  $('#slide'+funeralno).show('slow')
+		  }
+		  else
+		  {
+			  bCheck=false;
+			  $('#slide'+funeralno).hide('slow')
+		  }
+	   });
+	});
+	
 </script>
 </script>
 
@@ -243,7 +252,7 @@ $(function () {
             </a>
             </li>
                 <!-- 상세보기 테이블 시작 -->
-            <li class="detail_li">
+            <li class="detail_li" id="slide${vo.CR_COM_NO }">
                <table class="detail_table">
                   <tr>
                      <td class="detail_table_title text-center" colspan="2">상세보기</td>
@@ -271,9 +280,9 @@ $(function () {
                   <tr id="btn_tr">
                       <td>&nbsp;</td>
                      <td id="btn_td"><a href="#"
-                        class="btn btn_like">좋아요(0)</a> <a href="#"
-                        class="btn btn_check">찜하기</a> <a href="reserve.do"
-                        class="btn btn_res">예약하기</a> <a class="btn btn_list detail_hide_btn" href="#">창닫기</a></td>
+                        class="btn btn_like" style="color: white !important;">좋아요(0)</a> 
+                        <a href="../reserve/reserve_funeral.do"
+                        class="btn btn_res" style="color: white !important;">예약하기</a> </td>
                   </tr>
                </table>
             </li>
