@@ -10,9 +10,11 @@
     INSERT INTO id_like VALUES(il_likeno_seq.nextval,#{id},#{sno},#{image},#{name},#{score})
   </insert>
   
-  <select id="idLikeList" parameterType="string" resultType="StayLikeVO">
-    SELECT likeno,sno,image,name,score FROM id_like
-	WHERE id=#{id}
+  <select id="idLikeList" parameterType="hashmap" resultType="StayLikeVO">
+    SELECT likeno,sno,image,name,score,num  
+    FROM (SELECT likeno,sno,image,name,score,rownum as num 
+    FROM (SELECT likeno,sno,image,name,score FROM id_like WHERE id=#{id}))
+	WHERE num BETWEEN #{start} AND #{end}
   </select>
   
   <delete id="idLikeDelete" parameterType="hashmap">
@@ -26,7 +28,7 @@
   </update>
   
   <select id="stayLikeTotal" resultType="int" parameterType="string">
-     SELECT CEIL(COUNT(*)/10.0)
+     SELECT CEIL(COUNT(*)/4.0)
      FROM id_like WHERE id=#{id}
   </select>
   

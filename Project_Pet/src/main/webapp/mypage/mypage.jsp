@@ -47,6 +47,7 @@
 							class="list-group-item list-group-item-action">장례식장 예약내역</a> <a
 							href="../mypage/my_buy.do" class="list-group-item list-group-item-action">결제내역</a>
 						<a href="../mypage/my_wish.do" class="list-group-item list-group-item-action">입양희망목록</a>
+						<a href="../stay/idlike_mypage.do" class="list-group-item list-group-item-action">좋아요한목록</a>
 							<a href="../mypage/my_info.do" class="list-group-item list-group-item-action">개인정보관리</a>
 						<a href="../mypage/my_petinfo.do" class="list-group-item list-group-item-action">마이펫관리</a>
 					</div>

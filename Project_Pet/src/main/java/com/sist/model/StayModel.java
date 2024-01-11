@@ -371,4 +371,36 @@ public class StayModel {
 			out.write(ss);
 		}catch(Exception ex) {}
 	}
+	
+	@RequestMapping("stay/idlike_mypage.do")
+	public String idlike_mypage(HttpServletRequest request, HttpServletResponse response){
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		String page=request.getParameter("page");
+		if(page==null) {
+			page="1";
+		}
+		int curpage=Integer.parseInt(page);
+		int rowSize=4;
+		int totalpage=0;
+		totalpage=StayDAO.stayLikeTotal(id);
+		int start=(rowSize*curpage)-(rowSize-1);
+		int end=rowSize*curpage;
+		
+		Map map=new HashMap();
+		map.put("id", id);
+		map.put("start", start);
+		map.put("end", end);
+		
+		List<StayLikeVO> list=StayDAO.idLikeList(map);
+		
+		request.setAttribute("list", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("mypage_jsp", "../mypage/my_staylike.jsp");
+		request.setAttribute("main_jsp", "../mypage/mypage.jsp");
+		
+		return "../main/main.jsp";
+		
+	}
 }

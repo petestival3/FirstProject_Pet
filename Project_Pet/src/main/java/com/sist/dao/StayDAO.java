@@ -611,9 +611,9 @@ public class StayDAO {
 		 */
 		
 		// id별 좋아요한 리스트 출력
-		public static List<StayLikeVO> idLikeList(String id) {
+		public static List<StayLikeVO> idLikeList(Map map) {
 			SqlSession session=ssf.openSession();
-			List<StayLikeVO> list=session.selectList("idLikeList",id);
+			List<StayLikeVO> list=session.selectList("idLikeList",map);
 			session.close();
 			
 			return list;

@@ -129,7 +129,7 @@ function noId(){
                     <div class="header__cart">
                         <ul>
                         	<c:if test="${sessionScope.id!=null }">
-                            <li><a href="../mypage/my_res.do"><i class="fa fa-heart"></i> <span>${likeNum }</span></a></li>
+                            <li><a href="../stay/idlike_mypage.do"><i class="fa fa-heart"></i> <span>${likeNum }</span></a></li>
                             </c:if>
                             <c:if test="${sessionScope.id!=null }">
                             <li><a href="../shopping/shoppingCart.do"><i class="fa fa-shopping-bag"></i> <span>${cartNum}</span></a></li>
