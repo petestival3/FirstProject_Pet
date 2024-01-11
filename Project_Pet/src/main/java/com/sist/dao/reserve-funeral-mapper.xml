@@ -74,10 +74,10 @@
      ORDER BY RF_NO DESC
   </select>
   
-    <!-- 예약데이터 예약 반려 (2)-->
+    <!-- 예약데이터 예약자 반려 (3)-->
   <update id="reserveUserNo" parameterType="int">
     UPDATE RES_FUNERAL_INFO SET
-    rf_ok=2
+    rf_ok=3
     WHERE rf_no=#{rf_no}
   </update>
   
