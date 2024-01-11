@@ -47,7 +47,7 @@
     <td class="text-center">${vo.rf_inwon }</td>
     <td colspan="4" class="text-center">
     <c:if test="${vo.rf_ok==2 }">
-        <span style="background-color: gray;" class="primary-btn">취소내역</span>
+        <span style="background-color: gray;" class="primary-btn">취소완료</span>
       </c:if>
       <c:if test="${vo.rf_ok==1 }">
         <span class="primary-btn" style="background-color: lightblue;">예약완료</span>
