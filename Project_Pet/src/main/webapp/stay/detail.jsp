@@ -141,6 +141,22 @@ $(document).ready(function(){
 			})
 		});
 		
+		$(document).on('click','.rev_delete_Btn',function(){
+			
+			 let revno=$(this).attr('data-revno')
+			 
+			let cur=$('.stayRevCurpage').attr('data-cur')
+			$.ajax({
+				type:'post',
+				url:'../review/stayreviewDel.do',
+				data:{"revno":revno},
+				success:function(){
+					reviewlist('1',sno,cur)
+					alert("삭제되었습니다.")
+				}
+			}) 
+		});
+		
 		
 	$("#review_write_Btn").click(function(){
 		Shadowbox.open({
@@ -202,11 +218,18 @@ function reviewlist(typeno,objno,revpage){
 					 }
 					
 					
-				html+='<div class="mid_1" style="margin-left:40px">'
+				html+='<div class="mid_1" style="margin-left:40px; width:750px">'
 					+'<div class="user-info">'
 					+'<img src="../img/mainlogo.png" alt="../img/mainlogo.png" class="reviewer-avatar" style="float:left">'
 					+'<div class="user-name">'+revo.writer+'</div>'
-					+'</div>'
+					
+					if(revo.isMe===1){
+						html+='<button class="rev_delete_Btn btn-sm btn-danger" style="margin-left:550px" data-revno="'+revo.revno+'">리뷰 삭제</button>'	
+					}
+					
+					
+					
+				html+='</div>'
 					+'<br />'
 					+'<div class="mid_2">'
 					+'<div class="rating">'
@@ -312,16 +335,15 @@ function roomlist(sno,roompage){
 </head>
 <body>
 <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="../img/bread.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="../img/bread.jpg" style="margin-top: 20px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Vegetable’s Package</h2>
+                        <h2>Hotel With Dogs</h2>
                         <div class="breadcrumb__option">
                             <a href="../main/main.do">Home</a>
-                            <a href="./index.html">Vegetables</a>
-                            <span>Vegetable’s Package</span>
+                            <span>Hotel</span>
                         </div>
                     </div>
                 </div>
@@ -428,10 +450,10 @@ function roomlist(sno,roompage){
                         <div style="height: 15px"></div>
                         <div class="product__details__price">&#8361;${vo.price }~</div>
                         <div style="height: 15px"></div>
-                        <button class="someBtn">예약하기</button>
+                        
                         <button class="heart-icon" style="border-style: none; display:none" id="heartBtnOff"><i class="fa-solid fa-heart" style="color: #696969; font-size:22px"></i></button>
                         <button class="heart-icon" style="border-style: none; display:none" id="heartBtnOn"><i class="fa-solid fa-heart" style="color: #ff0000; font-size:22px;"></i></button>
-                        <button class="someBtn" onclick="javascript:history.back()">목록으로</button>
+                        <a href="../stay/list.do" class="btn btn-lg btn-info" style="margin-left: 20px; margin-right: 20px">목록으로</a>
                         <div style="height: 30px"></div>
                         <div class="stayintro">
                           <h6 style="margin-bottom: 20px;color: #666"><b>숙소 소개</b></h6>

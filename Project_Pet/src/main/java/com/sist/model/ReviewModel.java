@@ -32,6 +32,11 @@ public class ReviewModel {
 		  String page=request.getParameter("revpage");
 		  if(page==null)
 			  page="1";
+		  
+		  HttpSession session=request.getSession();
+		  String id=(String)session.getAttribute("id");
+		  String name=(String)session.getAttribute("name");
+		  
 		  ReviewDAO dao=ReviewDAO.newInstance();
 		  StayDAO sdao=StayDAO.newInstance();
 		  sdao.stayRevCountUpdate(Integer.parseInt(objno), Integer.parseInt(typeno));
@@ -56,6 +61,13 @@ public class ReviewModel {
 				  obj.put("content", vo.getContent());
 				  obj.put("dbday", vo.getDbday());
 				  obj.put("revdate", vo.getRevdate());
+				  
+				  if(vo.getWriter().equals(id)||vo.getWriter().equals(name)) {
+					  obj.put("isMe", 1);
+				  }else {
+					  obj.put("isMe", 0);
+				  }
+				  
 				  arr.add(obj);
 			  }
 			  /*
@@ -81,7 +93,8 @@ public class ReviewModel {
 		System.out.println("loading...");
 		HttpSession session=request.getSession();
 		String name=(String)session.getAttribute("name");
-		String writer=name;
+		String id=(String)session.getAttribute("id");
+		String writer=id;
 		
 		String score = "";
 		String content = "";
@@ -138,6 +151,13 @@ public class ReviewModel {
 		String sno=request.getParameter("sno");
 		request.setAttribute("sno", sno);
 		return "../review/reviewinsert.jsp";
+	}
+	
+	@RequestMapping("review/stayreviewDel.do")
+	public void review_stayDel(HttpServletRequest request,HttpServletResponse response) {
+		String revno=request.getParameter("revno");
+		ReviewDAO dao=ReviewDAO.newInstance();
+		dao.reviewStayDelete(Integer.parseInt(revno));
 	}
 	
 }

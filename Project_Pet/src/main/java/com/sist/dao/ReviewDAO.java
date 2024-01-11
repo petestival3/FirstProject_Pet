@@ -110,4 +110,19 @@ public class ReviewDAO {
 			dbconn.disConnection(conn, ps);
 		}
 	}
+	
+	
+	public void reviewStayDelete(int revno) {
+		try {
+			conn=dbconn.getConnection();
+			String sql="DELETE FROM review "
+					+ "WHERE revno="+revno;
+			ps=conn.prepareStatement(sql);
+			ps.executeUpdate();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			dbconn.disConnection(conn, ps);
+		}
+	}
 }

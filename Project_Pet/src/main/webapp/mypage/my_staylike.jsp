@@ -29,14 +29,6 @@ height: 130px;
     border-bottom: 1px solid #f2f2f2;
 }
 </style>
-<script type="text/javascript">
-$(function(){
-	$(.'detailBtn').click(function(){
-		let sno=$(this).attr('data-sno');
-		location.href="../stay/detail_before.do?stayno="+sno;
-	})
-})
-</script>
 </head>
 <body>
 <div class="conatiner">
@@ -57,7 +49,7 @@ $(function(){
     <td>${vo.name }</td>
     <td class="text-center" width="80px;">★ ${vo.score }</td>
     <td>
-    <button class="btn btn-sm btn-info detailBtn" data-sno=${vo.sno } style="width: 80px; height: 40px; margin-left: 10px;">상세보기</button>
+     <a href="../stay/detail_before.do?stayno=${vo.sno }" class="btn btn-sm btn-info" style="margin-left: 20px; padding-bottom:2px ">상세보기</a>
     </td>
    </tr>
    </c:forEach>
