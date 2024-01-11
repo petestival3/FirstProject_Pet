@@ -9,13 +9,26 @@
 SELECT cbno,p_name,buy_price,buy_date,p_state,p_image,reciepient,phone,buy_address,request_content,buy_count
 FROM cart_buy c JOIN PRODUCT_DETAIL pd 
 ON c.pNO = pd.PNO 
-WHERE userid=#{id} 
+WHERE userid=#{id}
 <choose>
 <otherwise>
 AND (buy_ok!='NO')
 </otherwise>
 </choose>
 </select>
+<select id="myShipList" resultMap="svo" parameterType="string">
+SELECT reciepient,phone,buy_address,request_content,buy_count,cbno,buy_date
+FROM cart_buy c JOIN PRODUCT_DETAIL pd 
+ON c.pNO = pd.PNO 
+WHERE userid=#{id}
+<choose>
+<otherwise>
+AND (buy_ok!='NO') 
+</otherwise>
+</choose>
+GROUP BY buy_date
+</select>
+
 <update id="mybuyCancel" parameterType="hashmap">
 UPDATE cart_buy SET buy_ok='CANCELWAIT', p_state='결제취소대기' WHERE userid=#{id} AND cbno=#{cbno}
 </update>

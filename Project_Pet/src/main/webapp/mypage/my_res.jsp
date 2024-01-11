@@ -17,9 +17,8 @@
 
 <style type="text/css">
 .row .my_res{
-	width: 850px;
-	margin: 0px auto;
-	margin: 35px 0 0 20px;
+	width: 800px;
+	margin: 20px 0 0 30px;
 }
 .myres_table {
 width: 890px;
@@ -31,6 +30,9 @@ height: 130px;
 }
 .myres_table tr {
     border-bottom: 1px solid #f2f2f2;
+}
+.myres_table h4{
+ margin-bottom: 100px;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -57,8 +59,8 @@ height: 130px;
 <body>
 <div class="conatiner">
 <div class="row my_res">
- <table class="myres_table">
-  <h4 class="text-center">호텔 예약내역</h4>
+<h4 class="text-center">&nbsp;호텔 예약내역</h4>
+ <table class="myres_table" style="margin-top: 20px;">
    <tr>
     <th class="text-center"></th>
     <th class="text-center">호텔명</th>
@@ -67,6 +69,10 @@ height: 130px;
     <th class="text-center">예약상태</th>
     <th class="text-center">예약취소</th>
    </tr>
+   <c:if test="${empty list}">
+	<td class="text-center" colspan="7">예약내역이 없습니다.</td>
+	</c:if>
+	<c:if test="${not empty list}">
    <c:forEach var="vo" items="${list }">
    <c:choose>
    <c:when test="${not empty vo.roomimage}">
@@ -100,7 +106,7 @@ height: 130px;
 	</c:otherwise>
 	</c:choose>
    </c:forEach>
-
+</c:if>
  
  </table>
  </div>

@@ -16,10 +16,9 @@
 	rel="stylesheet">
 
 <style type="text/css">
-.row .my_buy {
-	width: 850px;
-	margin: 0px auto;
-	margin: 35px 0 0 20px;
+.row .my_buy{
+	width: 800px;
+	margin: 20px 0 0 30px;
 }
 
 .mybuy_table {
@@ -68,8 +67,10 @@
 <body>
 	<div class="conatiner">
 		<div class="row my_buy" style="flex: center;">
-			<table class="mybuy_table">
-				<h3 class="text-center">상품 결제내역</h3>
+			<h4 class="text-center">&nbsp;상품 결제내역</h4>
+			<table class="mybuy_table" style="margin-top: 20px;">
+				
+				
 				<tr>
 					<th class="text-center" width="15%"></th>
 					<th class="text-center" width="25%" style="text-align: center">상품명</th>
@@ -79,6 +80,10 @@
 					<th class="text-center" width="15%">배송상태</th>
 					<th class="text-center" width="10%">결제상태</th>
 				</tr>
+				<c:if test="${empty bList}">
+				<td class="text-center" colspan="7">결제내역이 없습니다.</td>
+				</c:if>
+				<c:if test="${not empty bList}">
 				<c:forEach var="vo" items="${bList }">
 					<c:choose>
 						<c:when test="${not empty vo.pvo.p_name}">
@@ -112,6 +117,21 @@
 					</c:choose>
 					</td>
 					</tr>
+					<tr>
+							<th>배송정보</th>
+						</tr>
+						<tr>
+							<th class="text-left">${vo.reciepient }&nbsp;</th>
+						</tr>
+						<tr>
+							<td class="text-left">${vo.buy_address }&nbsp;</td>
+						</tr>
+						<tr>
+							<td class="text-left" width="30%;">${vo.phone }&nbsp;</td>
+						</tr>
+						<tr>
+							<td class="text-left" "colspan="4">${vo.request_content eq null?"요청사항없음":vo.request_content }&nbsp;</td>
+						</tr>
 					</c:when>
 					<c:otherwise>
 						<tr>
@@ -120,7 +140,9 @@
 					</c:otherwise>
 					</c:choose>
 				</c:forEach>
+				</c:if>
 			</table>
+			
 		</div>
 
 	</div>
