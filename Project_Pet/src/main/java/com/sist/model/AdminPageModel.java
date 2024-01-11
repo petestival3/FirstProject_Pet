@@ -35,11 +35,11 @@ public class AdminPageModel {
 
 	@RequestMapping("adminPage/ad_res.do")
 	public String admin_res(HttpServletRequest request, HttpServletResponse response)
-	{	/*
+	{	
 		List<ReserveStayInfoVO> list=
 			     StayReserveDAO.reserveAdminPageStayListData();
 	  request.setAttribute("list", list);
-		*/
+		
 		request.setAttribute("main_jsp", "../adminPage/ad_page.jsp");
 		request.setAttribute("ad_page_jsp", "../adminPage/ad_res.jsp");
 		

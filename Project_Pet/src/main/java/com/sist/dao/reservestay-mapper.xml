@@ -22,7 +22,7 @@
     
   <!-- 어드민페이지 예약정보 읽기-->
   <select id="reserveAdminPageStayListData" resultType="ReserveStayInfoVO">
-    SELECT rno, chectin, chectout, roomname, OK, id
+    SELECT rno, checkin, checkout, roomname, OK, id
      FROM RESERVE_STAY_INFO
      ORDER BY RNO DESC
   </select>
