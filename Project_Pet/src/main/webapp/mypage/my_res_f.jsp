@@ -46,26 +46,16 @@
     <td class="text-center">${vo.rf_time }</td>
     <td class="text-center">${vo.rf_inwon }</td>
     <td colspan="4" class="text-center">
-    <!-- 
-      <c:if test="${vo.rf_ok==1 }">
-        <span class="primary-btn">예약완료</span>
-      </c:if>
-      <c:if test="${vo.rf_ok==0 }">
-        <span class="primary-btn" style="background-color: gray; !important;">예약대기</span>
-      </c:if>
-      <a href="../mypage/my_res_f_cancel.do?rf_no=${vo.rf_no }" class="primary-btn">취소</a>
-     -->
     <c:if test="${vo.rf_ok==2 }">
         <span style="background-color: gray;" class="primary-btn">취소내역</span>
       </c:if>
       <c:if test="${vo.rf_ok==1 }">
         <span class="primary-btn" style="background-color: lightblue;">예약완료</span>
-        <a href="../adminPage/ad_res_f_no.do?rf_no=${vo.rf_no }" style="background-color: black;" class="primary-btn">취소하기</a>
+        <a href="../mypage/my_res_f_cancel.do?rf_no=${vo.rf_no }" style="background-color: black;" class="primary-btn">취소하기</a>
       </c:if>
       <c:if test="${vo.rf_ok==0 }">
         <span class="primary-btn">예약대기</span>
       </c:if>
-    
     </td>
    </tr>
    </c:forEach>
