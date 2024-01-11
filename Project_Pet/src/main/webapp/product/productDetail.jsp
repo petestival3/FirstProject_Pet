@@ -419,9 +419,9 @@ function qnaList(page){//ajax로 qna리스트 받아올 함수
 						let printQwriter = "";
 							if (vo.qwriter.length > 3) {
 							    printQwriter=  vo.qwriter.slice(0, -3) + '***';
-							} else if (longString.length === 3) {
+							} else if (vo.qwriter.length === 3) {
 							    printQwriter =  vo.qwriter.slice(0, -2) + '**';
-							} else if (longString.length === 2) {
+							} else if (vo.qwriter.length === 2) {
 							    printQwriter = '**' + vo.qwriter.slice(0, -1) + '*';
 							} else {
 							    printQwriter = vo.qwriter;
