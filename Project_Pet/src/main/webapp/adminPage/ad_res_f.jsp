@@ -75,15 +75,15 @@
     <td class="text-center">${vo.rf_inwon }</td>
     <td colspan="4" class="text-center">
     <c:if test="${vo.rf_ok==2 }">
-        <a href="../mypage/my_res_f_cancel.do?rf_no=${vo.rf_no }" style="background-color: gray;" class="primary-btn">취소내역삭제</a>
+        <a href="../adminPage/ad_res_f_cancel.do?rf_no=${vo.rf_no }" style="background-color: gray;" class="primary-btn">취소내역삭제</a>
       </c:if>
       <c:if test="${vo.rf_ok==1 }">
         <span class="primary-btn" style="background-color: lightblue;">예약완료</span>
-        <a href="../adminPage/my_res_f_no.do?rf_no=${vo.rf_no }" style="background-color: black;" class="primary-btn">비승인</a>
+        <a href="../adminPage/ad_res_f_no.do?rf_no=${vo.rf_no }" style="background-color: black;" class="primary-btn">비승인</a>
       </c:if>
       <c:if test="${vo.rf_ok==0 }">
-        <a href="../adminPage/my_res_f_ok.do?rno=${vo.rf_no }" class="primary-btn">승인</a>
-        <a href="../adminPage/my_res_f_no.do?rf_no=${vo.rf_no }" style="background-color: black;" class="primary-btn">비승인</a>
+        <a href="../adminPage/ad_res_f_ok.do?rf_no=${vo.rf_no }" class="primary-btn">승인</a>
+        <a href="../adminPage/ad_res_f_no.do?rf_no=${vo.rf_no }" style="background-color: black;" class="primary-btn">비승인</a>
       </c:if>
     </td>
    </tr>

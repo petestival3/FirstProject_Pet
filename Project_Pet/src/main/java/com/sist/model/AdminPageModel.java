@@ -53,7 +53,18 @@ public class AdminPageModel {
 		return "../main/main.jsp";
 	}
 	
-	@RequestMapping("adminPage/my_res_f_ok.do")
+	//장례식장 예약반려내역 취소
+	  @RequestMapping("adminPage/ad_res_f_cancel.do")
+	  public String myres_f_cancel(HttpServletRequest request,
+			   HttpServletResponse response)
+	  {
+		  String rf_no=request.getParameter("rf_no");
+		  ReserveFuneralDAO dao=new ReserveFuneralDAO();
+		  dao.Funeralreservedelete(Integer.parseInt(rf_no));
+		  return "redirect:../adminPage/ad_res_f.do";
+	  }
+	//장례식장 예약 승인
+	@RequestMapping("adminPage/ad_res_f_ok.do")
 	  public String admin_reserve_ok(HttpServletRequest request,
 			  HttpServletResponse response)
 	  {
@@ -62,8 +73,8 @@ public class AdminPageModel {
 		  ReserveFuneralDAO.reserveAdminOk(Integer.parseInt(rf_no));
 		  return "redirect:../adminPage/ad_res_f.do";
 	  }
-	
-	 @RequestMapping("adminPage/my_res_f_no.do")
+	//장례식장 예약 반려
+	 @RequestMapping("adminPage/ad_res_f_no.do")
 	  public String admin_reserve_no(HttpServletRequest request,
 			  HttpServletResponse response)
 	  {

@@ -86,6 +86,17 @@ public String resList_f(HttpServletRequest request, HttpServletResponse response
 	return "../main/main.jsp";
 }
 
+//장례식장 예약 취소
+@RequestMapping("mypage/my_res_f_cancel.do")
+public String myres_f_cancel(HttpServletRequest request,
+		   HttpServletResponse response)
+{
+	  String rf_no=request.getParameter("rf_no");
+	  ReserveFuneralDAO dao=new ReserveFuneralDAO();
+	  dao.Funeralreservedelete(Integer.parseInt(rf_no));
+	  return "redirect:../mypage/my_res_f.do";
+}
+
 @RequestMapping("mypage/my_wish.do")
 public String wishList(HttpServletRequest request, HttpServletResponse response)
 {
