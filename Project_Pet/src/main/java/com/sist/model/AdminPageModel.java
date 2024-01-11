@@ -228,6 +228,20 @@ public class AdminPageModel {
 		
 		return "redirect:../adminPage/ad_productQnaList.do";
 	   }
+	@RequestMapping("admin/ad_product_stateHandleList.do")
+	   public String ad_product_stateHandle(HttpServletRequest request, HttpServletResponse response) {
+	
+		
+	    //p_image,p_name
+		//userid,buy_date,buy_state,cbno
+		
+		
+		request.setAttribute("main_jsp", "../adminPage/ad_page.jsp");
+		request.setAttribute("ad_page_jsp", "../adminPage/ad_productState.jsp");
+		
+		return "../main/main.jsp";
+		
+	   }
 	
 
 }

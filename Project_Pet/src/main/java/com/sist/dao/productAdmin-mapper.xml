@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.dao.productAdmin-mapper">
+
+
+<!-- <resultMap type="com.sist.ShoppingVO" id="cartData">
+
+<result property="pvo.p_imgage" column="p_image"/>
+<result property="pvo.p_name" column="p_name"/>
+
+
+</resultMap>
+<select id="productStateList" parameterType="map" resultMap="cartData">
+ SELECT pno,p_image,p_name,userid,TO_CHAR(buy_date,'YYYY-MM-DD M),buy_state
+
+</select>
+-->
+</mapper>

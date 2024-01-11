@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sist.controller.RequestMapping;
-
-import com.sist.dao.WalkDAO;
 import com.sist.dao.*;
 import com.sist.vo.*;
 import com.sist.vo.WalkVO;
@@ -29,6 +27,23 @@ public class WalkModel {
 	//산책로 일반 리스트 모델
 	@RequestMapping("walk/walkList.do")
 	public String walkList(HttpServletRequest request, HttpServletResponse response) {
+		  HttpSession session=request.getSession();
+			String userid=(String)session.getAttribute("id");
+			int cartNum=0;
+			if(userid!=null) {
+				 cartNum=ShoppingDAO.CartNum(userid);
+			}
+			request.setAttribute("cartNum",cartNum);
+			StayDAO sdao=StayDAO.newInstance();
+			int likeNum=0;
+			if(userid!=null) {
+				likeNum=sdao.likeCountHeader(userid);
+			}else {
+				likeNum=0;
+			}
+			request.setAttribute("likeNum", likeNum);
+			
+		
 		String strpage= request.getParameter("page");
 		String loc=request.getParameter("loc");
 		WalkDAO dao=WalkDAO.newInstance();
@@ -70,6 +85,23 @@ public class WalkModel {
 	//산책로 상세보기 모델
 	@RequestMapping("walk/walkDetail.do")
 	public String walkDetail(HttpServletRequest request, HttpServletResponse response) {
+		  HttpSession session=request.getSession();
+			String userid=(String)session.getAttribute("id");
+			int cartNum=0;
+			if(userid!=null) {
+				 cartNum=ShoppingDAO.CartNum(userid);
+			}
+			request.setAttribute("cartNum",cartNum);
+			StayDAO sdao=StayDAO.newInstance();
+			int likeNum=0;
+			if(userid!=null) {
+				likeNum=sdao.likeCountHeader(userid);
+			}else {
+				likeNum=0;
+			}
+			request.setAttribute("likeNum", likeNum);
+			
+		
 		
 		String wno=request.getParameter("wno");
 		
