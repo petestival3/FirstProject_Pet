@@ -643,7 +643,9 @@ function roomlist(sno,roompage){
                                 <div class="product__details__tab__desc">
                                 <div style="height: 30px; float: right">
                             <!--     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="float:right;">리뷰 작성</button>  -->
-                                <button type="button" id="review_write_Btn" class="btn btn-info btn-sm" style="float:right;">리뷰 작성</button> 
+                            	<c:if test="${sessionScope.id!=null }">
+                                  <button type="button" id="review_write_Btn" class="btn btn-info btn-sm" style="float:right;">리뷰 작성</button> 
+                                </c:if>  
                                 </div>
                                 <div class="review-container" id="reviewprint" data-totalno="${reviewtotal }">
 							      
