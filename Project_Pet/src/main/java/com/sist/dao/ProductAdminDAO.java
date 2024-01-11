@@ -183,4 +183,29 @@ public class ProductAdminDAO {
 	
 		
 	}
+	
+	
+	
+	public static int maechul(int type) {
+		SqlSession session =null;
+	
+		int maechul=0;
+		try {
+			
+			session=ssf.openSession();
+		maechul= session.selectOne("maechul",type);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+		}
+	return maechul;
+		
+	}
 }

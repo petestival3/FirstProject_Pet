@@ -2,6 +2,7 @@ package com.sist.model;
 
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -234,7 +235,7 @@ public class AdminPageModel {
 		
 		return "redirect:../adminPage/ad_productQnaList.do";
 	   }
-	@RequestMapping("admin/ad_product_stateHandleList.do")
+	@RequestMapping("adminPage/ad_product_stateHandleList.do")
 	   public String ad_product_stateHandle(HttpServletRequest request, HttpServletResponse response) {
 		String page=request.getParameter("page");
 		String type=request.getParameter("type");
@@ -284,7 +285,7 @@ public class AdminPageModel {
 	
 	
 	
-	@RequestMapping("admin/ad_product_stateHandleUpdate.do")
+	@RequestMapping("adminPage/ad_product_stateHandleUpdate.do")
 	   public String ad_product_stateHandleUpdate(HttpServletRequest request, HttpServletResponse response) {
 	
 		String utype=request.getParameter("utype");
@@ -404,6 +405,27 @@ ProductAdminDAO.pstackUpdate(map);
 			return "ad_productPstackHandleList.do?msg="+msg;
 			
 		
+	}
+	
+	
+	
+	@RequestMapping("adminPage/maechul.do")
+	public String maechul(HttpServletRequest request, HttpServletResponse response) {
+			
+		String type=request.getParameter("type");
+		if(type==null) {
+			type="1";
+		}
+		int maechul=ProductAdminDAO.maechul(Integer.parseInt(type));
+		System.out.println(maechul);
+		DecimalFormat decimalFormat = new DecimalFormat("###,###원");
+		String machulPrice = decimalFormat.format(maechul); // buy_intprice는 숫자 변수
+		request.setAttribute("machulPrice", machulPrice);
+		request.setAttribute("type", type);
+	 	request.setAttribute("main_jsp", "../adminPage/ad_page.jsp");
+			request.setAttribute("ad_page_jsp","../adminPage/ad_maechul.jsp");
+			return "../main/main.jsp";
+			
 	}
 
 }

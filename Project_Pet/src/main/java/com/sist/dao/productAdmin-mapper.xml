@@ -122,6 +122,23 @@ where pno=#{pno}
 <select id="getpnotoUp" parameterType="map" resultType="int">
 select pno from CART_BUY where cbno=#{cbno}
 </select>
+
+
+
+<select id="maechul" resultType="int" parameterType="int">
+    SELECT SUM(BUY_INTPRICE)
+    FROM CART_BUY
+    WHERE (BUY_OK != 'NO' AND BUY_OK != 'CANCEL') AND TRUNC(BUY_DATE) 
+    <if test="type==1">
+	 = TRUNC(SYSDATE)
+    </if>
+    <if test="type==2">
+      >= TRUNC(SYSDATE) - 7
+    </if>
+    <if test="type==3">
+        >= TRUNC(SYSDATE) - 30
+    </if>
+</select>
 </mapper>
 
 

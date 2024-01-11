@@ -19,11 +19,11 @@ vertical-align: middle;
 <body>
 <div style="margin-top:25px;">
 <div style="margin-bottom:10px;">
-<a href="../admin/ad_product_stateHandleList.do?type=1" class="btn-sm ${type==1?'btn-primary':'btn-info'} ">결제완료</a>
-<a href="../admin/ad_product_stateHandleList.do?type=2" class="btn-sm ${type==2?'btn-primary':'btn-info'} ">결제취소 대기중</a>
-<a href="../admin/ad_product_stateHandleList.do?type=3" class="btn-sm ${type==3?'btn-primary':'btn-info'} ">결제취소완료</a>
-<a href="../admin/ad_product_stateHandleList.do?type=4" class="btn-sm ${type==4?'btn-primary':'btn-info'} ">배송중</a>
-<a href="../admin/ad_product_stateHandleList.do?type=5" class="btn-sm ${type==5?'btn-primary':'btn-info'} ">배송완료</a>
+<a href="../adminPage/ad_product_stateHandleList.do?type=1" class="btn-sm ${type==1?'btn-primary':'btn-info'} ">결제완료</a>
+<a href="../adminPage/ad_product_stateHandleList.do?type=2" class="btn-sm ${type==2?'btn-primary':'btn-info'} ">결제취소 대기중</a>
+<a href="../adminPage/ad_product_stateHandleList.do?type=3" class="btn-sm ${type==3?'btn-primary':'btn-info'} ">결제취소완료</a>
+<a href="../adminPage/ad_product_stateHandleList.do?type=4" class="btn-sm ${type==4?'btn-primary':'btn-info'} ">배송중</a>
+<a href="../adminPage/ad_product_stateHandleList.do?type=5" class="btn-sm ${type==5?'btn-primary':'btn-info'} ">배송완료</a>
 </div>
 <table class="table text-center" style="width:870px;">
 		<thead class="qna_firstData">
@@ -52,15 +52,15 @@ vertical-align: middle;
 <td width=20% class="middle"  style="text-align: center; vertical-align: middle;">
 
 <c:if test="${type==1}">
-<a href="../admin/ad_product_stateHandleUpdate.do?utype=1&cbno=${vo.cbno }&buyc=${vo.buy_count}" class="btn-sm btn-info">배송중처리</a>
+<a href="../adminPage/ad_product_stateHandleUpdate.do?utype=1&cbno=${vo.cbno }&buyc=${vo.buy_count}" class="btn-sm btn-info">배송중처리</a>
 </c:if>
 
 <c:if test="${type==2}">
-<a href="../admin/ad_product_stateHandleUpdate.do?utype=2&cbno=${vo.cbno }&buyc=${vo.buy_count}" class="btn-sm btn-danger">결제취소 승인</a>
+<a href="../adminPage/ad_product_stateHandleUpdate.do?utype=2&cbno=${vo.cbno }&buyc=${vo.buy_count}" class="btn-sm btn-danger">결제취소 승인</a>
 </c:if>
 
 <c:if test="${type==4}">
-<a href="../admin/ad_product_stateHandleUpdate.do?utype=3&cbno=${vo.cbno }&buyc=${vo.buy_count}" class="btn-sm btn-primary">배송완료처리</a>
+<a href="../adminPage/ad_product_stateHandleUpdate.do?utype=3&cbno=${vo.cbno }&buyc=${vo.buy_count}" class="btn-sm btn-primary">배송완료처리</a>
 </c:if>
 
 
