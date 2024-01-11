@@ -49,7 +49,7 @@
             font-size: 16px;
         }
         button[type="button"]{
-            width: 45%;
+            width: 90%;
             padding: 10px;
             margin-bottom: 15px;
             box-sizing: border-box;
@@ -168,7 +168,6 @@ $(function(){
 		
 	<form action="../review/insert_ok.do" enctype="multipart/form-data" method="post">	
         <button type="button" id="review_submit_Btn" class="btn btn-default">저장</button>
-		<button type="button" id="review_cancel_Btn" class="btn btn-default">취소</button>
     </form>
 </div>
 
