@@ -49,11 +49,14 @@ function stayhome(fds){
    overflow: hidden; /* 초과된 텍스트를 감추기위해 오버플로우를 숨김 */
    text-overflow: ellipsis; /* 말줄임표 만드는 속성 */
 }
+#main_sb{
+   right:20px !important;
+}
 </style>
 </head>
 <body>
    <!-- 예약 사이드 매뉴 시작 -->
-   <div class="res_submenu" style="z-index: 9999 !important;">
+   <div class="res_submenu" id="main_sb" style="z-index: 9999 !important;">
       <a href="../reserve/reserve_funeral.do"> <i class="xi-calendar-add"></i>
          <p>예약하기</p>
       </a>
