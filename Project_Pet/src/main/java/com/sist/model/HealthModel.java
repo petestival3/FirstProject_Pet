@@ -67,7 +67,7 @@ public class HealthModel {
 	
 	request.setAttribute("hspt_jsp", "../health/find.jsp");
 	request.setAttribute("main_jsp", "../health/hsptmain.jsp");
-
+	commonsModel.commonsHeaderData(request);
 		return "../main/main.jsp";
 	}
 	
@@ -117,7 +117,7 @@ public class HealthModel {
 	request.setAttribute("statelist", statelist);
 	request.setAttribute("hspt_jsp", "../health/find.jsp");
 	request.setAttribute("main_jsp", "../health/hsptmain.jsp");
-
+	commonsModel.commonsHeaderData(request);
 		return "../main/main.jsp";
 	}
 
@@ -177,7 +177,7 @@ request.setAttribute("list", list);
 request.setAttribute("statelist", statelist);
 request.setAttribute("hspt_jsp", "../health/hsptsearch.jsp");
 request.setAttribute("main_jsp", "../health/hsptmain.jsp");
-
+commonsModel.commonsHeaderData(request);
 	return "../main/main.jsp";
 }
 
@@ -255,6 +255,7 @@ public String hsptNewsMain(HttpServletRequest request, HttpServletResponse respo
 	request.setAttribute("curpage", curpage);
 	request.setAttribute("list3", list3);
 	request.setAttribute("main_jsp", "../health/newsmain.jsp");
+	commonsModel.commonsHeaderData(request);
 	return "../main/main.jsp";
 }
 
@@ -278,12 +279,29 @@ public String newsDetailList(HttpServletRequest request,HttpServletResponse resp
 	HealthVO vo=dao.NewsDetailList(Integer.parseInt(no)); // 뉴스 디테일 데이터 출력
 	
 	List<WalkReplyVO> list=dao.newsReplyShow(Integer.parseInt(no)); // 뉴스 댓글 데이터 출력
-
+	Cookie[] cookies=request.getCookies();
+	
+	List<HealthVO> NList=new ArrayList<HealthVO>();
+	if(cookies!=null)
+	{
+		for(int i=cookies.length-1;i>=0;i--)
+		{
+			if(cookies[i].getName().startsWith("news_"))
+			{
+				String no2=cookies[i].getValue();
+				HealthVO hvo=dao.NewsDetailList(Integer.parseInt(no2));
+				NList.add(hvo);
+			}
+		}
+	}
+	
+	request.setAttribute("NList", NList);
 	request.setAttribute("no", no);
 	request.setAttribute("vo", vo);
 	request.setAttribute("list", list);
 	
 	request.setAttribute("main_jsp", "../health/newsdetail.jsp");
+	commonsModel.commonsHeaderData(request);
 	return "../main/main.jsp";
 }
 

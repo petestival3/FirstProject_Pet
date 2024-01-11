@@ -17,7 +17,7 @@
 <body>
 
 	<div class="hspt_main">
-	<section class="breadcrumb-section set-bg" data-setbg="../img/banner_2.jpg">
+	<section class="breadcrumb-section set-bg" data-setbg="../img/bread.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">

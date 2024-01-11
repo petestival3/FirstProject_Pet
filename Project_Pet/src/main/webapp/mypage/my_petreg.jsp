@@ -46,6 +46,11 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+    $(function() {
+		$('#prBtn').click(function(){
+			alert("마이펫 등록이 완료되었습니다")
+		})
+	})
 </script>
 <style type="text/css">
 
@@ -157,7 +162,7 @@ p span {
                         </ul>
                      </div>
                         <div class="flex col-lg-6">
-                        <button type="submit" class="site-btn"
+                        <button type="submit" id="prBtn" class="site-btn"
                            style="margin: 20px 0 0 50px;">등록</button>
                          <button type="button" class="site-btn" style="margin: 20px 0 0 20px;"
                           onclick="javascript:history.back()">취소</button>

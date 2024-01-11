@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/myinfo.css">
 <link rel="stylesheet" href="../shadow/css/shadowbox.css">
+
 <script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -33,6 +34,10 @@ $(function(){
 			height:350
 		})
 	})
+	$('#contact-submit').click(function(){
+		({
+			alert("회원정보 수정이 완료되었습니다")
+		})
 	})
 </script>
 <style type="text/css">
@@ -128,7 +133,7 @@ $(function(){
 				</fieldset>
 				
 			</form>
-			<fieldset id="unreg">
+			<fieldset id="unreg" style="flex: right">
 					<span>회원탈퇴를 원하시면 탈퇴 버튼을 눌러주세요 !</span>
 					<button class="btn btn-sm" id="unregBtn">
 					<a href="../mypage/my_unreg.do">탈퇴</a></button>

@@ -10,7 +10,7 @@
 .row.my_unreg
 {
 	width: 500px;
-	margin: 0 0 100px 300px;
+	margin: 80px 0 100px 300px;
 }
 </style>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>

@@ -69,6 +69,7 @@ public class MypageModel {
 	    request.setAttribute("myvo", myvo);
 	    request.setAttribute("mypage_jsp", "../mypage/my_main.jsp");
 	    request.setAttribute("main_jsp", "../mypage/mypage.jsp");
+	    commonsModel.commonsHeaderData(request);
 	    return "../main/main.jsp";
 	}
 
@@ -82,7 +83,7 @@ public String resList_f(HttpServletRequest request, HttpServletResponse response
     request.setAttribute("list", list);
 	request.setAttribute("mypage_jsp", "../mypage/my_res_f.jsp");
 	request.setAttribute("main_jsp", "../mypage/mypage.jsp");
-	
+	commonsModel.commonsHeaderData(request);
 	return "../main/main.jsp";
 }
 
@@ -109,7 +110,7 @@ public String wishList(HttpServletRequest request, HttpServletResponse response)
 	  request.setAttribute("mypage_jsp", "../mypage/my_wish.jsp");
 	  request.setAttribute("main_jsp", "../mypage/mypage.jsp");
 	  //CommonModel.commonRequestData(request);
-	
+
 	return "../main/main.jsp";
 }
 
@@ -210,6 +211,7 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 	    } catch (Exception ex) {}
 	    request.setAttribute("vo", vo);
 	    request.setAttribute("main_jsp", "../mypage/my_petinfo.jsp");
+	    commonsModel.commonsHeaderData(request);
 	    return "../main/main.jsp";
 	}
 
@@ -260,7 +262,7 @@ public String petUpdate(HttpServletRequest request, HttpServletResponse response
     dao.mypagePetUpdate(id,vo);
  
 
-    return "redirect:../mypage/my_petinfo.do";
+    return "redirect:../mypage/mypage.do";
 
 }
 @RequestMapping("mypage/my_info.do")
@@ -275,7 +277,9 @@ public String myInfo(HttpServletRequest request, HttpServletResponse response) {
     MemberVO vo = dao.mypageMy(id);
 
     request.setAttribute("vo", vo);
+    
     request.setAttribute("main_jsp", "../mypage/my_info.jsp");
+    commonsModel.commonsHeaderData(request);
     return "../main/main.jsp";
 }
 @RequestMapping("mypage/my_update.do")
@@ -315,13 +319,16 @@ public String myUpdate(HttpServletRequest request, HttpServletResponse response)
    dao.mypageMyUpdate(id, vo);
 
     request.setAttribute("vo", vo);
+    
     request.setAttribute("main_jsp", "../mypage/my_info.jsp");
-    return "../main/main.jsp";
+    commonsModel.commonsHeaderData(request);
+    return "redirect:../mypage/mypage.do";
 }
 @RequestMapping("mypage/my_unreg.do")
 public String myunreg(HttpServletRequest request, HttpServletResponse response) {
     
 	request.setAttribute("main_jsp", "../mypage/my_unreg.jsp");
+	commonsModel.commonsHeaderData(request);
     return "../main/main.jsp";
     
 }
@@ -334,6 +341,8 @@ public void myunreg_ok(HttpServletRequest request, HttpServletResponse response)
     HttpSession session=request.getSession();
 	String id=(String)session.getAttribute("id");
 	String pwd=request.getParameter("pwd");
+	System.out.println(id);
+	System.out.println(pwd);
 	
 	Map map=new HashMap();
 	map.put("id", id);
@@ -362,7 +371,7 @@ public String resList(HttpServletRequest request, HttpServletResponse response)
 	 request.setAttribute("list", list);
 	request.setAttribute("mypage_jsp", "../mypage/my_res.jsp");
 	request.setAttribute("main_jsp", "../mypage/mypage.jsp");
-	
+	commonsModel.commonsHeaderData(request);
 	return "../main/main.jsp";
 }
 
@@ -391,7 +400,7 @@ public String buyList(HttpServletRequest request, HttpServletResponse response)
 	 request.setAttribute("bList", bList);
 	request.setAttribute("mypage_jsp", "../mypage/my_buy.jsp");
 	request.setAttribute("main_jsp", "../mypage/mypage.jsp");
-	
+	commonsModel.commonsHeaderData(request);
 	return "../main/main.jsp";
 }
 @RequestMapping("mypage/my_buy_delete.do")

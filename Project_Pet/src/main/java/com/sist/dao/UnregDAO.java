@@ -62,8 +62,16 @@ public class UnregDAO {
 				session.close();
 				
 				session=ssf.openSession(true);
-				session.delete("delete_member", map);
+				session.delete("delete_RES_FUNERAL_INFO", map);
 				session.close();
+				
+				session=ssf.openSession(true);
+				session.delete("delete_cart_buy", map);
+				session.close();
+				
+				session=ssf.openSession(true);
+				session.delete("delete_member", map);
+				session.close();		
 	
 	        } 
 			System.out.println(res);

@@ -46,16 +46,17 @@ $(function() {
                 $('#address').text(json.address);
                 $('.name').text(json.name);
                 
-                var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-				mapOption = {
-					center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-					level : 3
-				// 지도의 확대 레벨
-				};
+                var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
+                mapContainer.style.width = "100%";
+                mapContainer.style.height = "450px";
+                
+                var mapOption = {
+                	    center: new kakao.maps.LatLng(33.450701, 126.570667), // 현재는 하드 코딩된 좌표 사용
+                	    level: 3
+                	};
 
-				// 지도를 생성합니다    
-				var map = new kakao.maps.Map(mapContainer, mapOption);
-
+                	// 지도를 생성합니다    
+                	var map = new kakao.maps.Map(mapContainer, mapOption);
 				
 			        // 주소-좌표 변환 객체를 생성합니다
 
@@ -64,13 +65,14 @@ $(function() {
 			        geocoder.addressSearch(
 			          address,
 								function(result, status) {
-
 									// 정상적으로 검색이 완료됐으면 
 									if (status === kakao.maps.services.Status.OK) {
 
 										var coords = new kakao.maps.LatLng(
 												result[0].y, result[0].x);
-
+										
+										map.setCenter(coords);
+										
 										// 결과값으로 받은 위치를 마커로 표시합니다
 										var marker = new kakao.maps.Marker(
 												{
@@ -81,19 +83,25 @@ $(function() {
 										// 인포윈도우로 장소에 대한 설명을 표시합니다
 										var infowindow = new kakao.maps.InfoWindow(
 												{
-													content : '<div class="name" style="width:330px;height:35px; text-align:center;padding:6px 0;" ></div>'
+													content : '<div class="name" style="width:330px;height:35px; text-align:center;padding:6px 0;" >'+ json.name + '</div>'
 												});
-										infowindow.open(map, marker);
+										 infowindow.open(map, marker);
 
-										// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-										map.setCenter(coords);
-									}
+										    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+										    
+
+										    // 크기 변경 후에 호출되어야 하는 relayout
+										    map.relayout();
+										    
+										    map.setCenter(coords);
+										}
+									
 								});
 
                 $('#dialog').dialog({
                     autoOpen: false,
-                    width: 1150,
-                    height: 650,
+                    width: 1200,
+                    height: 550,
                     modal: true
                 }).dialog("open");
 
@@ -191,11 +199,7 @@ $(function() {
 										<h4>Address</h4>
 										<p id="address"></p></td>
 								</tr>
-								<tr>
-									<td width="35%" align="center"><span
-										class="icon_clock_alt"></span>
-										<h4>Reservation</h4> <a href="#">예약하기</a></td>
-								</tr>
+								
 							</table>
 							<a href="hsptsearch.do?page=${curpage}&st=${st }&fd=${fd }" class="btn btn-sm btn-info hspfBtn">병원 검색</a>
 						</div>

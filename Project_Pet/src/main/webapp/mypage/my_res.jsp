@@ -68,6 +68,8 @@ height: 130px;
     <th class="text-center">예약취소</th>
    </tr>
    <c:forEach var="vo" items="${list }">
+   <c:choose>
+   <c:when test="${not empty vo.roomimage}">
    <tr>
     <td class="text-center">
      <a href="#"><img src="${vo.roomimage }" style="width: 170px; height: 150px"></a>
@@ -90,7 +92,16 @@ height: 130px;
     <button class="btn btn-sm btn-info cancel" data-rno=${vo.stay_no } style="width: 80px; height: 40px; margin-left: 10px;">예약취소</button>
     </td>
    </tr>
+	</c:when>
+	<c:otherwise>
+	<tr>
+ 	<td></td>
+ 	</tr>
+	</c:otherwise>
+	</c:choose>
    </c:forEach>
+
+ 
  </table>
  </div>
  </div>

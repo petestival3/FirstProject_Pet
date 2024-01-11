@@ -16,30 +16,33 @@
 	rel="stylesheet">
 
 <style type="text/css">
-
-.row .my_buy{
+.row .my_buy {
 	width: 850px;
 	margin: 0px auto;
 	margin: 35px 0 0 20px;
 }
+
 .mybuy_table {
-width: 890px;
-margin-top: 10px;
+	width: 890px;
+	margin-top: 10px;
 }
 
-.mybuy_table td{
-height: 130px;
+.mybuy_table td {
+	height: 130px;
 }
+
 .mybuy_table tr {
-    border-bottom: 1px solid #f2f2f2;
-}
-.myship_table{
-width: 890px;
-}
-.myship_table th{
- border-bottom: 1px solid #f2f2f2;
+	border-bottom: 1px solid #f2f2f2;
 }
 
+.myship_table {
+	width: 890px;
+	margin-bottom: 150px;
+}
+
+.myship_table th {
+	border-bottom: 1px solid #f2f2f2;
+}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -63,53 +66,63 @@ width: 890px;
 </script>
 </head>
 <body>
-<div class="conatiner">
-<div class="row my_buy">
- <table class="mybuy_table">
-  <h3 class="text-center">상품 결제내역</h3>
-   <tr>
-    <th class="text-center" width="20%"></th>
-    <th class="text-center" width="25%" style="text-align: center">상품명</th>
-    <th class="text-center" width="10%">상품수량</th>
-    <th class="text-center" width="10%">결제금액</th>
-    <th class="text-center" width="15%">결제일자</th>
-    <th class="text-center" width="10%">배송상태</th>
-    <th class="text-center" width="10%">결제취소</th>
-   </tr>
-  <c:forEach var="vo" items="${bList }">
-   <tr>
-    <td class="text-center">
-     <a href="#"><img src="${vo.pvo.p_image }" style="width: 150px; height: 120px"></a>
-    </td>
-    <td>${vo.pvo.p_name }</td>
-    <td class="text-center" width="80px;">${vo.buy_count }개</td>
-    <td class="text-center" width="80px;">${vo.buy_price }</td>
-    <td class="text-center" width="80px;">${vo.buy_date }</td>
-     <td class="text-center" width="80px;">${vo.p_state }</td>
-     <td>
-    <button class="btn btn-sm btn-info cancel" data-cbno=${vo.cbno } style="width: 80px; height: 40px;">결제취소</button>
-   </td>
-   </tr>
- </table>
- <table class="myship_table">
- <tr>
- <th>배송정보</th>
- </tr>
- <tr>
-  <td class="text-left">${vo.reciepient }&nbsp;</td>
- </tr>
- <tr>
-  <td class="text-left">${vo.buy_address }&nbsp;</td>
- </tr>
- <tr>
-   <td class="text-left" width="30%;">${vo.phone }&nbsp;</td>
- </tr>
- <tr>
-   <td class="text-left" "colspan="4">${vo.request_content eq null?"요청사항없음":vo.request_content }&nbsp;</td>
- </tr>
- </table>
- </c:forEach>
- </div>
- </div>
+	<div class="conatiner">
+		<div class="row my_buy" style="flex: center;">
+			<table class="mybuy_table">
+				<h3 class="text-center">상품 결제내역</h3>
+				<tr>
+					<th class="text-center" width="15%"></th>
+					<th class="text-center" width="25%" style="text-align: center">상품명</th>
+					<th class="text-center" width="10%">수량</th>
+					<th class="text-center" width="10%">결제금액</th>
+					<th class="text-center" width="15%">결제일자</th>
+					<th class="text-center" width="15%">배송상태</th>
+					<th class="text-center" width="10%">결제상태</th>
+				</tr>
+				<c:forEach var="vo" items="${bList }">
+					<c:choose>
+						<c:when test="${not empty vo.pvo.p_name}">
+							<tr>
+								<td class="text-center"><a href="#"><img
+										src="${vo.pvo.p_image}" style="width: 150px; height: 120px"></a>
+								</td>
+								<td>${vo.pvo.p_name }</td>
+								<td class="text-center" width="80px;">${vo.buy_count }개</td>
+								<td class="text-center" width="80px;">${vo.buy_price }</td>
+								<td class="text-center" width="80px;">${vo.buy_date }</td>
+								<td class="text-center" width="80px;">${vo.p_state }</td>
+								<td>
+					<c:choose>
+						<c:when test="${vo.p_state eq '배송중' }">
+							<button class="btn btn-sm btn-info buyOk"
+								style="width: 80px; height: 40px;">취소불가</button>
+						</c:when>
+						<c:when test="${vo.p_state eq '배송완료' }">
+							<button class="btn btn-sm btn-info buyOk"
+								style="width: 80px; height: 40px;">구매완료</button>
+						</c:when>
+						<c:when test="${vo.p_state eq '결제취소완료' }">
+							<button class="btn btn-sm btn-info buyOk"
+								style="width: 80px; height: 40px;">취소완료</button>
+						</c:when>
+						<c:otherwise>
+							<button class="btn btn-sm btn-info cancel" data-cbno=${vo.cbno }
+								style="width: 80px; height: 40px;">결제취소</button>
+						</c:otherwise>
+					</c:choose>
+					</td>
+					</tr>
+					</c:when>
+					<c:otherwise>
+						<tr>
+
+						</tr>
+					</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</table>
+		</div>
+
+	</div>
 </body>
 </html>

@@ -34,6 +34,19 @@
 {
 	margin-top: 30px;
 }
+.hotnews
+{
+width: 300px;
+margin-left: 30px;
+}
+#newsitems{
+
+width: 230px;
+height: 230px;
+}
+#petnews_page{
+margin-left: 380px;
+}
 
 	</style>
 </head>
@@ -43,7 +56,7 @@
 	
 
 	<!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="../img/banner_2.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="../img/bread.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -62,54 +75,39 @@
      <section class="blog spad">
      <div class="container" style="margin-top: -70px;">
 			<div class="row">
-    	<div class="col-lg-3 col-md-4 order-1">
-						<div class="blog__sidebar__item">
-							<h4>인기 뉴스</h4>
+    	<div class="col-lg-4 col-md-4 order-2">
+						<div class="blog__sidebar__item"">
+							<h4 style="margin-left: 32px;"><i class="fa fa-lightbulb-o fa-lg"></i>&nbsp; 인기 뉴스</i></h4>
 							<div class="blog__sidebar__recent">
 							<c:forEach var="vo" items="${list4 }" varStatus="n">
-							<c:if test="${n.index<3 }">
+							<c:if test="${n.index<6 }">
 								<a href="../health/before_newsdetail.do?no=${vo.no2 }" class="blog__sidebar__recent__item">
 									
 									<div class="row">
 									<div class="blog__sidebar__recent__item__text" style="width: 500px;">
+										<div class="hotnews" >
 										<h6>
-											${vo.news_subject }
+										  ${vo.news_subject }
 										</h6>
 										<span>${vo.news_date1 }</span>
+										</div>
 									</div>
 									</div>
 								</a>
 								</c:if>
 								</c:forEach>
 							</div>
-							<h4 style="margin-top: 50px;">최근 읽은 뉴스</h4>
-							<div class="blog__sidebar__recent" >
-							<c:forEach var="nvo" items="${NList }" varStatus="n">
-							<c:if test="${n.index<3 }">
-								<a href="../health/before_newsdetail.do?no=${nvo.no2 }" class="blog__sidebar__recent__item">
-									
-									<div class="row">
-									<div class="blog__sidebar__recent__item__text">
-										<h6>
-											${nvo.news_subject }
-										</h6>
-										<span>${nvo.news_date1 }</span>
-									</div>
-									</div>
-								</a>
-								</c:if>
-								</c:forEach>
-							</div>
+							
 						</div>
 				</div>
     <!-- Blog Section Begin -->
 				
-				<div class="col-lg-9 col-md-8 order-2" >
-                <div class="row">
+				<div class="col-lg-8 col-md-8 order-2" >
+                <div class="row newsList">
                     <c:forEach var="vo" items="${list3}" varStatus="loopStatus">
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="blog__item">
-                                <div class="blog__item__pic">
+                                <div class="blog__item__pic" id="newsitems">
                                     <a href="../health/before_newsdetail.do?no=${vo.no2 }">
                                         <img src="${vo.news_img}" style="max-width: 100%; max-height: 100%; border-radius: 10px; overflow: hidden;" alt="${vo.news_subject}">
                                         <div class="blog__item__text">
@@ -135,8 +133,8 @@
                         </c:if>
                     </c:forEach>
                 </div>
-                <div class="order-3" style="margin:0px auto; text-align: center;">
-				<div class="product__pagination">
+                <div class="order-4" style="margin:0px auto; text-align: center;">
+				<div class="product__pagination" id="petnews_page">
 					<c:if test="${startPage>1 }">
 						<a href="newsmain.do?page=${startPage-1}"><i
 							class="fa fa-long-arrow-left"></i></a>

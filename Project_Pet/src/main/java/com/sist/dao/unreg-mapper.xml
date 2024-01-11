@@ -28,9 +28,16 @@
 <delete id="delete_review" parameterType="hashmap">
   DELETE FROM REVIEW WHERE writer = #{id}
 </delete>
+<delete id="delete_RES_FUNERAL_INFO" parameterType="hashmap">
+  DELETE FROM RES_FUNERAL_INFO WHERE id = #{id}
+</delete>
+<delete id="delete_cart_buy" parameterType="hashmap">
+  DELETE FROM cart_buy WHERE id = #{id}
+</delete>
 <delete id="delete_member" parameterType="hashmap">
   DELETE FROM MEMBER WHERE id = #{id}
 </delete>
+
 
 </mapper>
 

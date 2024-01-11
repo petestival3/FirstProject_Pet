@@ -12,7 +12,7 @@ ON c.pNO = pd.PNO
 WHERE userid=#{id} 
 <choose>
 <otherwise>
-AND (buy_ok='YES' OR buy_ok='CANCELWAIT')
+AND (buy_ok!='NO')
 </otherwise>
 </choose>
 </select>
