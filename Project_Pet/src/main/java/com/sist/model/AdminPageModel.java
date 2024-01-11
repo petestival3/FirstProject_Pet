@@ -232,7 +232,7 @@ public class AdminPageModel {
 	   }
 	@RequestMapping("admin/ad_product_stateHandleList.do")
 	   public String ad_product_stateHandle(HttpServletRequest request, HttpServletResponse response) {
-	
+		String page=request.getParameter("page");
 		String type=request.getParameter("type");
 		if(type==null) {
 			type="1";
@@ -240,11 +240,15 @@ public class AdminPageModel {
 	    //p_image,p_name
 		//userid,buy_date,buy_state,cbno
 		
-		String page="1";
+		if(page==null) {
+			page="1";
+		}
 		int curpage=Integer.parseInt(page);
 		 Map map= new HashMap();
 			map.put("type", type);
 			map.put("page", page);
+			
+			
 		int totalpage=ProductAdminDAO.productStateTotal(map);
 		System.out.println(totalpage);
 		int start=(curpage*ROWSIZE)-(ROWSIZE-1);
@@ -281,14 +285,20 @@ public class AdminPageModel {
 	
 		String utype=request.getParameter("utype");
 		String cbno=request.getParameter("cbno");
+		String buy_count=request.getParameter("buyc");
 		Map map= new HashMap();
-		
+		map.put("buyc", buy_count);
 		map.put("cbno", cbno);
 		map.put("utype", utype);
 		
-		ProductAdminDAO.productStateUpdatet(map);
-	
+		int pno =ProductAdminDAO.getpnotoUp(map);
 		
+		
+		map.put("pno", pno);
+		ProductAdminDAO.productStateUpdatet(map);
+		if(utype.equals("2")) {
+ProductAdminDAO.pstackUpdate(map);
+		}
 		
 		return "ad_product_stateHandleList.do";
 		

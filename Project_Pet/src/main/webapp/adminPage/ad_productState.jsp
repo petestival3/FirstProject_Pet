@@ -52,15 +52,15 @@ vertical-align: middle;
 <td width=20% class="middle"  style="text-align: center; vertical-align: middle;">
 
 <c:if test="${type==1}">
-<a href="../admin/ad_product_stateHandleUpdate.do?utype=1&cbno=${vo.cbno }" class="btn-sm btn-info">배송중처리</a>
+<a href="../admin/ad_product_stateHandleUpdate.do?utype=1&cbno=${vo.cbno }&buyc=${vo.buy_count}" class="btn-sm btn-info">배송중처리</a>
 </c:if>
 
 <c:if test="${type==2}">
-<a href="../admin/ad_product_stateHandleUpdate.do?utype=2&cbno=${vo.cbno }" class="btn-sm btn-danger">결제취소 승인</a>
+<a href="../admin/ad_product_stateHandleUpdate.do?utype=2&cbno=${vo.cbno }&buyc=${vo.buy_count}" class="btn-sm btn-danger">결제취소 승인</a>
 </c:if>
 
 <c:if test="${type==4}">
-<a href="../admin/ad_product_stateHandleUpdate.do?utype=3&cbno=${vo.cbno }" class="btn-sm btn-primary">배송완료처리</a>
+<a href="../admin/ad_product_stateHandleUpdate.do?utype=3&cbno=${vo.cbno }&buyc=${vo.buy_count}" class="btn-sm btn-primary">배송완료처리</a>
 </c:if>
 
 

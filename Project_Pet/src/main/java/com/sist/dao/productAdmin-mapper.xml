@@ -12,11 +12,11 @@
 <select id="productStateList" resultMap="cartData" parameterType="map">
 
 
-SELECT pno,p_image,p_name,userid,TO_CHAR(buy_date,'YYYY-MM-DD HH24:MI:SS') as dbday,P_state,cbno,num
+SELECT pno,p_image,p_name,userid,TO_CHAR(buy_date,'YYYY-MM-DD HH24:MI:SS') as dbday,P_state,cbno,buy_count,num
  FROM
- (SELECT  pno,p_image,p_name,userid,buy_date,P_state,cbno,rownum as num
+ (SELECT  pno,p_image,p_name,userid,buy_date,P_state,cbno,buy_count,rownum as num
  FROM 
- (SELECT  a.pno,p_image,p_name,userid,buy_date,P_state,cbno
+ (SELECT  a.pno,p_image,p_name,userid,buy_date,P_state,cbno,buy_count
  FROM CART_BUY a
  JOIN PRODUCT_DETAIL b ON a.pno=b.pno
  WHERE BUY_OK=
@@ -92,6 +92,18 @@ WHERE buy_ok=
 'SHIPPINGCOMPLETE'
 </if>
  
+</select>
+
+
+<update id="pstackUpdate" parameterType="map">
+
+UPDATE product_detail SET 
+p_stack=p_stack+#{buyc}
+where pno=#{pno}
+</update>
+
+<select id="getpnotoUp" parameterType="map" resultType="int">
+select pno from CART_BUY where cbno=#{cbno}
 </select>
 </mapper>
 

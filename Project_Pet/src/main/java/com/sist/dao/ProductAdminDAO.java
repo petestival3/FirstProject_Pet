@@ -108,5 +108,55 @@ public class ProductAdminDAO {
 	}
 	
 	
-
+	public static int getpnotoUp(Map map) {
+		SqlSession session =null;
+	
+		int rcbno=0;
+		try {
+			
+			
+			
+			session=ssf.openSession();
+		   rcbno= session.selectOne("getpnotoUp",map);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+		}
+	
+		return rcbno;
+	}
+	
+	
+	
+	
+	
+	public static void pstackUpdate(Map map) {
+		SqlSession session =null;
+	
+		
+		try {
+			
+			session=ssf.openSession(true);
+		 session.update("pstackUpdate",map);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+		}
+	
+		
+	}
 }
