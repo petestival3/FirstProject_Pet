@@ -74,15 +74,19 @@
     <td class="text-center" width="80px;">${vo.checkout }</td>
     <td>${vo.roomname }</td>
     <td colspan="4" class="text-center">
+    <c:if test="${vo.ok==2 }">
+        <a href="../adminPage/ad_res_cancel.do?rf_no=${vo.rno }" style="background-color: gray;" class="primary-btn">취소내역삭제</a>
+      </c:if>
       <c:if test="${vo.ok==1 }">
-        <span class="primary-btn">예약완료</span>
-        <a href="../mypage/my_res_cancel.do?rno=${vo.rno }" class="primary-btn">반려</a>
+        <span class="primary-btn" style="background-color: lightblue;">예약완료</span>
+        <a href="../adminPage/ad_res_no.do?rf_no=${vo.rno }" style="background-color: black;" class="primary-btn">비승인</a>
       </c:if>
       <c:if test="${vo.ok==0 }">
-        <a href="../.do?rno=${vo.rno }" class="primary-btn">승인</a>
-        <a href="../mypage/my_res_cancel.do?rno=${vo.rno }" class="primary-btn">반려</a>
+        <a href="../adminPage/ad_res_ok.do?rf_no=${vo.rno }" class="primary-btn">승인</a>
+        <a href="../adminPage/ad_res_no.do?rf_no=${vo.rno }" style="background-color: black;" class="primary-btn">비승인</a>
       </c:if>
     </td>
+    
    </tr>
    </c:forEach>
  </table>

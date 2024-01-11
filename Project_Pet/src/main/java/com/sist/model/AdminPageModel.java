@@ -55,7 +55,7 @@ public class AdminPageModel {
 	
 	//장례식장 예약반려내역 취소
 	  @RequestMapping("adminPage/ad_res_f_cancel.do")
-	  public String myres_f_cancel(HttpServletRequest request,
+	  public String adres_f_cancel(HttpServletRequest request,
 			   HttpServletResponse response)
 	  {
 		  String rf_no=request.getParameter("rf_no");

@@ -12,5 +12,12 @@
     	(SELECT NVL(MAX(no)+1,1) FROM reservestay_info),
     	#{id},#{stay_no},#{checkin},#{checkout},#{inwon},SYSDATE,0
     )
+    
+  <!-- 어드민페이지 예약정보 읽기-->
+  <select id="reserveAdminPageStayListData" resultType="FuneralReserveInfoVO">
+    SELECT RF_NO, RF_DAY, RF_TIME, RF_INWON, RF_OK, id
+     FROM RES_FUNERAL_INFO
+     ORDER BY RF_NO DESC
+  </select>
 </insert>
 </mapper>
