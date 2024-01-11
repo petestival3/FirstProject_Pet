@@ -10,7 +10,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Insert title here</title>
-
+<script type="text/javascript">
+function btn(){
+    alert('예약이 취소되었습니다.');
+}
+</script>
 <link
 	href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
 	rel="stylesheet">
@@ -51,7 +55,7 @@
       </c:if>
       <c:if test="${vo.rf_ok==1 }">
         <span class="primary-btn" style="background-color: lightblue;">예약완료</span>
-        <a href="../mypage/my_res_f_cancel.do?rf_no=${vo.rf_no }" style="background-color: black;" class="primary-btn">취소하기</a>
+        <a href="../mypage/my_res_f_cancel.do?rf_no=${vo.rf_no }" style="background-color: black;" class="primary-btn" onclick="javascript:btn()">취소하기</a>
       </c:if>
       <c:if test="${vo.rf_ok==0 }">
         <span class="primary-btn">예약대기</span>

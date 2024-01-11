@@ -57,4 +57,36 @@ public class StayReserveDAO {
 			   dbconn.disConnection(conn, ps);
 		   }
 	}
+	
+	public static List<ReserveStayInfoVO> reserveAdminPageStayListData()
+	  {
+		  SqlSession session=ssf.openSession();
+		  List<ReserveStayInfoVO> list=session.selectList("reserveAdminPageStayListData");
+		  session.close();
+		  return list;
+	  }
+	
+	public static void reserveStayAdminOk(int rno)
+	  {
+		  SqlSession session=ssf.openSession(true);
+		  session.update("reserveStayAdminOk",rno);
+		  session.close();
+	  }
+	public static void reserveStayAdminNo(int rno)
+	  {
+		  SqlSession session=ssf.openSession(true);
+		  session.update("reserveStayAdminNo",rno);
+		  session.close();
+	  }
+	  public static void stayReserveDelete(int rno)
+	  {
+		  SqlSession session=ssf.openSession(true);
+		  try {
+			  session.insert("stayReserveDelete",rno);
+		  }catch(Exception ex) {
+			  ex.printStackTrace();
+		  }
+		  session.close();
+	  }
+	
 }

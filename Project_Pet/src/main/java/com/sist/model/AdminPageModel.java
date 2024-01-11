@@ -18,6 +18,7 @@ import com.sist.dao.ReserveFuneralDAO;
 import com.sist.dao.StayReserveDAO;
 import com.sist.vo.FuneralReserveInfoVO;
 import com.sist.vo.QnaBoardVO;
+import com.sist.vo.ReserveStayInfoVO;
 
 public class AdminPageModel {
 	
@@ -34,13 +35,17 @@ public class AdminPageModel {
 
 	@RequestMapping("adminPage/ad_res.do")
 	public String admin_res(HttpServletRequest request, HttpServletResponse response)
-	{	
+	{	/*
+		List<ReserveStayInfoVO> list=
+			     StayReserveDAO.reserveAdminPageStayListData();
+	  request.setAttribute("list", list);
+		*/
 		request.setAttribute("main_jsp", "../adminPage/ad_page.jsp");
 		request.setAttribute("ad_page_jsp", "../adminPage/ad_res.jsp");
 		
 		return "../main/main.jsp";
 	}
-	/*
+	
 	//호텔 예약반려내역 취소
 	  @RequestMapping("adminPage/ad_res_cancel.do")
 	  public String adres_cancel(HttpServletRequest request,
@@ -72,7 +77,7 @@ public class AdminPageModel {
 		  StayReserveDAO.reserveStayAdminNo(Integer.parseInt(rno));
 		  return "redirect:../adminPage/ad_res.do";
 	  }
-	*/
+	
 	@RequestMapping("adminPage/ad_res_f.do")
 	public String admin_res_f(HttpServletRequest request, HttpServletResponse response)
 	{
