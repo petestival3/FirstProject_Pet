@@ -165,4 +165,6 @@ public class ReserveFuneralModel {
 		  dao.Funeralreservedelete(Integer.parseInt(rf_no));
 		  return "redirect:../mypage/my_res_f.do";
 	  }
+	  
+	  //
 }

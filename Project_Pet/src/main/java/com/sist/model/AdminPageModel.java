@@ -14,6 +14,8 @@ import org.json.simple.JSONObject;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.ProductQnaDAO;
+import com.sist.dao.ReserveFuneralDAO;
+import com.sist.vo.FuneralReserveInfoVO;
 import com.sist.vo.QnaBoardVO;
 
 public class AdminPageModel {
@@ -31,7 +33,7 @@ public class AdminPageModel {
 
 	@RequestMapping("adminPage/ad_res.do")
 	public String admin_res(HttpServletRequest request, HttpServletResponse response)
-	{
+	{	
 		request.setAttribute("main_jsp", "../adminPage/ad_page.jsp");
 		request.setAttribute("ad_page_jsp", "../adminPage/ad_res.jsp");
 		
@@ -41,11 +43,35 @@ public class AdminPageModel {
 	@RequestMapping("adminPage/ad_res_f.do")
 	public String admin_res_f(HttpServletRequest request, HttpServletResponse response)
 	{
+		List<FuneralReserveInfoVO> list=
+			     ReserveFuneralDAO.reserveAdminPageListData();
+	  request.setAttribute("list", list);
+		
 		request.setAttribute("main_jsp", "../adminPage/ad_page.jsp");
 		request.setAttribute("ad_page_jsp", "../adminPage/ad_res_f.jsp");
 		
 		return "../main/main.jsp";
 	}
+	
+	@RequestMapping("adminPage/my_res_f_ok.do")
+	  public String admin_reserve_ok(HttpServletRequest request,
+			  HttpServletResponse response)
+	  {
+		  String rf_no=request.getParameter("rf_no");
+		  // 데이터베이스 연동
+		  ReserveFuneralDAO.reserveAdminOk(Integer.parseInt(rf_no));
+		  return "redirect:../adminPage/ad_res_f.do";
+	  }
+	
+	 @RequestMapping("adminPage/my_res_f_no.do")
+	  public String admin_reserve_no(HttpServletRequest request,
+			  HttpServletResponse response)
+	  {
+		  String rf_no=request.getParameter("rf_no");
+		  // 데이터베이스 연동
+		  ReserveFuneralDAO.reserveAdminNo(Integer.parseInt(rf_no));
+		  return "redirect:../adminPage/ad_res_f.do";
+	  }
 	
 	@RequestMapping("adminPage/ad_payment.do")
 	public String admin_payment(HttpServletRequest request, HttpServletResponse response)

@@ -99,4 +99,49 @@ public class ReserveFuneralDAO {
 		  }
 		  session.close();
 	  }
+	  
+	  /*<!-- 어드민페이지 예약정보 읽기-->
+  <select id="reserveAdminPageListData" resultType="FuneralReserveInfoVO">
+    SELECT RF_NO, RF_DAY, RF_TIME, RF_INWON, RF_OK, id
+     FROM RES_FUNERAL_INFO
+     ORDER BY RF_NO DESC
+  </select>
+	   */
+	  public static List<FuneralReserveInfoVO> reserveAdminPageListData()
+	  {
+		  SqlSession session=ssf.openSession();
+		  List<FuneralReserveInfoVO> list=session.selectList("reserveAdminPageListData");
+		  session.close();
+		  return list;
+	  }
+	  /*<!-- 예약 대기 (0)--> 
+  <!-- 어드민 예약 승인 (1)--> 
+  <update id="reserveAdminOk" parameterType="int">
+    UPDATE RES_FUNERAL_INFO SET
+    rf_ok=1
+    WHERE rf_no=#{rf_no}
+  </update>
+  */
+	  public static void reserveAdminOk(int rf_no)
+	  {
+		  SqlSession session=ssf.openSession(true);
+		  session.update("reserveAdminOk",rf_no);
+		  session.close();
+	  }
+	  
+  /*
+  <!-- 어드민 예약 반려 (2)-->
+  <update id="reserveAdminNo" parameterType="int">
+    UPDATE RES_FUNERAL_INFO SET
+    rf_ok=2
+    WHERE rf_no=#{rf_no}
+  </update>
+  */
+	  public static void reserveAdminNo(int rf_no)
+	  {
+		  SqlSession session=ssf.openSession(true);
+		  session.update("reserveAdminNo",rf_no);
+		  session.close();
+	  }
+
 }

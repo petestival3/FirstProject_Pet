@@ -79,4 +79,26 @@
      DELETE FROM RES_FUNERAL_INFO
      WHERE rf_no=#{rf_no}
   </delete>
+  
+   <!-- 어드민페이지 예약정보 읽기-->
+  <select id="reserveAdminPageListData" resultType="FuneralReserveInfoVO">
+    SELECT RF_NO, RF_DAY, RF_TIME, RF_INWON, RF_OK, id
+     FROM RES_FUNERAL_INFO
+     ORDER BY RF_NO DESC
+  </select>
+  
+  <!-- 예약 대기 (0)--> 
+  <!-- 어드민 예약 승인 (1)--> 
+  <update id="reserveAdminOk" parameterType="int">
+    UPDATE RES_FUNERAL_INFO SET
+    rf_ok=1
+    WHERE rf_no=#{rf_no}
+  </update>
+  
+  <!-- 어드민 예약 반려 (2)-->
+  <update id="reserveAdminNo" parameterType="int">
+    UPDATE RES_FUNERAL_INFO SET
+    rf_ok=2
+    WHERE rf_no=#{rf_no}
+  </update>
 </mapper>
