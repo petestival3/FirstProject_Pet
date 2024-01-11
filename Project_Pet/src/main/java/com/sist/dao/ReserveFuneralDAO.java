@@ -100,6 +100,20 @@ public class ReserveFuneralDAO {
 		  session.close();
 	  }
 	  
+	  /*<!-- 예약데이터 예약 반려 (2)-->
+  <update id="reserveUserNo" parameterType="int">
+    UPDATE RES_FUNERAL_INFO SET
+    rf_ok=2
+    WHERE rf_no=#{rf_no}
+  </update>*/
+	  public static void reserveUserNo(int rf_no)
+	  {
+		  SqlSession session=ssf.openSession(true);
+		  session.update("reserveUserNo",rf_no);
+		  session.close();
+	  }
+	  
+	  
 	  /*<!-- 어드민페이지 예약정보 읽기-->
   <select id="reserveAdminPageListData" resultType="FuneralReserveInfoVO">
     SELECT RF_NO, RF_DAY, RF_TIME, RF_INWON, RF_OK, id

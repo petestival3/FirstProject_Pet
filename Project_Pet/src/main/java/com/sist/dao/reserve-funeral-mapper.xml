@@ -74,6 +74,13 @@
      ORDER BY RF_NO DESC
   </select>
   
+    <!-- 예약데이터 예약 반려 (2)-->
+  <update id="reserveUserNo" parameterType="int">
+    UPDATE RES_FUNERAL_INFO SET
+    rf_ok=2
+    WHERE rf_no=#{rf_no}
+  </update>
+  
   <!-- 예약데이터 취소(삭제) -->
   <delete id="Funeralreservedelete" parameterType="int">
      DELETE FROM RES_FUNERAL_INFO
