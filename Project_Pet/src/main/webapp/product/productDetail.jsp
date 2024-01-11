@@ -581,9 +581,9 @@ $(document).on('click', '.normalContent', function() {
                                        if (res2.qwriter.length > 3) {
                                            printQwriter=  res2.qwriter.slice(0, -3) + '***';
                                        } else if (res2.qwriter.length === 3) {
-                                           printQwriter =  res2qwriter.slice(0, -2) + '**';
+                                           printQwriter =  res2.qwriter.slice(0, -2) + '**';
                                        } else if (res2.qwriter.length === 2) {
-                                           printQwriter = '**' + res2qwriter.slice(0, -1) + '*';
+                                           printQwriter = '**' + res2.qwriter.slice(0, -1) + '*';
                                        } else {
                                            printQwriter = res2.qwriter;
                                        }
