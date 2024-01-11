@@ -74,6 +74,9 @@
     <td class="text-center">${vo.rf_time }</td>
     <td class="text-center">${vo.rf_inwon }</td>
     <td colspan="4" class="text-center">
+    <c:if test="${vo.rf_ok==3 }">
+        <span style="background-color: gray;" class="primary-btn">취소완료</span>
+      </c:if>
     <c:if test="${vo.rf_ok==2 }">
         <a href="../adminPage/ad_res_f_cancel.do?rf_no=${vo.rf_no }" style="background-color: gray;" class="primary-btn">취소내역삭제</a>
       </c:if>

@@ -53,10 +53,10 @@ public class AdminPageModel {
 	  public String adres_cancel(HttpServletRequest request,
 			   HttpServletResponse response)
 	  {
-		  String rno=request.getParameter("rno");
+		  String no=request.getParameter("no");
 		  StayReserveDAO dao=new StayReserveDAO();
-		  dao.stayReserveDelete(Integer.parseInt(rno));
-		  return "redirect:../adminPage/ad_res_f.do";
+		  dao.stayReserveDelete(Integer.parseInt(no));
+		  return "redirect:../adminPage/ad_res.do";
 	  }
 	  
 	//호텔 예약 승인
@@ -64,9 +64,9 @@ public class AdminPageModel {
 	  public String admin_stay_reserve_ok(HttpServletRequest request,
 			  HttpServletResponse response)
 	  {
-		  String rno=request.getParameter("rno");
+		  String no=request.getParameter("no");
 		  // 데이터베이스 연동
-		  StayReserveDAO.reserveStayAdminOk(Integer.parseInt(rno));
+		  StayReserveDAO.reserveStayAdminOk(Integer.parseInt(no));
 		  return "redirect:../adminPage/ad_res.do";
 	  }
 	//호텔 예약 반려
@@ -74,9 +74,9 @@ public class AdminPageModel {
 	  public String admin_stay_reserve_no(HttpServletRequest request,
 			  HttpServletResponse response)
 	  {
-		  String rno=request.getParameter("rno");
+		  String no=request.getParameter("no");
 		  // 데이터베이스 연동
-		  StayReserveDAO.reserveStayAdminNo(Integer.parseInt(rno));
+		  StayReserveDAO.reserveStayAdminNo(Integer.parseInt(no));
 		  return "redirect:../adminPage/ad_res.do";
 	  }
 	

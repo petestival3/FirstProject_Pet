@@ -17,12 +17,12 @@
   <!-- 예약데이터 취소(삭제) -->
   <delete id="stayReserveDelete" parameterType="int">
      DELETE FROM RESERVE_STAY_INFO
-     WHERE rno=#{rno}
+     WHERE no=#{no}
   </delete>
     
   <!-- 어드민페이지 예약정보 읽기-->
   <select id="reserveAdminPageStayListData" resultType="ReserveStayInfoVO">
-    SELECT rno, checkin, checkout, roomname, OK, id
+    SELECT no, checkin, checkout, roomname, OK, id
      FROM RESERVE_STAY_INFO
      ORDER BY RNO DESC
   </select>
@@ -32,14 +32,14 @@
   <update id="reserveStayAdminOk" parameterType="int">
     UPDATE RESERVE_STAY_INFO SET
     ok=1
-    WHERE rno=#{rno}
+    WHERE no=#{no}
   </update>
   
   <!-- 어드민 예약 반려 (2)-->
   <update id="reserveStayAdminNo" parameterType="int">
     UPDATE RESERVE_STAY_INFO SET
     ok=2
-    WHERE rno=#{rno}
+    WHERE no=#{no}
   </update>
 
 </mapper>
