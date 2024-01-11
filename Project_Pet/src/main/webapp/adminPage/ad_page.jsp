@@ -57,8 +57,7 @@ opacity:0.7;
 						<a href="" class="list-group-item list-group-item-action" id="productAdmin">상품관리</a>
 						<!-- 상품관리 -->
 						<a href="../adminPage/ad_productQnaList.do" class="list-group-item list-group-item-action subMenu">&nbsp;&nbsp;- 상품문의관리</a>
-						<a href="" class="list-group-item list-group-item-action subMenu">&nbsp;&nbsp;- 상품 입/출고 관리</a>
-						<a href="#" class="list-group-item list-group-item-action subMenu">&nbsp;&nbsp;- 상품등록</a>
+						<a href="../adminPage/ad_productPstackHandleList.do" class="list-group-item list-group-item-action subMenu">&nbsp;&nbsp;- 상품 입/출고 관리</a>
 						<a href="../admin/ad_product_stateHandleList.do" class="list-group-item list-group-item-action subMenu">&nbsp;&nbsp;- 상품주문상태 관리</a>
 						<a href="#" class="list-group-item list-group-item-action subMenu">&nbsp;&nbsp;- 매출관리</a>
 						<!-- 상품관리 -->

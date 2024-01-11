@@ -159,4 +159,28 @@ public class ProductAdminDAO {
 	
 		
 	}
+	
+	
+	public static void adminpstackUpdate(Map map) {
+		SqlSession session =null;
+	
+		
+		try {
+			
+			session=ssf.openSession(true);
+		 session.update("AdminpstackUpdate",map);
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+		}
+	
+		
+	}
 }

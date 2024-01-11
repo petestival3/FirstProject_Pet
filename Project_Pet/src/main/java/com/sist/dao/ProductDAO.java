@@ -591,9 +591,9 @@ public List<ProductVO> productSearchList(String sct,String ss,int page){//상품
 	List<ProductVO>list= new ArrayList<ProductVO>();
 	try {
 		conn=dbconn.getConnection();
-		String sql="SELECT pno,p_name,p_image,p_lower_price,p_hit,p_grade,p_price,p_percent,num "
-				   +"FROM (SELECT pno,p_name,p_image,p_lower_price,p_hit,p_grade,p_price,p_percent,rownum as num "
-				   +"FROM (SELECT pno,p_name,p_image,p_lower_price,p_hit,p_grade,p_price,p_percent "
+		String sql="SELECT pno,p_name,p_image,p_lower_price,p_hit,p_grade,p_price,p_percent,p_stack,num "
+				   +"FROM (SELECT pno,p_name,p_image,p_lower_price,p_hit,p_grade,p_price,p_percent,p_stack,rownum as num "
+				   +"FROM (SELECT pno,p_name,p_image,p_lower_price,p_hit,p_grade,p_price,p_percent,p_stack "
 				   +"FROM PRODUCT_DETAIL "
 				   +msg +")) "
 				   +"WHERE num BETWEEN ? AND ?";
@@ -624,6 +624,7 @@ public List<ProductVO> productSearchList(String sct,String ss,int page){//상품
 			vo.setP_grade(rs.getDouble(6));
 			vo.setP_price(rs.getString(7));
 			vo.setP_percent(rs.getString(8));
+			vo.setP_stack(rs.getInt(9));
 			list.add(vo);
 		}
 		rs.close();

@@ -102,6 +102,23 @@ p_stack=p_stack+#{buyc}
 where pno=#{pno}
 </update>
 
+
+
+
+<update id="AdminpstackUpdate" parameterType="map">
+
+UPDATE product_detail SET 
+p_stack=p_stack
+<if test="type==1">
++#{buyc}
+</if>
+
+<if test="type==2">
+-#{buyc}
+</if>
+where pno=#{pno}
+</update>
+
 <select id="getpnotoUp" parameterType="map" resultType="int">
 select pno from CART_BUY where cbno=#{cbno}
 </select>

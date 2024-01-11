@@ -1,6 +1,7 @@
 package com.sist.model;
 
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,16 +9,19 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthGraphicsUtils;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.sist.controller.RequestMapping;
 import com.sist.dao.ProductAdminDAO;
+import com.sist.dao.ProductDAO;
 import com.sist.dao.ProductQnaDAO;
 import com.sist.dao.ReserveFuneralDAO;
 import com.sist.dao.StayReserveDAO;
 import com.sist.vo.FuneralReserveInfoVO;
+import com.sist.vo.ProductVO;
 import com.sist.vo.QnaBoardVO;
 import com.sist.vo.ReserveStayInfoVO;
 import com.sist.vo.ShoppingVO;
@@ -305,7 +309,101 @@ ProductAdminDAO.pstackUpdate(map);
 	   }
 	
 	
+	@RequestMapping("adminPage/ad_productPstackHandleList.do")
+	public String ad_productPstackHandleList(HttpServletRequest request, HttpServletResponse response) {
+		
+		  try {
+              request.setCharacterEncoding("UTF-8");
+           } catch (UnsupportedEncodingException e) {
+              // TODO Auto-generated catch block
+              e.printStackTrace();
+           }
+        ProductDAO dao=ProductDAO.newInstace();
+        	String msg=request.getParameter("msg");
+        	
+           String sct=request.getParameter("sct");
+           String strpage=request.getParameter("page");
+           String ss=request.getParameter("ss");
+           if (sct==null) {
+              sct="전체";
+           }
+           if (strpage==null) {
+              strpage="1";
+           }
+           if (ss==null) {
+              ss="";
+           }
+           
+           int curpage=Integer.parseInt(strpage);
+           int sTotalPage=dao.productSearchTotalPage(sct, ss);
+           List<ProductVO>list=dao.productSearchList(sct, ss, curpage);
+          
+           
+           final int block=10;
+           int start = ((curpage-1)/block*block)+1;
+           int end = ((curpage-1)/block*block)+10;
+           if(end>sTotalPage) {
+              end=sTotalPage;
+           }
+           
+          request.setAttribute("msg", msg);
+           request.setAttribute("page", strpage);
+           request.setAttribute("sct", sct);
+           request.setAttribute("ss", ss);
+           request.setAttribute("sTotalPage", sTotalPage);
+           request.setAttribute("searchList", list);
+           request.setAttribute("start", start);
+           request.setAttribute("end", end);
+           request.setAttribute("size", list.size());
+         
+          
+           
+		
+		
+       	request.setAttribute("main_jsp", "../adminPage/ad_page.jsp");
+		request.setAttribute("ad_page_jsp", "../adminPage/ad_productStack.jsp");
+			
+			return "../main/main.jsp";
+			
+		
+	}
 	
 	
+	
+	
+	@RequestMapping("adminPage/adminHandleStack.do")
+	public String adminHandleStack(HttpServletRequest request, HttpServletResponse response) {
+			String checkpstack=request.getParameter("pstack");
+			String pno=request.getParameter("gpno");
+			String quantity=request.getParameter("adminQuantity");
+			String out=request.getParameter("out");
+			String in=request.getParameter("in");
+			String msg="";
+			int cpstack=Integer.parseInt(checkpstack);
+		Map map=new HashMap();
+		
+		map.put("buyc", quantity);
+		map.put("pno", pno);
+
+			if(in==null && cpstack<Integer.parseInt(quantity)) {
+				msg="NO";
+			}
+			else {
+				msg="YES";
+			
+				if(out==null) {
+					map.put("type",1);
+					
+				}
+				else if(in==null) {
+					map.put("type",2);
+				}
+				
+				ProductAdminDAO.adminpstackUpdate(map);
+			}
+			return "ad_productPstackHandleList.do?msg="+msg;
+			
+		
+	}
 
 }
