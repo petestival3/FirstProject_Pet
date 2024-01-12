@@ -104,16 +104,23 @@ public class ReviewModel {
 		ServletContext context = request.getServletContext();
 		String path = context.getRealPath("/");
 		path=path.substring(0,path.lastIndexOf("\\"));
-		
+		System.out.println(path);
+		System.out.println("loading2..");
 		String reviewImg="reviewImg";
 		path = path + File.separator + reviewImg;
+		System.out.println(path);
 		
 		int max = 1024 * 1024 * 100;
 		ReviewVO vo=new ReviewVO();
 		MultipartRequest mr;
 	    String imgname="";
-	    
+	    System.out.println("loading3..");
 	    try {
+	    	File f=new File(path);
+	    	if(!f.exists()) {
+	    		f.mkdir();
+	    	}
+	    	System.out.println("make dir");
 			mr = new MultipartRequest(request, path, max, "UTF-8", new DefaultFileRenamePolicy());
 			imgname= mr.getFilesystemName("image");
 			score = mr.getParameter("score");
@@ -125,15 +132,16 @@ public class ReviewModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	    System.out.println("loading4..");
 	    
 	    if (imgname == null) {
 	        vo.setImgname("");
 	        vo.setImgsize(0);
 	    } else {
+	    	System.out.println("file path check.....");
 	    	File file = new File(path + File.separator + imgname);
-	    	if(!file.exists()) {
-	    		file.mkdir();
-	    	}
+	    	System.out.println("file check!");
+	    	
 	      vo.setImgname(imgname);
 	      vo.setImgsize((int) file.length());
 	    }

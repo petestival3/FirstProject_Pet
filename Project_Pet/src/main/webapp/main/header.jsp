@@ -101,9 +101,6 @@ function noId(){
                             <li><a href="../stay/list.do">HOTEL</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="../stay/list.do">호텔 목록</a></li>
-                                    <c:if test="${sessionScope.id!=null }">
-                                    <li><a href="../reserve/reserve_hotel.do">호텔 예약하기</a></li>
-                                    </c:if>
                                 </ul>
                             </li>
                             <li><a href="#">FUNERAL</a>
