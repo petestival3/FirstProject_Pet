@@ -15,15 +15,7 @@ Shadowbox.init({
 	players:['iframe']
 })
 $(function(){
-	$("#contact-check").click(function(){
-		Shadowbox.open({
-			content:'../member/idcheck.do',
-			player:'iframe',
-			title:'아이디 중복체크',
-			width:350,
-			height:200
-		})
-	})
+
 	
 	$('#contact-post').click(function(){
 		Shadowbox.open({
@@ -34,11 +26,7 @@ $(function(){
 			height:350
 		})
 	})
-	$('#contact-submit').click(function(){
-		({
-			alert("회원정보 수정이 완료되었습니다")
-		})
-	})
+})
 </script>
 <style type="text/css">
 
