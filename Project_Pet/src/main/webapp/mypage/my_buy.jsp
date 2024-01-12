@@ -23,7 +23,7 @@
 
 .mybuy_table {
 	width: 890px;
-	margin-top: 10px;
+	margin: 0 0 50px 10px;
 }
 
 .mybuy_table td {
@@ -121,23 +121,18 @@
 							<th>배송정보</th>
 						</tr>
 						<tr>
-							<th class="text-left">${vo.reciepient }&nbsp;</th>
+							<td class="text-left" style="height: 20px;">${vo.reciepient }&nbsp;</td>
 						</tr>
 						<tr>
-							<td class="text-left">${vo.buy_address }&nbsp;</td>
+							<td class="text-left" style="height: 20px; width: 360px;" colspan="6">${vo.buy_address }&nbsp;</td>
 						</tr>
 						<tr>
-							<td class="text-left" width="30%;">${vo.phone }&nbsp;</td>
+							<td class="text-left" style="height: 20px; width: 30px">${vo.phone }&nbsp;</td>
 						</tr>
 						<tr>
-							<td class="text-left" "colspan="4">${vo.request_content eq null?"요청사항없음":vo.request_content }&nbsp;</td>
+							<td class="text-left" colspan="6" style="height: 20px;">${vo.request_content eq null?"요청사항없음":vo.request_content }&nbsp;</td>
 						</tr>
 					</c:when>
-					<c:otherwise>
-						<tr>
-
-						</tr>
-					</c:otherwise>
 					</c:choose>
 				</c:forEach>
 				</c:if>

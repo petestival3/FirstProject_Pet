@@ -22,7 +22,7 @@
 }
 .myres_table {
 width: 890px;
-margin-top: 10px;
+margin: 0 0 50px 10px;
 }
 
 .myres_table td{
@@ -63,7 +63,7 @@ height: 130px;
  <table class="myres_table" style="margin-top: 20px;">
    <tr>
     <th class="text-center"></th>
-    <th class="text-center">호텔명</th>
+    <th class="text-center">객실명</th>
     <th class="text-center">체크인</th>
     <th class="text-center">체크아웃</th>
     <th class="text-center">예약상태</th>
