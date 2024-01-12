@@ -103,6 +103,8 @@ public class ReviewModel {
 		
 		ServletContext context = request.getServletContext();
 		String path = context.getRealPath("/");
+		path=path.substring(0,path.lastIndexOf("\\"));
+		
 		String reviewImg="reviewImg";
 		path = path + File.separator + reviewImg;
 		
@@ -129,6 +131,9 @@ public class ReviewModel {
 	        vo.setImgsize(0);
 	    } else {
 	    	File file = new File(path + File.separator + imgname);
+	    	if(!file.exists()) {
+	    		file.mkdir();
+	    	}
 	      vo.setImgname(imgname);
 	      vo.setImgsize((int) file.length());
 	    }
