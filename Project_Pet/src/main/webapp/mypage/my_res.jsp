@@ -94,9 +94,16 @@ height: 130px;
     <button class="btn btn-sm btn-info" style="width: 80px; height: 40px; margin-left: 10px;">예약확정</button>
     </td>
     </c:if>
+     <c:if test="${vo.ok==0 }">
     <td>
     <button class="btn btn-sm btn-info cancel" data-rno=${vo.stay_no } style="width: 80px; height: 40px; margin-left: 10px;">예약취소</button>
     </td>
+    </c:if>
+    <c:if test="${vo.ok==1 }">
+    <td>
+    <button class="btn btn-sm btn-info" data-rno=${vo.stay_no } style="width: 80px; height: 40px; margin-left: 10px;">취소불가</button>
+    </td>
+    </c:if>
    </tr>
 	</c:when>
 	<c:otherwise>
