@@ -70,7 +70,7 @@
                            		
                            		if(id !==vo2.buserid && id!==null){
 							    commentListHtml+='<button style="display: inline;" class="user_upBtn" data-uqno="'+vo2.brno+'">'
-							    
+							    console.log(vo2.bupcheck)
 							    if(vo2.bupcheck==='n'){
 							    commentListHtml+='<img src="../img/notup.png" style="width:20px;" class="changeImg">'
 							    }
