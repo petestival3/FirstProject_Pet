@@ -89,7 +89,7 @@ public class SendMailer {
 		// 수신이메일, 임시비번
 		String host="smtp.naver.com"; // 네이버일 경우 네이버 계정, gmail경우 gamil계정
 		String user="pkpphn@naver.com";
-		String password="";
+		String password="rkdqnr123!";
 		Properties props=new Properties();
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.port", 587);
