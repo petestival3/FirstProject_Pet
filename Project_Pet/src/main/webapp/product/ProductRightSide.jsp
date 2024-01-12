@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <style type="text/css">
@@ -11,7 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-		
+			<c:if test="${ss==null }">
        	  <div class="p_rightside" style="margin-left:50px;" >
                   <div class="sale_title">
                     <img src="../img/new.png" width=60>
@@ -68,7 +69,7 @@
                  
                 </div>
                 
-                
+                </c:if>
                 
              
             

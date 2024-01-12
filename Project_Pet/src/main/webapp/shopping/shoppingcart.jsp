@@ -257,21 +257,21 @@ $(".cart-btn-right").click(function() {
 </head>
 <body>
  <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>Organi Shop</h2>
-                        <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <span>Shop</span>
-                        </div>
-                    </div>
-                </div>
+   <section class="breadcrumb-section set-bg"
+      data-setbg="../img/bread.jpg">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-12 text-center">
+               <div class="breadcrumb__text">
+                  <h2>CART</h2>
+                  <div class="breadcrumb__option">
+                     <a href="../main/main.do">Home</a> <span>CART</span>
+                  </div>
+               </div>
             </div>
-        </div>
-    </section>
+         </div>
+      </div>
+   </section>
     <!-- Breadcrumb Section End -->
 
 <!-- Shoping Cart Section Begin -->

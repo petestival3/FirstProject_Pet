@@ -31,6 +31,7 @@
                    
                      
                     </div>
+                    <c:if test="${ss==null }">
                     <div class="sale_title">
                     <img src="../img/pngwing.com.png" width=60>
                     초특가할인
@@ -65,7 +66,7 @@
                 </div>
             </div>
             
-            
+            </c:if>
             <div style="margin-top:100px;">
             <img src="../img/mainlogo.png" height=300>
             </div>
