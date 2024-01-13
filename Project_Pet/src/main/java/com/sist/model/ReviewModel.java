@@ -2,6 +2,7 @@ package com.sist.model;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.attribute.FileAttribute;
 import java.sql.Date;
 import java.util.*;
 
@@ -102,13 +103,16 @@ public class ReviewModel {
 		String typeno = "1";
 		
 		ServletContext context = request.getServletContext();
-		String path = context.getRealPath("/");
-		path=path.substring(0,path.lastIndexOf("\\"));
-		System.out.println(path);
-		System.out.println("loading2..");
-		String reviewImg="reviewImg";
-		path = path + File.separator + reviewImg;
-		System.out.println(path);
+//		String path = context.getRealPath("/");
+		String pathh="/home/ubuntu/pet10/imageall";
+//		path=path.substring(0,path.lastIndexOf("\\"));
+		// C:\webDev\webStudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\JSPMVCFinalProject\WEB-INF\classes
+//		System.out.println(path);
+//		System.out.println("loading2..");
+//		String reviewImg="reviewImg";
+//		path = path + File.separator + reviewImg;
+//		pathh=pathh+File.separator+reviewImg;
+//		System.out.println(pathh);
 		
 		int max = 1024 * 1024 * 100;
 		ReviewVO vo=new ReviewVO();
@@ -116,12 +120,9 @@ public class ReviewModel {
 	    String imgname="";
 	    System.out.println("loading3..");
 	    try {
-	    	File f=new File(path);
-	    	if(!f.exists()) {
-	    		f.mkdir();
-	    	}
-	    	System.out.println("make dir");
-			mr = new MultipartRequest(request, path, max, "UTF-8", new DefaultFileRenamePolicy());
+//	    	File f=new File(pathh);
+//	    	System.out.println("make dir");
+			mr = new MultipartRequest(request, pathh, max, "UTF-8", new DefaultFileRenamePolicy());
 			imgname= mr.getFilesystemName("image");
 			score = mr.getParameter("score");
 			content = mr.getParameter("content");
@@ -139,8 +140,17 @@ public class ReviewModel {
 	        vo.setImgsize(0);
 	    } else {
 	    	System.out.println("file path check.....");
-	    	File file = new File(path + File.separator + imgname);
-	    	System.out.println("file check!");
+	    	File file = new File(pathh + File.separator + imgname);
+	    	try {         
+	    		if (file.createNewFile()) { 
+	    			System.out.println("File created");           
+	    		} else {              
+	    			System.out.println("File already exists");           
+	    		}      
+	    	} catch (IOException e) {       
+	    		e.printStackTrace();    
+	    	}
+//	    	System.out.println("file check!");
 	    	
 	      vo.setImgname(imgname);
 	      vo.setImgsize((int) file.length());
