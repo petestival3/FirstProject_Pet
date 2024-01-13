@@ -154,11 +154,11 @@ final int rowsize=10;
 	         String qcontent="";
 	         
 	         ServletContext context = request.getServletContext();
-	         String path = context.getRealPath("/");
-	         path=path.substring(0,path.lastIndexOf("\\"));
+	         String path = "/home/ubuntu/pet/qnaImg";
 	         
-	         String qnaImg="qnaImg";
-	         path = path + File.separator + qnaImg;
+	         
+	        
+	       
 	         
 	         
 	         
@@ -170,10 +170,7 @@ final int rowsize=10;
 	             
 	            try {
 	            	
-	            	File f=new File(path);
-	    	    	if(!f.exists()) {
-	    	    		f.mkdir();
-	    	    	}
+	            	
 	               mr = new MultipartRequest(request, path, max, "UTF-8", new DefaultFileRenamePolicy());
 	                filename= mr.getFilesystemName("filename");
 	               qtitle = mr.getParameter("qtitle");

@@ -436,10 +436,8 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
           String pno = "";
          
          ServletContext context = request.getServletContext();
-         String path = context.getRealPath("/");
-         path=path.substring(0,path.lastIndexOf("\\"));
-         String reviewImg="reviewImg";
-         path = path + File.separator + reviewImg;
+         String path = "/home/ubuntu/pet/reviewImg";
+       
          
          
          
@@ -450,10 +448,6 @@ public String productList(HttpServletRequest request, HttpServletResponse respon
              MultipartRequest mr;
              String imgname="";
             try {
-            	File f=new File(path);
-    	    	if(!f.exists()) {
-    	    		f.mkdir();
-    	    	}
             	
                mr = new MultipartRequest(request, path, max, "UTF-8", new DefaultFileRenamePolicy());
                 imgname= mr.getFilesystemName("image");
