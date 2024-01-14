@@ -104,7 +104,7 @@ public class ReviewModel {
 		
 		ServletContext context = request.getServletContext();
 //		String path = context.getRealPath("/");
-		String pathh="/home/ubuntu/pet10/imageall";
+		String pathh="/home/ubuntu/pet/reviewImg";
 //		path=path.substring(0,path.lastIndexOf("\\"));
 		// C:\webDev\webStudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\JSPMVCFinalProject\WEB-INF\classes
 //		System.out.println(path);

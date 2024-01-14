@@ -211,7 +211,7 @@ function reviewlist(typeno,objno,revpage){
 				html+='<div class="stayrevrow">';
 				
 					if(revo.imgsize>0){
-						html+='<img src="../imageall/'+revo.imgname+'" class="user-image">'
+						html+='<img src="../reviewImg/'+revo.imgname+'" class="user-image">'
 					 }
 	            	else{
 	            		html+='<img src="../img/mainlogo.png">'
