@@ -44,8 +44,8 @@
 							</tr>
 							<tr>
 								<c:choose>
-									<c:when test="${not empty petimg}">
-										<td rowspan="5"><img src="${petimg}" class="my_profile"></td>
+									<c:when test="${not empty filename || filename ==''}">
+										<td rowspan="5"><img src="../mypageImg/${filename }" class="my_profile"></td>
 									</c:when>
 									<c:otherwise>
 										<td rowspan="5"><img src="../img/mainlogo.png"

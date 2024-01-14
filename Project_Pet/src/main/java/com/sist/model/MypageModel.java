@@ -46,9 +46,10 @@ public class MypageModel {
 	    MemberVO myvo=dao.mypageMy(id);
 	    
 	    String filename = vo.getPet_filename();
-	    String path = "c://download";
+	   // String path = "c://download";
+	    String path = "/home/ubuntu/pet/mypageImg";
 	    File file = new File(path + "\\" + filename);
-
+	    request.setAttribute("filename", filename);
 	    try {
 	        // 파일이 존재하면 읽어오고 Base64로 인코딩
 	        if (file.exists()) {
@@ -60,10 +61,11 @@ public class MypageModel {
 
 	            // 바이트 배열을 Base64 인코딩으로 변환
 	            String petimg = "data:image/" + extension + ";base64," + Base64.getEncoder().encodeToString(imageData);
-
+	            System.out.println(Base64.getEncoder().encodeToString(imageData));
 	            // JSP에 전달할 속성 설정
 	            request.setAttribute("petimg", petimg);
 	        } 
+	        
 	    } catch (Exception ex) {}
 	    request.setAttribute("vo", vo);
 	    request.setAttribute("myvo", myvo);
@@ -133,7 +135,9 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 	    MyPageVO vo = new MyPageVO();
 
 	    // 파일 업로드
-	    String path = "c://download";
+	   // String path = "c://download";
+	    
+	    String path =  "/home/ubuntu/pet/mypageImg";
 	    int max = 1024 * 1024 * 100;
 
 	    MultipartRequest mr = new MultipartRequest(request, path, max, "UTF-8", new DefaultFileRenamePolicy());
@@ -143,7 +147,7 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 	        vo.setPet_filename("");
 	        vo.setPet_filesize(0);
 	    } else {
-	        File file = new File(path + "\\" + filename);
+	        File file = new File(path + File.separator + filename);
 	        vo.setPet_filename(filename);
 	        vo.setPet_filesize((int) file.length());
 	    }
@@ -170,7 +174,7 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 	    System.out.println("pet_bday: " + pet_bday);
 	    System.out.println("pet_gender: " + pet_gender);
 	    System.out.println("pet_weight: " + pet_weight);
-	    System.out.println("pet_filename: " + filename);
+	    System.out.println("pet_filenamesadads: " + filename);
 
 	    dao.petRegInsert(vo);
 	 
@@ -190,9 +194,10 @@ public String petregData(HttpServletRequest request, HttpServletResponse respons
 	    MyPageDAO dao = MyPageDAO.newInstance();
 	    MyPageVO vo = dao.mypagePet(id);
 	    String filename = vo.getPet_filename();
-	    String path = "c://download";
-	    File file = new File(path + "\\" + filename);
-
+	   // String path = "c://download";
+	    String path =  "/home/ubuntu/pet/mypageImg";
+	    File file = new File(path + File.separator + filename);
+	    request.setAttribute("filename", filename);
 	    try {
 	        // 파일이 존재하면 읽어오고 Base64로 인코딩
 	        if (file.exists()) {
@@ -229,7 +234,9 @@ public String petUpdate(HttpServletRequest request, HttpServletResponse response
     MyPageVO vo = new MyPageVO();
 
     // 파일 업로드
-    String path = "c://download";
+    //String path = "c://download";
+    String path =  "/home/ubuntu/pet/mypageImg";
+    
     int max = 1024 * 1024 * 100;
 
     MultipartRequest mr = new MultipartRequest(request, path, max, "UTF-8", new DefaultFileRenamePolicy());
@@ -239,7 +246,7 @@ public String petUpdate(HttpServletRequest request, HttpServletResponse response
         vo.setPet_filename("");
         vo.setPet_filesize(0);
     } else {
-        File file = new File(path + "\\" + filename);
+        File file = new File(path + File.separator + filename);
         vo.setPet_filename(filename);
         vo.setPet_filesize((int) file.length());
     }
