@@ -193,7 +193,13 @@ public class ProductAdminDAO {
 		try {
 			
 			session=ssf.openSession();
-		maechul= session.selectOne("maechul",type);
+			if(session.selectOne("maechul",type)==null) {
+				maechul=0;
+			}
+			else {
+				maechul= session.selectOne("maechul",type);
+			}
+		
 			
 			
 		} catch (Exception e) {

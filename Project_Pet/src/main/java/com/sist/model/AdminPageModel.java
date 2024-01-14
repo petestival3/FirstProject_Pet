@@ -418,6 +418,7 @@ ProductAdminDAO.pstackUpdate(map);
 		}
 		int maechul=ProductAdminDAO.maechul(Integer.parseInt(type));
 		System.out.println(maechul);
+		
 		DecimalFormat decimalFormat = new DecimalFormat("###,###원");
 		String machulPrice = decimalFormat.format(maechul); // buy_intprice는 숫자 변수
 		request.setAttribute("machulPrice", machulPrice);

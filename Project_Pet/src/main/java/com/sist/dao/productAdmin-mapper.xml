@@ -9,6 +9,9 @@
 <result property="pvo.p_name" column="p_name"/>
 
 </resultMap>
+
+
+
 <select id="productStateList" resultMap="cartData" parameterType="map">
 
 
